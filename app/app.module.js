@@ -38,6 +38,8 @@ var table_component_1 = require('./web/vendor/components/table.component');
 var http_2 = require('vendor/http');
 var common_1 = require('vendor/common');
 var demo_service_impl_1 = require('./js/com/sgm/dms/ops/services/demo.service.impl');
+//扩展类
+var util_1 = require('vendor/util');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -49,17 +51,21 @@ var AppModule = (function () {
                 http_1.HttpModule,
                 app_routes_1.routing
             ],
+            //指令及组件的使用
             declarations: [
                 app_component_1.AppComponent,
                 dashboard_component_1.DashBoardComponent,
                 demo_component_1.DemoComponent,
-                search_component_1.ApplicationSearch,
+                search_component_1.ApplicationSearchComponent,
                 table_component_1.TableComponent
             ],
+            //提供商的注入池
             providers: [
                 http_2.HttpRestful,
                 common_1.RestService,
-                demo_service_impl_1.DemoServiceImpl
+                demo_service_impl_1.DemoServiceImpl,
+                //扩展类
+                util_1.TableOptions
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

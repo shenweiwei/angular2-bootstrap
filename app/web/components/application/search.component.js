@@ -17,23 +17,27 @@ var core_1 = require('@angular/core');
 var base_component_1 = require('../base.component');
 var table_component_1 = require('../../vendor/components/table.component');
 var application_vo_1 = require('../../../js/com/sgm/dms/ops/vo/application.vo');
-var ApplicationSearch = (function (_super) {
-    __extends(ApplicationSearch, _super);
-    function ApplicationSearch() {
-        _super.apply(this, arguments);
+var ApplicationSearchComponent = (function (_super) {
+    __extends(ApplicationSearchComponent, _super);
+    function ApplicationSearchComponent(tableComponent) {
+        _super.call(this);
+        this.tableComponent = tableComponent;
         this.application = new application_vo_1.ApplicationVo();
     }
-    ApplicationSearch.prototype.ngOnInit = function () {
+    ApplicationSearchComponent.prototype.ngOnInit = function () {
         _super.prototype.ngOnInit.call(this);
     };
-    ApplicationSearch = __decorate([
+    ApplicationSearchComponent.prototype.search = function () {
+        this.tableComponent.initDataTable();
+    };
+    ApplicationSearchComponent = __decorate([
         core_1.Component({
             templateUrl: 'app/web/views/application/search.html',
-            entryComponents: [table_component_1.TableComponent]
+            providers: [table_component_1.TableComponent]
         }), 
-        __metadata('design:paramtypes', [])
-    ], ApplicationSearch);
-    return ApplicationSearch;
+        __metadata('design:paramtypes', [table_component_1.TableComponent])
+    ], ApplicationSearchComponent);
+    return ApplicationSearchComponent;
 }(base_component_1.BaseComponent));
-exports.ApplicationSearch = ApplicationSearch;
+exports.ApplicationSearchComponent = ApplicationSearchComponent;
 //# sourceMappingURL=search.component.js.map

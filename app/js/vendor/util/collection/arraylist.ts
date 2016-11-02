@@ -8,6 +8,7 @@ export class ArrayList<T> implements List<T>, ClientObject {
 
     constructor() {
         this.array = [];
+        this.array['getSize']=this.getSize();
     }
 
 
@@ -22,6 +23,7 @@ export class ArrayList<T> implements List<T>, ClientObject {
         if (ArrayUtil.empty(this.array)) {
             return 0;
         }
+        
         return this.array.length;
     }
 

@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './web/components/app.component';
 import { DashBoardComponent } from './web/components/dashboard.component';
 import { DemoComponent } from './web/components/demo/demo.component';
-import {ApplicationSearch} from './web/components/application/search.component'
+import { ApplicationSearchComponent } from './web/components/application/search.component'
 
 const appRoutes: Routes = [
     {
@@ -23,7 +23,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'application/search',
-        component: ApplicationSearch
+        component: ApplicationSearchComponent
     }
 
 ];

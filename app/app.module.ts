@@ -25,7 +25,7 @@ import { DashBoardComponent } from './web/components/dashboard.component';
 
 //advance component
 import { DemoComponent } from './web/components/demo/demo.component';
-import { ApplicationSearch } from './web/components/application/search.component';
+import { ApplicationSearchComponent } from './web/components/application/search.component';
 
 //vendor component
 import { TableComponent } from './web/vendor/components/table.component';
@@ -35,6 +35,9 @@ import { HttpRestful } from 'vendor/http';
 import { RestService } from 'vendor/common';
 import { DemoServiceImpl } from './js/com/sgm/dms/ops/services/demo.service.impl';
 
+//扩展类
+import {TableOptions} from 'vendor/util';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -42,17 +45,21 @@ import { DemoServiceImpl } from './js/com/sgm/dms/ops/services/demo.service.impl
     HttpModule,
     routing
   ],
+  //指令及组件的使用
   declarations: [
     AppComponent,
     DashBoardComponent,
     DemoComponent,
-    ApplicationSearch,
+    ApplicationSearchComponent,
     TableComponent
   ],
+  //提供商的注入池
   providers: [
     HttpRestful,
     RestService,
-    DemoServiceImpl
+    DemoServiceImpl,
+    //扩展类
+    TableOptions
   ],
   bootstrap: [AppComponent]
 })

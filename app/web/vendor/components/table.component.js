@@ -9,9 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var util_1 = require('vendor/util');
 var TableComponent = (function () {
-    function TableComponent() {
+    function TableComponent(tableOptions) {
+        this.tableOptions = tableOptions;
     }
+    TableComponent.prototype.initDataTable = function () {
+        console.log(this.tableOptions);
+        console.log(this.tableOptions.pageSizeList.getSize());
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Number)
@@ -22,7 +28,7 @@ var TableComponent = (function () {
             templateUrl: 'app/web/vendor/views/table.html',
             styleUrls: ['app/web/vendor/css/vendor.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [util_1.TableOptions])
     ], TableComponent);
     return TableComponent;
 }());

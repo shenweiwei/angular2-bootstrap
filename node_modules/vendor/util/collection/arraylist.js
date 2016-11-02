@@ -4,6 +4,7 @@ var system_exception_1 = require('../../common/exception/system.exception');
 var ArrayList = (function () {
     function ArrayList() {
         this.array = [];
+        this.array['getSize'] = this.getSize();
     }
     /**
      * 获取集合总数

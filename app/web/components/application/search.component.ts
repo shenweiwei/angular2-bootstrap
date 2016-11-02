@@ -5,14 +5,23 @@ import { ApplicationVo } from '../../../js/com/sgm/dms/ops/vo/application.vo';
 
 @Component({
     templateUrl: 'app/web/views/application/search.html',
-    entryComponents: [TableComponent]
+    providers:[TableComponent]
 })
 
-export class ApplicationSearch extends BaseComponent implements OnInit {
+export class ApplicationSearchComponent extends BaseComponent implements OnInit {
     public application: ApplicationVo = new ApplicationVo();
+
+
+    constructor(private tableComponent: TableComponent) {
+        super();
+    }
 
 
     ngOnInit(): void {
         super.ngOnInit();
+    }
+
+    search(): void {
+        this.tableComponent.initDataTable();
     }
 }

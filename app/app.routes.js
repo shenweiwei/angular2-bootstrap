@@ -19,7 +19,7 @@ var appRoutes = [
     },
     {
         path: 'application/search',
-        component: search_component_1.ApplicationSearch
+        component: search_component_1.ApplicationSearchComponent
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

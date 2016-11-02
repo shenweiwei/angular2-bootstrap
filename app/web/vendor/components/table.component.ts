@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { TableOptions } from 'vendor/util';
 
 @Component({
     selector: 'bootstrap-table',
@@ -7,5 +8,19 @@ import { Component, Input } from '@angular/core';
 })
 
 export class TableComponent {
+    /**
+     * 设置初始化页面数据总数
+     * 
+     * @type {number}
+     * @memberOf TableComponent
+     */
     @Input() pageSize: number;
+
+    constructor(public tableOptions: TableOptions) {
+    }
+
+    initDataTable(): void {
+        console.log(this.tableOptions);
+        console.log(this.tableOptions.pageSizeList.getSize());
+    }
 }

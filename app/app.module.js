@@ -37,7 +37,7 @@ var table_component_1 = require('./web/vendor/components/table.component');
 //service
 var http_2 = require('vendor/http');
 var common_1 = require('vendor/common');
-var demo_service_impl_1 = require('./js/com/sgm/dms/fol/services/demo.service.impl');
+var demo_service_impl_1 = require('./js/com/sgm/dms/ops/services/demo.service.impl');
 var AppModule = (function () {
     function AppModule() {
     }

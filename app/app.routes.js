@@ -18,7 +18,7 @@ var appRoutes = [
         component: dashboard_component_1.DashBoardComponent
     },
     {
-        path: 'applicaton_search',
+        path: 'application/search',
         component: search_component_1.ApplicationSearch
     }
 ];

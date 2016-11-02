@@ -9,10 +9,6 @@ export class DemoVo extends PageVo{
     private _frozenAmount:number;
     private _availAmount:number;
 
-    constructor(){
-        super(0,10);
-    }
-
     set sapCode(sapCode:string){
         this._sapCode=sapCode;
     }

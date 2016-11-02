@@ -22,7 +22,7 @@ const appRoutes: Routes = [
         component: DashBoardComponent
     },
     {
-        path: 'applicaton_search',
+        path: 'application/search',
         component: ApplicationSearch
     }
 

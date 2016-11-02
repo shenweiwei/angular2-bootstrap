@@ -14,15 +14,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var lang_1 = require('vendor/lang');
+var demo_vo_1 = require('../../../js/com/sgm/dms/ops/vo/demo.vo');
 var base_component_1 = require('../base.component');
-var demo_service_impl_1 = require('../../../js/com/sgm/dms/fol/services/demo.service.impl');
+var demo_service_impl_1 = require('../../../js/com/sgm/dms/ops/services/demo.service.impl');
 var DemoComponent = (function (_super) {
     __extends(DemoComponent, _super);
     function DemoComponent(demo_service_impl) {
         _super.call(this);
         this.demo_service_impl = demo_service_impl;
-        this._params = new lang_1.PageVo(0, 10);
+        this._params = new demo_vo_1.DemoVo;
     }
     DemoComponent.prototype.ngOnInit = function () {
         _super.prototype.ngOnInit.call(this);

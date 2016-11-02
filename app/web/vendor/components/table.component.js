@@ -12,6 +12,10 @@ var core_1 = require('@angular/core');
 var TableComponent = (function () {
     function TableComponent() {
     }
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], TableComponent.prototype, "pageSize", void 0);
     TableComponent = __decorate([
         core_1.Component({
             selector: 'bootstrap-table',

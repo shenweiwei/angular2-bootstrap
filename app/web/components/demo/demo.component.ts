@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DemoVo } from '../../../js/com/sgm/dms/fol/vo/demo.vo';
+import { DemoVo } from '../../../js/com/sgm/dms/ops/vo/demo.vo';
 import { PageVo } from 'vendor/lang';
 import { ComponentException } from 'vendor/common';
 import { BaseComponent } from '../base.component';
-import { DemoServiceImpl } from '../../../js/com/sgm/dms/fol/services/demo.service.impl';
+import { DemoServiceImpl } from '../../../js/com/sgm/dms/ops/services/demo.service.impl';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/Observable';
 
 export class DemoComponent extends BaseComponent implements OnInit {
     public _demoVoList: DemoVo[];
-    public _params: PageVo = new PageVo(0, 10);
+    public _params: DemoVo = new DemoVo;
 
     constructor(private demo_service_impl: DemoServiceImpl) {
         super();

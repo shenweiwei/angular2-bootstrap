@@ -33,7 +33,7 @@ import { TableComponent } from './web/vendor/components/table.component';
 //service
 import { HttpRestful } from 'vendor/http';
 import { RestService } from 'vendor/common';
-import { DemoServiceImpl } from './js/com/sgm/dms/fol/services/demo.service.impl';
+import { DemoServiceImpl } from './js/com/sgm/dms/ops/services/demo.service.impl';
 
 @NgModule({
   imports: [

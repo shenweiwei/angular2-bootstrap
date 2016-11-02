@@ -16,10 +16,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var base_component_1 = require('../base.component');
 var table_component_1 = require('../../vendor/components/table.component');
+var application_vo_1 = require('../../../js/com/sgm/dms/ops/vo/application.vo');
 var ApplicationSearch = (function (_super) {
     __extends(ApplicationSearch, _super);
     function ApplicationSearch() {
         _super.apply(this, arguments);
+        this.application = new application_vo_1.ApplicationVo();
     }
     ApplicationSearch.prototype.ngOnInit = function () {
         _super.prototype.ngOnInit.call(this);

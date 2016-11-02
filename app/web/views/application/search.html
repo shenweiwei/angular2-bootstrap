@@ -17,29 +17,29 @@
         <form role="form" class="form-horizontal">
             <article class="form-group col-sm-12">
                 <section class="col-sm-6">
-                    <label class="col-sm-4 control-label" for="name">应用中文名</label>
-                    <section class="col-sm-8">
-                        <input type="text" class="form-control" id="name" name="" [(ngModel)]="_params.dealerType" placeholder="name">
+                    <label class="col-sm-4 control-label" for="appChnName">应用中文名</label>
+                    <section class="col-sm-6">
+                        <input type="text" id="appChnName" name="appChnName" class="form-control" [(ngModel)]="application.appChnName" placeholder="应用中文名">
                     </section>
                 </section>
                 <section class="col-sm-6">
-                    <label class="col-sm-4 control-label" for="name">应用英文名</label>
-                    <section class="col-sm-8">
-                        <input type="text" placeholder="name" id="name" class="form-control" [(ngModel)]="_params.reserveType" [ngModelOptions]="{standalone: true}">
+                    <label class="col-sm-4 control-label" for="appEngName">应用英文名</label>
+                    <section class="col-sm-6">
+                        <input type="text" id="appEngName" name="appEngName" class="form-control" [(ngModel)]="application.appEngName" placeholder="应用英文名">
                     </section>
                 </section>
             </article>
             <article class="form-group col-sm-12">
                 <section class="col-sm-6">
-                    <label class="col-sm-4 control-label" for="name">应用负责人</label>
-                    <section class="col-sm-8">
-                        <input type="text" placeholder="name" id="name" class="form-control" [(ngModel)]="_params.sapCode" [ngModelOptions]="{standalone: true}">
+                    <label class="col-sm-4 control-label" for="appOwner">应用负责人</label>
+                    <section class="col-sm-6">
+                        <input type="text" id="name" name="appOwner" class="form-control" [(ngModel)]="application.appOwner" placeholder="应用负责人">
                     </section>
                 </section>
                 <section class="col-sm-6">
-                    <label class="col-sm-4 control-label" for="name">备注</label>
-                    <section class="col-sm-8">
-                        <input type="text" placeholder="name" id="name" class="form-control" [(ngModel)]="_params.sapCode" [ngModelOptions]="{standalone: true}">
+                    <label class="col-sm-4 control-label" for="remark">备注</label>
+                    <section class="col-sm-6">
+                        <input type="text" id="remark" name="remark" class="form-control" [(ngModel)]="application.remark" placeholder="备注">
                     </section>
                 </section>
             </article>

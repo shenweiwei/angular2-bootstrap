@@ -8,7 +8,7 @@ var lang_1 = require('vendor/lang');
 var DemoVo = (function (_super) {
     __extends(DemoVo, _super);
     function DemoVo() {
-        _super.call(this, 0, 10);
+        _super.apply(this, arguments);
     }
     Object.defineProperty(DemoVo.prototype, "sapCode", {
         get: function () {

@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// Observable class extensions
+/// Observable class extensions
 require('rxjs/add/observable/of');
 require('rxjs/add/observable/throw');
 // Observable operators
@@ -26,10 +26,14 @@ var http_1 = require('@angular/http');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var app_routes_1 = require('./app.routes');
-//component
+//base component
 var app_component_1 = require('./web/components/app.component');
 var dashboard_component_1 = require('./web/components/dashboard.component');
+//advance component
 var demo_component_1 = require('./web/components/demo/demo.component');
+var search_component_1 = require('./web/components/application/search.component');
+//vendor component
+var table_component_1 = require('./web/vendor/components/table.component');
 //service
 var http_2 = require('vendor/http');
 var common_1 = require('vendor/common');
@@ -48,7 +52,9 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent,
                 dashboard_component_1.DashBoardComponent,
-                demo_component_1.DemoComponent
+                demo_component_1.DemoComponent,
+                search_component_1.ApplicationSearch,
+                table_component_1.TableComponent
             ],
             providers: [
                 http_2.HttpRestful,

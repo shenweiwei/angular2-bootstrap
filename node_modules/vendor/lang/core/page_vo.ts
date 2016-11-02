@@ -1,13 +1,14 @@
 import {BaseVo} from './base_vo';
+import {value} from '../../annotation/value';
 
 export class PageVo extends BaseVo{
+    @value.Default(0)
     private _beginNo: number;
+    @value.Default(10)
     private _endNo: number;
 
-    constructor(beginNo?:number,endNo?:number){
+    constructor(){
         super();
-        this._beginNo=beginNo;
-        this._endNo=endNo;
     }
 
     set beginNo(beginNo: number) {

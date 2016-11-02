@@ -19,10 +19,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { routing } from './app.routes';
 
-//component
+//base component
 import { AppComponent } from './web/components/app.component';
 import { DashBoardComponent } from './web/components/dashboard.component';
+
+//advance component
 import { DemoComponent } from './web/components/demo/demo.component';
+import { ApplicationSearch } from './web/components/application/search.component';
 
 //vendor component
 import { TableComponent } from './web/vendor/components/table.component';
@@ -43,6 +46,7 @@ import { DemoServiceImpl } from './js/com/sgm/dms/fol/services/demo.service.impl
     AppComponent,
     DashBoardComponent,
     DemoComponent,
+    ApplicationSearch,
     TableComponent
   ],
   providers: [

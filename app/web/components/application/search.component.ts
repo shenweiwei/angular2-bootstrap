@@ -3,7 +3,7 @@ import { BaseComponent } from '../base.component';
 import { TableComponent } from '../../vendor/components/table.component';
 
 @Component({
-    templateUrl: 'app/web/views/application/search',
+    templateUrl: 'app/web/views/application/search.html',
     entryComponents: [TableComponent]
 })
 

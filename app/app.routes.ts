@@ -1,10 +1,11 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
+//componet
 import { AppComponent } from './web/components/app.component';
 import { DashBoardComponent } from './web/components/dashboard.component';
 import { DemoComponent } from './web/components/demo/demo.component';
+import {ApplicationSearch} from './web/components/application/search.component'
 
 const appRoutes: Routes = [
     {
@@ -19,6 +20,10 @@ const appRoutes: Routes = [
     {
         path: 'dashboard',
         component: DashBoardComponent
+    },
+    {
+        path: 'applicaton_search',
+        component: ApplicationSearch
     }
 
 ];

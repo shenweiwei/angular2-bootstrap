@@ -1,6 +1,6 @@
-<section class="panel panel-default row">
-    <section class="panel-heading col-sm-12">
-        <i class="fa fa-external-link-square"></i> search
+<article class="panel panel-default row">
+    <section class="panel-heading">
+        <i class="fa fa-external-link-square"></i> result data
         <div class="panel-tools">
             <a id="collapses" class="btn btn-xs btn-link panel-collapse collapses" href="#">
             </a>
@@ -13,8 +13,64 @@
         </div>
     </section>
     <section class="panel-body">
-        <section id="table-header-tools"></section>
-        <section id="table-body"></section>
-        <section id="table-footer-tools"></section>
+        <article id="table-header-tools col-sm-12">
+            <section class="dropdown col-sm-9">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    10
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">10</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">20</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">50</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">100</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
+                </ul>
+            </section>
+            <section class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="table-search">Search</label>
+                <section class="col-sm-8">
+                    <input type="text" placeholder="table-search" id="table-search" class="form-control" />
+                </section>
+            </section>
+        </article>
+        <article id="table-body col-sm-12">
+            <table>
+                <thead>
+                    <tr>
+                        <th>应用编号</th>
+                        <th>应用中文名</th>
+                        <th>应用英文名</th>
+                        <th>应用负责人</th>
+                        <th>更新时间</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{appId}}</td>
+                        <td>{{appChnName}}</td>
+                        <td>{{appEngName}}</td>
+                        <td>{{appOwner}}</td>
+                        <td>{{updateDate}}</td>
+                        <td>{{remark}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <article id="table-footer-tools col-sm-12">
+            <section class="col-sm-9">
+                当前数: 1 至 10 总数:10
+            </section>
+            <section class="col-sm-3">
+                <nav>
+                    <ul class="pagination">
+                        <li class="disabled"><a href="#">上一页</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li class="disabled"><a href="#">下一页</a></li>
+                    </ul>
+                </nav>
+            </section>
+        </article>
     </section>
-</section>
+</article>

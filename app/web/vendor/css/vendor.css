@@ -1,3 +1,29 @@
+#table-header-tools {
+    margin: 0;
+}
+
+#table-header-tools .form-group {
+    display: block;
+    float: right;
+}
+
 #table-footer-tools {
-    margin:0;
+    margin: 0;
+}
+
+#table-footer-tools ul {
+    margin: 0;
+}
+
+#table-footer-tools>section {
+    margin-top: 20px;
+}
+
+#table-footer-tools>section:first-child {
+    margin-top: 30px;
+}
+
+#table-footer-tools>section>ul {
+    display: block;
+    float: right;
 }

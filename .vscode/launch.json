@@ -1,0 +1,20 @@
+{
+    "version": "2.1.3",
+    "configurations": [{
+            "name": "chorme typescript angular2",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000",
+            "sourceMaps": true,
+            "webRoot": "C:/Users/shen_/Documents/worksapce/SGM/DMSOPS/trunk/angular2-bootstrap"
+        },
+        {
+            "name": "Attach to Chrome",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}"
+        }
+    ]
+}

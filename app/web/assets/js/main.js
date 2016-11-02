@@ -604,21 +604,21 @@ var Main = function() {
 
             $.cookie("clip-setting", JSON.stringify(clipSetting));
 
-            var el = $('#style_selector_container');
-            el.block({
-                overlayCSS: {
-                    backgroundColor: '#fff'
-                },
-                message: '<img src="app/web/assets/images/loading.gif" /> Just a moment...',
-                css: {
-                    border: 'none',
-                    color: '#333',
-                    background: 'none'
-                }
-            });
-            window.setTimeout(function() {
-                el.unblock();
-            }, 1000);
+            // var el = $('#style_selector_container');
+            // el.block({
+            //     overlayCSS: {
+            //         backgroundColor: '#fff'
+            //     },
+            //     message: '<img src="app/web/assets/images/loading.gif" /> Just a moment...',
+            //     css: {
+            //         border: 'none',
+            //         color: '#333',
+            //         background: 'none'
+            //     }
+            // });
+            // window.setTimeout(function() {
+            //     el.unblock();
+            // }, 1000);
         });
     };
     //function to load user settings

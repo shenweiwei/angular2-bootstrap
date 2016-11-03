@@ -4,7 +4,6 @@ var system_exception_1 = require('../../common/exception/system.exception');
 var ArrayList = (function () {
     function ArrayList() {
         this.array = [];
-        this.array['getSize'] = this.getSize();
     }
     /**
      * 获取集合总数
@@ -51,7 +50,7 @@ var ArrayList = (function () {
      * @template T
      * @param {number} startIndex
      * @param {number} [endIndex]
-     * @returns {Array<T>}
+     * @returns {ArrayList<T>}
      *
      * @memberOf ArrayList
      */
@@ -72,7 +71,7 @@ var ArrayList = (function () {
      *
      * @template T
      * @param {T} data
-     * @returns {boolean}
+     * @returns {ArrayList<T>}
      *
      * @memberOf ArrayList
      */
@@ -81,7 +80,7 @@ var ArrayList = (function () {
             throw new system_exception_1.SystemException('current list is empty');
         }
         this.array.push(data);
-        return true;
+        return this;
     };
     return ArrayList;
 }());

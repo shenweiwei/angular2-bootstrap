@@ -8,7 +8,6 @@ export class ArrayList<T> implements List<T>, ClientObject {
 
     constructor() {
         this.array = [];
-        this.array['getSize']=this.getSize();
     }
 
 
@@ -23,7 +22,7 @@ export class ArrayList<T> implements List<T>, ClientObject {
         if (ArrayUtil.empty(this.array)) {
             return 0;
         }
-        
+
         return this.array.length;
     }
 
@@ -58,26 +57,26 @@ export class ArrayList<T> implements List<T>, ClientObject {
         return this.array[index];
     }
 
+    
     /**
-     * 截取集合的数据集
+     *  截取集合的数据集
      * 
      * @template T
      * @param {number} startIndex
      * @param {number} [endIndex]
-     * @returns {Array<T>}
+     * @returns {ArrayList<T>}
      * 
      * @memberOf ArrayList
      */
-    public subList<T>(startIndex: number, endIndex?: number): Array<T> {
-        let temp_array;
+    public subList<T>(startIndex: number, endIndex?: number): ArrayList<T>{
         if (!Number.isNaN(endIndex)) {
-            temp_array = this.array.copyWithin(0, startIndex, endIndex);
-            temp_array.length = endIndex - startIndex;
+            this.array.copyWithin(0, startIndex, endIndex);
+            this.array.length = endIndex - startIndex;
         } else {
-            temp_array = this.array.copyWithin(0, startIndex);
-            temp_array.length = this.array.length;
+            this.array.copyWithin(0, startIndex);
+            this.array.length = this.array.length-startIndex;
         }
-        return temp_array;
+        return this;
     }
 
 
@@ -86,15 +85,15 @@ export class ArrayList<T> implements List<T>, ClientObject {
      * 
      * @template T
      * @param {T} data
-     * @returns {boolean}
+     * @returns {ArrayList<T>}
      * 
      * @memberOf ArrayList
      */
-    public add<T>(data: T): boolean {
+    public add<T>(data: T): ArrayList<T> {
         if (ArrayUtil.empty(this.array)) {
             throw new SystemException('current list is empty');
         }
         this.array.push(data);
-        return true;
+        return this;
     }
 }

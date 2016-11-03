@@ -1,4 +1,6 @@
-export class TableHeader{
+import { ClientObject } from '../../lang/core';
+
+export class TableHeader implements ClientObject{
     
     /**
      * 表格字段的键值

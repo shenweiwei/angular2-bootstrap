@@ -21,11 +21,9 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">10</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">20</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">50</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">100</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
+                    <li *ngFor="let pageSizeItem of tableOptions.pageSizeList.toArray(); let i = index; trackBy: trackByFn" role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">{{pageSizeItem}}</a>
+                    </li>
                 </ul>
             </section>
             <section class="form-group col-sm-3">
@@ -61,7 +59,7 @@
         </article>
         <article id="table-footer-tools" class="col-sm-12">
             <section class="col-sm-9">
-                当前数: 1 至 10 总数:10
+                当前数: {{pageOptions.beginPageIndex}} 至 {{pageOptions.endPageIndex}} 总数:{{pageOptions.countDataSize}}
             </section>
             <section class="col-sm-3">
                 <ul class="pagination">

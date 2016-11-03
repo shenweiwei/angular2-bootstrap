@@ -1,4 +1,6 @@
-export class TableData {
+import { ClientObject } from '../../lang/core';
+
+export class TableData implements ClientObject{
     
     /**
      * 表格数据的索引号

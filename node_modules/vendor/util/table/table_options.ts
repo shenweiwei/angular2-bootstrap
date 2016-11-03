@@ -1,7 +1,8 @@
 import { List,ArrayList } from '../collection';
 import { value } from '../../annotation/value';
+import { ClientObject } from '../../lang/core';
 
-export class TableOptions {
+export class TableOptions implements ClientObject{
 
     /**
      * 页数的集合

@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var arraylist_1 = require('../collection/arraylist');
+var collection_1 = require('../collection');
 var value_1 = require('../../annotation/value');
 var TableOptions = (function () {
     function TableOptions() {
@@ -103,8 +103,8 @@ var TableOptions = (function () {
         __metadata('design:type', Number)
     ], TableOptions.prototype, "_currentPageNumber", void 0);
     __decorate([
-        value_1.value.Default([10, 20, 50, 100, 'All']), 
-        __metadata('design:type', arraylist_1.ArrayList)
+        value_1.value.Default(new collection_1.ArrayList().add(10).add(20).add(50).add(100).add('All')), 
+        __metadata('design:type', collection_1.List)
     ], TableOptions.prototype, "_pageSizeList", void 0);
     return TableOptions;
 }());

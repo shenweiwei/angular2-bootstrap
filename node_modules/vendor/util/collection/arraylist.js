@@ -4,6 +4,7 @@ var system_exception_1 = require('../../common/exception/system.exception');
 var ArrayList = (function () {
     function ArrayList() {
         this.array = [];
+        return this;
     }
     /**
      * 获取集合总数
@@ -45,7 +46,7 @@ var ArrayList = (function () {
         return this.array[index];
     };
     /**
-     * 截取集合的数据集
+     *  截取集合的数据集
      *
      * @template T
      * @param {number} startIndex
@@ -55,16 +56,15 @@ var ArrayList = (function () {
      * @memberOf ArrayList
      */
     ArrayList.prototype.subList = function (startIndex, endIndex) {
-        var temp_array;
         if (!Number.isNaN(endIndex)) {
-            temp_array = this.array.copyWithin(0, startIndex, endIndex);
-            temp_array.length = endIndex - startIndex;
+            this.array.copyWithin(0, startIndex, endIndex);
+            this.array.length = endIndex - startIndex;
         }
         else {
-            temp_array = this.array.copyWithin(0, startIndex);
-            temp_array.length = this.array.length;
+            this.array.copyWithin(0, startIndex);
+            this.array.length = this.array.length - startIndex;
         }
-        return temp_array;
+        return this;
     };
     /**
      * 往集合内添加数据

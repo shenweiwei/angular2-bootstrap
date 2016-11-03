@@ -5,6 +5,6 @@ export declare abstract class List<T> implements Collection {
     getSize(): number;
     toArray<T>(): Array<T>;
     get<T>(index: number): T;
-    subList<T>(startIndex: number, endIndex?: number): ArrayList<T>;
-    add<T>(data: T): ArrayList<T>;
+    subList<T>(startIndex: number, endIndex?: number): List<T>;
+    add<T>(data: T): List<T>;
 }

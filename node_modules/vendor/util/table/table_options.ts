@@ -1,4 +1,4 @@
-import { ArrayList } from '../collection/arraylist';
+import { List,ArrayList } from '../collection';
 import { value } from '../../annotation/value';
 
 export class TableOptions {
@@ -7,10 +7,10 @@ export class TableOptions {
      * 页数的集合
      * 
      * @private
-     * @type {ArrayList<any>}
+     * @type {List<any>}
      * @memberOf TableOptions
      */
-    private _pageNumberList: ArrayList<any>;
+    private _pageNumberList: List<any>;
 
     /**
      * 页面显示数据的开始索引号
@@ -68,14 +68,14 @@ export class TableOptions {
      * @type {number}
      * @memberOf TableOptions
      */
-    @value.Default([10, 20, 50, 100, 'All'])
-    private _pageSizeList: ArrayList<number>;
+    @value.Default(new ArrayList().add(10).add(20).add(50).add(100).add('All'))
+    private _pageSizeList: List<any>;
 
-    public get pageNumberList(): ArrayList<any> {
+    public get pageNumberList(): List<any> {
         return this._pageNumberList;
     }
 
-    public set pageNumberList(value: ArrayList<any>) {
+    public set pageNumberList(value: List<any>) {
         this._pageNumberList = value;
     }
 
@@ -123,11 +123,11 @@ export class TableOptions {
         return this._pageNumberList.getSize();
     }
 
-    public get pageSizeList(): ArrayList<number> {
+    public get pageSizeList(): List<number> {
         return this._pageSizeList;
     }
 
-    public set pageSizeList(value: ArrayList<number>) {
+    public set pageSizeList(value: List<number>) {
         this._pageSizeList = value;
     }
 

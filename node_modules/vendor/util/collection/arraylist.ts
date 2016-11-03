@@ -4,10 +4,10 @@ import { ArrayUtil } from '../../common/util/array.util'
 import { SystemException } from '../../common/exception/system.exception'
 
 export class ArrayList<T> implements List<T>, ClientObject {
-    private array: Array<any>;
+    private array: Array<any> = [];
 
     constructor() {
-        this.array = [];
+        return this;
     }
 
 
@@ -68,7 +68,7 @@ export class ArrayList<T> implements List<T>, ClientObject {
      * 
      * @memberOf ArrayList
      */
-    public subList<T>(startIndex: number, endIndex?: number): ArrayList<T>{
+    public subList<T>(startIndex: number, endIndex?: number): List<T>{
         if (!Number.isNaN(endIndex)) {
             this.array.copyWithin(0, startIndex, endIndex);
             this.array.length = endIndex - startIndex;
@@ -89,7 +89,7 @@ export class ArrayList<T> implements List<T>, ClientObject {
      * 
      * @memberOf ArrayList
      */
-    public add<T>(data: T): ArrayList<T> {
+    public add<T>(data: T): List<T> {
         if (ArrayUtil.empty(this.array)) {
             throw new SystemException('current list is empty');
         }

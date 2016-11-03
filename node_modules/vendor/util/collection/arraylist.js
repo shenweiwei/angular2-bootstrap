@@ -82,6 +82,22 @@ var ArrayList = (function () {
         this.array.push(data);
         return this;
     };
+    /**
+     * 根据索引集合内替换数据
+     *
+     * @template T
+     * @param {T} data
+     * @returns {ArrayList<T>}
+     *
+     * @memberOf ArrayList
+     */
+    ArrayList.prototype.replace = function (data, index) {
+        if (array_util_1.ArrayUtil.empty(this.array)) {
+            throw new system_exception_1.SystemException('current list is empty');
+        }
+        this.array[index] = data;
+        return this;
+    };
     return ArrayList;
 }());
 exports.ArrayList = ArrayList;

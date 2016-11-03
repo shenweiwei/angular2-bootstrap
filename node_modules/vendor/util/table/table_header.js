@@ -2,6 +2,16 @@
 var TableHeader = (function () {
     function TableHeader() {
     }
+    Object.defineProperty(TableHeader.prototype, "index", {
+        get: function () {
+            return this._index;
+        },
+        set: function (value) {
+            this._index = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(TableHeader.prototype, "key", {
         get: function () {
             return this._key;

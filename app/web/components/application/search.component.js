@@ -37,7 +37,7 @@ var ApplicationSearchComponent = (function (_super) {
             tableData['appEngName'] = i;
             list.add(tableData);
         }
-        this.tableComponent.initDataTable(list);
+        this.tableComponent.initDataTable(list, new util_1.ArrayList());
     };
     ApplicationSearchComponent = __decorate([
         core_1.Component({

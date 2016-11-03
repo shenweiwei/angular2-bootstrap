@@ -3,6 +3,15 @@ import { ClientObject } from '../../lang/core';
 export class TableHeader implements ClientObject{
     
     /**
+     * 列索引
+     * 
+     * @private
+     * @type {number}
+     * @memberOf TableHeader
+     */
+    private _index:number;
+    
+    /**
      * 表格字段的键值
      * 
      * @private
@@ -20,6 +29,14 @@ export class TableHeader implements ClientObject{
      */
     private _desc:string;
 
+	public get index(): number {
+		return this._index;
+	}
+
+	public set index(value: number) {
+		this._index = value;
+	}
+    
 	public get key(): string {
 		return this._key;
 	}

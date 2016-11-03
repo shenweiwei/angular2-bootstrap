@@ -86,6 +86,26 @@ var TableOptions = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(TableOptions.prototype, "turnPagePreDisabled", {
+        get: function () {
+            return this._turnPagePreDisabled;
+        },
+        set: function (value) {
+            this._turnPagePreDisabled = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TableOptions.prototype, "turnPageNextDisabled", {
+        get: function () {
+            return this._turnPageNextDisabled;
+        },
+        set: function (value) {
+            this._turnPageNextDisabled = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     __decorate([
         value_1.value.Default(new collection_1.ArrayList()), 
         __metadata('design:type', collection_1.List)
@@ -114,6 +134,14 @@ var TableOptions = (function () {
         value_1.value.Default(new collection_1.ArrayList().add(10).add(20).add(50).add(100).add('All')), 
         __metadata('design:type', collection_1.List)
     ], TableOptions.prototype, "_pageSizeList", void 0);
+    __decorate([
+        value_1.value.Default(true), 
+        __metadata('design:type', Boolean)
+    ], TableOptions.prototype, "_turnPagePreDisabled", void 0);
+    __decorate([
+        value_1.value.Default(true), 
+        __metadata('design:type', Boolean)
+    ], TableOptions.prototype, "_turnPageNextDisabled", void 0);
     return TableOptions;
 }());
 exports.TableOptions = TableOptions;

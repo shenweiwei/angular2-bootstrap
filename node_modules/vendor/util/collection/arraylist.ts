@@ -57,7 +57,7 @@ export class ArrayList<T> implements List<T>, ClientObject {
         return this.array[index];
     }
 
-    
+
     /**
      *  截取集合的数据集
      * 
@@ -68,17 +68,16 @@ export class ArrayList<T> implements List<T>, ClientObject {
      * 
      * @memberOf ArrayList
      */
-    public subList<T>(startIndex: number, endIndex?: number): List<T>{
+    public subList<T>(startIndex: number, endIndex?: number): List<T> {
         if (!Number.isNaN(endIndex)) {
             this.array.copyWithin(0, startIndex, endIndex);
             this.array.length = endIndex - startIndex;
         } else {
             this.array.copyWithin(0, startIndex);
-            this.array.length = this.array.length-startIndex;
+            this.array.length = this.array.length - startIndex;
         }
         return this;
     }
-
 
     /**
      * 往集合内添加数据
@@ -94,6 +93,23 @@ export class ArrayList<T> implements List<T>, ClientObject {
             throw new SystemException('current list is empty');
         }
         this.array.push(data);
+        return this;
+    }
+
+    /**
+     * 根据索引集合内替换数据
+     * 
+     * @template T
+     * @param {T} data
+     * @returns {ArrayList<T>}
+     * 
+     * @memberOf ArrayList
+     */
+    public replace<T>(data: T, index: number): List<T> {
+        if (ArrayUtil.empty(this.array)) {
+            throw new SystemException('current list is empty');
+        }
+        this.array[index] = data;
         return this;
     }
 }

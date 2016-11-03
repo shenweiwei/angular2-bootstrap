@@ -45,16 +45,7 @@
                         <th id="remark">备注</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>{{appId}}</td>
-                        <td>{{appChnName}}</td>
-                        <td>{{appEngName}}</td>
-                        <td>{{appOwner}}</td>
-                        <td>{{updateDate}}</td>
-                        <td>{{remark}}</td>
-                    </tr>
-                </tbody>
+
             </table>
         </article>
         <article id="table-footer-tools" class="col-sm-12">
@@ -63,9 +54,15 @@
             </section>
             <section class="col-sm-3">
                 <ul class="pagination">
-                    <li class="disabled"><a href="#">上一页</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li class="disabled"><a href="#">下一页</a></li>
+                    <li [ngClass]="{disabled: tableOptions.turnPagePreDisabled}">
+                        <a (click)="goPage(tableOptions.currentPageNumber,'previous')">上一页</a>
+                    </li>
+                    <li *ngFor="let pageNumber of tableOptions.pageNumberList.toArray();" [ngClass]="{active: pageNumber.pageNumberActive}">
+                        <a (click)="goPage(pageNumber.index,'go')">{{pageNumber.index}}</a>
+                    </li>
+                    <li [ngClass]="{disabled: tableOptions.turnPageNextDisabled}">
+                        <a (click)="goPage(tableOptions.currentPageNumber,'next')">下一页</a>
+                    </li>
                 </ul>
             </section>
         </article>

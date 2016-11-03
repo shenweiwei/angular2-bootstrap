@@ -74,6 +74,12 @@ export class TableOptions implements ClientObject{
     @value.Default(new ArrayList().add(10).add(20).add(50).add(100).add('All'))
     private _pageSizeList: List<any>;
 
+    @value.Default(true)
+    private _turnPagePreDisabled:boolean;
+
+    @value.Default(true)
+    private _turnPageNextDisabled:boolean;
+
     public get pageNumberList(): List<any> {
         return this._pageNumberList;
     }
@@ -134,4 +140,20 @@ export class TableOptions implements ClientObject{
         this._pageSizeList = value;
     }
 
+	public get turnPagePreDisabled(): boolean {
+		return this._turnPagePreDisabled;
+	}
+
+	public set turnPagePreDisabled(value: boolean) {
+		this._turnPagePreDisabled = value;
+	}
+
+	public get turnPageNextDisabled(): boolean {
+		return this._turnPageNextDisabled;
+	}
+
+	public set turnPageNextDisabled(value: boolean) {
+		this._turnPageNextDisabled = value;
+	}
+    
 }

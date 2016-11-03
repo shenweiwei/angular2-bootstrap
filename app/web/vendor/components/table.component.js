@@ -12,9 +12,10 @@ var core_1 = require('@angular/core');
 var util_1 = require('vendor/util');
 var common_1 = require('vendor/common');
 var TableComponent = (function () {
-    function TableComponent(tableOptions) {
+    function TableComponent(tableOptions, el) {
         this.tableOptions = tableOptions;
-        console.log(this.tableOptions);
+        this.el = el;
+        this.tableOptions.currentPageSize = common_1.DataSetUtil.getDataForKey(el['nativeElement'], 'pagesize');
     }
     /**
      * 初始化表格
@@ -24,12 +25,12 @@ var TableComponent = (function () {
      *
      * @memberOf TableComponent
      */
-    TableComponent.prototype.initDataTable = function (tableDatas) {
+    TableComponent.prototype.initDataTable = function (tableDatas, tableHeaders) {
+        //初始化赋值
         this._tableDatas = tableDatas;
-        //设置页面显示总数
-        this.setPageSize(this.pageSize);
+        this._tableHeaders = tableHeaders;
         //设置数据集总数
-        this.tableOptions.countDataSize = tableDatas.getSize();
+        this.tableOptions.countDataSize = this._tableDatas.getSize();
         //默认显示第一页
         this.goPage(this.tableOptions.currentPageNumber, common_1.ComponentConstants.TABLE_TURN_PAGE_GO);
     };
@@ -51,6 +52,10 @@ var TableComponent = (function () {
         else if (action === common_1.ComponentConstants.TABLE_TURN_PAGE_PREVIOUS) {
             this.tableOptions.currentPageNumber--;
         }
+        //设置页面显示总数
+        this.setPageSize(this.tableOptions.currentPageSize);
+        //设置页码集合
+        this.setPageNumberList();
         this.setViewData();
     };
     /**
@@ -78,27 +83,50 @@ var TableComponent = (function () {
             this.tableOptions.endPageIndex = pageSize * this.tableOptions.currentPageNumber;
         }
     };
-    Object.defineProperty(TableComponent.prototype, "tableDatas", {
-        get: function () {
-            return this._tableDatas;
-        },
-        set: function (value) {
-            this._tableDatas = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], TableComponent.prototype, "pageSize", void 0);
+    /**
+     *
+     * 设置pageNumberList
+     *
+     * @memberOf TableComponent
+     */
+    TableComponent.prototype.setPageNumberList = function () {
+        var maxPageNumber = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1));
+        for (var i = 1; i <= maxPageNumber; i++) {
+            var pageNumber = new Object();
+            pageNumber['index'] = i;
+            if (i !== this.tableOptions.currentPageNumber) {
+                pageNumber['pageNumberActive'] = false;
+            }
+            else {
+                pageNumber['pageNumberActive'] = true;
+            }
+            if (this.tableOptions.pageNumberList.getSize() <= 0) {
+                this.tableOptions.pageNumberList.add(pageNumber);
+            }
+            else {
+                this.tableOptions.pageNumberList.replace(pageNumber, i - 1);
+            }
+        }
+        if (maxPageNumber <= 1) {
+            this.tableOptions.turnPageNextDisabled = true;
+            this.tableOptions.turnPagePreDisabled = true;
+        }
+        else if (this.tableOptions.currentPageNumber <= 1) {
+            this.tableOptions.turnPagePreDisabled = true;
+            this.tableOptions.turnPageNextDisabled = false;
+        }
+        else if (this.tableOptions.currentPageNumber >= maxPageNumber) {
+            this.tableOptions.turnPagePreDisabled = false;
+            this.tableOptions.turnPageNextDisabled = true;
+        }
+    };
     TableComponent = __decorate([
         core_1.Component({
             selector: 'bootstrap-table',
             templateUrl: 'app/web/vendor/views/table.html',
             styleUrls: ['app/web/vendor/css/vendor.css']
         }), 
-        __metadata('design:paramtypes', [util_1.TableOptions])
+        __metadata('design:paramtypes', [util_1.TableOptions, core_1.ElementRef])
     ], TableComponent);
     return TableComponent;
 }());

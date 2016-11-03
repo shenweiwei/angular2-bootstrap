@@ -71,11 +71,11 @@ var TableComponent = (function () {
         this.tableOptions.currentPageSize = pageSize;
         if (this.tableOptions.currentPageNumber <= 1) {
             this.tableOptions.beginPageIndex = 1;
-            this.tableOptions.endPageIndex = this.pageSize;
+            this.tableOptions.endPageIndex = pageSize;
         }
         else {
-            this.tableOptions.beginPageIndex = this.tableOptions.currentPageSize * (this.tableOptions.currentPageNumber - 1) + 1;
-            this.tableOptions.endPageIndex = this.tableOptions.currentPageSize * this.tableOptions.currentPageNumber;
+            this.tableOptions.beginPageIndex = pageSize * (this.tableOptions.currentPageNumber - 1) + 1;
+            this.tableOptions.endPageIndex = pageSize * this.tableOptions.currentPageNumber;
         }
     };
     Object.defineProperty(TableComponent.prototype, "tableDatas", {
@@ -89,7 +89,7 @@ var TableComponent = (function () {
         configurable: true
     });
     __decorate([
-        core_1.Input('pageSize'), 
+        core_1.Input(), 
         __metadata('design:type', Number)
     ], TableComponent.prototype, "pageSize", void 0);
     TableComponent = __decorate([

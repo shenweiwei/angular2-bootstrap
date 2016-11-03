@@ -18,7 +18,7 @@ export class TableComponent {
      * @type {number}
      * @memberOf TableComponent
      */
-    @Input('pageSize') pageSize: number;
+    @Input() pageSize: number;
 
     constructor(public tableOptions: TableOptions) {
         console.log(this.tableOptions);
@@ -86,10 +86,10 @@ export class TableComponent {
         this.tableOptions.currentPageSize = pageSize;
         if (this.tableOptions.currentPageNumber <= 1) {
             this.tableOptions.beginPageIndex = 1
-            this.tableOptions.endPageIndex = this.pageSize;
+            this.tableOptions.endPageIndex = pageSize;
         } else {
-            this.tableOptions.beginPageIndex = this.tableOptions.currentPageSize * (this.tableOptions.currentPageNumber - 1) + 1
-            this.tableOptions.endPageIndex = this.tableOptions.currentPageSize * this.tableOptions.currentPageNumber;
+            this.tableOptions.beginPageIndex = pageSize * (this.tableOptions.currentPageNumber - 1) + 1
+            this.tableOptions.endPageIndex = pageSize * this.tableOptions.currentPageNumber;
         }
 
     }

@@ -1,5 +1,5 @@
 export namespace value {
-    
+
     /**
      * 初始化默认值
      * 
@@ -9,8 +9,8 @@ export namespace value {
      * @returns
      */
     export function Default<T>(value: T) {
-        return function (target: any, key: string) {
-            target[key] =value;
+        return (target: any, key: string)=>{
+            target[key] = value;
         }
     }
 }

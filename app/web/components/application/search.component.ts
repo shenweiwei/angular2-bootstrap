@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../base.component';
 import { TableComponent } from '../../vendor/components/table.component';
 import { ApplicationVo } from '../../../js/com/sgm/dms/ops/vo/application.vo';
-import { TableData,TableHeader } from 'vendor/util'
+import { TableData, TableHeader, ArrayList } from 'vendor/util';
 
 @Component({
     templateUrl: 'app/web/views/application/search.html',
@@ -23,12 +23,16 @@ export class ApplicationSearchComponent extends BaseComponent implements OnInit 
     }
 
     search(): void {
-        let tableHeader=new T
+        let list = new ArrayList<TableData>();
 
-        for (let i = 0; i <= 30; i++) {
+        for (let i = 1; i <= 30; i++) {
             let tableData = new TableData();
-            tableData
+            tableData['appId'] = i;
+            tableData['appChnName'] = i;
+            tableData['appEngName'] = i;
+            list.add(tableData);
         }
-        this.tableComponent.initDataTable();
+
+        this.tableComponent.initDataTable(list);
     }
 }

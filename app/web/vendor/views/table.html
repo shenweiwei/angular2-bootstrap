@@ -37,12 +37,12 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>应用编号</th>
-                        <th>应用中文名</th>
-                        <th>应用英文名</th>
-                        <th>应用负责人</th>
-                        <th>更新时间</th>
-                        <th>备注</th>
+                        <th id="appId">应用编号</th>
+                        <th id="appChnName">应用中文名</th>
+                        <th id="appEngName">应用英文名</th>
+                        <th id="appOwner">应用负责人</th>
+                        <th id="updateDate">更新时间</th>
+                        <th id="remark">备注</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,7 +59,7 @@
         </article>
         <article id="table-footer-tools" class="col-sm-12">
             <section class="col-sm-9">
-                当前数: {{pageOptions.beginPageIndex}} 至 {{pageOptions.endPageIndex}} 总数:{{pageOptions.countDataSize}}
+                当前数: {{tableOptions.beginPageIndex}} 至 {{tableOptions.endPageIndex}} 总数:{{tableOptions.countDataSize}}
             </section>
             <section class="col-sm-3">
                 <ul class="pagination">

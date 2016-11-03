@@ -17,6 +17,7 @@ var core_1 = require('@angular/core');
 var base_component_1 = require('../base.component');
 var table_component_1 = require('../../vendor/components/table.component');
 var application_vo_1 = require('../../../js/com/sgm/dms/ops/vo/application.vo');
+var util_1 = require('vendor/util');
 var ApplicationSearchComponent = (function (_super) {
     __extends(ApplicationSearchComponent, _super);
     function ApplicationSearchComponent(tableComponent) {
@@ -28,7 +29,15 @@ var ApplicationSearchComponent = (function (_super) {
         _super.prototype.ngOnInit.call(this);
     };
     ApplicationSearchComponent.prototype.search = function () {
-        this.tableComponent.initDataTable();
+        var list = new util_1.ArrayList();
+        for (var i = 1; i <= 30; i++) {
+            var tableData = new util_1.TableData();
+            tableData['appId'] = i;
+            tableData['appChnName'] = i;
+            tableData['appEngName'] = i;
+            list.add(tableData);
+        }
+        this.tableComponent.initDataTable(list);
     };
     ApplicationSearchComponent = __decorate([
         core_1.Component({

@@ -11,6 +11,7 @@ export class TableOptions implements ClientObject{
      * @type {List<any>}
      * @memberOf TableOptions
      */
+    @value.Default(new ArrayList())
     private _pageNumberList: List<any>;
 
     /**
@@ -20,7 +21,7 @@ export class TableOptions implements ClientObject{
      * @type {number}
      * @memberOf TableOptions
      */
-    @value.Default(1)
+    @value.Default(0)
     private _beginPageIndex: number;
 
     /**
@@ -30,7 +31,7 @@ export class TableOptions implements ClientObject{
      * @type {number}
      * @memberOf TableOptions
      */
-    @value.Default(10)
+    @value.Default(0)
     private _endPageIndex: number;
 
     /**
@@ -60,6 +61,7 @@ export class TableOptions implements ClientObject{
      * @type {number}
      * @memberOf TableOptions
      */
+    @value.Default(0)
     private _countDataSize: number;
 
     /**

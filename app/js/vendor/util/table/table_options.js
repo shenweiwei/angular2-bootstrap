@@ -87,11 +87,15 @@ var TableOptions = (function () {
         configurable: true
     });
     __decorate([
-        value_1.value.Default(1), 
+        value_1.value.Default(new collection_1.ArrayList()), 
+        __metadata('design:type', collection_1.List)
+    ], TableOptions.prototype, "_pageNumberList", void 0);
+    __decorate([
+        value_1.value.Default(0), 
         __metadata('design:type', Number)
     ], TableOptions.prototype, "_beginPageIndex", void 0);
     __decorate([
-        value_1.value.Default(10), 
+        value_1.value.Default(0), 
         __metadata('design:type', Number)
     ], TableOptions.prototype, "_endPageIndex", void 0);
     __decorate([
@@ -102,6 +106,10 @@ var TableOptions = (function () {
         value_1.value.Default(1), 
         __metadata('design:type', Number)
     ], TableOptions.prototype, "_currentPageNumber", void 0);
+    __decorate([
+        value_1.value.Default(0), 
+        __metadata('design:type', Number)
+    ], TableOptions.prototype, "_countDataSize", void 0);
     __decorate([
         value_1.value.Default(new collection_1.ArrayList().add(10).add(20).add(50).add(100).add('All')), 
         __metadata('design:type', collection_1.List)

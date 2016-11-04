@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { TableOptions, TableData, TableHeader, List } from 'vendor/util';
 import { ComponentConstants, DataSetUtil } from 'vendor/common';
 
@@ -9,8 +9,10 @@ import { ComponentConstants, DataSetUtil } from 'vendor/common';
 })
 
 export class TableComponent {
-    public _tableDatas: List<TableData>;
-    public _tableHeaders: List<TableHeader>;
+    public tableDatas: List<TableData>;
+    public tableHeaders: List<TableHeader>;
+    public viewTableDatas: List<TableData>;
+    public pageSize: number;
 
     constructor(public tableOptions: TableOptions, private el: ElementRef) {
         this.tableOptions.currentPageSize = DataSetUtil.getDataForKey(el['nativeElement'], 'pagesize');
@@ -19,18 +21,16 @@ export class TableComponent {
     /**
      * 初始化表格
      * 
-     * @param {TableData} tableData
-     * @param {TableHeader} tableHeader
+     * @param {TableHeader} headers
+     * @param {TableData} datas
      * 
      * @memberOf TableComponent
      */
-    initDataTable(tableDatas: List<TableData>, tableHeaders: List<TableHeader>): void {
-        //初始化赋值
-        this._tableDatas = tableDatas;
-        this._tableHeaders = tableHeaders;
-
+    initDataTable(headers: List<TableHeader>, datas: List<TableData>): void {
+        this.tableHeaders = headers;
+        this.tableDatas = datas;
         //设置数据集总数
-        this.tableOptions.countDataSize = this._tableDatas.getSize();
+        this.tableOptions.countDataSize = this.tableDatas.getSize();
 
         //默认显示第一页
         this.goPage(this.tableOptions.currentPageNumber, ComponentConstants.TABLE_TURN_PAGE_GO);
@@ -56,11 +56,10 @@ export class TableComponent {
         //设置页面显示总数
         this.setPageSize(this.tableOptions.currentPageSize);
 
-
-
         //设置页码集合
         this.setPageNumberList();
 
+        //设置页面显示数据
         this.setViewData();
     }
 
@@ -71,7 +70,7 @@ export class TableComponent {
      * @memberOf TableComponent
      */
     setViewData(): void {
-
+        this.viewTableDatas = this.tableDatas;
     }
 
     /**

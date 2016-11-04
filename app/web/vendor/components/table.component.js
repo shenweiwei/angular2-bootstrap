@@ -20,17 +20,16 @@ var TableComponent = (function () {
     /**
      * 初始化表格
      *
-     * @param {TableData} tableData
-     * @param {TableHeader} tableHeader
+     * @param {TableHeader} headers
+     * @param {TableData} datas
      *
      * @memberOf TableComponent
      */
-    TableComponent.prototype.initDataTable = function (tableDatas, tableHeaders) {
-        //初始化赋值
-        this._tableDatas = tableDatas;
-        this._tableHeaders = tableHeaders;
+    TableComponent.prototype.initDataTable = function (headers, datas) {
+        this.tableHeaders = headers;
+        this.tableDatas = datas;
         //设置数据集总数
-        this.tableOptions.countDataSize = this._tableDatas.getSize();
+        this.tableOptions.countDataSize = this.tableDatas.getSize();
         //默认显示第一页
         this.goPage(this.tableOptions.currentPageNumber, common_1.ComponentConstants.TABLE_TURN_PAGE_GO);
     };
@@ -56,6 +55,7 @@ var TableComponent = (function () {
         this.setPageSize(this.tableOptions.currentPageSize);
         //设置页码集合
         this.setPageNumberList();
+        //设置页面显示数据
         this.setViewData();
     };
     /**
@@ -64,6 +64,7 @@ var TableComponent = (function () {
      * @memberOf TableComponent
      */
     TableComponent.prototype.setViewData = function () {
+        this.viewTableDatas = this.tableDatas;
     };
     /**
      * 设置的默认页面显示数据总数

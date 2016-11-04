@@ -27,17 +27,32 @@ var ApplicationSearchComponent = (function (_super) {
     }
     ApplicationSearchComponent.prototype.ngOnInit = function () {
         _super.prototype.ngOnInit.call(this);
+        this.setTableDatas();
+        this.setTableHeaders();
     };
     ApplicationSearchComponent.prototype.search = function () {
-        var list = new util_1.ArrayList();
+        this.tableComponent.initDataTable(this.tableHeaders, this.tableDatas);
+    };
+    ApplicationSearchComponent.prototype.setTableHeaders = function () {
+        this.tableHeaders = new util_1.ArrayList();
+        var columnsEnName = ['appId', 'appChnName', 'appEngName', 'appOwner', 'updateDate', 'remark'];
+        var columnsCnName = ['应用编号', '应用中文名', '应用英文名', '应用负责人', '更新时间', '备注'];
+        for (var i = 0; i < columnsEnName.length; i++) {
+            var tableHeader = new util_1.TableHeader();
+            tableHeader.key = columnsEnName[i];
+            tableHeader.desc = columnsCnName[i];
+            this.tableHeaders.add(tableHeader);
+        }
+    };
+    ApplicationSearchComponent.prototype.setTableDatas = function () {
+        this.tableDatas = new util_1.ArrayList();
         for (var i = 1; i <= 30; i++) {
             var tableData = new util_1.TableData();
             tableData['appId'] = i;
             tableData['appChnName'] = i;
             tableData['appEngName'] = i;
-            list.add(tableData);
+            this.tableDatas.add(tableData);
         }
-        this.tableComponent.initDataTable(list, new util_1.ArrayList());
     };
     ApplicationSearchComponent = __decorate([
         core_1.Component({

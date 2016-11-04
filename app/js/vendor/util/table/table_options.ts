@@ -132,11 +132,11 @@ export class TableOptions implements ClientObject{
         return this._pageNumberList.getSize();
     }
 
-    public get pageSizeList(): List<number> {
+    public get pageSizeList(): List<any> {
         return this._pageSizeList;
     }
 
-    public set pageSizeList(value: List<number>) {
+    public set pageSizeList(value: List<any>) {
         this._pageSizeList = value;
     }
 

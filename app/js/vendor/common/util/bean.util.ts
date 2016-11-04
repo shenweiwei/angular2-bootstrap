@@ -1,6 +1,6 @@
 export class BeanUtil {
-    static clone<T>(target: T, source: T): void {
+    static clone<T>(source: T): T {
         let originProto = Object.getPrototypeOf(source);
-        target = Object.assign(Object.create(originProto), source);
+        return Object.assign(Object.create(originProto), source);
     }
 }

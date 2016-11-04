@@ -1,6 +1,8 @@
 import { Component, ElementRef, Input } from '@angular/core';
-import { TableOptions, TableData, TableHeader, List } from 'vendor/util';
+import { TableOptions, TableData, TableHeader, ArrayList, List } from 'vendor/util';
 import { ComponentConstants, DataSetUtil, BeanUtil } from 'vendor/common';
+
+
 
 @Component({
     selector: 'bootstrap-table',
@@ -12,9 +14,8 @@ export class TableComponent {
     public tableDatas: List<TableData>;
     public tableHeaders: List<TableHeader>;
     public viewTableDatas: List<TableData>;
-    public pageSize: number;
 
-    constructor(public tableOptions: TableOptions, private el: ElementRef) {
+    constructor(public tableOptions: TableOptions, public el: ElementRef) {
         this.tableOptions.currentPageSize = DataSetUtil.getDataForKey(el['nativeElement'], 'pagesize');
     }
 
@@ -27,9 +28,9 @@ export class TableComponent {
      * @memberOf TableComponent
      */
     initDataTable(headers: List<TableHeader>, datas: List<TableData>): void {
-        BeanUtil.clone(this.tableHeaders,headers);
-        BeanUtil.clone(this.tableDatas,datas);
-        
+        this.tableHeaders = BeanUtil.clone(headers);
+        this.tableDatas = BeanUtil.clone(datas);
+
         //设置数据集总数
         this.tableOptions.countDataSize = this.tableDatas.getSize();
 

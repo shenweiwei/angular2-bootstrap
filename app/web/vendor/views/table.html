@@ -1,5 +1,4 @@
 <article class="panel panel-default">
-    111:{{tableDatas.getSize()}} 222:{{pagesize}}
     <section class="panel-heading">
         <i class="fa fa-external-link-square"></i> result data
         <div class="panel-tools">
@@ -30,35 +29,20 @@
             <section class="form-group col-sm-3">
                 <label class="col-sm-3 control-label" for="table-search">Search</label>
                 <section class="col-sm-9">
-                    <input type="text" id="table-search" name="table-search" class="form-control" placeholder="search" />
+                    <input type="text" id="table-search" name="table-search" class="form-control" placeholder="search" [(ngModel)]="pagesize" />
                 </section>
             </section>
         </article>
         <article id="table-body col-sm-12">
             <table class="table table-striped table-bordered table-hover">
-                <!--<thead>
-                    <tr>
-                        <th *ngFor="let tableheader of tableHeaders.toArray()" id={{tableheader.key}}>{{tableheader.desc}}</th>
-                    </tr>
-                </thead>-->
                 <thead>
-                    <tr>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
-                        <th>6</th>
+                    <tr *ngIf="tableHeaders">
+                        <th *ngFor="let tableheader of tableHeaders.toArray()" id={{tableheader.key}}>{{tableheader.desc}}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let tableData of viewTableDatas">
-                        <td headers="appId">{{tableData.appId}}</td>
-                        <td headers="appChnName">{{tableData.appChnName}}</td>
-                        <td headers="appEngName">{{tableData.appEngName}}</td>
-                        <td headers="appOwner">{{tableData.appOwner}}</td>
-                        <td headers="updateDate">{{tableData.updateDate}}</td>
-                        <td headers="remark">{{tableData.remark}}</td>
+                    <tr *ngFor="let tableData of viewTableDatas.toArray()">
+                        <td *ngFor="let tableheader of tableHeaders.toArray()" headers={{tableheader.key}}>{{tableData[tableheader.key]}}</td>
                     </tr>
                 </tbody>
             </table>

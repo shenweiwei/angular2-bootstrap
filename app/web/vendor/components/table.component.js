@@ -12,14 +12,13 @@ var core_1 = require('@angular/core');
 var util_1 = require('vendor/util');
 var common_1 = require('vendor/common');
 var TableComponent = (function () {
-    // constructor(public tableOptions: TableOptions, public el: ElementRef) {
-    //     this.tableOptions.currentPageSize = DataSetUtil.getDataForKey(el['nativeElement'], 'pagesize');
-    // }
     function TableComponent(tableOptions) {
         this.tableOptions = tableOptions;
-        this.tableDatas = new util_1.ArrayList();
-        this.tableOptions.currentPageSize = 10;
+        this.viewTableDatas = new util_1.ArrayList();
     }
+    TableComponent.prototype.ngAfterViewInit = function () {
+        this.tableOptions.currentPageSize = this.pageSize;
+    };
     /**
      * 初始化表格
      *
@@ -31,7 +30,6 @@ var TableComponent = (function () {
     TableComponent.prototype.initDataTable = function (headers, datas) {
         this.tableHeaders = common_1.BeanUtil.clone(headers);
         this.tableDatas = common_1.BeanUtil.clone(datas);
-        this.pagesize = 123;
         //设置数据集总数
         this.tableOptions.countDataSize = this.tableDatas.getSize();
         //默认显示第一页
@@ -125,9 +123,13 @@ var TableComponent = (function () {
             this.tableOptions.turnPageNextDisabled = true;
         }
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], TableComponent.prototype, "pageSize", void 0);
     TableComponent = __decorate([
         core_1.Component({
-            selector: 'bootstrap-table',
+            selector: 'table-component',
             templateUrl: 'app/web/vendor/views/table.html',
             styleUrls: ['app/web/vendor/css/vendor.css']
         }), 

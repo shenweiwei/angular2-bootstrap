@@ -1,24 +1,25 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, Input } from '@angular/core';
 import { TableOptions, TableData, TableHeader, ArrayList, List } from 'vendor/util';
 import { ComponentConstants, DataSetUtil, BeanUtil } from 'vendor/common';
 
 @Component({
-    selector: 'bootstrap-table',
+    selector: 'table-component',
     templateUrl: 'app/web/vendor/views/table.html',
     styleUrls: ['app/web/vendor/css/vendor.css']
 })
 
-export class TableComponent {
-    public tableDatas: List<TableData>=new ArrayList();
+export class TableComponent implements AfterViewInit {
+    public tableDatas: List<TableData>;
     public tableHeaders: List<TableHeader>;
-    public viewTableDatas: List<TableData>;
-    public pagesize:number;
+    public viewTableDatas: List<TableData> = new ArrayList();
+    @Input() pageSize: any;
 
-    // constructor(public tableOptions: TableOptions, public el: ElementRef) {
-    //     this.tableOptions.currentPageSize = DataSetUtil.getDataForKey(el['nativeElement'], 'pagesize');
-    // }
     constructor(public tableOptions: TableOptions) {
-        this.tableOptions.currentPageSize = 10;
+
+    }
+
+    ngAfterViewInit(): void {
+        this.tableOptions.currentPageSize = this.pageSize;
     }
 
     /**
@@ -32,7 +33,7 @@ export class TableComponent {
     initDataTable(headers: List<TableHeader>, datas: List<TableData>): void {
         this.tableHeaders = BeanUtil.clone(headers);
         this.tableDatas = BeanUtil.clone(datas);
-        this.pagesize=123;
+
         //设置数据集总数
         this.tableOptions.countDataSize = this.tableDatas.getSize();
 

@@ -26,8 +26,8 @@ var TableComponent = (function () {
      * @memberOf TableComponent
      */
     TableComponent.prototype.initDataTable = function (headers, datas) {
-        this.tableHeaders = headers;
-        this.tableDatas = datas;
+        common_1.BeanUtil.clone(this.tableHeaders, headers);
+        common_1.BeanUtil.clone(this.tableDatas, datas);
         //设置数据集总数
         this.tableOptions.countDataSize = this.tableDatas.getSize();
         //默认显示第一页

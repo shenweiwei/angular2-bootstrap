@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input } from '@angular/core';
 import { TableOptions, TableData, TableHeader, List } from 'vendor/util';
-import { ComponentConstants, DataSetUtil } from 'vendor/common';
+import { ComponentConstants, DataSetUtil, BeanUtil } from 'vendor/common';
 
 @Component({
     selector: 'bootstrap-table',
@@ -27,8 +27,9 @@ export class TableComponent {
      * @memberOf TableComponent
      */
     initDataTable(headers: List<TableHeader>, datas: List<TableData>): void {
-        this.tableHeaders = headers;
-        this.tableDatas = datas;
+        BeanUtil.clone(this.tableHeaders,headers);
+        BeanUtil.clone(this.tableDatas,datas);
+        
         //设置数据集总数
         this.tableOptions.countDataSize = this.tableDatas.getSize();
 

@@ -5,4 +5,6 @@ var array_util_1 = require('./util/array.util');
 exports.ArrayUtil = array_util_1.ArrayUtil;
 var dataset_util_1 = require('./util/dataset.util');
 exports.DataSetUtil = dataset_util_1.DataSetUtil;
+var bean_util_1 = require('./util/bean.util');
+exports.BeanUtil = bean_util_1.BeanUtil;
 //# sourceMappingURL=util.js.map

@@ -20,9 +20,8 @@ var application_vo_1 = require('../../../js/com/sgm/dms/ops/vo/application.vo');
 var util_1 = require('vendor/util');
 var ApplicationSearchComponent = (function (_super) {
     __extends(ApplicationSearchComponent, _super);
-    function ApplicationSearchComponent(tableComponent) {
+    function ApplicationSearchComponent() {
         _super.call(this);
-        this.tableComponent = tableComponent;
         this.application = new application_vo_1.ApplicationVo();
     }
     ApplicationSearchComponent.prototype.ngOnInit = function () {
@@ -31,6 +30,7 @@ var ApplicationSearchComponent = (function (_super) {
         this.setTableHeaders();
     };
     ApplicationSearchComponent.prototype.search = function () {
+        this.tableComponent = new table_component_1.TableComponent(new util_1.TableOptions());
         this.tableComponent.initDataTable(this.tableHeaders, this.tableDatas);
     };
     ApplicationSearchComponent.prototype.setTableHeaders = function () {
@@ -57,9 +57,9 @@ var ApplicationSearchComponent = (function (_super) {
     ApplicationSearchComponent = __decorate([
         core_1.Component({
             templateUrl: 'app/web/views/application/search.html',
-            providers: [table_component_1.TableComponent]
+            entryComponents: [table_component_1.TableComponent]
         }), 
-        __metadata('design:paramtypes', [table_component_1.TableComponent])
+        __metadata('design:paramtypes', [])
     ], ApplicationSearchComponent);
     return ApplicationSearchComponent;
 }(base_component_1.BaseComponent));

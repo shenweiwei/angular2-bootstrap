@@ -2,9 +2,10 @@
 var BeanUtil = (function () {
     function BeanUtil() {
     }
-    BeanUtil.clone = function (source) {
+    BeanUtil.clone = function (source, target) {
         var originProto = Object.getPrototypeOf(source);
-        return Object.assign(Object.create(originProto), source);
+        target = Object.assign(Object.create(originProto), source);
+        return target;
     };
     return BeanUtil;
 }());

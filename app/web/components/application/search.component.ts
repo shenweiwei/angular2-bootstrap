@@ -6,15 +6,17 @@ import { TableData, TableHeader, ArrayList, TableOptions, List } from 'vendor/ut
 
 @Component({
     templateUrl: 'app/web/views/application/search.html',
-    providers: [TableComponent]
+    entryComponents: [TableComponent]
+    // providers: [TableComponent]
 })
 
 export class ApplicationSearchComponent extends BaseComponent implements OnInit {
     public application: ApplicationVo = new ApplicationVo();
     public tableHeaders: List<TableHeader>;
     public tableDatas: List<TableData>;
+    public tableComponent: TableComponent
 
-    constructor(public tableComponent: TableComponent) {
+    constructor() {
         super();
     }
 
@@ -25,7 +27,8 @@ export class ApplicationSearchComponent extends BaseComponent implements OnInit 
     }
 
     search(): void {
-        this.tableComponent.initDataTable(this.tableHeaders,this.tableDatas);
+        this.tableComponent = new TableComponent(new TableOptions());
+        this.tableComponent.initDataTable(this.tableHeaders, this.tableDatas);
     }
 
     setTableHeaders(): void {

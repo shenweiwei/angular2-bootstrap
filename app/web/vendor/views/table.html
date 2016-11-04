@@ -1,4 +1,5 @@
 <article class="panel panel-default">
+    111:{{tableDatas.getSize()}} 222:{{pagesize}}
     <section class="panel-heading">
         <i class="fa fa-external-link-square"></i> result data
         <div class="panel-tools">
@@ -40,8 +41,18 @@
                         <th *ngFor="let tableheader of tableHeaders.toArray()" id={{tableheader.key}}>{{tableheader.desc}}</th>
                     </tr>
                 </thead>-->
-                <!--<tbody>
-                    <tr *ngFor="let tableData of tableDataList">
+                <thead>
+                    <tr>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tableData of viewTableDatas">
                         <td headers="appId">{{tableData.appId}}</td>
                         <td headers="appChnName">{{tableData.appChnName}}</td>
                         <td headers="appEngName">{{tableData.appEngName}}</td>
@@ -49,7 +60,7 @@
                         <td headers="updateDate">{{tableData.updateDate}}</td>
                         <td headers="remark">{{tableData.remark}}</td>
                     </tr>
-                </tbody>-->
+                </tbody>
             </table>
         </article>
         <article id="table-footer-tools" class="col-sm-12">

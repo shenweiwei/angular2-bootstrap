@@ -123,12 +123,12 @@ export class ArrayList<T> implements List<T>, ClientObject {
     public addAll<T>(data: T): List<T> {
         if (data instanceof Array) {
             for (let i = 0; i < data.length; i++) {
-                let object = BeanUtil.clone(data[i]);
+                const object = BeanUtil.clone(data[i]);
                 this.add(object);
             }
         } else if (data instanceof List || data instanceof ArrayList) {
             for (let i = 0; i < data.getSize(); i++) {
-                let object = BeanUtil.clone(data.get(i));
+                const object = BeanUtil.clone(data.get(i));
                 this.add(object);
             }
         }

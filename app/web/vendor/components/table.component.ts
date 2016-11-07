@@ -31,8 +31,8 @@ export class TableComponent implements AfterViewInit {
      * @memberOf TableComponent
      */
     initDataTable(headers: List<TableHeader>, datas: List<TableData>): void {
-        this.tableHeaders = BeanUtil.clone(headers);
-        this.tableDatas = BeanUtil.clone(datas);
+        this.tableHeaders = headers;
+        this.tableDatas = datas;
 
         //设置数据集总数
         this.tableOptions.countDataSize = this.tableDatas.getSize();
@@ -75,7 +75,8 @@ export class TableComponent implements AfterViewInit {
      * @memberOf TableComponent
      */
     setViewData(): void {
-        this.viewTableDatas = this.tableDatas;
+        BeanUtil.clone(this.tableDatas,this.viewTableDatas);
+        // this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
     }
 
     /**
@@ -96,7 +97,6 @@ export class TableComponent implements AfterViewInit {
         }
 
     }
-
 
     /**
      * 

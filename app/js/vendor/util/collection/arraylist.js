@@ -1,6 +1,6 @@
 "use strict";
-var array_util_1 = require('../../common/util/array.util');
-var system_exception_1 = require('../../common/exception/system.exception');
+var list_1 = require('./list');
+var common_1 = require('../../common');
 var ArrayList = (function () {
     function ArrayList() {
         this.array = [];
@@ -14,7 +14,7 @@ var ArrayList = (function () {
      * @memberOf ArrayList
      */
     ArrayList.prototype.getSize = function () {
-        if (array_util_1.ArrayUtil.empty(this.array)) {
+        if (common_1.ArrayUtil.empty(this.array)) {
             return 0;
         }
         return this.array.length;
@@ -28,8 +28,8 @@ var ArrayList = (function () {
      * @memberOf ArrayList
      */
     ArrayList.prototype.toArray = function () {
-        if (array_util_1.ArrayUtil.empty(this.array)) {
-            throw new system_exception_1.SystemException('current list is empty');
+        if (common_1.ArrayUtil.empty(this.array)) {
+            throw new common_1.SystemException('current list is empty');
         }
         return this.array;
     };
@@ -57,12 +57,10 @@ var ArrayList = (function () {
      */
     ArrayList.prototype.subList = function (startIndex, endIndex) {
         if (!Number.isNaN(endIndex)) {
-            this.array.copyWithin(0, startIndex, endIndex);
-            this.array.length = endIndex - startIndex;
+            this.array.slice(startIndex, endIndex);
         }
         else {
-            this.array.copyWithin(0, startIndex);
-            this.array.length = this.array.length - startIndex;
+            this.array.slice(startIndex);
         }
         return this;
     };
@@ -76,8 +74,8 @@ var ArrayList = (function () {
      * @memberOf ArrayList
      */
     ArrayList.prototype.add = function (data) {
-        if (array_util_1.ArrayUtil.empty(this.array)) {
-            throw new system_exception_1.SystemException('current list is empty');
+        if (common_1.ArrayUtil.empty(this.array)) {
+            throw new common_1.SystemException('current list is empty');
         }
         this.array.push(data);
         return this;
@@ -92,10 +90,34 @@ var ArrayList = (function () {
      * @memberOf ArrayList
      */
     ArrayList.prototype.replace = function (data, index) {
-        if (array_util_1.ArrayUtil.empty(this.array)) {
-            throw new system_exception_1.SystemException('current list is empty');
+        if (common_1.ArrayUtil.empty(this.array)) {
+            throw new common_1.SystemException('current list is empty');
         }
         this.array[index] = data;
+        return this;
+    };
+    /**
+     * 增加整个数组或List集合
+     *
+     * @template T
+     * @param {T} data
+     * @returns {List<T>}
+     *
+     * @memberOf ArrayList
+     */
+    ArrayList.prototype.addAll = function (data) {
+        if (data instanceof Array) {
+            for (var i = 0; i < data.length; i++) {
+                var object = common_1.BeanUtil.clone(data[i]);
+                this.add(object);
+            }
+        }
+        else if (data instanceof list_1.List || data instanceof ArrayList) {
+            for (var i = 0; i < data.getSize(); i++) {
+                var object = common_1.BeanUtil.clone(data.get(i));
+                this.add(object);
+            }
+        }
         return this;
     };
     return ArrayList;

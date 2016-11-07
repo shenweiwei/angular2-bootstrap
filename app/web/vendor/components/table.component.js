@@ -28,8 +28,8 @@ var TableComponent = (function () {
      * @memberOf TableComponent
      */
     TableComponent.prototype.initDataTable = function (headers, datas) {
-        this.tableHeaders = common_1.BeanUtil.clone(headers);
-        this.tableDatas = common_1.BeanUtil.clone(datas);
+        this.tableHeaders = headers;
+        this.tableDatas = datas;
         //设置数据集总数
         this.tableOptions.countDataSize = this.tableDatas.getSize();
         //默认显示第一页
@@ -66,7 +66,8 @@ var TableComponent = (function () {
      * @memberOf TableComponent
      */
     TableComponent.prototype.setViewData = function () {
-        this.viewTableDatas = this.tableDatas;
+        common_1.BeanUtil.clone(this.tableDatas, this.viewTableDatas);
+        // this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
     };
     /**
      * 设置的默认页面显示数据总数

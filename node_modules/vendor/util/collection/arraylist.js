@@ -56,15 +56,18 @@ var ArrayList = (function () {
      * @memberOf ArrayList
      */
     ArrayList.prototype.subList = function (startIndex, endIndex) {
+        var list = new ArrayList();
         if (!common_1.NumberUtil.isNullOrZone(endIndex)) {
-            this.array.copyWithin(0, startIndex, endIndex);
-            this.array.length = endIndex - startIndex;
+            // this.array.copyWithin(0, startIndex, endIndex);
+            // this.array.length = endIndex - startIndex
+            list.array = this.array.slice(startIndex, endIndex);
         }
         else {
-            this.array.copyWithin(0, startIndex);
-            this.array.length = this.array.length - startIndex;
+            // this.array.copyWithin(0, startIndex);
+            // this.array.length = this.array.length - startIndex
+            list.array = this.array.slice(startIndex);
         }
-        return this;
+        return list;
     };
     /**
      * 往集合内添加数据

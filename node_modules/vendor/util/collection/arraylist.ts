@@ -68,15 +68,18 @@ export class ArrayList<T> implements List<T>, ClientObject {
      * @memberOf ArrayList
      */
     public subList<T>(startIndex: number, endIndex?: number): List<T> {
+        let list = new ArrayList();
         if (!NumberUtil.isNullOrZone(endIndex)) {
-            this.array.copyWithin(0, startIndex, endIndex);
-            this.array.length = endIndex - startIndex
+            // this.array.copyWithin(0, startIndex, endIndex);
+            // this.array.length = endIndex - startIndex
+            list.array = this.array.slice(startIndex, endIndex);
         } else {
-            this.array.copyWithin(0, startIndex);
-            this.array.length = this.array.length - startIndex
+            // this.array.copyWithin(0, startIndex);
+            // this.array.length = this.array.length - startIndex
+            list.array = this.array.slice(startIndex);
         }
-        
-        return this;
+
+        return list;
     }
 
     /**

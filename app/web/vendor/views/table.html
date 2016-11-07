@@ -22,7 +22,7 @@
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                     <li *ngFor="let pageSizeItem of tableOptions.pageSizeList.toArray(); let i = index; trackBy: trackByFn" role="presentation">
-                        <a role="menuitem" tabindex="-1" href="#">{{pageSizeItem}}</a>
+                        <a role="menuitem" tabindex="-1" (click)="selectPageSize(pageSizeItem)">{{pageSizeItem}}</a>
                     </li>
                 </ul>
             </section>

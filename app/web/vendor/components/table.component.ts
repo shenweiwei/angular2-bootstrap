@@ -75,9 +75,9 @@ export class TableComponent implements AfterViewInit {
      * @memberOf TableComponent
      */
     setViewData(): void {
-        this.viewTableDatas=new ArrayList();
-        BeanUtil.clone(this.tableDatas,this.viewTableDatas);
-        this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
+        this.viewTableDatas = new ArrayList();
+        BeanUtil.clone(this.tableDatas, this.viewTableDatas);
+        this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
     }
 
     /**
@@ -89,9 +89,25 @@ export class TableComponent implements AfterViewInit {
      */
     setPageSize(pageSize: number): void {
         this.tableOptions.currentPageSize = pageSize;
-        if (this.tableOptions.currentPageNumber <= 1) {
+
+        //当前需要显示的数据大于等于实际显示的数据的时候
+        const maxPageNumber: number = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1))
+
+        //设置beginPageIndex,endPageIndex
+        //只有一页的情况下
+        if (maxPageNumber <= 1) {
+            this.tableOptions.currentPageNumber = 1;
+            this.tableOptions.beginPageIndex = 1
+            this.tableOptions.endPageIndex = this.tableOptions.countDataSize;
+            //当前页第一页，总页数多页的情况下
+        } else if (this.tableOptions.currentPageNumber <= 1 && maxPageNumber > 1) {
             this.tableOptions.beginPageIndex = 1
             this.tableOptions.endPageIndex = pageSize;
+            //当前页是最后一页的情况下
+        } else if (this.tableOptions.currentPageNumber === maxPageNumber) {
+            this.tableOptions.beginPageIndex = pageSize * (this.tableOptions.currentPageNumber - 1) + 1
+            this.tableOptions.endPageIndex = this.tableOptions.countDataSize;
+            //页数是在中间的情况下
         } else {
             this.tableOptions.beginPageIndex = pageSize * (this.tableOptions.currentPageNumber - 1) + 1
             this.tableOptions.endPageIndex = pageSize * this.tableOptions.currentPageNumber;
@@ -106,6 +122,8 @@ export class TableComponent implements AfterViewInit {
      * @memberOf TableComponent
      */
     setPageNumberList(): void {
+        this.tableOptions.pageNumberList = new ArrayList();
+
         const maxPageNumber: number = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1))
 
         for (let i = 1; i <= maxPageNumber; i++) {
@@ -137,5 +155,22 @@ export class TableComponent implements AfterViewInit {
     }
 
 
+    /**
+     * 修改页面显示元素数据数
+     * 
+     * @param {number} pageSize
+     * 
+     * @memberOf TableComponent
+     */
+    selectPageSize(pageSize: number): void {
+        //设置页面显示总数
+        this.setPageSize(pageSize);
+
+        //设置页码集合
+        this.setPageNumberList();
+
+        //设置页面显示数据
+        this.setViewData();
+    }
 
 }

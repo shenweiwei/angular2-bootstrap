@@ -68,7 +68,7 @@ var TableComponent = (function () {
     TableComponent.prototype.setViewData = function () {
         this.viewTableDatas = new util_1.ArrayList();
         common_1.BeanUtil.clone(this.tableDatas, this.viewTableDatas);
-        this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
+        this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
     };
     /**
      * 设置的默认页面显示数据总数
@@ -79,9 +79,22 @@ var TableComponent = (function () {
      */
     TableComponent.prototype.setPageSize = function (pageSize) {
         this.tableOptions.currentPageSize = pageSize;
-        if (this.tableOptions.currentPageNumber <= 1) {
+        //当前需要显示的数据大于等于实际显示的数据的时候
+        var maxPageNumber = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1));
+        //设置beginPageIndex,endPageIndex
+        //只有一页的情况下
+        if (maxPageNumber <= 1) {
+            this.tableOptions.currentPageNumber = 1;
+            this.tableOptions.beginPageIndex = 1;
+            this.tableOptions.endPageIndex = this.tableOptions.countDataSize;
+        }
+        else if (this.tableOptions.currentPageNumber <= 1 && maxPageNumber > 1) {
             this.tableOptions.beginPageIndex = 1;
             this.tableOptions.endPageIndex = pageSize;
+        }
+        else if (this.tableOptions.currentPageNumber === maxPageNumber) {
+            this.tableOptions.beginPageIndex = pageSize * (this.tableOptions.currentPageNumber - 1) + 1;
+            this.tableOptions.endPageIndex = this.tableOptions.countDataSize;
         }
         else {
             this.tableOptions.beginPageIndex = pageSize * (this.tableOptions.currentPageNumber - 1) + 1;
@@ -95,6 +108,7 @@ var TableComponent = (function () {
      * @memberOf TableComponent
      */
     TableComponent.prototype.setPageNumberList = function () {
+        this.tableOptions.pageNumberList = new util_1.ArrayList();
         var maxPageNumber = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1));
         for (var i = 1; i <= maxPageNumber; i++) {
             var pageNumber = new Object();
@@ -124,6 +138,21 @@ var TableComponent = (function () {
             this.tableOptions.turnPagePreDisabled = false;
             this.tableOptions.turnPageNextDisabled = true;
         }
+    };
+    /**
+     * 修改页面显示元素数据数
+     *
+     * @param {number} pageSize
+     *
+     * @memberOf TableComponent
+     */
+    TableComponent.prototype.selectPageSize = function (pageSize) {
+        //设置页面显示总数
+        this.setPageSize(pageSize);
+        //设置页码集合
+        this.setPageNumberList();
+        //设置页面显示数据
+        this.setViewData();
     };
     __decorate([
         core_1.Input(), 

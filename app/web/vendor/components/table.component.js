@@ -20,21 +20,21 @@ var TableComponent = (function () {
             if (common_1.StringUtil.empty(current)) {
                 return;
             }
-            var temp_table_data = new util_1.ArrayList();
+            _this.filterTableDatas = new util_1.ArrayList();
             for (var _i = 0, _a = _this.tableDatas.toArray(); _i < _a.length; _i++) {
                 var tabledata = _a[_i];
                 for (var key in tabledata) {
                     if ((tabledata[key] + '').includes(current)) {
-                        temp_table_data.add(tabledata);
+                        _this.filterTableDatas.add(tabledata);
                         break;
                     }
                 }
             }
-            _this.tableOptions.countDataSize = temp_table_data.getSize();
+            _this.tableOptions.countDataSize = _this.filterTableDatas.getSize();
             //设置页码集合
             _this.setPageNumberList();
             //设置页面显示数据
-            _this.setViewData(temp_table_data);
+            _this.setViewData();
         };
     }
     TableComponent.prototype.ngAfterViewInit = function () {
@@ -86,9 +86,9 @@ var TableComponent = (function () {
      *
      * @memberOf TableComponent
      */
-    TableComponent.prototype.setViewData = function (tableDatas) {
+    TableComponent.prototype.setViewData = function () {
         this.viewTableDatas = new util_1.ArrayList();
-        common_1.BeanUtil.clone(tableDatas || this.tableDatas, this.viewTableDatas);
+        common_1.BeanUtil.clone(this.filterTableDatas || this.tableDatas, this.viewTableDatas);
         this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
     };
     /**
@@ -179,7 +179,6 @@ var TableComponent = (function () {
         this.setViewData();
     };
     __decorate([
-        //搜索框值
         core_1.Input(), 
         __metadata('design:type', Object)
     ], TableComponent.prototype, "pageSize", void 0);

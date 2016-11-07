@@ -13,6 +13,7 @@ export class TableComponent implements AfterViewInit{
     public tableHeaders: List<TableHeader>;
     public viewTableDatas: List<TableData> = new ArrayList();
     public value: string;//搜索框值
+    public filterTableDatas:List<TableData>;
     @Input() pageSize: any;
 
     constructor(public tableOptions: TableOptions) {
@@ -75,9 +76,9 @@ export class TableComponent implements AfterViewInit{
      * 
      * @memberOf TableComponent
      */
-    setViewData(tableDatas?:List<TableData>): void {
+    setViewData(): void {
         this.viewTableDatas = new ArrayList();
-        BeanUtil.clone(tableDatas||this.tableDatas, this.viewTableDatas);
+        BeanUtil.clone(this.filterTableDatas||this.tableDatas, this.viewTableDatas);
         this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
     }
 
@@ -183,24 +184,24 @@ export class TableComponent implements AfterViewInit{
             return;
         }
 
-        let temp_table_data=new ArrayList<TableData>();
+        this.filterTableDatas=new ArrayList<TableData>();
 
         for(let tabledata of this.tableDatas.toArray()){
             for(let key in tabledata){
                 if((tabledata[key]+'').includes(current)){
-                    temp_table_data.add(tabledata);
+                    this.filterTableDatas.add(tabledata);
                     break;
                 }
             }
         }
 
-        this.tableOptions.countDataSize=temp_table_data.getSize();
+        this.tableOptions.countDataSize=this.filterTableDatas.getSize();
 
         //设置页码集合
         this.setPageNumberList();
 
         //设置页面显示数据
-        this.setViewData(temp_table_data);
+        this.setViewData();
     }
 
 }

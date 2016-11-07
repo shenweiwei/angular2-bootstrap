@@ -13,8 +13,29 @@ var util_1 = require('vendor/util');
 var common_1 = require('vendor/common');
 var TableComponent = (function () {
     function TableComponent(tableOptions) {
+        var _this = this;
         this.tableOptions = tableOptions;
         this.viewTableDatas = new util_1.ArrayList();
+        this.changeCallback = function (current, previous, advanceValue) {
+            if (common_1.StringUtil.empty(current)) {
+                return;
+            }
+            var temp_table_data = new util_1.ArrayList();
+            for (var _i = 0, _a = _this.tableDatas.toArray(); _i < _a.length; _i++) {
+                var tabledata = _a[_i];
+                for (var key in tabledata) {
+                    if ((tabledata[key] + '').includes(current)) {
+                        temp_table_data.add(tabledata);
+                        break;
+                    }
+                }
+            }
+            _this.tableOptions.countDataSize = temp_table_data.getSize();
+            //设置页码集合
+            _this.setPageNumberList();
+            //设置页面显示数据
+            _this.setViewData(temp_table_data);
+        };
     }
     TableComponent.prototype.ngAfterViewInit = function () {
         this.tableOptions.currentPageSize = this.pageSize;
@@ -65,19 +86,22 @@ var TableComponent = (function () {
      *
      * @memberOf TableComponent
      */
-    TableComponent.prototype.setViewData = function () {
+    TableComponent.prototype.setViewData = function (tableDatas) {
         this.viewTableDatas = new util_1.ArrayList();
-        common_1.BeanUtil.clone(this.tableDatas, this.viewTableDatas);
+        common_1.BeanUtil.clone(tableDatas || this.tableDatas, this.viewTableDatas);
         this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
     };
     /**
      * 设置的默认页面显示数据总数
      *
-     * @param {number} pageSize
+     * @param {any} pageSize
      *
      * @memberOf TableComponent
      */
     TableComponent.prototype.setPageSize = function (pageSize) {
+        if (pageSize === common_1.ComponentConstants.PAGE_SIZE_ALL) {
+            pageSize = 65535;
+        }
         this.tableOptions.currentPageSize = pageSize;
         //当前需要显示的数据大于等于实际显示的数据的时候
         var maxPageNumber = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1));
@@ -155,6 +179,7 @@ var TableComponent = (function () {
         this.setViewData();
     };
     __decorate([
+        //搜索框值
         core_1.Input(), 
         __metadata('design:type', Object)
     ], TableComponent.prototype, "pageSize", void 0);

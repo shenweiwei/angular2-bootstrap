@@ -1,6 +1,6 @@
-import { Component, AfterViewInit, ElementRef, Input } from '@angular/core';
+import { Component, Directive, AfterViewInit, Input} from '@angular/core';
 import { TableOptions, TableData, TableHeader, ArrayList, List } from 'vendor/util';
-import { ComponentConstants, DataSetUtil, BeanUtil } from 'vendor/common';
+import { ComponentConstants, DataSetUtil, BeanUtil, StringUtil } from 'vendor/common';
 
 @Component({
     selector: 'table-component',
@@ -8,10 +8,11 @@ import { ComponentConstants, DataSetUtil, BeanUtil } from 'vendor/common';
     styleUrls: ['app/web/vendor/css/vendor.css']
 })
 
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements AfterViewInit{
     public tableDatas: List<TableData>;
     public tableHeaders: List<TableHeader>;
     public viewTableDatas: List<TableData> = new ArrayList();
+    public value: string;//搜索框值
     @Input() pageSize: any;
 
     constructor(public tableOptions: TableOptions) {
@@ -74,20 +75,24 @@ export class TableComponent implements AfterViewInit {
      * 
      * @memberOf TableComponent
      */
-    setViewData(): void {
+    setViewData(tableDatas?:List<TableData>): void {
         this.viewTableDatas = new ArrayList();
-        BeanUtil.clone(this.tableDatas, this.viewTableDatas);
+        BeanUtil.clone(tableDatas||this.tableDatas, this.viewTableDatas);
         this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
     }
 
     /**
      * 设置的默认页面显示数据总数
      * 
-     * @param {number} pageSize
+     * @param {any} pageSize
      * 
      * @memberOf TableComponent
      */
-    setPageSize(pageSize: number): void {
+    setPageSize(pageSize: any): void {
+        if (pageSize === ComponentConstants.PAGE_SIZE_ALL) {
+            pageSize = 65535;
+        }
+
         this.tableOptions.currentPageSize = pageSize;
 
         //当前需要显示的数据大于等于实际显示的数据的时候
@@ -171,6 +176,31 @@ export class TableComponent implements AfterViewInit {
 
         //设置页面显示数据
         this.setViewData();
+    }
+
+    changeCallback = (current: string, previous: string,advanceValue:any) => {
+        if (StringUtil.empty(current)) {
+            return;
+        }
+
+        let temp_table_data=new ArrayList<TableData>();
+
+        for(let tabledata of this.tableDatas.toArray()){
+            for(let key in tabledata){
+                if((tabledata[key]+'').includes(current)){
+                    temp_table_data.add(tabledata);
+                    break;
+                }
+            }
+        }
+
+        this.tableOptions.countDataSize=temp_table_data.getSize();
+
+        //设置页码集合
+        this.setPageNumberList();
+
+        //设置页面显示数据
+        this.setViewData(temp_table_data);
     }
 
 }

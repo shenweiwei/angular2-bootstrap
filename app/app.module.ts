@@ -30,6 +30,9 @@ import { ApplicationSearchComponent } from './web/components/application/search.
 //vendor component
 import { TableComponent } from './web/vendor/components/table.component';
 
+//vendor directives
+import {InputListenerDirective} from './web/vendor/directives/listener/input.directive'
+
 //service
 import { HttpRestful } from 'vendor/http';
 import { RestService } from 'vendor/common';
@@ -47,6 +50,10 @@ import {TableOptions} from 'vendor/util';
   ],
   //指令及组件的使用
   declarations: [
+    //指令
+    InputListenerDirective,
+
+    //组件
     AppComponent,
     DashBoardComponent,
     DemoComponent,

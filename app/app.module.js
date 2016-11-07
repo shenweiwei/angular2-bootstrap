@@ -34,6 +34,8 @@ var demo_component_1 = require('./web/components/demo/demo.component');
 var search_component_1 = require('./web/components/application/search.component');
 //vendor component
 var table_component_1 = require('./web/vendor/components/table.component');
+//vendor directives
+var input_directive_1 = require('./web/vendor/directives/listener/input.directive');
 //service
 var http_2 = require('vendor/http');
 var common_1 = require('vendor/common');
@@ -53,6 +55,9 @@ var AppModule = (function () {
             ],
             //指令及组件的使用
             declarations: [
+                //指令
+                input_directive_1.InputListenerDirective,
+                //组件
                 app_component_1.AppComponent,
                 dashboard_component_1.DashBoardComponent,
                 demo_component_1.DemoComponent,

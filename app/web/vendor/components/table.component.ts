@@ -9,16 +9,14 @@ import { ComponentConstants, DataSetUtil, BeanUtil, StringUtil } from 'vendor/co
 })
 
 export class TableComponent implements AfterViewInit{
-    public tableDatas: List<TableData>;
-    public tableHeaders: List<TableHeader>;
-    public viewTableDatas: List<TableData> = new ArrayList();
+    public tableDatas: List<TableData>;//数据体
+    public tableHeaders: List<TableHeader>;//表头
+    public viewTableDatas: List<TableData> = new ArrayList();//页面显示的数据集
     public value: string;//搜索框值
-    public filterTableDatas:List<TableData>;
+    public filterTableDatas:List<TableData>;//过滤过临时存放的数据集
     @Input() pageSize: any;
 
-    constructor(public tableOptions: TableOptions) {
-
-    }
+    constructor(public tableOptions: TableOptions) {}
 
     ngAfterViewInit(): void {
         this.tableOptions.currentPageSize = this.pageSize;
@@ -34,6 +32,23 @@ export class TableComponent implements AfterViewInit{
      */
     initDataTable(headers: List<TableHeader>, datas: List<TableData>): void {
         this.tableHeaders = headers;
+        this.tableDatas = datas;
+
+        //设置数据集总数
+        this.tableOptions.countDataSize = this.tableDatas.getSize();
+
+        //默认显示第一页
+        this.goPage(this.tableOptions.currentPageNumber, ComponentConstants.TABLE_TURN_PAGE_GO);
+    }
+
+    /**
+     * 刷新表格缓存数据
+     * 
+     * @param {TableData} datas
+     * 
+     * @memberOf TableComponent
+     */
+    refershData(datas: List<TableData>): void {
         this.tableDatas = datas;
 
         //设置数据集总数
@@ -179,6 +194,9 @@ export class TableComponent implements AfterViewInit{
         this.setViewData();
     }
 
+    /**
+     * 文本框变动的回调函数
+     */
     changeCallback = (current: string, previous: string,advanceValue:any) => {
         if (StringUtil.empty(current)) {
             return;

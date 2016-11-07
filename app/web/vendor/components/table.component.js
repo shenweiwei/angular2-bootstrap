@@ -15,7 +15,10 @@ var TableComponent = (function () {
     function TableComponent(tableOptions) {
         var _this = this;
         this.tableOptions = tableOptions;
-        this.viewTableDatas = new util_1.ArrayList();
+        this.viewTableDatas = new util_1.ArrayList(); //页面显示的数据集
+        /**
+         * 文本框变动的回调函数
+         */
         this.changeCallback = function (current, previous, advanceValue) {
             if (common_1.StringUtil.empty(current)) {
                 return;
@@ -50,6 +53,20 @@ var TableComponent = (function () {
      */
     TableComponent.prototype.initDataTable = function (headers, datas) {
         this.tableHeaders = headers;
+        this.tableDatas = datas;
+        //设置数据集总数
+        this.tableOptions.countDataSize = this.tableDatas.getSize();
+        //默认显示第一页
+        this.goPage(this.tableOptions.currentPageNumber, common_1.ComponentConstants.TABLE_TURN_PAGE_GO);
+    };
+    /**
+     * 刷新表格缓存数据
+     *
+     * @param {TableData} datas
+     *
+     * @memberOf TableComponent
+     */
+    TableComponent.prototype.refershData = function (datas) {
         this.tableDatas = datas;
         //设置数据集总数
         this.tableOptions.countDataSize = this.tableDatas.getSize();
@@ -179,6 +196,7 @@ var TableComponent = (function () {
         this.setViewData();
     };
     __decorate([
+        //过滤过临时存放的数据集
         core_1.Input(), 
         __metadata('design:type', Object)
     ], TableComponent.prototype, "pageSize", void 0);

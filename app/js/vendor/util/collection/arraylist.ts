@@ -1,6 +1,6 @@
 import { List } from './list';
 import { ClientObject } from '../../lang/core';
-import { ArrayUtil, BeanUtil, SystemException } from '../../common';
+import { ArrayUtil, BeanUtil, NumberUtil, SystemException } from '../../common';
 
 export class ArrayList<T> implements List<T>, ClientObject {
     private array: Array<any> = [];
@@ -68,11 +68,14 @@ export class ArrayList<T> implements List<T>, ClientObject {
      * @memberOf ArrayList
      */
     public subList<T>(startIndex: number, endIndex?: number): List<T> {
-        if (!Number.isNaN(endIndex)) {
-            this.array.slice(startIndex, endIndex);
+        if (!NumberUtil.isNullOrZone(endIndex)) {
+            this.array.copyWithin(0, startIndex, endIndex);
+            this.array.length = endIndex - startIndex
         } else {
-            this.array.slice(startIndex);
+            this.array.copyWithin(0, startIndex);
+            this.array.length = this.array.length - startIndex
         }
+        
         return this;
     }
 

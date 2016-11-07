@@ -66,8 +66,9 @@ var TableComponent = (function () {
      * @memberOf TableComponent
      */
     TableComponent.prototype.setViewData = function () {
+        this.viewTableDatas = new util_1.ArrayList();
         common_1.BeanUtil.clone(this.tableDatas, this.viewTableDatas);
-        // this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
+        this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
     };
     /**
      * 设置的默认页面显示数据总数

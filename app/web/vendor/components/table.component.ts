@@ -75,8 +75,9 @@ export class TableComponent implements AfterViewInit {
      * @memberOf TableComponent
      */
     setViewData(): void {
+        this.viewTableDatas=new ArrayList();
         BeanUtil.clone(this.tableDatas,this.viewTableDatas);
-        // this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
+        this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
     }
 
     /**

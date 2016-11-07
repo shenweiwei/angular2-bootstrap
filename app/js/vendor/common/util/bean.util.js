@@ -8,10 +8,7 @@ var BeanUtil = (function () {
         var newTarget = Object.assign(Object.create(originProto), source);
         //如果是List集合
         if (target instanceof collection_1.ArrayList && source instanceof collection_1.ArrayList) {
-            var array = source.toArray();
-            var arrayProto = Object.getPrototypeOf(array);
-            newTarget = Object.assign(Object.create(arrayProto), array);
-            target.addAll(newTarget);
+            target.addAll(source.toArray());
         }
         return newTarget;
     };

@@ -5,10 +5,7 @@ export class BeanUtil {
         let newTarget = Object.assign(Object.create(originProto), source);
         //如果是List集合
         if (target instanceof ArrayList && source instanceof ArrayList) {
-            const array = source.toArray();
-            let arrayProto = Object.getPrototypeOf(array);
-            newTarget = Object.assign(Object.create(arrayProto), array);
-            target.addAll(newTarget);
+            target.addAll(source.toArray());
         }
         
         return newTarget;

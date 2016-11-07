@@ -56,11 +56,13 @@ var ArrayList = (function () {
      * @memberOf ArrayList
      */
     ArrayList.prototype.subList = function (startIndex, endIndex) {
-        if (!Number.isNaN(endIndex)) {
-            this.array.slice(startIndex, endIndex);
+        if (!common_1.NumberUtil.isNullOrZone(endIndex)) {
+            this.array.copyWithin(0, startIndex, endIndex);
+            this.array.length = endIndex - startIndex;
         }
         else {
-            this.array.slice(startIndex);
+            this.array.copyWithin(0, startIndex);
+            this.array.length = this.array.length - startIndex;
         }
         return this;
     };

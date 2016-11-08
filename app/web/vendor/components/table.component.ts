@@ -87,7 +87,6 @@ export class TableComponent implements AfterViewInit {
         this.setViewData();
     }
 
-
     /**
      * 填充表格数据
      * 
@@ -188,7 +187,6 @@ export class TableComponent implements AfterViewInit {
         }
     }
 
-
     /**
      * 修改页面显示元素数据数
      * 
@@ -239,4 +237,7 @@ export class TableComponent implements AfterViewInit {
         this.setViewData();
     }
 
+    tableSort(action:string):void{
+
+    }
 }

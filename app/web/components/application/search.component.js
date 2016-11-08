@@ -31,13 +31,15 @@ var ApplicationSearchComponent = (function (_super) {
         var tableHeaders = new util_1.ArrayList();
         var columnsEnName = ['appId', 'appChnName', 'appEngName', 'appOwner', 'updateDate', 'remark'];
         var columnsCnName = ['应用编号', '应用中文名', '应用英文名', '应用负责人', '更新时间', '备注'];
-        for (var i = 0; i < columnsEnName.length; i++) {
+        for (var i = 1; i <= columnsEnName.length; i++) {
             var tableHeader = new util_1.TableHeader();
-            tableHeader.key = columnsEnName[i];
-            tableHeader.desc = columnsCnName[i];
+            tableHeader.index = i;
+            tableHeader.key = columnsEnName[i - 1];
+            tableHeader.desc = columnsCnName[i - 1];
             tableHeaders.add(tableHeader);
         }
         return tableHeaders;
+        // return TableUtil.setTableHeaders(columnsEnName, columnsCnName);
     };
     ApplicationSearchComponent.prototype.getTableDatas = function () {
         var tableDatas = new util_1.ArrayList();
@@ -49,6 +51,15 @@ var ApplicationSearchComponent = (function (_super) {
             tableDatas.add(tableData);
         }
         return tableDatas;
+        // let tableDatas = [];
+        // for (let i = 1; i <= 30; i++) {
+        //     let tableData = new TableData();
+        //     tableData['appId'] = i;
+        //     tableData['appChnName'] = i;
+        //     tableData['appEngName'] = i;
+        //     tableDatas.push(tableData);
+        // }
+        // return TableUtil.setTableDatas(tableDatas);
     };
     __decorate([
         core_1.ViewChild(table_component_1.TableComponent), 

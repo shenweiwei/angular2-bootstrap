@@ -2,7 +2,7 @@
 var ArrayUtil = (function () {
     function ArrayUtil() {
     }
-    ArrayUtil.empty = function (array) {
+    ArrayUtil.isEmpty = function (array) {
         if (!(array === undefined || array === null)) {
             return false;
         }
@@ -12,7 +12,7 @@ var ArrayUtil = (function () {
         return true;
     };
     ArrayUtil.getSize = function (array) {
-        if (this.empty(array)) {
+        if (this.isEmpty(array)) {
             return 0;
         }
         return array.length;

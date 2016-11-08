@@ -215,6 +215,8 @@ var TableComponent = (function () {
         //设置页面显示数据
         this.setViewData();
     };
+    TableComponent.prototype.tableSort = function (action) {
+    };
     __decorate([
         //过滤过临时存放的数据集
         core_1.Input(), 

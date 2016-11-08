@@ -18,7 +18,7 @@ export class ArrayList<T> implements List<T>, ClientObject {
      * @memberOf ArrayList
      */
     public getSize(): number {
-        if (ArrayUtil.empty(this.array)) {
+        if (ArrayUtil.isEmpty(this.array)) {
             return 0;
         }
 
@@ -35,7 +35,7 @@ export class ArrayList<T> implements List<T>, ClientObject {
      * @memberOf ArrayList
      */
     public toArray<T>(): Array<T> {
-        if (ArrayUtil.empty(this.array)) {
+        if (ArrayUtil.isEmpty(this.array)) {
             throw new SystemException('current list is empty');
         }
 
@@ -92,7 +92,7 @@ export class ArrayList<T> implements List<T>, ClientObject {
      * @memberOf ArrayList
      */
     public add<T>(data: T): List<T> {
-        if (ArrayUtil.empty(this.array)) {
+        if (ArrayUtil.isEmpty(this.array)) {
             throw new SystemException('current list is empty');
         }
         this.array.push(data);
@@ -109,7 +109,7 @@ export class ArrayList<T> implements List<T>, ClientObject {
      * @memberOf ArrayList
      */
     public replace<T>(data: T, index: number): List<T> {
-        if (ArrayUtil.empty(this.array)) {
+        if (ArrayUtil.isEmpty(this.array)) {
             throw new SystemException('current list is empty');
         }
         this.array[index] = data;

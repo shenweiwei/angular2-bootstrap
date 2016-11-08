@@ -32,6 +32,16 @@ var TableHeader = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(TableHeader.prototype, "sort", {
+        get: function () {
+            return this._sort;
+        },
+        set: function (value) {
+            this._sort = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return TableHeader;
 }());
 exports.TableHeader = TableHeader;

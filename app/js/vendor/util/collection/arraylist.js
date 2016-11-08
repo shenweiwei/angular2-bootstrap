@@ -14,7 +14,7 @@ var ArrayList = (function () {
      * @memberOf ArrayList
      */
     ArrayList.prototype.getSize = function () {
-        if (common_1.ArrayUtil.empty(this.array)) {
+        if (common_1.ArrayUtil.isEmpty(this.array)) {
             return 0;
         }
         return this.array.length;
@@ -28,7 +28,7 @@ var ArrayList = (function () {
      * @memberOf ArrayList
      */
     ArrayList.prototype.toArray = function () {
-        if (common_1.ArrayUtil.empty(this.array)) {
+        if (common_1.ArrayUtil.isEmpty(this.array)) {
             throw new common_1.SystemException('current list is empty');
         }
         return this.array;
@@ -79,7 +79,7 @@ var ArrayList = (function () {
      * @memberOf ArrayList
      */
     ArrayList.prototype.add = function (data) {
-        if (common_1.ArrayUtil.empty(this.array)) {
+        if (common_1.ArrayUtil.isEmpty(this.array)) {
             throw new common_1.SystemException('current list is empty');
         }
         this.array.push(data);
@@ -95,7 +95,7 @@ var ArrayList = (function () {
      * @memberOf ArrayList
      */
     ArrayList.prototype.replace = function (data, index) {
-        if (common_1.ArrayUtil.empty(this.array)) {
+        if (common_1.ArrayUtil.isEmpty(this.array)) {
             throw new common_1.SystemException('current list is empty');
         }
         this.array[index] = data;

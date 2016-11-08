@@ -9,4 +9,6 @@ var bean_util_1 = require('./util/bean.util');
 exports.BeanUtil = bean_util_1.BeanUtil;
 var number_util_1 = require('./util/number.util');
 exports.NumberUtil = number_util_1.NumberUtil;
+var table_util_1 = require('./util/table.util');
+exports.TableUtil = table_util_1.TableUtil;
 //# sourceMappingURL=util.js.map

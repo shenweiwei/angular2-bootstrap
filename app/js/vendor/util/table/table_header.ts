@@ -29,6 +29,15 @@ export class TableHeader implements ClientObject{
      */
     private _desc:string;
 
+    /**
+     * 排序
+     * 
+     * @private
+     * @type {number}
+     * @memberOf TableHeader
+     */
+    private _sort:number;
+
 	public get index(): number {
 		return this._index;
 	}
@@ -51,6 +60,14 @@ export class TableHeader implements ClientObject{
 
 	public set desc(value: string) {
 		this._desc = value;
+	}
+    
+	public get sort(): number {
+		return this._sort;
+	}
+
+	public set sort(value: number) {
+		this._sort = value;
 	}
     
 }

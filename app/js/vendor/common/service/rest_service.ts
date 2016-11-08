@@ -84,7 +84,7 @@ export class RestService {
      * 采用订阅者模式查询，返回一个观察者
      */
     doObservable(url: string, data?: any, http_header?: HttpHeader) {
-        if (StringUtil.empty(data)) {
+        if (StringUtil.isEmpty(data)) {
             data = new Object();
         }
 

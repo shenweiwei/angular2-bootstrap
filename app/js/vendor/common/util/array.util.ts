@@ -1,5 +1,5 @@
 export class ArrayUtil {
-    static empty<T>(array: Array<T>): boolean {
+    static isEmpty<T>(array: Array<T>): boolean {
         if (!(array === undefined || array === null)) {
             return false;
         } else if (array.length > 0) {
@@ -10,7 +10,7 @@ export class ArrayUtil {
     }
 
     static getSize<T>(array: Array<T>): number {
-        if (this.empty(array)) {
+        if (this.isEmpty(array)) {
             return 0;
         }
 

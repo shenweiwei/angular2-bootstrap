@@ -1,5 +1,5 @@
 export class StringUtil {
-    static empty(data: string): boolean {
+    static isEmpty(data: string): boolean {
         if (!(data === undefined || data === null || data === '')) {
             return false;
         }
@@ -16,7 +16,7 @@ export class StringUtil {
     }
 
     static toUpperCase(data: string): string {
-        if (this.empty(data)) {
+        if (this.isEmpty(data)) {
             return;
         }
 
@@ -24,7 +24,7 @@ export class StringUtil {
     }
 
     static toLowerCase(data: string): string {
-        if (this.empty(data)) {
+        if (this.isEmpty(data)) {
             return;
         }
 

@@ -2,7 +2,7 @@
 var StringUtil = (function () {
     function StringUtil() {
     }
-    StringUtil.empty = function (data) {
+    StringUtil.isEmpty = function (data) {
         if (!(data === undefined || data === null || data === '')) {
             return false;
         }
@@ -15,13 +15,13 @@ var StringUtil = (function () {
         return true;
     };
     StringUtil.toUpperCase = function (data) {
-        if (this.empty(data)) {
+        if (this.isEmpty(data)) {
             return;
         }
         return data.toUpperCase();
     };
     StringUtil.toLowerCase = function (data) {
-        if (this.empty(data)) {
+        if (this.isEmpty(data)) {
             return;
         }
         return data.toLowerCase();

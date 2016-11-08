@@ -19,7 +19,7 @@ var RestService = (function () {
      * 根據條件查找對象
      */
     RestService.prototype.findByWhere = function (url, data, http_header) {
-        if (util_1.StringUtil.empty(data)) {
+        if (util_1.StringUtil.isEmpty(data)) {
             data = new Object();
         }
         var response = this._http_restful.doPost(url, data, http_header);
@@ -81,7 +81,7 @@ var RestService = (function () {
      * 采用订阅者模式查询，返回一个观察者
      */
     RestService.prototype.doObservable = function (url, data, http_header) {
-        if (util_1.StringUtil.empty(data)) {
+        if (util_1.StringUtil.isEmpty(data)) {
             data = new Object();
         }
         return null;

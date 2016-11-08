@@ -14,7 +14,7 @@ export class RestService {
      * 根據條件查找對象
      */
     findByWhere(url: string, data?: any, http_header?: HttpHeader): Promise<any[]> {
-        if (StringUtil.empty(data)) {
+        if (StringUtil.isEmpty(data)) {
             data = new Object();
         }
         const response = this._http_restful.doPost(url, data,http_header);
@@ -84,7 +84,7 @@ export class RestService {
      * 采用订阅者模式查询，返回一个观察者
      */
     doObservable(url: string, data?: any, http_header?: HttpHeader) {
-        if (StringUtil.empty(data)) {
+        if (StringUtil.isEmpty(data)) {
             data = new Object();
         }
 

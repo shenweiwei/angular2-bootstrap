@@ -1,4 +1,4 @@
-import { Component, Directive, AfterViewInit, Input} from '@angular/core';
+import { Component, Directive, AfterViewInit, Input } from '@angular/core';
 import { TableOptions, TableData, TableHeader, ArrayList, List } from 'vendor/util';
 import { ComponentConstants, DataSetUtil, BeanUtil, StringUtil } from 'vendor/common';
 
@@ -8,15 +8,15 @@ import { ComponentConstants, DataSetUtil, BeanUtil, StringUtil } from 'vendor/co
     styleUrls: ['app/web/vendor/css/vendor.css']
 })
 
-export class TableComponent implements AfterViewInit{
+export class TableComponent implements AfterViewInit {
     public tableDatas: List<TableData>;//数据体
     public tableHeaders: List<TableHeader>;//表头
     public viewTableDatas: List<TableData> = new ArrayList();//页面显示的数据集
     public value: string;//搜索框值
-    public filterTableDatas:List<TableData>;//过滤过临时存放的数据集
+    public filterTableDatas: List<TableData>;//过滤过临时存放的数据集
     @Input() pageSize: any;
 
-    constructor(public tableOptions: TableOptions) {}
+    constructor(public tableOptions: TableOptions) { }
 
     ngAfterViewInit(): void {
         this.tableOptions.currentPageSize = this.pageSize;
@@ -69,10 +69,12 @@ export class TableComponent implements AfterViewInit{
     goPage(pageNumber: number, action: string): void {
         if (action === ComponentConstants.TABLE_TURN_PAGE_GO) {
             this.tableOptions.currentPageNumber = pageNumber;
-        } else if (action === ComponentConstants.TABLE_TURN_PAGE_NEXT) {
+        } else if (action === ComponentConstants.TABLE_TURN_PAGE_NEXT && this.tableOptions.currentPageNumber < this.tableOptions.getPageNumberLength()) {
             this.tableOptions.currentPageNumber++;
-        } else if (action === ComponentConstants.TABLE_TURN_PAGE_PREVIOUS) {
+        } else if (action === ComponentConstants.TABLE_TURN_PAGE_PREVIOUS && this.tableOptions.currentPageNumber > 1) {
             this.tableOptions.currentPageNumber--;
+        } else {
+            this.tableOptions.currentPageNumber = pageNumber;
         }
 
         //设置页面显示总数
@@ -93,7 +95,7 @@ export class TableComponent implements AfterViewInit{
      */
     setViewData(): void {
         this.viewTableDatas = new ArrayList();
-        BeanUtil.clone(this.filterTableDatas||this.tableDatas, this.viewTableDatas);
+        BeanUtil.clone(this.filterTableDatas || this.tableDatas, this.viewTableDatas);
         this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
     }
 
@@ -166,12 +168,23 @@ export class TableComponent implements AfterViewInit{
         if (maxPageNumber <= 1) {
             this.tableOptions.turnPageNextDisabled = true;
             this.tableOptions.turnPagePreDisabled = true;
+            this.tableOptions.turnPageHomeDisabled = true;
+            this.tableOptions.turnPageLastDisabled = true;
         } else if (this.tableOptions.currentPageNumber <= 1) {
             this.tableOptions.turnPagePreDisabled = true;
             this.tableOptions.turnPageNextDisabled = false;
+            this.tableOptions.turnPageHomeDisabled = true;
+            this.tableOptions.turnPageLastDisabled = false;
         } else if (this.tableOptions.currentPageNumber >= maxPageNumber) {
             this.tableOptions.turnPagePreDisabled = false;
             this.tableOptions.turnPageNextDisabled = true;
+            this.tableOptions.turnPageHomeDisabled = false;
+            this.tableOptions.turnPageLastDisabled = true;
+        } else {
+            this.tableOptions.turnPagePreDisabled = false;
+            this.tableOptions.turnPageNextDisabled = false;
+            this.tableOptions.turnPageHomeDisabled = false;
+            this.tableOptions.turnPageLastDisabled = false;
         }
     }
 
@@ -197,23 +210,27 @@ export class TableComponent implements AfterViewInit{
     /**
      * 文本框变动的回调函数
      */
-    changeCallback = (current: string, previous: string,advanceValue:any) => {
-        if (StringUtil.empty(current)) {
+    changeCallback = (current: string, previous: string, advanceValue: any) => {
+        if (StringUtil.isNull(current)) {
             return;
         }
 
-        this.filterTableDatas=new ArrayList<TableData>();
+        this.filterTableDatas = new ArrayList<TableData>();
 
-        for(let tabledata of this.tableDatas.toArray()){
-            for(let key in tabledata){
-                if((tabledata[key]+'').includes(current)){
-                    this.filterTableDatas.add(tabledata);
-                    break;
+        if (current === '') {
+            this.filterTableDatas = this.tableDatas.subList(0, this.tableDatas.getSize());
+        } else {
+            for (let tabledata of this.tableDatas.toArray()) {
+                for (let key in tabledata) {
+                    if ((tabledata[key] + '').includes(current)) {
+                        this.filterTableDatas.add(tabledata);
+                        break;
+                    }
                 }
             }
         }
 
-        this.tableOptions.countDataSize=this.filterTableDatas.getSize();
+        this.tableOptions.countDataSize = this.filterTableDatas.getSize();
 
         //设置页码集合
         this.setPageNumberList();

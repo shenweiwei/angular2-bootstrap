@@ -15,7 +15,7 @@
     <section class="panel-body">
         <article id="table-header-tools" class="form-horizontal col-sm-12">
             <section class="dropdown col-sm-9">
-                当前页数
+                PageSize
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                     {{tableOptions.currentPageSize}}
                     <span class="caret"></span>
@@ -29,15 +29,17 @@
             <section class="form-group col-sm-3">
                 <label class="col-sm-3 control-label" for="table-search">Search</label>
                 <section class="col-sm-9">
-                    <input input-listener type="text" id="table-search" name="table-search" class="form-control" placeholder="search" [value]="value" [(ngModel)]="value" [changeCallback]="changeCallback" [advanceValue]="tableDatas"/>
+                    <input input-listener type="text" id="table-search" name="table-search" class="form-control" placeholder="search" [value]="value" [(ngModel)]="value" [changeCallback]="changeCallback"/>
                 </section>
             </section>
         </article>
-        <article id="table-body col-sm-12">
+        <article id="table-body" class="col-sm-12">
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr *ngIf="tableHeaders">
-                        <th *ngFor="let tableheader of tableHeaders.toArray()" id={{tableheader.key}}>{{tableheader.desc}}</th>
+                        <th *ngFor="let tableheader of tableHeaders.toArray()" id={{tableheader.key}}>
+                            {{tableheader.desc}}
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,19 +50,25 @@
             </table>
         </article>
         <article id="table-footer-tools" class="col-sm-12">
-            <section class="col-sm-9">
-                当前数: {{tableOptions.beginPageIndex}} 至 {{tableOptions.endPageIndex}} 总数:{{tableOptions.countDataSize}}
+            <section class="col-sm-6">
+                Showing: {{tableOptions.beginPageIndex}} to {{tableOptions.endPageIndex}} of {{tableOptions.countDataSize}} entries
             </section>
-            <section class="col-sm-3">
+            <section class="col-sm-6">
                 <ul class="pagination">
+                    <li [ngClass]="{disabled: tableOptions.turnPageHomeDisabled}">
+                        <a (click)="goPage(1,'home')">Home</a>
+                    </li>
                     <li [ngClass]="{disabled: tableOptions.turnPagePreDisabled}">
-                        <a (click)="goPage(tableOptions.currentPageNumber,'previous')">上一页</a>
+                        <a (click)="goPage(tableOptions.currentPageNumber,'previous')">Previous</a>
                     </li>
                     <li *ngFor="let pageNumber of tableOptions.pageNumberList.toArray();" [ngClass]="{active: pageNumber.pageNumberActive}">
                         <a (click)="goPage(pageNumber.index,'go')">{{pageNumber.index}}</a>
                     </li>
                     <li [ngClass]="{disabled: tableOptions.turnPageNextDisabled}">
-                        <a (click)="goPage(tableOptions.currentPageNumber,'next')">下一页</a>
+                        <a (click)="goPage(tableOptions.currentPageNumber,'next')">Next</a>
+                    </li>
+                    <li [ngClass]="{disabled: tableOptions.turnPageLastDisabled}">
+                        <a (click)="goPage(tableOptions.getPageNumberLength(),'last')">Last</a>
                     </li>
                 </ul>
             </section>

@@ -8,6 +8,12 @@ var StringUtil = (function () {
         }
         return true;
     };
+    StringUtil.isNull = function (data) {
+        if (!(data === undefined || data === null)) {
+            return false;
+        }
+        return true;
+    };
     StringUtil.toUpperCase = function (data) {
         if (this.empty(data)) {
             return;

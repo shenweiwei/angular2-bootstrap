@@ -7,6 +7,18 @@
     float: right;
 }
 
+#table-body tr>th {
+    cursor: pointer;
+    background-color: white;
+}
+
+#table-body tr>th::after {
+    font-family: 'Glyphicons Halflings';
+    /*content: "\e155";*/
+    opacity: 0.2;
+    content: "\e150";
+}
+
 #table-footer-tools {
     margin: 0;
 }

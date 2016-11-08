@@ -20,16 +20,21 @@ var TableComponent = (function () {
          * 文本框变动的回调函数
          */
         this.changeCallback = function (current, previous, advanceValue) {
-            if (common_1.StringUtil.empty(current)) {
+            if (common_1.StringUtil.isNull(current)) {
                 return;
             }
             _this.filterTableDatas = new util_1.ArrayList();
-            for (var _i = 0, _a = _this.tableDatas.toArray(); _i < _a.length; _i++) {
-                var tabledata = _a[_i];
-                for (var key in tabledata) {
-                    if ((tabledata[key] + '').includes(current)) {
-                        _this.filterTableDatas.add(tabledata);
-                        break;
+            if (current === '') {
+                _this.filterTableDatas = _this.tableDatas.subList(0, _this.tableDatas.getSize());
+            }
+            else {
+                for (var _i = 0, _a = _this.tableDatas.toArray(); _i < _a.length; _i++) {
+                    var tabledata = _a[_i];
+                    for (var key in tabledata) {
+                        if ((tabledata[key] + '').includes(current)) {
+                            _this.filterTableDatas.add(tabledata);
+                            break;
+                        }
                     }
                 }
             }
@@ -85,11 +90,14 @@ var TableComponent = (function () {
         if (action === common_1.ComponentConstants.TABLE_TURN_PAGE_GO) {
             this.tableOptions.currentPageNumber = pageNumber;
         }
-        else if (action === common_1.ComponentConstants.TABLE_TURN_PAGE_NEXT) {
+        else if (action === common_1.ComponentConstants.TABLE_TURN_PAGE_NEXT && this.tableOptions.currentPageNumber < this.tableOptions.getPageNumberLength()) {
             this.tableOptions.currentPageNumber++;
         }
-        else if (action === common_1.ComponentConstants.TABLE_TURN_PAGE_PREVIOUS) {
+        else if (action === common_1.ComponentConstants.TABLE_TURN_PAGE_PREVIOUS && this.tableOptions.currentPageNumber > 1) {
             this.tableOptions.currentPageNumber--;
+        }
+        else {
+            this.tableOptions.currentPageNumber = pageNumber;
         }
         //设置页面显示总数
         this.setPageSize(this.tableOptions.currentPageSize);
@@ -170,14 +178,26 @@ var TableComponent = (function () {
         if (maxPageNumber <= 1) {
             this.tableOptions.turnPageNextDisabled = true;
             this.tableOptions.turnPagePreDisabled = true;
+            this.tableOptions.turnPageHomeDisabled = true;
+            this.tableOptions.turnPageLastDisabled = true;
         }
         else if (this.tableOptions.currentPageNumber <= 1) {
             this.tableOptions.turnPagePreDisabled = true;
             this.tableOptions.turnPageNextDisabled = false;
+            this.tableOptions.turnPageHomeDisabled = true;
+            this.tableOptions.turnPageLastDisabled = false;
         }
         else if (this.tableOptions.currentPageNumber >= maxPageNumber) {
             this.tableOptions.turnPagePreDisabled = false;
             this.tableOptions.turnPageNextDisabled = true;
+            this.tableOptions.turnPageHomeDisabled = false;
+            this.tableOptions.turnPageLastDisabled = true;
+        }
+        else {
+            this.tableOptions.turnPagePreDisabled = false;
+            this.tableOptions.turnPageNextDisabled = false;
+            this.tableOptions.turnPageHomeDisabled = false;
+            this.tableOptions.turnPageLastDisabled = false;
         }
     };
     /**

@@ -80,6 +80,12 @@ export class TableOptions implements ClientObject{
     @value.Default(true)
     private _turnPageNextDisabled:boolean;
 
+    @value.Default(true)
+    private _turnPageHomeDisabled:boolean;
+
+    @value.Default(true)
+    private _turnPageLastDisabled:boolean;
+
     public get pageNumberList(): List<any> {
         return this._pageNumberList;
     }
@@ -156,4 +162,19 @@ export class TableOptions implements ClientObject{
 		this._turnPageNextDisabled = value;
 	}
     
+    public get turnPageHomeDisabled(): boolean {
+		return this._turnPageHomeDisabled;
+	}
+
+	public set turnPageHomeDisabled(value: boolean) {
+		this._turnPageHomeDisabled = value;
+	}
+
+    public get turnPageLastDisabled(): boolean {
+		return this._turnPageLastDisabled;
+	}
+
+	public set turnPageLastDisabled(value: boolean) {
+		this._turnPageLastDisabled = value;
+	}
 }

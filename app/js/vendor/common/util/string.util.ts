@@ -7,6 +7,14 @@ export class StringUtil {
         return true;
     }
 
+     static isNull(data: string): boolean {
+        if (!(data === undefined || data === null )) {
+            return false;
+        }
+
+        return true;
+    }
+
     static toUpperCase(data: string): string {
         if (this.empty(data)) {
             return;

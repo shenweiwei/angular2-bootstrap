@@ -19,10 +19,11 @@ var RestService = (function () {
      * 根據條件查找對象
      */
     RestService.prototype.findByWhere = function (url, data, callback, http_header) {
-        if (util_1.StringUtil.isEmpty(data)) {
-            data = new Object();
+        var tempData = new Object();
+        for (var key in data) {
+            tempData[(key.replace('_', ''))] = data[key];
         }
-        this._http_restful.doPost(url, data, callback, http_header);
+        this._http_restful.doPost(url, tempData, callback, http_header);
     };
     /**
      * 根據ID查找對象
@@ -41,21 +42,33 @@ var RestService = (function () {
      * 新增對象
      */
     RestService.prototype.create = function (url, data, callback, http_header) {
-        this._http_restful.doPut(url, data, callback);
+        var tempData = new Object();
+        for (var key in data) {
+            tempData[(key.replace('_', ''))] = data[key];
+        }
+        this._http_restful.doPut(url, tempData, callback);
     };
     /**
      * 更新對象全部屬性
      */
     RestService.prototype.update = function (url, data, key, callback, http_header) {
         var update_url = url + "/" + key;
-        this._http_restful.doPut(update_url, data, callback);
+        var tempData = new Object();
+        for (var key_1 in data) {
+            tempData[(key_1.replace('_', ''))] = data[key_1];
+        }
+        this._http_restful.doPut(update_url, tempData, callback);
     };
     /**
      * 更新對象部分内容
      */
     RestService.prototype.updateSector = function (url, data, key, callback, http_header) {
         var update_url = url + "/" + key;
-        this._http_restful.doPatch(update_url, data, callback);
+        var tempData = new Object();
+        for (var key_2 in data) {
+            tempData[(key_2.replace('_', ''))] = data[key_2];
+        }
+        this._http_restful.doPatch(update_url, tempData, callback);
     };
     /**
      * 刪除某個對象

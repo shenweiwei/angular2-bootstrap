@@ -14,11 +14,13 @@ export class RestService {
      * 根據條件查找對象
      */
     findByWhere(url: string, data: any, callback: Function, http_header?: HttpHeader): void {
-        if (StringUtil.isEmpty(data)) {
-            data = new Object();
+        let tempData = new Object();
+
+        for (let key in data) {
+            tempData[(key.replace('_', ''))] = data[key];
         }
 
-        this._http_restful.doPost(url, data, callback, http_header);
+        this._http_restful.doPost(url, tempData, callback, http_header);
     }
 
     /**
@@ -41,7 +43,12 @@ export class RestService {
      * 新增對象
      */
     create(url: string, data: any, callback: Function, http_header?: HttpHeader): void {
-        this._http_restful.doPut(url, data, callback);
+        let tempData = new Object();
+
+        for (let key in data) {
+            tempData[(key.replace('_', ''))] = data[key];
+        }
+        this._http_restful.doPut(url, tempData, callback);
 
     }
 
@@ -50,7 +57,13 @@ export class RestService {
      */
     update(url: string, data: any, key: string, callback: Function, http_header?: HttpHeader): void {
         const update_url = `${url}/${key}`;
-        this._http_restful.doPut(update_url, data, callback);
+        let tempData = new Object();
+
+        for (let key in data) {
+            tempData[(key.replace('_', ''))] = data[key];
+        }
+
+        this._http_restful.doPut(update_url, tempData, callback);
     }
 
     /**
@@ -58,7 +71,13 @@ export class RestService {
      */
     updateSector(url: string, data: any, key: string, callback: Function, http_header?: HttpHeader): void {
         const update_url = `${url}/${key}`;
-        this._http_restful.doPatch(update_url, data, callback);
+        let tempData = new Object();
+
+        for (let key in data) {
+            tempData[(key.replace('_', ''))] = data[key];
+        }
+
+        this._http_restful.doPatch(update_url, tempData, callback);
     }
 
     /**

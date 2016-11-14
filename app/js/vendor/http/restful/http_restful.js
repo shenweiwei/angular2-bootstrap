@@ -22,31 +22,31 @@ var HttpRestful = (function () {
     HttpRestful.prototype.doPost = function (url, data, callback, http_header) {
         this._http.post(url, JSON.stringify(data), { headers: this._http_header.headers })
             .toPromise()
-            .then(function (response) { typeof callback === 'function' && callback(response.json().data); })
+            .then(function (response) { console.log(response.json()); typeof callback === 'function' && callback(response.json()); })
             .catch(this.handleError);
     };
     HttpRestful.prototype.doGet = function (url, callback, http_header) {
         this._http.get(url)
             .toPromise()
-            .then(function (response) { typeof callback === 'function' && callback(response.json().data); })
+            .then(function (response) { typeof callback === 'function' && callback(response.json()); })
             .catch(this.handleError);
     };
     HttpRestful.prototype.doPut = function (url, data, callback, http_header) {
         this._http.put(url, JSON.stringify(data), { headers: this._http_header.headers })
             .toPromise()
-            .then(function (response) { typeof callback === 'function' && callback(response.json().data); })
+            .then(function (response) { typeof callback === 'function' && callback(response.json()); })
             .catch(this.handleError);
     };
     HttpRestful.prototype.doPatch = function (url, data, callback, http_header) {
         this._http.patch(url, JSON.stringify(data), { headers: this._http_header.headers })
             .toPromise()
-            .then(function (response) { typeof callback === 'function' && callback(response.json().data); })
+            .then(function (response) { typeof callback === 'function' && callback(response.json()); })
             .catch(this.handleError);
     };
     HttpRestful.prototype.doDelete = function (url, callback, http_header) {
         this._http.delete(url)
             .toPromise()
-            .then(function (response) { typeof callback === 'function' && callback(response.json().data); })
+            .then(function (response) { typeof callback === 'function' && callback(response.json()); })
             .catch(this.handleError);
     };
     HttpRestful.prototype.doObservable = function (url, data, callback, http_header) {
@@ -54,7 +54,7 @@ var HttpRestful = (function () {
             data = new Object();
         }
         this._http.post(url, JSON.stringify(data), { headers: this._http_header.headers })
-            .map(function (response) { typeof callback === 'function' && callback(response.json().data); })
+            .map(function (response) { typeof callback === 'function' && callback(response.json()); })
             .catch(this.handleError);
     };
     HttpRestful.prototype.handleError = function (error) {

@@ -28,10 +28,9 @@ var ApplicationSearchComponent = (function (_super) {
     }
     ApplicationSearchComponent.prototype.search = function () {
         var _this = this;
-        this.applicationVo.appEngName = 'FOL';
         var url = 'web.dmsops/application/query';
         this.applicationServiceImpl.searchApplication(url, this.applicationVo, function (response) {
-            var tableDataList = common_1.TableUtil.setTableDatas(response);
+            var tableDataList = common_1.TableUtil.setTableDatas(response[0]);
             _this.tableComponent.initDataTable(_this.getTableHeaders(), tableDataList);
         });
     };

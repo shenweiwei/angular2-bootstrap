@@ -21,10 +21,9 @@ export class ApplicationSearchComponent extends BaseComponent {
     }
 
     search(): void {
-        this.applicationVo.appEngName = 'FOL';
         const url = 'web.dmsops/application/query';
         this.applicationServiceImpl.searchApplication(url, this.applicationVo, (response) => {
-            const tableDataList = TableUtil.setTableDatas(response);
+            const tableDataList = TableUtil.setTableDatas(response[0]);
             this.tableComponent.initDataTable(this.getTableHeaders(), tableDataList);
         });
     }

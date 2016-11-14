@@ -14,38 +14,38 @@ export class HttpRestful implements HttpRestfulRequest {
         this._http_header.setContentType(contentType);
     }
 
-    doPost(url: string, data: any, callback: any, http_header?: HttpHeader): void {
+    doPost(url: string, data: any, callback: any, http_header?: HttpHeader): any {
         this._http.post(url, JSON.stringify(data), { headers: this._http_header.headers })
             .toPromise()
-            .then(response => { typeof callback === 'function' && callback(response.json().data) })
+            .then(response => { console.log(response.json()); typeof callback === 'function' && callback(response.json()) })
             .catch(this.handleError);
     }
 
     doGet(url: string, callback: Function, http_header?: HttpHeader): void {
         this._http.get(url)
             .toPromise()
-            .then(response => { typeof callback === 'function' && callback(response.json().data) })
+            .then(response => { typeof callback === 'function' && callback(response.json()) })
             .catch(this.handleError);
     }
 
     doPut(url: string, data: any, callback: Function, http_header?: HttpHeader): void {
         this._http.put(url, JSON.stringify(data), { headers: this._http_header.headers })
             .toPromise()
-            .then(response => { typeof callback === 'function' && callback(response.json().data) })
+            .then(response => { typeof callback === 'function' && callback(response.json()) })
             .catch(this.handleError);
     }
 
     doPatch(url: string, data: any, callback: Function, http_header?: HttpHeader): void {
         this._http.patch(url, JSON.stringify(data), { headers: this._http_header.headers })
             .toPromise()
-            .then(response => { typeof callback === 'function' && callback(response.json().data) })
+            .then(response => { typeof callback === 'function' && callback(response.json()) })
             .catch(this.handleError);
     }
 
     doDelete(url: string, callback: Function, http_header?: HttpHeader): void {
         this._http.delete(url)
             .toPromise()
-            .then(response => { typeof callback === 'function' && callback(response.json().data) })
+            .then(response => { typeof callback === 'function' && callback(response.json()) })
             .catch(this.handleError);
     }
 
@@ -55,7 +55,7 @@ export class HttpRestful implements HttpRestfulRequest {
         }
 
         this._http.post(url, JSON.stringify(data), { headers: this._http_header.headers })
-            .map((response: Response) => { typeof callback === 'function' && callback(response.json().data) })
+            .map((response: Response) => { typeof callback === 'function' && callback(response.json()) })
             .catch(this.handleError);
     }
 

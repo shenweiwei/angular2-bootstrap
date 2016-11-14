@@ -4,4 +4,5 @@ function __export(m) {
 }
 __export(require('./collection'));
 __export(require('./table'));
+__export(require('./menu'));
 //# sourceMappingURL=index.js.map

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { List,MenuItem } from 'vendor/util';
 
 @Component({
     selector: 'my-app',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-    constructor(){}
+    public menuList: List<any[]>;
+    constructor() { }
 }

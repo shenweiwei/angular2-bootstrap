@@ -41,7 +41,7 @@ export class ApplicationSearchComponent extends BaseComponent {
 
         this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
             let tableDataList = TableUtil.setTableDatas(response[0]);
-            this.tableComponent.refershData(tableDataList, response[1].total);
+            this.tableComponent.refreshData(tableDataList, response[1].total);
         });
     }
 }

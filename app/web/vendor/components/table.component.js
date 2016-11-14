@@ -26,8 +26,11 @@ var TableComponent = (function () {
                 return;
             }
             _this.filterTableDatas = new util_1.ArrayList();
-            if (current === '') {
+            if (current === '' && _this.globalData) {
                 _this.filterTableDatas = _this.tableDatas.subList(0, _this.tableDatas.getSize());
+            }
+            else if (current === '' && !_this.globalData) {
+                _this.filterTableDatas = null;
             }
             else {
                 for (var _i = 0, _a = _this.tableDatas.toArray(); _i < _a.length; _i++) {
@@ -40,9 +43,11 @@ var TableComponent = (function () {
                     }
                 }
             }
-            _this.tableOptions.countDataSize = _this.filterTableDatas.getSize();
-            //设置页码集合
-            _this.setPageNumberList();
+            if (_this.globalData) {
+                _this.tableOptions.countDataSize = _this.filterTableDatas.getSize();
+                //设置页码集合
+                _this.setPageNumberList();
+            }
             //设置页面显示数据
             _this.setViewData();
         };
@@ -61,6 +66,8 @@ var TableComponent = (function () {
     TableComponent.prototype.initDataTable = function (headers, datas, countDataSize) {
         this.tableHeaders = headers;
         this.tableDatas = datas;
+        //清空过滤的数据
+        this.filterTableDatas = null;
         //设置数据集总数
         this.tableOptions.countDataSize = countDataSize;
         //默认显示第一页
@@ -79,7 +86,7 @@ var TableComponent = (function () {
      *
      * @memberOf TableComponent
      */
-    TableComponent.prototype.refershData = function (datas, countDataSize) {
+    TableComponent.prototype.refreshData = function (datas, countDataSize) {
         this.tableDatas = datas;
         //设置数据集总数
         this.tableOptions.countDataSize = countDataSize || this.tableDatas.getSize();
@@ -95,6 +102,8 @@ var TableComponent = (function () {
      * @memberOf TableComponent
      */
     TableComponent.prototype.goPage = function (pageNumber, action) {
+        //清空过滤的数据
+        this.filterTableDatas = null;
         if (action === common_1.ComponentConstants.TABLE_TURN_PAGE_GO) {
             this.tableOptions.currentPageNumber = pageNumber;
         }

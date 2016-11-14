@@ -32,7 +32,7 @@ var ApplicationSearchComponent = (function (_super) {
             _this.applicationVo.endNo = tableOptions.endPageIndex;
             _this.applicationServiceImpl.searchApplication(_this.url, _this.applicationVo, function (response) {
                 var tableDataList = common_1.TableUtil.setTableDatas(response[0]);
-                _this.tableComponent.refershData(tableDataList, response[1].total);
+                _this.tableComponent.refreshData(tableDataList, response[1].total);
             });
         };
     }

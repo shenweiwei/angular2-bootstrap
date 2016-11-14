@@ -37,6 +37,9 @@ export class TableComponent implements AfterViewInit {
         this.tableHeaders = headers;
         this.tableDatas = datas;
 
+        //清空过滤的数据
+        this.filterTableDatas = null;
+        
         //设置数据集总数
         this.tableOptions.countDataSize = countDataSize;
 
@@ -60,7 +63,7 @@ export class TableComponent implements AfterViewInit {
      * 
      * @memberOf TableComponent
      */
-    refershData(datas: List<TableData>, countDataSize?: number): void {
+    refreshData(datas: List<TableData>, countDataSize?: number): void {
         this.tableDatas = datas;
 
         //设置数据集总数
@@ -79,6 +82,9 @@ export class TableComponent implements AfterViewInit {
      * @memberOf TableComponent
      */
     goPage(pageNumber: number, action: string): void {
+        //清空过滤的数据
+        this.filterTableDatas = null;
+
         if (action === ComponentConstants.TABLE_TURN_PAGE_GO) {
             this.tableOptions.currentPageNumber = pageNumber;
         } else if (action === ComponentConstants.TABLE_TURN_PAGE_NEXT && this.tableOptions.currentPageNumber < this.tableOptions.getPageNumberLength()) {
@@ -244,8 +250,10 @@ export class TableComponent implements AfterViewInit {
 
         this.filterTableDatas = new ArrayList<TableData>();
 
-        if (current === '') {
+        if (current === '' && this.globalData) {
             this.filterTableDatas = this.tableDatas.subList(0, this.tableDatas.getSize());
+        } else if (current === '' && !this.globalData) {
+            this.filterTableDatas = null;
         } else {
             for (let tabledata of this.tableDatas.toArray()) {
                 for (let key in tabledata) {
@@ -257,10 +265,11 @@ export class TableComponent implements AfterViewInit {
             }
         }
 
-        this.tableOptions.countDataSize = this.filterTableDatas.getSize();
-
-        //设置页码集合
-        this.setPageNumberList();
+        if (this.globalData) {
+            this.tableOptions.countDataSize = this.filterTableDatas.getSize();
+            //设置页码集合
+            this.setPageNumberList();
+        }
 
         //设置页面显示数据
         this.setViewData();

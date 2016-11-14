@@ -30,7 +30,6 @@ var app_routes_1 = require('./app.routes');
 var app_component_1 = require('./web/components/app.component');
 var dashboard_component_1 = require('./web/components/dashboard.component');
 //advance component
-var demo_component_1 = require('./web/components/demo/demo.component');
 var search_component_1 = require('./web/components/application/search.component');
 //vendor component
 var table_component_1 = require('./web/vendor/components/table.component');
@@ -39,7 +38,6 @@ var input_directive_1 = require('./web/vendor/directives/listener/input.directiv
 //service
 var http_2 = require('vendor/http');
 var common_1 = require('vendor/common');
-var demo_service_impl_1 = require('./js/com/sgm/dms/ops/services/demo.service.impl');
 var application_service_impl_1 = require('./js/com/sgm/dms/ops/services/application.service.impl');
 //扩展类
 var util_1 = require('vendor/util');
@@ -61,7 +59,6 @@ var AppModule = (function () {
                 //组件
                 app_component_1.AppComponent,
                 dashboard_component_1.DashBoardComponent,
-                demo_component_1.DemoComponent,
                 search_component_1.ApplicationSearchComponent,
                 table_component_1.TableComponent
             ],
@@ -70,7 +67,6 @@ var AppModule = (function () {
                 http_2.HttpRestful,
                 common_1.RestService,
                 //自定义service实现类
-                demo_service_impl_1.DemoServiceImpl,
                 application_service_impl_1.ApplicationServiceImpl,
                 //扩展类
                 util_1.TableOptions

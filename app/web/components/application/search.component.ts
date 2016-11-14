@@ -13,6 +13,7 @@ import { ApplicationServiceImpl } from '../../../js/com/sgm/dms/ops/services/app
 
 export class ApplicationSearchComponent extends BaseComponent {
     public applicationVo: ApplicationVo = new ApplicationVo();
+    public url: string = 'web.dmsops/application/query';
 
     @ViewChild(TableComponent) tableComponent: TableComponent;
 
@@ -21,10 +22,9 @@ export class ApplicationSearchComponent extends BaseComponent {
     }
 
     search(): void {
-        const url = 'web.dmsops/application/query';
-        this.applicationServiceImpl.searchApplication(url, this.applicationVo, (response) => {
-            const tableDataList = TableUtil.setTableDatas(response[0]);
-            this.tableComponent.initDataTable(this.getTableHeaders(), tableDataList);
+        this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
+            let tableDataList = TableUtil.setTableDatas(response[0]);
+            this.tableComponent.initDataTable(this.getTableHeaders(), tableDataList, response[1].total);
         });
     }
 
@@ -35,4 +35,13 @@ export class ApplicationSearchComponent extends BaseComponent {
         return TableUtil.setTableHeaders(columnsEnName, columnsCnName);
     }
 
+    onSelectPage = (tableOptions: TableOptions) => {
+        this.applicationVo.beginNo = tableOptions.beginPageIndex;
+        this.applicationVo.endNo = tableOptions.endPageIndex;
+
+        this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
+            let tableDataList = TableUtil.setTableDatas(response[0]);
+            this.tableComponent.refershData(tableDataList, response[1].total);
+        });
+    }
 }

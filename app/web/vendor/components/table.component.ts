@@ -15,7 +15,9 @@ export class TableComponent implements AfterViewInit {
     public value: string;//搜索框值
     public filterTableDatas: List<TableData>;//过滤过临时存放的数据集
     public sortTableDatas: List<TableData>;//排序过临时存放的数据集
-    @Input() pageSize: any;
+    @Input() pageSize: any;//页数
+    @Input() onSelectPage: Function;
+    @Input() globalData: boolean = false;//全量数据显示
 
     constructor(public tableOptions: TableOptions, public el: ElementRef) { }
 
@@ -31,15 +33,24 @@ export class TableComponent implements AfterViewInit {
      * 
      * @memberOf TableComponent
      */
-    initDataTable(headers: List<TableHeader>, datas: List<TableData>): void {
+    initDataTable(headers: List<TableHeader>, datas: List<TableData>, countDataSize: number): void {
         this.tableHeaders = headers;
         this.tableDatas = datas;
 
         //设置数据集总数
-        this.tableOptions.countDataSize = this.tableDatas.getSize();
+        this.tableOptions.countDataSize = countDataSize;
 
         //默认显示第一页
-        this.goPage(this.tableOptions.currentPageNumber, ComponentConstants.TABLE_TURN_PAGE_GO);
+        // this.goPage(this.tableOptions.currentPageNumber, ComponentConstants.TABLE_TURN_PAGE_INIT);
+
+        //设置页面显示总数
+        this.setPageSize(this.tableOptions.currentPageSize);
+
+        //设置页码集合
+        this.setPageNumberList();
+
+        //设置页面显示数据
+        this.setViewData();
     }
 
     /**
@@ -49,14 +60,14 @@ export class TableComponent implements AfterViewInit {
      * 
      * @memberOf TableComponent
      */
-    refershData(datas: List<TableData>): void {
+    refershData(datas: List<TableData>, countDataSize?: number): void {
         this.tableDatas = datas;
 
         //设置数据集总数
-        this.tableOptions.countDataSize = this.tableDatas.getSize();
+        this.tableOptions.countDataSize = countDataSize || this.tableDatas.getSize();
 
-        //默认显示第一页
-        this.goPage(this.tableOptions.currentPageNumber, ComponentConstants.TABLE_TURN_PAGE_GO);
+        //设置页面显示数据
+        this.setViewData();
     }
 
     /**
@@ -84,8 +95,13 @@ export class TableComponent implements AfterViewInit {
         //设置页码集合
         this.setPageNumberList();
 
-        //设置页面显示数据
-        this.setViewData();
+        //选择页(不是全量数据)
+        if (!this.globalData) {
+            this.onSelectPage(this.tableOptions);
+        } else {
+            this.setViewData();
+        }
+
     }
 
     /**
@@ -96,10 +112,18 @@ export class TableComponent implements AfterViewInit {
     setViewData(): void {
         this.viewTableDatas = new ArrayList();
         BeanUtil.clone(this.filterTableDatas || this.tableDatas, this.viewTableDatas);
+
         //数据排序
         this.sort();
+
         //截取数据
-        this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
+        if (!this.globalData) {
+            this.viewTableDatas = this.viewTableDatas.subList(0, this.tableOptions.currentPageSize);
+            console.log(this.viewTableDatas);
+        } else {
+            this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
+        }
+
     }
 
     /**
@@ -110,6 +134,7 @@ export class TableComponent implements AfterViewInit {
      * @memberOf TableComponent
      */
     setPageSize(pageSize: any): void {
+        //设置单页最大显示数
         if (pageSize === ComponentConstants.PAGE_SIZE_ALL) {
             pageSize = 65535;
         }
@@ -121,6 +146,7 @@ export class TableComponent implements AfterViewInit {
 
         //设置beginPageIndex,endPageIndex
         //只有一页的情况下
+
         if (maxPageNumber <= 1) {
             this.tableOptions.currentPageNumber = 1;
             this.tableOptions.beginPageIndex = 1
@@ -138,7 +164,6 @@ export class TableComponent implements AfterViewInit {
             this.tableOptions.beginPageIndex = pageSize * (this.tableOptions.currentPageNumber - 1) + 1
             this.tableOptions.endPageIndex = pageSize * this.tableOptions.currentPageNumber;
         }
-
     }
 
     /**
@@ -273,7 +298,7 @@ export class TableComponent implements AfterViewInit {
         }
         if (sortTableHeaders.getSize() > 0) {
             for (let tableData in this.viewTableDatas.toArray()) {
-                
+
             }
         }
     }

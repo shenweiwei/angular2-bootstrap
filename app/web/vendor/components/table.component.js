@@ -17,6 +17,7 @@ var TableComponent = (function () {
         this.tableOptions = tableOptions;
         this.el = el;
         this.viewTableDatas = new util_1.ArrayList(); //页面显示的数据集
+        this.globalData = false; //全量数据显示
         /**
          * 文本框变动的回调函数
          */
@@ -57,13 +58,19 @@ var TableComponent = (function () {
      *
      * @memberOf TableComponent
      */
-    TableComponent.prototype.initDataTable = function (headers, datas) {
+    TableComponent.prototype.initDataTable = function (headers, datas, countDataSize) {
         this.tableHeaders = headers;
         this.tableDatas = datas;
         //设置数据集总数
-        this.tableOptions.countDataSize = this.tableDatas.getSize();
+        this.tableOptions.countDataSize = countDataSize;
         //默认显示第一页
-        this.goPage(this.tableOptions.currentPageNumber, common_1.ComponentConstants.TABLE_TURN_PAGE_GO);
+        // this.goPage(this.tableOptions.currentPageNumber, ComponentConstants.TABLE_TURN_PAGE_INIT);
+        //设置页面显示总数
+        this.setPageSize(this.tableOptions.currentPageSize);
+        //设置页码集合
+        this.setPageNumberList();
+        //设置页面显示数据
+        this.setViewData();
     };
     /**
      * 刷新表格缓存数据
@@ -72,12 +79,12 @@ var TableComponent = (function () {
      *
      * @memberOf TableComponent
      */
-    TableComponent.prototype.refershData = function (datas) {
+    TableComponent.prototype.refershData = function (datas, countDataSize) {
         this.tableDatas = datas;
         //设置数据集总数
-        this.tableOptions.countDataSize = this.tableDatas.getSize();
-        //默认显示第一页
-        this.goPage(this.tableOptions.currentPageNumber, common_1.ComponentConstants.TABLE_TURN_PAGE_GO);
+        this.tableOptions.countDataSize = countDataSize || this.tableDatas.getSize();
+        //设置页面显示数据
+        this.setViewData();
     };
     /**
      * 跳转到相关页数
@@ -104,8 +111,13 @@ var TableComponent = (function () {
         this.setPageSize(this.tableOptions.currentPageSize);
         //设置页码集合
         this.setPageNumberList();
-        //设置页面显示数据
-        this.setViewData();
+        //选择页(不是全量数据)
+        if (!this.globalData) {
+            this.onSelectPage(this.tableOptions);
+        }
+        else {
+            this.setViewData();
+        }
     };
     /**
      * 填充表格数据
@@ -118,7 +130,13 @@ var TableComponent = (function () {
         //数据排序
         this.sort();
         //截取数据
-        this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
+        if (!this.globalData) {
+            this.viewTableDatas = this.viewTableDatas.subList(0, this.tableOptions.currentPageSize);
+            console.log(this.viewTableDatas);
+        }
+        else {
+            this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
+        }
     };
     /**
      * 设置的默认页面显示数据总数
@@ -128,6 +146,7 @@ var TableComponent = (function () {
      * @memberOf TableComponent
      */
     TableComponent.prototype.setPageSize = function (pageSize) {
+        //设置单页最大显示数
         if (pageSize === common_1.ComponentConstants.PAGE_SIZE_ALL) {
             pageSize = 65535;
         }
@@ -257,6 +276,15 @@ var TableComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], TableComponent.prototype, "pageSize", void 0);
+    __decorate([
+        //页数
+        core_1.Input(), 
+        __metadata('design:type', Function)
+    ], TableComponent.prototype, "onSelectPage", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TableComponent.prototype, "globalData", void 0);
     TableComponent = __decorate([
         core_1.Component({
             selector: 'table-component',

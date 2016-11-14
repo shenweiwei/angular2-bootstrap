@@ -24,7 +24,6 @@ import { AppComponent } from './web/components/app.component';
 import { DashBoardComponent } from './web/components/dashboard.component';
 
 //advance component
-import { DemoComponent } from './web/components/demo/demo.component';
 import { ApplicationSearchComponent } from './web/components/application/search.component';
 
 //vendor component
@@ -36,7 +35,6 @@ import { InputListenerDirective } from './web/vendor/directives/listener/input.d
 //service
 import { HttpRestful } from 'vendor/http';
 import { RestService } from 'vendor/common';
-import { DemoServiceImpl } from './js/com/sgm/dms/ops/services/demo.service.impl';
 import { ApplicationServiceImpl } from './js/com/sgm/dms/ops/services/application.service.impl';
 
 //扩展类
@@ -57,7 +55,6 @@ import { TableOptions } from 'vendor/util';
     //组件
     AppComponent,
     DashBoardComponent,
-    DemoComponent,
     ApplicationSearchComponent,
     TableComponent
   ],
@@ -66,7 +63,6 @@ import { TableOptions } from 'vendor/util';
     HttpRestful,
     RestService,
     //自定义service实现类
-    DemoServiceImpl,
     ApplicationServiceImpl,
     //扩展类
     TableOptions

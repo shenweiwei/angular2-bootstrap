@@ -6,6 +6,7 @@ var ComponentConstants = (function () {
     ComponentConstants.PAGE_SIZE_ALL = 'all';
     ComponentConstants.TABLE_DEFAULT_PAGE_SIZE = 10;
     //页码
+    ComponentConstants.TABLE_TURN_PAGE_INIT = 'init';
     ComponentConstants.TABLE_TURN_PAGE_GO = 'go';
     ComponentConstants.TABLE_TURN_PAGE_NEXT = 'next';
     ComponentConstants.TABLE_TURN_PAGE_PREVIOUS = 'previous';

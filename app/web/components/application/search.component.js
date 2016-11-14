@@ -22,16 +22,25 @@ var application_service_impl_1 = require('../../../js/com/sgm/dms/ops/services/a
 var ApplicationSearchComponent = (function (_super) {
     __extends(ApplicationSearchComponent, _super);
     function ApplicationSearchComponent(applicationServiceImpl) {
+        var _this = this;
         _super.call(this);
         this.applicationServiceImpl = applicationServiceImpl;
         this.applicationVo = new application_vo_1.ApplicationVo();
+        this.url = 'web.dmsops/application/query';
+        this.onSelectPage = function (tableOptions) {
+            _this.applicationVo.beginNo = tableOptions.beginPageIndex;
+            _this.applicationVo.endNo = tableOptions.endPageIndex;
+            _this.applicationServiceImpl.searchApplication(_this.url, _this.applicationVo, function (response) {
+                var tableDataList = common_1.TableUtil.setTableDatas(response[0]);
+                _this.tableComponent.refershData(tableDataList, response[1].total);
+            });
+        };
     }
     ApplicationSearchComponent.prototype.search = function () {
         var _this = this;
-        var url = 'web.dmsops/application/query';
-        this.applicationServiceImpl.searchApplication(url, this.applicationVo, function (response) {
+        this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, function (response) {
             var tableDataList = common_1.TableUtil.setTableDatas(response[0]);
-            _this.tableComponent.initDataTable(_this.getTableHeaders(), tableDataList);
+            _this.tableComponent.initDataTable(_this.getTableHeaders(), tableDataList, response[1].total);
         });
     };
     ApplicationSearchComponent.prototype.getTableHeaders = function () {

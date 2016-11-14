@@ -18,6 +18,7 @@ var base_component_1 = require('../base.component');
 var table_component_1 = require('../../vendor/components/table.component');
 var application_vo_1 = require('../../../js/com/sgm/dms/ops/vo/application.vo');
 var util_1 = require('vendor/util');
+var common_1 = require('vendor/common');
 var ApplicationSearchComponent = (function (_super) {
     __extends(ApplicationSearchComponent, _super);
     function ApplicationSearchComponent() {
@@ -28,38 +29,20 @@ var ApplicationSearchComponent = (function (_super) {
         this.tableComponent.initDataTable(this.getTableHeaders(), this.getTableDatas());
     };
     ApplicationSearchComponent.prototype.getTableHeaders = function () {
-        var tableHeaders = new util_1.ArrayList();
         var columnsEnName = ['appId', 'appChnName', 'appEngName', 'appOwner', 'updateDate', 'remark'];
         var columnsCnName = ['应用编号', '应用中文名', '应用英文名', '应用负责人', '更新时间', '备注'];
-        for (var i = 1; i <= columnsEnName.length; i++) {
-            var tableHeader = new util_1.TableHeader();
-            tableHeader.index = i;
-            tableHeader.key = columnsEnName[i - 1];
-            tableHeader.desc = columnsCnName[i - 1];
-            tableHeaders.add(tableHeader);
-        }
-        return tableHeaders;
-        // return TableUtil.setTableHeaders(columnsEnName, columnsCnName);
+        return common_1.TableUtil.setTableHeaders(columnsEnName, columnsCnName);
     };
     ApplicationSearchComponent.prototype.getTableDatas = function () {
-        var tableDatas = new util_1.ArrayList();
+        var tableDatas = [];
         for (var i = 1; i <= 30; i++) {
             var tableData = new util_1.TableData();
             tableData['appId'] = i;
             tableData['appChnName'] = i;
             tableData['appEngName'] = i;
-            tableDatas.add(tableData);
+            tableDatas.push(tableData);
         }
-        return tableDatas;
-        // let tableDatas = [];
-        // for (let i = 1; i <= 30; i++) {
-        //     let tableData = new TableData();
-        //     tableData['appId'] = i;
-        //     tableData['appChnName'] = i;
-        //     tableData['appEngName'] = i;
-        //     tableDatas.push(tableData);
-        // }
-        // return TableUtil.setTableDatas(tableDatas);
+        return common_1.TableUtil.setTableDatas(tableDatas);
     };
     __decorate([
         core_1.ViewChild(table_component_1.TableComponent), 

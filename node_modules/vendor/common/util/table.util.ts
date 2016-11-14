@@ -1,17 +1,17 @@
+import { TableHeader } from '../../util/table/table_header';
+import { TableData } from '../../util/table/table_data';
 import { List, ArrayList } from '../../util/collection';
-import { TableHeader, TableData } from '../../util/table';
-import { BeanUtil } from './bean.util';
+import { BeanUtil } from '../util';
 
 export class TableUtil {
     static setTableHeaders(columnsEnName: Array<string>, columnsCnName: Array<string>): List<TableHeader> {
         let tableHeaders = new ArrayList<TableHeader>();
-
-        for (let i = 1; i <= columnsEnName.length; i++) {
-            let tableHeader = new TableHeader();
-            tableHeader.index = i;
-            tableHeader.key = columnsEnName[i];
-            tableHeader.desc = columnsCnName[i];
-            tableHeaders.add(tableHeader);
+        for (let i = 0; i < columnsEnName.length; i++) {
+            let header = new TableHeader();
+            header.index = i + 1;
+            header.key = columnsEnName[i];
+            header.desc = columnsCnName[i];
+            tableHeaders.add(header);
         }
 
         return tableHeaders;
@@ -20,8 +20,8 @@ export class TableUtil {
     static setTableDatas(datas: Array<any>): List<TableData> {
         let tableDatas = new ArrayList<TableData>();
 
-        for (let i = 1; i <= datas.length; i++) {
-            let tableData: TableData = BeanUtil.clone(datas[i - 1]);
+        for (let i = 0; i < datas.length; i++) {
+            let tableData: TableData = BeanUtil.clone(datas[i]);
             tableDatas.add(tableData);
         }
 

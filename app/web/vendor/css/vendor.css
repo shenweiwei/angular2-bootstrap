@@ -14,9 +14,23 @@
 
 #table-body tr>th::after {
     font-family: 'Glyphicons Halflings';
-    /*content: "\e155";*/
     opacity: 0.2;
     content: "\e150";
+}
+
+#table-body tr>.sort-default::after {
+    opacity: 0.2;
+    content: "\e150"
+}
+
+#table-body tr>.sort-asc::after {
+    opacity: 0.5;
+    content: "\e155"
+}
+
+#table-body tr>.sort-desc::after {
+    opacity: 0.5;
+    content: "\e156"
 }
 
 #table-footer-tools {

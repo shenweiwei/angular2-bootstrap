@@ -37,7 +37,7 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr *ngIf="tableHeaders">
-                        <th *ngFor="let tableheader of tableHeaders.toArray()" id={{tableheader.key}}>
+                        <th *ngFor="let tableheader of tableHeaders.toArray()" id={{tableheader.key}} (click)="setTableSort(tableheader)" [ngClass]="tableheader.sort">
                             {{tableheader.desc}}
                         </th>
                     </tr>

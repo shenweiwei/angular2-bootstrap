@@ -1,4 +1,4 @@
-import { Component, Directive, AfterViewInit, Input } from '@angular/core';
+import { Component, Directive, AfterViewInit, Input, ElementRef } from '@angular/core';
 import { TableOptions, TableData, TableHeader, ArrayList, List } from 'vendor/util';
 import { ComponentConstants, DataSetUtil, BeanUtil, StringUtil } from 'vendor/common';
 
@@ -14,9 +14,10 @@ export class TableComponent implements AfterViewInit {
     public viewTableDatas: List<TableData> = new ArrayList();//页面显示的数据集
     public value: string;//搜索框值
     public filterTableDatas: List<TableData>;//过滤过临时存放的数据集
+    public sortTableDatas: List<TableData>;//排序过临时存放的数据集
     @Input() pageSize: any;
 
-    constructor(public tableOptions: TableOptions) { }
+    constructor(public tableOptions: TableOptions, public el: ElementRef) { }
 
     ngAfterViewInit(): void {
         this.tableOptions.currentPageSize = this.pageSize;
@@ -95,6 +96,9 @@ export class TableComponent implements AfterViewInit {
     setViewData(): void {
         this.viewTableDatas = new ArrayList();
         BeanUtil.clone(this.filterTableDatas || this.tableDatas, this.viewTableDatas);
+        //数据排序
+        this.sort();
+        //截取数据
         this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
     }
 
@@ -237,7 +241,40 @@ export class TableComponent implements AfterViewInit {
         this.setViewData();
     }
 
-    tableSort(action:string):void{
+    setTableSort(header: TableHeader): void {
+        if (header.sort === ComponentConstants.SORT_DEFAULT) {
+            header.sort = ComponentConstants.SORT_ASC;
+        } else if (header.sort === ComponentConstants.SORT_ASC) {
+            header.sort = ComponentConstants.SORT_DESC;
+        } else if (header.sort === ComponentConstants.SORT_DESC) {
+            header.sort = ComponentConstants.SORT_DEFAULT;
+        } else {
+            header.sort = ComponentConstants.SORT_DEFAULT;
+        }
 
+
+        this.sortTableDatas;
+        //设置页码集合
+        this.setPageNumberList();
+
+        //设置页面显示数据
+        this.setViewData();
+    }
+
+    sort(): void {
+        //需要排序的字段
+        let sortTableHeaders = new ArrayList<TableHeader>();
+
+        for (let tableHeader in this.tableHeaders) {
+            if (tableHeader !== ComponentConstants.SORT_DEFAULT) {
+                sortTableHeaders.add(tableHeader);
+                break;
+            }
+        }
+        if (sortTableHeaders.getSize() > 0) {
+            for (let tableData in this.viewTableDatas.toArray()) {
+                
+            }
+        }
     }
 }

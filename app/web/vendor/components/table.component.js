@@ -12,9 +12,10 @@ var core_1 = require('@angular/core');
 var util_1 = require('vendor/util');
 var common_1 = require('vendor/common');
 var TableComponent = (function () {
-    function TableComponent(tableOptions) {
+    function TableComponent(tableOptions, el) {
         var _this = this;
         this.tableOptions = tableOptions;
+        this.el = el;
         this.viewTableDatas = new util_1.ArrayList(); //页面显示的数据集
         /**
          * 文本框变动的回调函数
@@ -114,6 +115,9 @@ var TableComponent = (function () {
     TableComponent.prototype.setViewData = function () {
         this.viewTableDatas = new util_1.ArrayList();
         common_1.BeanUtil.clone(this.filterTableDatas || this.tableDatas, this.viewTableDatas);
+        //数据排序
+        this.sort();
+        //截取数据
         this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
     };
     /**
@@ -215,10 +219,41 @@ var TableComponent = (function () {
         //设置页面显示数据
         this.setViewData();
     };
-    TableComponent.prototype.tableSort = function (action) {
+    TableComponent.prototype.setTableSort = function (header) {
+        if (header.sort === common_1.ComponentConstants.SORT_DEFAULT) {
+            header.sort = common_1.ComponentConstants.SORT_ASC;
+        }
+        else if (header.sort === common_1.ComponentConstants.SORT_ASC) {
+            header.sort = common_1.ComponentConstants.SORT_DESC;
+        }
+        else if (header.sort === common_1.ComponentConstants.SORT_DESC) {
+            header.sort = common_1.ComponentConstants.SORT_DEFAULT;
+        }
+        else {
+            header.sort = common_1.ComponentConstants.SORT_DEFAULT;
+        }
+        this.sortTableDatas;
+        //设置页码集合
+        this.setPageNumberList();
+        //设置页面显示数据
+        this.setViewData();
+    };
+    TableComponent.prototype.sort = function () {
+        //需要排序的字段
+        var sortTableHeaders = new util_1.ArrayList();
+        for (var tableHeader in this.tableHeaders) {
+            if (tableHeader !== common_1.ComponentConstants.SORT_DEFAULT) {
+                sortTableHeaders.add(tableHeader);
+                break;
+            }
+        }
+        if (sortTableHeaders.getSize() > 0) {
+            for (var tableData in this.viewTableDatas.toArray()) {
+            }
+        }
     };
     __decorate([
-        //过滤过临时存放的数据集
+        //排序过零食存放的数据集
         core_1.Input(), 
         __metadata('design:type', Object)
     ], TableComponent.prototype, "pageSize", void 0);
@@ -228,7 +263,7 @@ var TableComponent = (function () {
             templateUrl: 'app/web/vendor/views/table.html',
             styleUrls: ['app/web/vendor/css/vendor.css']
         }), 
-        __metadata('design:paramtypes', [util_1.TableOptions])
+        __metadata('design:paramtypes', [util_1.TableOptions, core_1.ElementRef])
     ], TableComponent);
     return TableComponent;
 }());

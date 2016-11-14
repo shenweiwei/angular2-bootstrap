@@ -143,6 +143,9 @@ export class TableComponent implements AfterViewInit {
      * @memberOf TableComponent
      */
     setPageSize(pageSize: any): void {
+        //清空过滤的数据
+        this.filterTableDatas = null;
+        
         //设置单页最大显示数
         if (typeof pageSize === 'string' && pageSize.toLowerCase() === ComponentConstants.PAGE_SIZE_ALL) {
             this.pageSize = 65535;

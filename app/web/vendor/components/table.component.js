@@ -158,6 +158,8 @@ var TableComponent = (function () {
      * @memberOf TableComponent
      */
     TableComponent.prototype.setPageSize = function (pageSize) {
+        //清空过滤的数据
+        this.filterTableDatas = null;
         //设置单页最大显示数
         if (typeof pageSize === 'string' && pageSize.toLowerCase() === common_1.ComponentConstants.PAGE_SIZE_ALL) {
             this.pageSize = 65535;

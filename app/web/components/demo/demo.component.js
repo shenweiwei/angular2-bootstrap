@@ -30,7 +30,7 @@ var DemoComponent = (function (_super) {
     DemoComponent.prototype.search = function () {
         var _this = this;
         try {
-            var url = 'http://upload.saic-gm.com/web.sgm/reserve/reserveamount/query';
+            var url = 'web.dmsops/application/query';
             this.demo_service_impl.searchReserve(url, this._params).then(function (demoVoList) { return _this._demoVoList = demoVoList; });
             console.log(this._demoVoList);
         }

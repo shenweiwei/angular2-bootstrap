@@ -24,7 +24,7 @@ export class DemoComponent extends BaseComponent implements OnInit {
 
     search(): void {
         try {
-            let url = 'http://upload.saic-gm.com/web.sgm/reserve/reserveamount/query';
+            let url = 'web.dmsops/application/query';
             this.demo_service_impl.searchReserve(url, this._params).then(demoVoList => this._demoVoList = demoVoList);
             console.log(this._demoVoList);
 

@@ -40,6 +40,7 @@ var input_directive_1 = require('./web/vendor/directives/listener/input.directiv
 var http_2 = require('vendor/http');
 var common_1 = require('vendor/common');
 var demo_service_impl_1 = require('./js/com/sgm/dms/ops/services/demo.service.impl');
+var application_service_impl_1 = require('./js/com/sgm/dms/ops/services/application.service.impl');
 //扩展类
 var util_1 = require('vendor/util');
 var AppModule = (function () {
@@ -68,7 +69,9 @@ var AppModule = (function () {
             providers: [
                 http_2.HttpRestful,
                 common_1.RestService,
+                //自定义service实现类
                 demo_service_impl_1.DemoServiceImpl,
+                application_service_impl_1.ApplicationServiceImpl,
                 //扩展类
                 util_1.TableOptions
             ],

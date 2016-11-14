@@ -17,32 +17,28 @@ var core_1 = require('@angular/core');
 var base_component_1 = require('../base.component');
 var table_component_1 = require('../../vendor/components/table.component');
 var application_vo_1 = require('../../../js/com/sgm/dms/ops/vo/application.vo');
-var util_1 = require('vendor/util');
 var common_1 = require('vendor/common');
+var application_service_impl_1 = require('../../../js/com/sgm/dms/ops/services/application.service.impl');
 var ApplicationSearchComponent = (function (_super) {
     __extends(ApplicationSearchComponent, _super);
-    function ApplicationSearchComponent() {
-        _super.apply(this, arguments);
-        this.application = new application_vo_1.ApplicationVo();
+    function ApplicationSearchComponent(applicationServiceImpl) {
+        _super.call(this);
+        this.applicationServiceImpl = applicationServiceImpl;
+        this.applicationVo = new application_vo_1.ApplicationVo();
     }
     ApplicationSearchComponent.prototype.search = function () {
-        this.tableComponent.initDataTable(this.getTableHeaders(), this.getTableDatas());
+        var _this = this;
+        this.applicationVo.appEngName = 'FOL';
+        var url = 'web.dmsops/application/query';
+        this.applicationServiceImpl.searchApplication(url, this.applicationVo, function (response) {
+            var tableDataList = common_1.TableUtil.setTableDatas(response);
+            _this.tableComponent.initDataTable(_this.getTableHeaders(), tableDataList);
+        });
     };
     ApplicationSearchComponent.prototype.getTableHeaders = function () {
         var columnsEnName = ['appId', 'appChnName', 'appEngName', 'appOwner', 'updateDate', 'remark'];
         var columnsCnName = ['应用编号', '应用中文名', '应用英文名', '应用负责人', '更新时间', '备注'];
         return common_1.TableUtil.setTableHeaders(columnsEnName, columnsCnName);
-    };
-    ApplicationSearchComponent.prototype.getTableDatas = function () {
-        var tableDatas = [];
-        for (var i = 1; i <= 30; i++) {
-            var tableData = new util_1.TableData();
-            tableData['appId'] = i;
-            tableData['appChnName'] = i;
-            tableData['appEngName'] = i;
-            tableDatas.push(tableData);
-        }
-        return common_1.TableUtil.setTableDatas(tableDatas);
     };
     __decorate([
         core_1.ViewChild(table_component_1.TableComponent), 
@@ -53,7 +49,7 @@ var ApplicationSearchComponent = (function (_super) {
             templateUrl: 'app/web/views/application/search.html',
             entryComponents: [table_component_1.TableComponent]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [application_service_impl_1.ApplicationServiceImpl])
     ], ApplicationSearchComponent);
     return ApplicationSearchComponent;
 }(base_component_1.BaseComponent));

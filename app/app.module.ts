@@ -31,15 +31,16 @@ import { ApplicationSearchComponent } from './web/components/application/search.
 import { TableComponent } from './web/vendor/components/table.component';
 
 //vendor directives
-import {InputListenerDirective} from './web/vendor/directives/listener/input.directive'
+import { InputListenerDirective } from './web/vendor/directives/listener/input.directive'
 
 //service
 import { HttpRestful } from 'vendor/http';
 import { RestService } from 'vendor/common';
 import { DemoServiceImpl } from './js/com/sgm/dms/ops/services/demo.service.impl';
+import { ApplicationServiceImpl } from './js/com/sgm/dms/ops/services/application.service.impl';
 
 //扩展类
-import {TableOptions} from 'vendor/util';
+import { TableOptions } from 'vendor/util';
 
 @NgModule({
   imports: [
@@ -64,7 +65,9 @@ import {TableOptions} from 'vendor/util';
   providers: [
     HttpRestful,
     RestService,
+    //自定义service实现类
     DemoServiceImpl,
+    ApplicationServiceImpl,
     //扩展类
     TableOptions
   ],

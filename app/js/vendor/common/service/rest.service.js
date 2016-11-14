@@ -18,58 +18,51 @@ var RestService = (function () {
     /**
      * 根據條件查找對象
      */
-    RestService.prototype.findByWhere = function (url, data, http_header) {
+    RestService.prototype.findByWhere = function (url, data, callback, http_header) {
         if (util_1.StringUtil.isEmpty(data)) {
             data = new Object();
         }
-        var response = this._http_restful.doPost(url, data, http_header);
-        return response;
+        this._http_restful.doPost(url, data, callback, http_header);
     };
     /**
      * 根據ID查找對象
      */
-    RestService.prototype.findById = function (url, key, http_header) {
+    RestService.prototype.findById = function (url, key, callback, http_header) {
         var find_url = url + "/" + key;
-        var response = this._http_restful.doGet(find_url);
-        return response;
+        this._http_restful.doGet(find_url, callback, http_header);
     };
     /**
      * 查詢全部信息
      */
-    RestService.prototype.findAll = function (url, http_header) {
-        var response = this._http_restful.doGet(url);
-        return response;
+    RestService.prototype.findAll = function (url, callback, http_header) {
+        this._http_restful.doGet(url, callback, http_header);
     };
     /**
      * 新增對象
      */
-    RestService.prototype.create = function (url, data, http_header) {
-        var response = this._http_restful.doPut(url, data);
-        return response;
+    RestService.prototype.create = function (url, data, callback, http_header) {
+        this._http_restful.doPut(url, data, callback);
     };
     /**
      * 更新對象全部屬性
      */
-    RestService.prototype.update = function (url, data, key, http_header) {
+    RestService.prototype.update = function (url, data, key, callback, http_header) {
         var update_url = url + "/" + key;
-        var response = this._http_restful.doPut(update_url, data);
-        return response;
+        this._http_restful.doPut(update_url, data, callback);
     };
     /**
      * 更新對象部分内容
      */
-    RestService.prototype.updateSector = function (url, data, key, http_header) {
+    RestService.prototype.updateSector = function (url, data, key, callback, http_header) {
         var update_url = url + "/" + key;
-        var response = this._http_restful.doPatch(update_url, data);
-        return response;
+        this._http_restful.doPatch(update_url, data, callback);
     };
     /**
      * 刪除某個對象
      */
-    RestService.prototype.delete = function (url, key, http_header) {
+    RestService.prototype.delete = function (url, key, callback, http_header) {
         var delete_url = url + "/" + key;
-        var response = this._http_restful.doDelete(delete_url);
-        return response;
+        this._http_restful.doDelete(delete_url, callback);
     };
     /**
      * 上傳文件

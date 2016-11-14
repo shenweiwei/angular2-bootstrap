@@ -10,21 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var common_1 = require('vendor/common');
-var DemoServiceImpl = (function () {
-    function DemoServiceImpl(rest_service) {
+var ApplicationServiceImpl = (function () {
+    function ApplicationServiceImpl(rest_service) {
         this.rest_service = rest_service;
     }
-    DemoServiceImpl.prototype.searchReserve = function (url, data) {
-        var response = this.rest_service.findByWhere(url, data, function () {
-        });
-        console.log(response);
-        return response;
+    ApplicationServiceImpl.prototype.searchApplication = function (url, data, callback) {
+        this.rest_service.findByWhere(url, data, callback);
     };
-    DemoServiceImpl = __decorate([
+    ApplicationServiceImpl = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [common_1.RestService])
-    ], DemoServiceImpl);
-    return DemoServiceImpl;
+    ], ApplicationServiceImpl);
+    return ApplicationServiceImpl;
 }());
-exports.DemoServiceImpl = DemoServiceImpl;
-//# sourceMappingURL=demo.service.impl.js.map
+exports.ApplicationServiceImpl = ApplicationServiceImpl;
+//# sourceMappingURL=application.service.impl.js.map

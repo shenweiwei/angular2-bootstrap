@@ -4,6 +4,7 @@ import { TableComponent } from '../../vendor/components/table.component';
 import { ApplicationVo } from '../../../js/com/sgm/dms/ops/vo/application.vo';
 import { TableData, TableHeader, ArrayList, TableOptions, List } from 'vendor/util';
 import { TableUtil } from 'vendor/common';
+import { ApplicationServiceImpl } from '../../../js/com/sgm/dms/ops/services/application.service.impl';
 
 @Component({
     templateUrl: 'app/web/views/application/search.html',
@@ -11,12 +12,21 @@ import { TableUtil } from 'vendor/common';
 })
 
 export class ApplicationSearchComponent extends BaseComponent {
-    public application: ApplicationVo = new ApplicationVo();
+    public applicationVo: ApplicationVo = new ApplicationVo();
 
     @ViewChild(TableComponent) tableComponent: TableComponent;
 
+    constructor(private applicationServiceImpl: ApplicationServiceImpl) {
+        super();
+    }
+
     search(): void {
-        this.tableComponent.initDataTable(this.getTableHeaders(), this.getTableDatas());
+        this.applicationVo.appEngName = 'FOL';
+        const url = 'web.dmsops/application/query';
+        this.applicationServiceImpl.searchApplication(url, this.applicationVo, (response) => {
+            const tableDataList = TableUtil.setTableDatas(response);
+            this.tableComponent.initDataTable(this.getTableHeaders(), tableDataList);
+        });
     }
 
     getTableHeaders(): List<TableHeader> {
@@ -26,17 +36,4 @@ export class ApplicationSearchComponent extends BaseComponent {
         return TableUtil.setTableHeaders(columnsEnName, columnsCnName);
     }
 
-    getTableDatas(): List<TableData> {
-        let tableDatas = [];
-
-        for (let i = 1; i <= 30; i++) {
-            let tableData = new TableData();
-            tableData['appId'] = i;
-            tableData['appChnName'] = i;
-            tableData['appEngName'] = i;
-            tableDatas.push(tableData);
-        }
-
-        return TableUtil.setTableDatas(tableDatas);
-    }
 }

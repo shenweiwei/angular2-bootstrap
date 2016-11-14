@@ -253,7 +253,7 @@ var TableComponent = (function () {
         }
     };
     __decorate([
-        //排序过零食存放的数据集
+        //排序过临时存放的数据集
         core_1.Input(), 
         __metadata('design:type', Object)
     ], TableComponent.prototype, "pageSize", void 0);

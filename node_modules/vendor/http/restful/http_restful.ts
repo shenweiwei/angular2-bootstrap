@@ -14,49 +14,48 @@ export class HttpRestful implements HttpRestfulRequest {
         this._http_header.setContentType(contentType);
     }
 
-    doPost(url: string, data: any, http_header?: HttpHeader): Promise<any[]> {
-        return this._http.post(url, JSON.stringify(data), { headers: this._http_header.headers })
+    doPost(url: string, data: any, callback: any, http_header?: HttpHeader): void {
+        this._http.post(url, JSON.stringify(data), { headers: this._http_header.headers })
             .toPromise()
-            .then(response => response.json().data)
+            .then(response => { typeof callback === 'function' && callback(response.json().data) })
             .catch(this.handleError);
     }
 
-    doGet(url: string, http_header?: HttpHeader): Promise<any[]> {
-        return this._http.get(url)
+    doGet(url: string, callback: Function, http_header?: HttpHeader): void {
+        this._http.get(url)
             .toPromise()
-            .then(response => response.json().data)
+            .then(response => { typeof callback === 'function' && callback(response.json().data) })
             .catch(this.handleError);
     }
 
-    doPut(url: string, data: any, http_header?: HttpHeader): Promise<any> {
-        return this._http.put(url, JSON.stringify(data), { headers: this._http_header.headers })
+    doPut(url: string, data: any, callback: Function, http_header?: HttpHeader): void {
+        this._http.put(url, JSON.stringify(data), { headers: this._http_header.headers })
             .toPromise()
-            .then(response => response.json().data)
+            .then(response => { typeof callback === 'function' && callback(response.json().data) })
             .catch(this.handleError);
     }
 
-    doPatch(url: string, data: any, http_header?: HttpHeader): Promise<any> {
-        return this._http.patch(url, JSON.stringify(data), { headers: this._http_header.headers })
+    doPatch(url: string, data: any, callback: Function, http_header?: HttpHeader): void {
+        this._http.patch(url, JSON.stringify(data), { headers: this._http_header.headers })
             .toPromise()
-            .then(response => response.json().data)
+            .then(response => { typeof callback === 'function' && callback(response.json().data) })
             .catch(this.handleError);
     }
 
-
-    doDelete(url: string, http_header?: HttpHeader): Promise<void> {
-        return this._http.delete(url)
+    doDelete(url: string, callback: Function, http_header?: HttpHeader): void {
+        this._http.delete(url)
             .toPromise()
-            .then(response => null)
+            .then(response => { typeof callback === 'function' && callback(response.json().data) })
             .catch(this.handleError);
     }
 
-    doObservable(url: string, data?: any, http_header?: HttpHeader): Observable<any> {
+    doObservable(url: string, data: any, callback: Function, http_header?: HttpHeader): void {
         if (data === undefined || data === null) {
             data = new Object();
         }
 
-        return this._http.post(url, JSON.stringify(data), { headers: this._http_header.headers })
-            .map((r: Response) => r.json().data)
+        this._http.post(url, JSON.stringify(data), { headers: this._http_header.headers })
+            .map((response: Response) => { typeof callback === 'function' && callback(response.json().data) })
             .catch(this.handleError);
     }
 
@@ -70,16 +69,16 @@ export class HttpRestful implements HttpRestfulRequest {
         } else if (error.status === 404) {
             alert("请求链接不存在，请联系管理员");
         } else if (error.status === 500) {
-            let response_body=error._body;
-            
-            if(response_body.status=500000100){
-                alert("校验异常："+response_body.message);
-            } else if(response_body.status=500000200){
-                alert("后台出错："+response_body.message);
-            }else{
+            let response_body = error._body;
+
+            if (response_body.status = 500000100) {
+                alert("校验异常：" + response_body.message);
+            } else if (response_body.status = 500000200) {
+                alert("后台出错：" + response_body.message);
+            } else {
                 alert("服务器出错，请稍后再试");
             }
-            
+
         } else {
             alert("未知错误，请检查网络");
         }

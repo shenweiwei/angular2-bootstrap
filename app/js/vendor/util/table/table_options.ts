@@ -1,8 +1,8 @@
-import { List,ArrayList } from '../collection';
+import { List, ArrayList } from '../collection';
 import { value } from '../../annotation/value';
 import { ClientObject } from '../../lang/core';
 
-export class TableOptions implements ClientObject{
+export class TableOptions implements ClientObject {
 
     /**
      * 页数的集合
@@ -42,7 +42,7 @@ export class TableOptions implements ClientObject{
      * @memberOf TableOptions
      */
     @value.Default(10)
-    private _currentPageSize: number;
+    private _currentPageSize: any;
 
     /**
      * 当前页面的页码
@@ -71,20 +71,20 @@ export class TableOptions implements ClientObject{
      * @type {number}
      * @memberOf TableOptions
      */
-    @value.Default(new ArrayList().add(10).add(20).add(50).add(100).add('All'))
+    @value.Default(new ArrayList().add(10).add(20).add(50).add(100).add('ALL'))
     private _pageSizeList: List<any>;
 
     @value.Default(true)
-    private _turnPagePreDisabled:boolean;
+    private _turnPagePreDisabled: boolean;
 
     @value.Default(true)
-    private _turnPageNextDisabled:boolean;
+    private _turnPageNextDisabled: boolean;
 
     @value.Default(true)
-    private _turnPageHomeDisabled:boolean;
+    private _turnPageHomeDisabled: boolean;
 
     @value.Default(true)
-    private _turnPageLastDisabled:boolean;
+    private _turnPageLastDisabled: boolean;
 
     public get pageNumberList(): List<any> {
         return this._pageNumberList;
@@ -110,11 +110,11 @@ export class TableOptions implements ClientObject{
         this._endPageIndex = value;
     }
 
-    public get currentPageSize(): number {
+    public get currentPageSize(): any {
         return this._currentPageSize;
     }
 
-    public set currentPageSize(value: number) {
+    public set currentPageSize(value: any) {
         this._currentPageSize = value;
     }
 
@@ -146,35 +146,35 @@ export class TableOptions implements ClientObject{
         this._pageSizeList = value;
     }
 
-	public get turnPagePreDisabled(): boolean {
-		return this._turnPagePreDisabled;
-	}
+    public get turnPagePreDisabled(): boolean {
+        return this._turnPagePreDisabled;
+    }
 
-	public set turnPagePreDisabled(value: boolean) {
-		this._turnPagePreDisabled = value;
-	}
+    public set turnPagePreDisabled(value: boolean) {
+        this._turnPagePreDisabled = value;
+    }
 
-	public get turnPageNextDisabled(): boolean {
-		return this._turnPageNextDisabled;
-	}
+    public get turnPageNextDisabled(): boolean {
+        return this._turnPageNextDisabled;
+    }
 
-	public set turnPageNextDisabled(value: boolean) {
-		this._turnPageNextDisabled = value;
-	}
-    
+    public set turnPageNextDisabled(value: boolean) {
+        this._turnPageNextDisabled = value;
+    }
+
     public get turnPageHomeDisabled(): boolean {
-		return this._turnPageHomeDisabled;
-	}
+        return this._turnPageHomeDisabled;
+    }
 
-	public set turnPageHomeDisabled(value: boolean) {
-		this._turnPageHomeDisabled = value;
-	}
+    public set turnPageHomeDisabled(value: boolean) {
+        this._turnPageHomeDisabled = value;
+    }
 
     public get turnPageLastDisabled(): boolean {
-		return this._turnPageLastDisabled;
-	}
+        return this._turnPageLastDisabled;
+    }
 
-	public set turnPageLastDisabled(value: boolean) {
-		this._turnPageLastDisabled = value;
-	}
+    public set turnPageLastDisabled(value: boolean) {
+        this._turnPageLastDisabled = value;
+    }
 }

@@ -73,7 +73,8 @@ var TableComponent = (function () {
         //默认显示第一页
         // this.goPage(this.tableOptions.currentPageNumber, ComponentConstants.TABLE_TURN_PAGE_INIT);
         //设置页面显示总数
-        this.setPageSize(this.tableOptions.currentPageSize);
+        // this.setPageSize(this.tableOptions.currentPageSize);
+        this.setPageSize(this.pageSize);
         //设置页码集合
         this.setPageNumberList();
         //设置页面显示数据
@@ -117,7 +118,8 @@ var TableComponent = (function () {
             this.tableOptions.currentPageNumber = pageNumber;
         }
         //设置页面显示总数
-        this.setPageSize(this.tableOptions.currentPageSize);
+        // this.setPageSize(this.tableOptions.currentPageSize);
+        this.setPageSize(this.pageSize);
         //设置页码集合
         this.setPageNumberList();
         //选择页(不是全量数据)
@@ -140,7 +142,8 @@ var TableComponent = (function () {
         this.sort();
         //截取数据
         if (!this.globalData) {
-            this.viewTableDatas = this.viewTableDatas.subList(0, this.tableOptions.currentPageSize);
+            // this.viewTableDatas = this.viewTableDatas.subList(0, this.tableOptions.currentPageSize);
+            this.viewTableDatas = this.viewTableDatas.subList(0, this.pageSize);
             console.log(this.viewTableDatas);
         }
         else {
@@ -156,12 +159,17 @@ var TableComponent = (function () {
      */
     TableComponent.prototype.setPageSize = function (pageSize) {
         //设置单页最大显示数
-        if (pageSize === common_1.ComponentConstants.PAGE_SIZE_ALL) {
-            pageSize = 65535;
+        if (typeof pageSize === 'string' && pageSize.toLowerCase() === common_1.ComponentConstants.PAGE_SIZE_ALL) {
+            this.pageSize = 65535;
+            this.tableOptions.currentPageSize = common_1.ComponentConstants.PAGE_SIZE_ALL.toUpperCase();
         }
-        this.tableOptions.currentPageSize = pageSize;
+        else {
+            this.pageSize = pageSize;
+            this.tableOptions.currentPageSize = this.pageSize;
+        }
         //当前需要显示的数据大于等于实际显示的数据的时候
-        var maxPageNumber = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1));
+        // const maxPageNumber: number = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1))
+        var maxPageNumber = Math.ceil(this.tableOptions.countDataSize / (this.pageSize * 1));
         //设置beginPageIndex,endPageIndex
         //只有一页的情况下
         if (maxPageNumber <= 1) {
@@ -181,6 +189,10 @@ var TableComponent = (function () {
             this.tableOptions.beginPageIndex = pageSize * (this.tableOptions.currentPageNumber - 1) + 1;
             this.tableOptions.endPageIndex = pageSize * this.tableOptions.currentPageNumber;
         }
+        //选择页数(不是全量数据)
+        if (!this.globalData) {
+            this.onSelectPage(this.tableOptions);
+        }
     };
     /**
      *
@@ -190,7 +202,8 @@ var TableComponent = (function () {
      */
     TableComponent.prototype.setPageNumberList = function () {
         this.tableOptions.pageNumberList = new util_1.ArrayList();
-        var maxPageNumber = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1));
+        // const maxPageNumber: number = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1))
+        var maxPageNumber = Math.ceil(this.tableOptions.countDataSize / (this.pageSize * 1));
         for (var i = 1; i <= maxPageNumber; i++) {
             var pageNumber = new Object();
             pageNumber['index'] = i;

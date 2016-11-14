@@ -39,7 +39,7 @@ export class TableComponent implements AfterViewInit {
 
         //清空过滤的数据
         this.filterTableDatas = null;
-        
+
         //设置数据集总数
         this.tableOptions.countDataSize = countDataSize;
 
@@ -47,7 +47,8 @@ export class TableComponent implements AfterViewInit {
         // this.goPage(this.tableOptions.currentPageNumber, ComponentConstants.TABLE_TURN_PAGE_INIT);
 
         //设置页面显示总数
-        this.setPageSize(this.tableOptions.currentPageSize);
+        // this.setPageSize(this.tableOptions.currentPageSize);
+        this.setPageSize(this.pageSize);
 
         //设置页码集合
         this.setPageNumberList();
@@ -96,7 +97,8 @@ export class TableComponent implements AfterViewInit {
         }
 
         //设置页面显示总数
-        this.setPageSize(this.tableOptions.currentPageSize);
+        // this.setPageSize(this.tableOptions.currentPageSize);
+        this.setPageSize(this.pageSize);
 
         //设置页码集合
         this.setPageNumberList();
@@ -124,7 +126,8 @@ export class TableComponent implements AfterViewInit {
 
         //截取数据
         if (!this.globalData) {
-            this.viewTableDatas = this.viewTableDatas.subList(0, this.tableOptions.currentPageSize);
+            // this.viewTableDatas = this.viewTableDatas.subList(0, this.tableOptions.currentPageSize);
+            this.viewTableDatas = this.viewTableDatas.subList(0, this.pageSize);
             console.log(this.viewTableDatas);
         } else {
             this.viewTableDatas = this.viewTableDatas.subList(this.tableOptions.beginPageIndex - 1, this.tableOptions.endPageIndex);
@@ -141,18 +144,20 @@ export class TableComponent implements AfterViewInit {
      */
     setPageSize(pageSize: any): void {
         //设置单页最大显示数
-        if (pageSize === ComponentConstants.PAGE_SIZE_ALL) {
-            pageSize = 65535;
+        if (typeof pageSize === 'string' && pageSize.toLowerCase() === ComponentConstants.PAGE_SIZE_ALL) {
+            this.pageSize = 65535;
+            this.tableOptions.currentPageSize = ComponentConstants.PAGE_SIZE_ALL.toUpperCase();
+        } else {
+            this.pageSize = pageSize
+            this.tableOptions.currentPageSize = this.pageSize;
         }
 
-        this.tableOptions.currentPageSize = pageSize;
-
         //当前需要显示的数据大于等于实际显示的数据的时候
-        const maxPageNumber: number = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1))
+        // const maxPageNumber: number = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1))
+        const maxPageNumber: number = Math.ceil(this.tableOptions.countDataSize / (this.pageSize * 1));
 
         //设置beginPageIndex,endPageIndex
         //只有一页的情况下
-
         if (maxPageNumber <= 1) {
             this.tableOptions.currentPageNumber = 1;
             this.tableOptions.beginPageIndex = 1
@@ -170,6 +175,11 @@ export class TableComponent implements AfterViewInit {
             this.tableOptions.beginPageIndex = pageSize * (this.tableOptions.currentPageNumber - 1) + 1
             this.tableOptions.endPageIndex = pageSize * this.tableOptions.currentPageNumber;
         }
+
+        //选择页数(不是全量数据)
+        if (!this.globalData) {
+            this.onSelectPage(this.tableOptions);
+        }
     }
 
     /**
@@ -181,7 +191,8 @@ export class TableComponent implements AfterViewInit {
     setPageNumberList(): void {
         this.tableOptions.pageNumberList = new ArrayList();
 
-        const maxPageNumber: number = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1))
+        // const maxPageNumber: number = Math.ceil(this.tableOptions.countDataSize / (this.tableOptions.currentPageSize * 1))
+        const maxPageNumber: number = Math.ceil(this.tableOptions.countDataSize / (this.pageSize * 1));
 
         for (let i = 1; i <= maxPageNumber; i++) {
             let pageNumber = new Object();

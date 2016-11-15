@@ -375,18 +375,32 @@
         <div class="main-navigation navbar-collapse collapse">
             <!-- start: MAIN MENU TOGGLER BUTTON -->
             <div class="navigation-toggler">
-                <i class="clip-chevron-left"></i>
-                <i class="clip-chevron-right"></i>
+                <i class={{appOptions.clipChevron}} (click)="changeClipChevron()"></i>
             </div>
             <!-- end: MAIN MENU TOGGLER BUTTON -->
             <!-- start: MAIN NAVIGATION MENU -->
             <ul class="main-navigation-menu">
-                <li class="active">
+                <!--<li class="active">
                     <a href="index.html"><i class="clip-home-3"></i>
-								<span class="title"> Dashboard </span><span class="selected"></span>
-							</a>
+						<span class="title"> Dashboard </span><span class="selected"></span>
+					</a>
+                </li>-->
+                <li *ngFor="let menuItem of menuList.toArray()" [ngClass]="{active: menuItem.active,open:menuItem.open}" (click)="selectMenu(menuItem)">
+                    <a href="javascript:void(0)">
+                        <i class="clip-screen"></i>
+                        <span class="title"> {{menuItem.name}} </span><i class="icon-arrow"></i>
+                        <span *ngIf="menuItem.active" class="selected"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li *ngFor="let subMenuItem of menuItem.subItem.toArray()">
+                            <a href="javascript:void(0)" routerLink={{subMenuItem.routerLink}} routerLinkActive="active">
+                                <span class="title"> {{subMenuItem.name}} </span>
+                                <span *ngIf="subMenuItem.isNew" class="badge badge-new">new</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li>
+                <!--<li>
                     <a href="javascript:void(0)"><i class="clip-screen"></i>
 								<span class="title"> 应用管理 </span><i class="icon-arrow"></i>
 								<span class="selected"></span>
@@ -405,7 +419,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li>-->
             </ul>
             <!-- end: MAIN NAVIGATION MENU -->
         </div>

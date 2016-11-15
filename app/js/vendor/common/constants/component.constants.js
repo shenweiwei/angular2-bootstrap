@@ -16,6 +16,9 @@ var ComponentConstants = (function () {
     ComponentConstants.SORT_DEFAULT = 'sort-default';
     ComponentConstants.SORT_DESC = 'sort-desc';
     ComponentConstants.SORT_ASC = 'sort-asc';
+    //隐藏MenuItems
+    ComponentConstants.CLIP_CHEVRON_LEFT = 'clip-chevron-left';
+    ComponentConstants.CLIP_CHEVRON_RIGHT = 'clip-chevron-right';
     return ComponentConstants;
 }());
 exports.ComponentConstants = ComponentConstants;

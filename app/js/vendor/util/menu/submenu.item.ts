@@ -1,6 +1,8 @@
 export class SubMenuItem {
-    private _name: string;
-    private _index: number;
+	private _name: string;
+	private _index: number;
+	private _isNew: boolean;
+	private _routerLink: string;
 
 	public get name(): string {
 		return this._name;
@@ -17,5 +19,22 @@ export class SubMenuItem {
 	public set index(value: number) {
 		this._index = value;
 	}
-    
+
+	public get isNew(): boolean {
+		return this._isNew;
+	}
+
+	public set isNew(value: boolean) {
+		this._isNew = value;
+	}
+
+	public get routerLink(): string {
+		return this._routerLink;
+	}
+
+	public set routerLink(value: string) {
+		this._routerLink = value;
+	}
+	
+
 }

@@ -1,8 +1,10 @@
 import { SubMenuItem } from './submenu.item';
 import { List } from '../../util/collection/list';
+import { ArrayList } from '../../util/collection/arraylist';
+import { value } from '../../annotation/value';
 
 export class MenuItem {
-    private _subItem: List<SubMenuItem>;
+    private _subItem: List<SubMenuItem> = new ArrayList<SubMenuItem>();
     private _active: boolean;
     private _index: number;
     private _name: string;

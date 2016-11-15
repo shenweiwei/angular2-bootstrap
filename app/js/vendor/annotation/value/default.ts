@@ -9,7 +9,7 @@ export namespace value {
      * @returns
      */
     export function Default<T>(value: T) {
-        return (target: any, key: string)=>{
+        return (target: any, key: string) => {
             target[key] = value;
         }
     }

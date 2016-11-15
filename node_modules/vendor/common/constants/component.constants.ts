@@ -16,4 +16,7 @@ export class ComponentConstants {
     public static SORT_DESC: string = 'sort-desc';
     public static SORT_ASC: string = 'sort-asc';
 
+    //隐藏MenuItems
+    public static CLIP_CHEVRON_LEFT: string = 'clip-chevron-left';
+    public static CLIP_CHEVRON_RIGHT: string = 'clip-chevron-right';
 }

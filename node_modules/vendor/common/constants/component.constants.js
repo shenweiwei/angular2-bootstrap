@@ -19,6 +19,9 @@ var ComponentConstants = (function () {
     //隐藏MenuItems
     ComponentConstants.CLIP_CHEVRON_LEFT = 'clip-chevron-left';
     ComponentConstants.CLIP_CHEVRON_RIGHT = 'clip-chevron-right';
+    //显示模式
+    ComponentConstants.DISPLAY_BLOCK = 'block';
+    ComponentConstants.DISPLAY_NONE = 'none';
     return ComponentConstants;
 }());
 exports.ComponentConstants = ComponentConstants;

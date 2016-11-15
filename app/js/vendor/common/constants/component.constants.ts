@@ -19,4 +19,8 @@ export class ComponentConstants {
     //隐藏MenuItems
     public static CLIP_CHEVRON_LEFT: string = 'clip-chevron-left';
     public static CLIP_CHEVRON_RIGHT: string = 'clip-chevron-right';
+
+    //显示模式
+    public static DISPLAY_BLOCK: string = 'block';
+    public static DISPLAY_NONE: string = 'none';
 }

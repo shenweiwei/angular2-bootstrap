@@ -64,18 +64,49 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     }
 
-    selectMenu(menuItem: MenuItem): void {
+    /**
+     * 选择母菜单
+     * 
+     * @param {MenuItem} menuItem
+     * 
+     * @memberOf AppComponent
+     */
+    selectMenuItem(menuItem: MenuItem): void {
         for (let tempMenuItem of this.menuList.toArray()) {
-            tempMenuItem['active'] = false;
             tempMenuItem['open'] = false;
         }
 
-        menuItem.active = true;
-        menuItem.open = true
+        menuItem.open = true;
+
+        if (menuItem.index === 1) {
+            for (let tempMenuItem of this.menuList.toArray()) {
+                tempMenuItem['active'] = false;
+                tempMenuItem['open'] = false;
+                tempMenuItem['displayModal'] = ComponentConstants.DISPLAY_NONE;
+            }
+
+            menuItem.active = true;
+
+        } else {
+            menuItem.displayModal = ComponentConstants.DISPLAY_BLOCK;
+        }
+
+
     }
 
-    initClass(): void {
-        this.appOptions['clipChevron'] = ComponentConstants.CLIP_CHEVRON_LEFT;
+    /**
+     * 选择子菜单
+     * 
+     * @param {MenuItem} menuItem
+     * 
+     * @memberOf AppComponent
+     */
+    selectSubMenuItem(menuItem: MenuItem): void {
+        for (let tempMenuItem of this.menuList.toArray()) {
+            tempMenuItem['active'] = false;
+        }
+
+        menuItem.active = true;
     }
 
     /**
@@ -89,5 +120,15 @@ export class AppComponent implements AfterViewInit, OnInit {
         } else {
             this.appOptions['clipChevron'] = ComponentConstants.CLIP_CHEVRON_LEFT
         }
+    }
+
+    /**
+     * 
+     * 初始化样式
+     * 
+     * @memberOf AppComponent
+     */
+    initClass(): void {
+        this.appOptions['clipChevron'] = ComponentConstants.CLIP_CHEVRON_LEFT;
     }
 }

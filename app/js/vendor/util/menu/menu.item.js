@@ -1,8 +1,12 @@
 "use strict";
 var arraylist_1 = require('../../util/collection/arraylist');
+var component_constants_1 = require('../../common/constants/component.constants');
 var MenuItem = (function () {
     function MenuItem() {
         this._subItem = new arraylist_1.ArrayList();
+        this._active = false;
+        this._open = false;
+        this._displayModal = component_constants_1.ComponentConstants.DISPLAY_NONE;
     }
     Object.defineProperty(MenuItem.prototype, "subItem", {
         get: function () {
@@ -50,6 +54,16 @@ var MenuItem = (function () {
         },
         set: function (value) {
             this._open = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MenuItem.prototype, "displayModal", {
+        get: function () {
+            return this._displayModal;
+        },
+        set: function (value) {
+            this._displayModal = value;
         },
         enumerable: true,
         configurable: true

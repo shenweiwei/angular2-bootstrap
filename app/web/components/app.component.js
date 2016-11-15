@@ -61,17 +61,45 @@ var AppComponent = (function () {
         menuitem_two.subItem.add(subMenuItem_two);
         this.menuList.add(menuitem_two);
     };
-    AppComponent.prototype.selectMenu = function (menuItem) {
+    /**
+     * 选择母菜单
+     *
+     * @param {MenuItem} menuItem
+     *
+     * @memberOf AppComponent
+     */
+    AppComponent.prototype.selectMenuItem = function (menuItem) {
+        for (var _i = 0, _a = this.menuList.toArray(); _i < _a.length; _i++) {
+            var tempMenuItem = _a[_i];
+            tempMenuItem['open'] = false;
+        }
+        menuItem.open = true;
+        if (menuItem.index === 1) {
+            for (var _b = 0, _c = this.menuList.toArray(); _b < _c.length; _b++) {
+                var tempMenuItem = _c[_b];
+                tempMenuItem['active'] = false;
+                tempMenuItem['open'] = false;
+                tempMenuItem['displayModal'] = common_1.ComponentConstants.DISPLAY_NONE;
+            }
+            menuItem.active = true;
+        }
+        else {
+            menuItem.displayModal = common_1.ComponentConstants.DISPLAY_BLOCK;
+        }
+    };
+    /**
+     * 选择子菜单
+     *
+     * @param {MenuItem} menuItem
+     *
+     * @memberOf AppComponent
+     */
+    AppComponent.prototype.selectSubMenuItem = function (menuItem) {
         for (var _i = 0, _a = this.menuList.toArray(); _i < _a.length; _i++) {
             var tempMenuItem = _a[_i];
             tempMenuItem['active'] = false;
-            tempMenuItem['open'] = false;
         }
         menuItem.active = true;
-        menuItem.open = true;
-    };
-    AppComponent.prototype.initClass = function () {
-        this.appOptions['clipChevron'] = common_1.ComponentConstants.CLIP_CHEVRON_LEFT;
     };
     /**
      * 变更显示/隐藏 menuItem
@@ -85,6 +113,15 @@ var AppComponent = (function () {
         else {
             this.appOptions['clipChevron'] = common_1.ComponentConstants.CLIP_CHEVRON_LEFT;
         }
+    };
+    /**
+     *
+     * 初始化样式
+     *
+     * @memberOf AppComponent
+     */
+    AppComponent.prototype.initClass = function () {
+        this.appOptions['clipChevron'] = common_1.ComponentConstants.CLIP_CHEVRON_LEFT;
     };
     AppComponent = __decorate([
         core_1.Component({

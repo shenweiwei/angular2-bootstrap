@@ -2,13 +2,15 @@ import { SubMenuItem } from './submenu.item';
 import { List } from '../../util/collection/list';
 import { ArrayList } from '../../util/collection/arraylist';
 import { value } from '../../annotation/value';
+import { ComponentConstants } from '../../common/constants/component.constants';
 
 export class MenuItem {
     private _subItem: List<SubMenuItem> = new ArrayList<SubMenuItem>();
-    private _active: boolean;
+    private _active: boolean = false;
     private _index: number;
     private _name: string;
-    private _open: boolean;
+    private _open: boolean = false;
+    private _displayModal: string = ComponentConstants.DISPLAY_NONE;
 
     public get subItem(): List<SubMenuItem> {
         return this._subItem;
@@ -50,4 +52,12 @@ export class MenuItem {
         this._open = value;
     }
 
+	public get displayModal(): string  {
+		return this._displayModal;
+	}
+
+	public set displayModal(value: string ) {
+		this._displayModal = value;
+	}
+    
 }

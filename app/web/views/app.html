@@ -374,24 +374,19 @@
         <!-- start: SIDEBAR -->
         <div class="main-navigation navbar-collapse collapse">
             <!-- start: MAIN MENU TOGGLER BUTTON -->
-            <div class="navigation-toggler">
-                <i class={{appOptions.clipChevron}} (click)="changeClipChevron()"></i>
+            <div class="navigation-toggler" (click)="changeClipChevron()">
+                <i class={{appOptions.clipChevron}}> </i>
             </div>
             <!-- end: MAIN MENU TOGGLER BUTTON -->
             <!-- start: MAIN NAVIGATION MENU -->
             <ul class="main-navigation-menu">
-                <!--<li class="active">
-                    <a href="index.html"><i class="clip-home-3"></i>
-						<span class="title"> Dashboard </span><span class="selected"></span>
-					</a>
-                </li>-->
-                <li *ngFor="let menuItem of menuList.toArray()" [ngClass]="{active: menuItem.active,open:menuItem.open}" (click)="selectMenu(menuItem)">
+                <li *ngFor="let menuItem of menuList.toArray()" [ngClass]="{active:menuItem.active,open:menuItem.open}" (click)="selectMenuItem(menuItem)">
                     <a href="javascript:void(0)">
                         <i class="clip-screen"></i>
                         <span class="title"> {{menuItem.name}} </span><i class="icon-arrow"></i>
                         <span *ngIf="menuItem.active" class="selected"></span>
                     </a>
-                    <ul class="sub-menu">
+                    <ul class="sub-menu" *ngIf="menuItem.subItem.getSize()>0" (click)="selectSubMenuItem(menuItem)" [ngStyle]="{display: menuItem.displayModal}">
                         <li *ngFor="let subMenuItem of menuItem.subItem.toArray()">
                             <a href="javascript:void(0)" routerLink={{subMenuItem.routerLink}} routerLinkActive="active">
                                 <span class="title"> {{subMenuItem.name}} </span>
@@ -400,26 +395,7 @@
                         </li>
                     </ul>
                 </li>
-                <!--<li>
-                    <a href="javascript:void(0)"><i class="clip-screen"></i>
-								<span class="title"> 应用管理 </span><i class="icon-arrow"></i>
-								<span class="selected"></span>
-							</a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="javascript:void(0)" routerLink="/application/search" routerLinkActive="active">
-                                <span class="title"> 应用查询 </span>
-                                <span class="badge badge-new">new</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="layouts_sidebar_closed.html">
-                                <span class="title"> 应用新增 </span>
-                                <span class="badge badge-new">new</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>-->
+
             </ul>
             <!-- end: MAIN NAVIGATION MENU -->
         </div>

@@ -107,7 +107,7 @@ export class AppComponent implements AfterViewInit, OnInit {
         }
 
         //展开子菜单
-        menuItem.active = true;
+        menuItem.active = true;//只有激活了收缩动画才有效果
         menuItem.open = true;
 
         //动画切换效果

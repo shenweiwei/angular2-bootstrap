@@ -60,6 +60,24 @@ var AppComponent = (function () {
         subMenuItem_two.routerLink = '/application/create';
         menuitem_two.subItem.add(subMenuItem_two);
         this.menuList.add(menuitem_two);
+        var menuitem_three = new util_1.MenuItem();
+        menuitem_three.index = 3;
+        menuitem_three.active = false;
+        menuitem_three.name = '应用管理';
+        menuitem_three.open = false;
+        var subMenuItem_three = new util_1.SubMenuItem();
+        subMenuItem_three.index = 1;
+        subMenuItem_three.name = '应用查询';
+        subMenuItem_three.isNew = true;
+        subMenuItem_three.routerLink = '/application/search';
+        menuitem_three.subItem.add(subMenuItem_three);
+        var subMenuItem_four = new util_1.SubMenuItem();
+        subMenuItem_four.index = 2;
+        subMenuItem_four.name = '应用新建';
+        subMenuItem_four.isNew = true;
+        subMenuItem_four.routerLink = '/application/create';
+        menuitem_three.subItem.add(subMenuItem_four);
+        this.menuList.add(menuitem_three);
     };
     /**
      * 选择母菜单
@@ -69,22 +87,21 @@ var AppComponent = (function () {
      * @memberOf AppComponent
      */
     AppComponent.prototype.selectMenuItem = function (menuItem) {
+        //收缩所有打开的menuitem
         for (var _i = 0, _a = this.menuList.toArray(); _i < _a.length; _i++) {
             var tempMenuItem = _a[_i];
             tempMenuItem['open'] = false;
+            tempMenuItem['active'] = false;
         }
+        //展开子菜单
+        menuItem.active = true;
         menuItem.open = true;
-        if (menuItem.index === 1) {
-            for (var _b = 0, _c = this.menuList.toArray(); _b < _c.length; _b++) {
-                var tempMenuItem = _c[_b];
-                tempMenuItem['active'] = false;
-                tempMenuItem['open'] = false;
-                tempMenuItem['displayModal'] = common_1.ComponentConstants.DISPLAY_NONE;
-            }
-            menuItem.active = true;
+        //动画切换效果
+        if (menuItem['state'] === 'inactive') {
+            menuItem.state = "active";
         }
         else {
-            menuItem.displayModal = common_1.ComponentConstants.DISPLAY_BLOCK;
+            menuItem.state = "inactive";
         }
     };
     /**
@@ -126,7 +143,15 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            templateUrl: 'app/web/views/app.html'
+            templateUrl: 'app/web/views/app.html',
+            animations: [
+                core_1.trigger('menuState', [
+                    core_1.state('inactive', core_1.style({ height: 0 })),
+                    core_1.state('active', core_1.style({ height: '*' })),
+                    core_1.transition('inactive => active', core_1.animate('0.3s ease-in')),
+                    core_1.transition('active => inactive', core_1.animate('0.3s ease-out'))
+                ])
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

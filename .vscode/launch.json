@@ -4,7 +4,8 @@
             "name": "chorme typescript angular2",
             "type": "chrome",
             "request": "launch",
-            "url": "http://upload.saic-gm.com",
+            // "url": "http://upload.saic-gm.com",
+            "url": "http://localhost:3000",
             "sourceMaps": true,
             "webRoot": "C:/Users/shen_/Documents/worksapce/SGM/DMSOPS/trunk/angular2-bootstrap"
         },

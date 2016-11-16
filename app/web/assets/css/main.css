@@ -1929,8 +1929,11 @@ ul.main-navigation-menu li>ul.sub-menu {
     clear: both;
     list-style: none;
     margin: 8px 0;
-    display: none;
+    margin: 0;
+    /*display: none;*/
     padding: 0;
+    overflow: hidden;
+    /*不允许溢出*/
 }
 
 ul.main-navigation-menu li>ul.sub-menu>li {

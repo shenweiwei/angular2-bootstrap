@@ -386,7 +386,7 @@
                         <span class="title"> {{menuItem.name}} </span><i class="icon-arrow"></i>
                         <span *ngIf="menuItem.active" class="selected"></span>
                     </a>
-                    <ul class="sub-menu" *ngIf="menuItem.subItem.getSize()>0" (click)="selectSubMenuItem(menuItem)" [ngStyle]="{display: menuItem.displayModal}">
+                    <ul class="sub-menu" *ngIf="menuItem.subItem.getSize()>0" (click)="selectSubMenuItem(menuItem)" [hidden]="menuItem.state==='inactive'" [@menuState]="menuItem.state">
                         <li *ngFor="let subMenuItem of menuItem.subItem.toArray()">
                             <a href="javascript:void(0)" routerLink={{subMenuItem.routerLink}} routerLinkActive="active">
                                 <span class="title"> {{subMenuItem.name}} </span>

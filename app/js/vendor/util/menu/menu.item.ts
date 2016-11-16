@@ -11,6 +11,7 @@ export class MenuItem {
     private _name: string;
     private _open: boolean = false;
     private _displayModal: string = ComponentConstants.DISPLAY_NONE;
+    private _state: string = "inactive";
 
     public get subItem(): List<SubMenuItem> {
         return this._subItem;
@@ -52,12 +53,20 @@ export class MenuItem {
         this._open = value;
     }
 
-	public get displayModal(): string  {
-		return this._displayModal;
-	}
+    public get displayModal(): string {
+        return this._displayModal;
+    }
 
-	public set displayModal(value: string ) {
-		this._displayModal = value;
-	}
-    
+    public set displayModal(value: string) {
+        this._displayModal = value;
+    }
+
+    public get state(): string {
+        return this._state;
+    }
+
+    public set state(value: string) {
+        this._state = value;
+    }
+
 }

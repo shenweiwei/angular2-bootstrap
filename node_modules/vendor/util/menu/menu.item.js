@@ -7,6 +7,7 @@ var MenuItem = (function () {
         this._active = false;
         this._open = false;
         this._displayModal = component_constants_1.ComponentConstants.DISPLAY_NONE;
+        this._state = "inactive";
     }
     Object.defineProperty(MenuItem.prototype, "subItem", {
         get: function () {
@@ -64,6 +65,16 @@ var MenuItem = (function () {
         },
         set: function (value) {
             this._displayModal = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MenuItem.prototype, "state", {
+        get: function () {
+            return this._state;
+        },
+        set: function (value) {
+            this._state = value;
         },
         enumerable: true,
         configurable: true

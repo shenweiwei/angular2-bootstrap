@@ -1,10 +1,18 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 import { List, ArrayList, MenuItem, SubMenuItem } from 'vendor/util';
 import { ComponentConstants } from 'vendor/common';
 
 @Component({
     selector: 'my-app',
-    templateUrl: 'app/web/views/app.html'
+    templateUrl: 'app/web/views/app.html',
+    animations: [
+        trigger('menuState', [
+            state('inactive', style({ height: 0 })),
+            state('active', style({ height: '*' })),
+            transition('inactive => active', animate('0.3s ease-in')),
+            transition('active => inactive', animate('0.3s ease-out'))
+        ])
+    ]
 })
 
 export class AppComponent implements AfterViewInit, OnInit {
@@ -59,9 +67,29 @@ export class AppComponent implements AfterViewInit, OnInit {
         subMenuItem_two.isNew = true;
         subMenuItem_two.routerLink = '/application/create'
         menuitem_two.subItem.add(subMenuItem_two)
-
         this.menuList.add(menuitem_two);
 
+        let menuitem_three = new MenuItem();
+        menuitem_three.index = 3;
+        menuitem_three.active = false;
+        menuitem_three.name = '应用管理';
+        menuitem_three.open = false;
+
+        let subMenuItem_three = new SubMenuItem();
+        subMenuItem_three.index = 1;
+        subMenuItem_three.name = '应用查询';
+        subMenuItem_three.isNew = true;
+        subMenuItem_three.routerLink = '/application/search';
+        menuitem_three.subItem.add(subMenuItem_three)
+
+        let subMenuItem_four = new SubMenuItem();
+        subMenuItem_four.index = 2;
+        subMenuItem_four.name = '应用新建';
+        subMenuItem_four.isNew = true;
+        subMenuItem_four.routerLink = '/application/create'
+        menuitem_three.subItem.add(subMenuItem_four)
+
+        this.menuList.add(menuitem_three);
     }
 
     /**
@@ -72,26 +100,22 @@ export class AppComponent implements AfterViewInit, OnInit {
      * @memberOf AppComponent
      */
     selectMenuItem(menuItem: MenuItem): void {
+        //收缩所有打开的menuitem
         for (let tempMenuItem of this.menuList.toArray()) {
             tempMenuItem['open'] = false;
+            tempMenuItem['active'] = false;
         }
 
+        //展开子菜单
+        menuItem.active = true;
         menuItem.open = true;
 
-        if (menuItem.index === 1) {
-            for (let tempMenuItem of this.menuList.toArray()) {
-                tempMenuItem['active'] = false;
-                tempMenuItem['open'] = false;
-                tempMenuItem['displayModal'] = ComponentConstants.DISPLAY_NONE;
-            }
-
-            menuItem.active = true;
-
+        //动画切换效果
+        if (menuItem['state'] === 'inactive') {
+            menuItem.state = "active";
         } else {
-            menuItem.displayModal = ComponentConstants.DISPLAY_BLOCK;
+            menuItem.state = "inactive";
         }
-
-
     }
 
     /**

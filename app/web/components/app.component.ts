@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 import { List, ArrayList, MenuItem, SubMenuItem } from 'vendor/util';
-import { ComponentConstants } from 'vendor/common';
+import { ComponentConstants, DataSetUtil } from 'vendor/common';
 
 @Component({
     selector: 'my-app',
@@ -99,7 +99,12 @@ export class AppComponent implements AfterViewInit, OnInit {
      * 
      * @memberOf AppComponent
      */
-    selectMenuItem(menuItem: MenuItem): void {
+    selectMenuItem(menuItem: MenuItem, target: any): void {
+        //点击子菜单会，母菜单的click事件也会响应所以会把子菜单的响应return
+        if (DataSetUtil.getDataForKey(target, 'item') === 'submenu') {
+            return;
+        }
+
         //收缩所有打开的menuitem
         for (let tempMenuItem of this.menuList.toArray()) {
             tempMenuItem['open'] = false;
@@ -125,12 +130,13 @@ export class AppComponent implements AfterViewInit, OnInit {
      * 
      * @memberOf AppComponent
      */
-    selectSubMenuItem(menuItem: MenuItem): void {
+    selectSubMenuItem(menuItem: MenuItem, target: any): void {
         for (let tempMenuItem of this.menuList.toArray()) {
             tempMenuItem['active'] = false;
         }
 
         menuItem.active = true;
+
     }
 
     /**

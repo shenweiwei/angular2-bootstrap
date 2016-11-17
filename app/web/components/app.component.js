@@ -86,7 +86,11 @@ var AppComponent = (function () {
      *
      * @memberOf AppComponent
      */
-    AppComponent.prototype.selectMenuItem = function (menuItem) {
+    AppComponent.prototype.selectMenuItem = function (menuItem, target) {
+        //点击子菜单会，母菜单的click事件也会响应所以会把子菜单的响应return
+        if (common_1.DataSetUtil.getDataForKey(target, 'item') === 'submenu') {
+            return;
+        }
         //收缩所有打开的menuitem
         for (var _i = 0, _a = this.menuList.toArray(); _i < _a.length; _i++) {
             var tempMenuItem = _a[_i];
@@ -111,7 +115,7 @@ var AppComponent = (function () {
      *
      * @memberOf AppComponent
      */
-    AppComponent.prototype.selectSubMenuItem = function (menuItem) {
+    AppComponent.prototype.selectSubMenuItem = function (menuItem, target) {
         for (var _i = 0, _a = this.menuList.toArray(); _i < _a.length; _i++) {
             var tempMenuItem = _a[_i];
             tempMenuItem['active'] = false;

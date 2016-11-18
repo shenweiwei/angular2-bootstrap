@@ -54,7 +54,7 @@ var TableHeader = (function () {
         configurable: true
     });
     __decorate([
-        index_1.value.Default(constants_1.ComponentConstants.CLIP_CHEVRON_RIGHT), 
+        index_1.value.Default(constants_1.ComponentConstants.SORT_DEFAULT), 
         __metadata('design:type', String)
     ], TableHeader.prototype, "_sort", void 0);
     return TableHeader;

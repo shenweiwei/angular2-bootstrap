@@ -17,6 +17,7 @@ var core_1 = require('@angular/core');
 var base_component_1 = require('../base.component');
 var table_component_1 = require('../../vendor/components/table.component');
 var application_vo_1 = require('../../../js/com/sgm/dms/ops/vo/application.vo');
+var util_1 = require('vendor/util');
 var common_1 = require('vendor/common');
 var application_service_impl_1 = require('../../../js/com/sgm/dms/ops/services/application.service.impl');
 var ApplicationSearchComponent = (function (_super) {
@@ -37,16 +38,26 @@ var ApplicationSearchComponent = (function (_super) {
         };
     }
     ApplicationSearchComponent.prototype.search = function () {
-        var _this = this;
-        this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, function (response) {
-            var tableDataList = common_1.TableUtil.setTableDatas(response[0]);
-            _this.tableComponent.initDataTable(_this.getTableHeaders(), tableDataList, response[1].total);
-        });
+        // this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
+        //     let tableDataList = TableUtil.setTableDatas(response[0]);
+        //     this.tableComponent.initDataTable(this.getTableHeaders(), tableDataList, response[1].total);
+        // });
+        this.tableComponent.initDataTable(this.getTableHeaders(), this.virtualData(), 10);
     };
     ApplicationSearchComponent.prototype.getTableHeaders = function () {
         var columnsEnName = ['appId', 'appChnName', 'appEngName', 'appOwner', 'updateDate', 'remark'];
         var columnsCnName = ['应用编号', '应用中文名', '应用英文名', '应用负责人', '更新时间', '备注'];
         return common_1.TableUtil.setTableHeaders(columnsEnName, columnsCnName);
+    };
+    ApplicationSearchComponent.prototype.virtualData = function () {
+        var tableDataList = new util_1.ArrayList();
+        for (var i = 0; i < 10; i++) {
+            var tableData = new util_1.TableData();
+            tableData.index = i + 1;
+            tableData['appId'] = 'appid' + i;
+            tableDataList.add(tableData);
+        }
+        return tableDataList;
     };
     __decorate([
         core_1.ViewChild(table_component_1.TableComponent), 

@@ -38,7 +38,7 @@ export class TableHeader implements ClientObject {
      * @type {number}
      * @memberOf TableHeader
      */
-    @value.Default(ComponentConstants.CLIP_CHEVRON_RIGHT)
+    @value.Default(ComponentConstants.SORT_DEFAULT)
     private _sort: string;
 
     public get index(): number {

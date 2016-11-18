@@ -22,10 +22,12 @@ export class ApplicationSearchComponent extends BaseComponent {
     }
 
     search(): void {
-        this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
-            let tableDataList = TableUtil.setTableDatas(response[0]);
-            this.tableComponent.initDataTable(this.getTableHeaders(), tableDataList, response[1].total);
-        });
+        // this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
+        //     let tableDataList = TableUtil.setTableDatas(response[0]);
+        //     this.tableComponent.initDataTable(this.getTableHeaders(), tableDataList, response[1].total);
+        // });
+
+        this.tableComponent.initDataTable(this.getTableHeaders(), this.virtualData(), 10);
     }
 
     getTableHeaders(): List<TableHeader> {
@@ -43,5 +45,17 @@ export class ApplicationSearchComponent extends BaseComponent {
             let tableDataList = TableUtil.setTableDatas(response[0]);
             this.tableComponent.refreshData(tableDataList, response[1].total);
         });
+    }
+
+    virtualData(): List<TableData> {
+        let tableDataList=new ArrayList<TableData>();
+        for (let i = 0; i < 10; i++) {
+            let tableData = new TableData();
+            tableData.index = i + 1;
+            tableData['appId'] = 'appid' + i;
+            tableDataList.add(tableData);
+        }
+
+        return tableDataList;
     }
 }

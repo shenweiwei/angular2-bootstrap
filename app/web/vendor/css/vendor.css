@@ -1,3 +1,9 @@
+@charset "UTF-8";
+
+/*
+*table
+*/
+
 #table-header-tools {
     margin: 0;
 }
@@ -13,24 +19,24 @@
 }
 
 #table-body tr>th::after {
-    font-family: 'Glyphicons Halflings';
+    font-family: "Glyphicons Halflings";
     opacity: 0.2;
-    content: "\e150";
+    content: "";
 }
 
 #table-body tr>.sort-default::after {
     opacity: 0.2;
-    content: "\e150"
+    content: "";
 }
 
 #table-body tr>.sort-asc::after {
     opacity: 0.5;
-    content: "\e155"
+    content: "";
 }
 
 #table-body tr>.sort-desc::after {
     opacity: 0.5;
-    content: "\e156"
+    content: "";
 }
 
 #table-footer-tools {
@@ -53,3 +59,6 @@
     display: block;
     float: right;
 }
+
+
+/*# sourceMappingURL=vendor.css.map */

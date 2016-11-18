@@ -28,6 +28,7 @@ import { ApplicationSearchComponent } from './web/components/application/search.
 
 //vendor component
 import { TableComponent } from './web/vendor/components/table.component';
+import { MenuComponent } from './web/vendor/components/menu.component';
 
 //vendor directives
 import { InputListenerDirective } from './web/vendor/directives/listener/input.directive'
@@ -39,6 +40,7 @@ import { ApplicationServiceImpl } from './js/com/sgm/dms/ops/services/applicatio
 
 //扩展类
 import { TableOptions } from 'vendor/util';
+import { MenuOptions } from 'vendor/util';
 
 @NgModule({
   imports: [
@@ -52,20 +54,27 @@ import { TableOptions } from 'vendor/util';
     //指令
     InputListenerDirective,
 
-    //组件
+    //根组件
     AppComponent,
     DashBoardComponent,
-    ApplicationSearchComponent,
-    TableComponent
+    
+    //公共组件
+    TableComponent,
+    MenuComponent,
+
+    //自定义组件
+    ApplicationSearchComponent
   ],
   //提供商的注入池
   providers: [
+    //公共服务
     HttpRestful,
     RestService,
     //自定义service实现类
     ApplicationServiceImpl,
     //扩展类
-    TableOptions
+    TableOptions,
+    MenuOptions
   ],
   bootstrap: [AppComponent]
 })

@@ -33,6 +33,7 @@ var dashboard_component_1 = require('./web/components/dashboard.component');
 var search_component_1 = require('./web/components/application/search.component');
 //vendor component
 var table_component_1 = require('./web/vendor/components/table.component');
+var menu_component_1 = require('./web/vendor/components/menu.component');
 //vendor directives
 var input_directive_1 = require('./web/vendor/directives/listener/input.directive');
 //service
@@ -41,6 +42,7 @@ var common_1 = require('vendor/common');
 var application_service_impl_1 = require('./js/com/sgm/dms/ops/services/application.service.impl');
 //扩展类
 var util_1 = require('vendor/util');
+var util_2 = require('vendor/util');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -56,20 +58,25 @@ var AppModule = (function () {
             declarations: [
                 //指令
                 input_directive_1.InputListenerDirective,
-                //组件
+                //根组件
                 app_component_1.AppComponent,
                 dashboard_component_1.DashBoardComponent,
-                search_component_1.ApplicationSearchComponent,
-                table_component_1.TableComponent
+                //公共组件
+                table_component_1.TableComponent,
+                menu_component_1.MenuComponent,
+                //自定义组件
+                search_component_1.ApplicationSearchComponent
             ],
             //提供商的注入池
             providers: [
+                //公共服务
                 http_2.HttpRestful,
                 common_1.RestService,
                 //自定义service实现类
                 application_service_impl_1.ApplicationServiceImpl,
                 //扩展类
-                util_1.TableOptions
+                util_1.TableOptions,
+                util_2.MenuOptions
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

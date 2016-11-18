@@ -29,6 +29,7 @@ import { ApplicationSearchComponent } from './web/components/application/search.
 //vendor component
 import { TableComponent } from './web/vendor/components/table.component';
 import { MenuComponent } from './web/vendor/components/menu.component';
+import { NavBarComponent } from './web/vendor/components/navbar.component';
 
 //vendor directives
 import { InputListenerDirective } from './web/vendor/directives/listener/input.directive'
@@ -61,7 +62,7 @@ import { MenuOptions } from 'vendor/util';
     //公共组件
     TableComponent,
     MenuComponent,
-
+    NavBarComponent,
     //自定义组件
     ApplicationSearchComponent
   ],

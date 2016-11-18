@@ -34,6 +34,7 @@ var search_component_1 = require('./web/components/application/search.component'
 //vendor component
 var table_component_1 = require('./web/vendor/components/table.component');
 var menu_component_1 = require('./web/vendor/components/menu.component');
+var navbar_component_1 = require('./web/vendor/components/navbar.component');
 //vendor directives
 var input_directive_1 = require('./web/vendor/directives/listener/input.directive');
 //service
@@ -64,6 +65,7 @@ var AppModule = (function () {
                 //公共组件
                 table_component_1.TableComponent,
                 menu_component_1.MenuComponent,
+                navbar_component_1.NavBarComponent,
                 //自定义组件
                 search_component_1.ApplicationSearchComponent
             ],

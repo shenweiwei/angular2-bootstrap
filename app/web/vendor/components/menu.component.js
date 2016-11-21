@@ -134,12 +134,26 @@ var MenuComponent = (function () {
      *
      * @memberOf AppComponent
      */
-    MenuComponent.prototype.selectSubMenuItem = function (menuItem, target) {
+    MenuComponent.prototype.selectSubMenuItem = function (menuItem, subMenuItem, target) {
         for (var _i = 0, _a = this.menuList.toArray(); _i < _a.length; _i++) {
             var tempMenuItem = _a[_i];
             tempMenuItem['active'] = false;
         }
         menuItem.active = true;
+        if (this.menuOptions.currentActiveSubItem === this.menuOptions.preActiveSubItem && this.menuOptions.currentActiveSubItem !== undefined) {
+            return;
+        }
+        var navBarItem = new util_1.NavBarItem();
+        navBarItem.name = subMenuItem.name;
+        navBarItem.active = true;
+        navBarItem.routerLink = subMenuItem.routerLink;
+        if (this.menuOptions.preActiveSubItem === undefined && this.menuOptions.currentActiveSubItem !== undefined) {
+            this.navBarComponent.setNavBarItem(navBarItem);
+        }
+        else if (this.menuOptions.currentActiveSubItem !== this.menuOptions.preActiveSubItem) {
+            this.navBarComponent.replaceNavBarItem(navBarItem);
+        }
+        this.menuOptions.currentActiveSubItem = subMenuItem;
     };
     MenuComponent = __decorate([
         core_1.Component({

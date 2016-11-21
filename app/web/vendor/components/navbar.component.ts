@@ -14,11 +14,14 @@ export class NavBarComponent implements AfterViewInit {
 
     setNavBarItem(navBarItem: NavBarItem): void {
         this.navBarItemList.add(navBarItem);
-        console.log(this.navBarItemList);
     }
 
     clean(): void {
         this.navBarItemList.clean();
+    }
+
+    replaceNavBarItem(navBarItem: NavBarItem): void {
+        this.navBarItemList.replace(navBarItem, 2);
     }
 
 }

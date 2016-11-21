@@ -156,12 +156,28 @@ export class MenuComponent {
      * 
      * @memberOf AppComponent
      */
-    selectSubMenuItem(menuItem: MenuItem, target: any): void {
+    selectSubMenuItem(menuItem: MenuItem, subMenuItem: SubMenuItem, target: any): void {
         for (let tempMenuItem of this.menuList.toArray()) {
             tempMenuItem['active'] = false;
         }
 
         menuItem.active = true;
 
+        if (this.menuOptions.currentActiveSubItem === this.menuOptions.preActiveSubItem && this.menuOptions.currentActiveSubItem !== undefined) {
+            return;
+        }
+
+        let navBarItem = new NavBarItem();
+        navBarItem.name = subMenuItem.name;
+        navBarItem.active = true;
+        navBarItem.routerLink = subMenuItem.routerLink;
+
+        if (this.menuOptions.preActiveSubItem === undefined && this.menuOptions.currentActiveSubItem !== undefined) {
+            this.navBarComponent.setNavBarItem(navBarItem);
+        } else if (this.menuOptions.currentActiveSubItem !== this.menuOptions.preActiveSubItem) {
+            this.navBarComponent.replaceNavBarItem(navBarItem);
+        }
+
+        this.menuOptions.currentActiveSubItem = subMenuItem;
     }
 }

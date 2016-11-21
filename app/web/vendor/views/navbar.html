@@ -5,7 +5,7 @@
             <a href="#">Home</a>
         </li>
         <!--<li class="active">Dashboard</li>-->
-        <li *ngFor="let navbarItem of navBarItemList.toArray()">
+        <li *ngFor="let navbarItem of navBarItemList.toArray()" [ngClass]="{active: navbarItem.active}">
             {{navbarItem.name}}
         </li>
         <li class="search-box">

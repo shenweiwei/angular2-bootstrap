@@ -18,10 +18,12 @@ var NavBarComponent = (function () {
     };
     NavBarComponent.prototype.setNavBarItem = function (navBarItem) {
         this.navBarItemList.add(navBarItem);
-        console.log(this.navBarItemList);
     };
     NavBarComponent.prototype.clean = function () {
         this.navBarItemList.clean();
+    };
+    NavBarComponent.prototype.replaceNavBarItem = function (navBarItem) {
+        this.navBarItemList.replace(navBarItem, 2);
     };
     NavBarComponent = __decorate([
         core_1.Component({

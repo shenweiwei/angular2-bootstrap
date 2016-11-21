@@ -4,7 +4,10 @@
             <i class="clip-home-3"></i>
             <a href="#">Home</a>
         </li>
-        <li class="active">Dashboard</li>
+        <!--<li class="active">Dashboard</li>-->
+        <li *ngFor="let navbarItem of navBarItemList.toArray()">
+            {{navbarItem.name}}
+        </li>
         <li class="search-box">
             <form class="sidebar-search">
                 <div class="form-group">
@@ -16,4 +19,5 @@
             </form>
         </li>
     </ol>
+
 </article>

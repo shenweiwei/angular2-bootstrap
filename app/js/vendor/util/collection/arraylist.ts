@@ -141,4 +141,8 @@ export class ArrayList<T> implements List<T>, ClientObject {
 
         return this;
     }
+
+    clean(): void {
+        this.array.length = 0;
+    }
 }

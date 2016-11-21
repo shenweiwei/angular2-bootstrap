@@ -9,4 +9,5 @@ export declare abstract class List<T> implements Collection {
     add<T>(data: T): List<T>;
     addAll<T>(data: T): List<T>;
     replace<T>(data: T, index: number): List<T>;
+    clean():void;
 }

@@ -1,10 +1,12 @@
-import { Component, trigger, state, style, transition, animate } from '@angular/core';
-import { List, ArrayList, MenuItem, SubMenuItem, MenuOptions } from 'vendor/util';
+import { Component, trigger, state, style, transition, animate, ViewChild, ReflectiveInjector } from '@angular/core';
+import { List, ArrayList, MenuItem, SubMenuItem, MenuOptions, NavBarItem } from 'vendor/util';
 import { ComponentConstants, DataSetUtil, BeanUtil } from 'vendor/common';
+import { NavBarComponent } from './navbar.component';
 
 @Component({
     selector: 'menu-component',
     templateUrl: 'app/web/vendor/views/menu.html',
+    entryComponents: [NavBarComponent],
     animations: [
         trigger('menuState', [
             state('inactive', style({ height: 0 })),
@@ -17,14 +19,17 @@ import { ComponentConstants, DataSetUtil, BeanUtil } from 'vendor/common';
 
 export class MenuComponent {
     public menuList: List<MenuItem> = new ArrayList<MenuItem>();
+    private navBarComponent: NavBarComponent;
 
-    constructor(private menuOptions: MenuOptions) { }
+    constructor(private menuOptions: MenuOptions) {
+    }
     /**
      * 查询menu
      * 
      * @memberOf AppComponent
      */
-    initMenu(): void {
+    initMenu(navBarComponent: NavBarComponent): void {
+        this.navBarComponent = navBarComponent;
         this.virtualData();
     }
 
@@ -133,6 +138,15 @@ export class MenuComponent {
             menuItem.state = "inactive";
         }
 
+
+
+        //设置navbar 
+        let navBarItem = new NavBarItem();
+        navBarItem.name = menuItem.name;
+        navBarItem.active = true;
+
+        this.navBarComponent.clean();
+        this.navBarComponent.setNavBarItem(navBarItem);
     }
 
     /**

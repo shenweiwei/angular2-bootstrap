@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var util_1 = require('vendor/util');
 var common_1 = require('vendor/common');
+var navbar_component_1 = require('./navbar.component');
 var MenuComponent = (function () {
     function MenuComponent(menuOptions) {
         this.menuOptions = menuOptions;
@@ -21,7 +22,8 @@ var MenuComponent = (function () {
      *
      * @memberOf AppComponent
      */
-    MenuComponent.prototype.initMenu = function () {
+    MenuComponent.prototype.initMenu = function (navBarComponent) {
+        this.navBarComponent = navBarComponent;
         this.virtualData();
     };
     /**
@@ -118,6 +120,12 @@ var MenuComponent = (function () {
         else {
             menuItem.state = "inactive";
         }
+        //设置navbar 
+        var navBarItem = new util_1.NavBarItem();
+        navBarItem.name = menuItem.name;
+        navBarItem.active = true;
+        this.navBarComponent.clean();
+        this.navBarComponent.setNavBarItem(navBarItem);
     };
     /**
      * 选择子菜单
@@ -137,6 +145,7 @@ var MenuComponent = (function () {
         core_1.Component({
             selector: 'menu-component',
             templateUrl: 'app/web/vendor/views/menu.html',
+            entryComponents: [navbar_component_1.NavBarComponent],
             animations: [
                 core_1.trigger('menuState', [
                     core_1.state('inactive', core_1.style({ height: 0 })),

@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, OnInit, ViewChild } from '@angular/core';
 import { MenuComponent } from '../vendor/components/menu.component';
+import { NavBarComponent } from '../vendor/components/navbar.component';
 import { ComponentConstants } from 'vendor/common';
 
 @Component({
@@ -10,14 +11,23 @@ import { ComponentConstants } from 'vendor/common';
 
 export class AppComponent implements AfterViewInit {
     @ViewChild(MenuComponent) menuComponent: MenuComponent;
+    @ViewChild(NavBarComponent) navBarComponent: NavBarComponent;
+
     public appOptions: any = {};
 
     ngOnInit(): void {
         this.initClass();
     }
-    
+
+    /**
+     * 页面显示完成做一些初始化的事情
+     * 
+     * 
+     * @memberOf AppComponent
+     */
     ngAfterViewInit(): void {
-        this.menuComponent.initMenu();
+        this.menuComponent.initMenu(this.navBarComponent);
+        // this.navBarComponent
     }
 
     /**

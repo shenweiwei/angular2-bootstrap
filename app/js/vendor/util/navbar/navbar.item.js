@@ -32,6 +32,16 @@ var NavBarItem = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(NavBarItem.prototype, "name", {
+        get: function () {
+            return this._name;
+        },
+        set: function (value) {
+            this._name = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return NavBarItem;
 }());
 exports.NavBarItem = NavBarItem;

@@ -125,6 +125,9 @@ var ArrayList = (function () {
         }
         return this;
     };
+    ArrayList.prototype.clean = function () {
+        this.array.length = 0;
+    };
     return ArrayList;
 }());
 exports.ArrayList = ArrayList;

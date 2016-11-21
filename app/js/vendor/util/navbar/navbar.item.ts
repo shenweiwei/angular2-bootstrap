@@ -2,6 +2,7 @@ export class NavBarItem{
     private _index:number;
     private _active:boolean;
     private _routerLink:string;
+	private _name:string;
 
 	public get index(): number {
 		return this._index;
@@ -25,6 +26,14 @@ export class NavBarItem{
 
 	public set routerLink(value: string) {
 		this._routerLink = value;
+	}
+
+	public get name(): string {
+		return this._name;
+	}
+
+	public set name(value: string) {
+		this._name = value;
 	}
     
 }

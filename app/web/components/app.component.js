@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var menu_component_1 = require('../vendor/components/menu.component');
+var navbar_component_1 = require('../vendor/components/navbar.component');
 var common_1 = require('vendor/common');
 var AppComponent = (function () {
     function AppComponent() {
@@ -18,8 +19,15 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         this.initClass();
     };
+    /**
+     * 页面显示完成做一些初始化的事情
+     *
+     *
+     * @memberOf AppComponent
+     */
     AppComponent.prototype.ngAfterViewInit = function () {
-        this.menuComponent.initMenu();
+        this.menuComponent.initMenu(this.navBarComponent);
+        // this.navBarComponent
     };
     /**
      * 变更显示/隐藏 menuItem
@@ -47,6 +55,10 @@ var AppComponent = (function () {
         core_1.ViewChild(menu_component_1.MenuComponent), 
         __metadata('design:type', menu_component_1.MenuComponent)
     ], AppComponent.prototype, "menuComponent", void 0);
+    __decorate([
+        core_1.ViewChild(navbar_component_1.NavBarComponent), 
+        __metadata('design:type', navbar_component_1.NavBarComponent)
+    ], AppComponent.prototype, "navBarComponent", void 0);
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',

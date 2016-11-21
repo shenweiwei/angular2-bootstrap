@@ -9,9 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var util_1 = require('vendor/util');
 var NavBarComponent = (function () {
     function NavBarComponent() {
+        this.navBarItemList = new util_1.ArrayList();
     }
+    NavBarComponent.prototype.ngAfterViewInit = function () {
+    };
+    NavBarComponent.prototype.setNavBarItem = function (navBarItem) {
+        this.navBarItemList.add(navBarItem);
+        console.log(this.navBarItemList);
+    };
+    NavBarComponent.prototype.clean = function () {
+        this.navBarItemList.clean();
+    };
     NavBarComponent = __decorate([
         core_1.Component({
             selector: 'navbar-component',

@@ -7,11 +7,11 @@
                 <span class="title"> {{menuItem.name}} </span><i class="icon-arrow"></i>
                 <span *ngIf="menuItem.active" class="selected"></span>
             </a>
-            <ul class="sub-menu" id="sub-menu" *ngIf="menuItem.subItem.getSize()>0" [hidden]="!menuItem.active" [@menuState]="menuItem.state">
-                <li *ngFor="let subMenuItem of menuItem.subItem.toArray()" (click)="selectSubMenuItem(menuItem,subMenuItem,$event.target)">
+            <ul class="sub-menu" data-item="menu" id="sub-menu" *ngIf="menuItem.subItem.getSize()>0" [hidden]="!menuItem.active" [@menuState]="menuItem.state">
+                <li *ngFor="let subMenuItem of menuItem.subItem.toArray()" data-item="submenu" (click)="selectSubMenuItem(menuItem,subMenuItem,$event.target)">
                     <a href="javascript:void(0)" routerLink={{subMenuItem.routerLink}} routerLinkActive="active" data-item="submenu">
-                        <span class="title"> {{subMenuItem.name}} </span>
-                        <span *ngIf="subMenuItem.isNew" class="badge badge-new">new</span>
+                        <span class="title" data-item="submenu"> {{subMenuItem.name}} </span>
+                        <span *ngIf="subMenuItem.isNew" data-item="submenu" class="badge badge-new">new</span>
                     </a>
                 </li>
             </ul>

@@ -23,7 +23,7 @@ var NavBarComponent = (function () {
         this.navBarItemList.clean();
     };
     NavBarComponent.prototype.replaceNavBarItem = function (navBarItem) {
-        this.navBarItemList.replace(navBarItem, 2);
+        this.navBarItemList.replace(navBarItem, 1);
     };
     NavBarComponent = __decorate([
         core_1.Component({

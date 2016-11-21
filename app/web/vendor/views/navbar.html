@@ -4,7 +4,6 @@
             <i class="clip-home-3"></i>
             <a href="#">Home</a>
         </li>
-        <!--<li class="active">Dashboard</li>-->
         <li *ngFor="let navbarItem of navBarItemList.toArray()" [ngClass]="{active: navbarItem.active}">
             {{navbarItem.name}}
         </li>

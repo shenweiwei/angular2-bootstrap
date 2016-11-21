@@ -21,7 +21,7 @@ export class NavBarComponent implements AfterViewInit {
     }
 
     replaceNavBarItem(navBarItem: NavBarItem): void {
-        this.navBarItemList.replace(navBarItem, 2);
+        this.navBarItemList.replace(navBarItem, 1);
     }
 
 }

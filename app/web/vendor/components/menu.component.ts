@@ -57,14 +57,14 @@ export class MenuComponent {
         subMenuItem_one.name = '应用查询';
         subMenuItem_one.isNew = true;
         subMenuItem_one.routerLink = '/application/search';
-        menuitem_two.subItem.add(subMenuItem_one)
+        menuitem_two.subItem.add(subMenuItem_one);
 
         let subMenuItem_two = new SubMenuItem();
         subMenuItem_two.index = 2;
         subMenuItem_two.name = '应用新建';
         subMenuItem_two.isNew = true;
-        subMenuItem_two.routerLink = '/application/create'
-        menuitem_two.subItem.add(subMenuItem_two)
+        subMenuItem_two.routerLink = '/application/search';
+        menuitem_two.subItem.add(subMenuItem_two);
         this.menuList.add(menuitem_two);
 
         let menuitem_three = new MenuItem();
@@ -78,14 +78,14 @@ export class MenuComponent {
         subMenuItem_three.name = '应用查询';
         subMenuItem_three.isNew = true;
         subMenuItem_three.routerLink = '/application/search';
-        menuitem_three.subItem.add(subMenuItem_three)
+        menuitem_three.subItem.add(subMenuItem_three);
 
         let subMenuItem_four = new SubMenuItem();
         subMenuItem_four.index = 2;
         subMenuItem_four.name = '应用新建';
         subMenuItem_four.isNew = true;
-        subMenuItem_four.routerLink = '/application/create'
-        menuitem_three.subItem.add(subMenuItem_four)
+        subMenuItem_four.routerLink = '/application/search';
+        menuitem_three.subItem.add(subMenuItem_four);
 
         this.menuList.add(menuitem_three);
     }
@@ -138,14 +138,17 @@ export class MenuComponent {
             menuItem.state = "inactive";
         }
 
-
-
-        //设置navbar 
+        //创建一个管理层级的navBar实体
         let navBarItem = new NavBarItem();
         navBarItem.name = menuItem.name;
         navBarItem.active = true;
 
+        //清楚设置
         this.navBarComponent.clean();
+        this.menuOptions.currentActiveSubItem = undefined;
+        this.menuOptions.preActiveSubItem = undefined;
+
+        //设置navBarItem
         this.navBarComponent.setNavBarItem(navBarItem);
     }
 
@@ -160,9 +163,10 @@ export class MenuComponent {
         for (let tempMenuItem of this.menuList.toArray()) {
             tempMenuItem['active'] = false;
         }
-
+        
         menuItem.active = true;
 
+        //设置navbar
         if (this.menuOptions.currentActiveSubItem === this.menuOptions.preActiveSubItem && this.menuOptions.currentActiveSubItem !== undefined) {
             return;
         }
@@ -172,12 +176,19 @@ export class MenuComponent {
         navBarItem.active = true;
         navBarItem.routerLink = subMenuItem.routerLink;
 
-        if (this.menuOptions.preActiveSubItem === undefined && this.menuOptions.currentActiveSubItem !== undefined) {
+        if (this.menuOptions.preActiveSubItem === undefined && this.menuOptions.currentActiveSubItem === undefined) {
             this.navBarComponent.setNavBarItem(navBarItem);
-        } else if (this.menuOptions.currentActiveSubItem !== this.menuOptions.preActiveSubItem) {
+        } else {
             this.navBarComponent.replaceNavBarItem(navBarItem);
         }
 
-        this.menuOptions.currentActiveSubItem = subMenuItem;
+        if (this.menuOptions.currentActiveSubItem) {
+            this.menuOptions.preActiveSubItem = this.menuOptions.currentActiveSubItem;
+            this.menuOptions.currentActiveSubItem = subMenuItem;
+        } else {
+            this.menuOptions.currentActiveSubItem = subMenuItem;
+        }
     }
+
+
 }

@@ -30,6 +30,7 @@ import { ApplicationSearchComponent } from './web/components/application/search.
 import { TableComponent } from './web/vendor/components/table.component';
 import { MenuComponent } from './web/vendor/components/menu.component';
 import { NavBarComponent } from './web/vendor/components/navbar.component';
+import { TaskRemindComponent } from './web/vendor/components/task-remind.component';
 
 //vendor directives
 import { InputListenerDirective } from './web/vendor/directives/listener/input.directive'
@@ -63,6 +64,7 @@ import { MenuOptions } from 'vendor/util';
     TableComponent,
     MenuComponent,
     NavBarComponent,
+    TaskRemindComponent,
     //自定义组件
     ApplicationSearchComponent
   ],

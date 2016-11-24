@@ -313,7 +313,7 @@ var TableComponent = (function () {
         core_1.Component({
             selector: 'table-component',
             templateUrl: 'app/web/vendor/views/table.html',
-            styleUrls: ['app/web/vendor/css/vendor.css']
+            styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
         }), 
         __metadata('design:paramtypes', [util_1.TableOptions, core_1.ElementRef])
     ], TableComponent);

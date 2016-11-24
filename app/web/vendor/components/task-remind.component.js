@@ -9,18 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var ComboboxComponent = (function () {
-    function ComboboxComponent() {
+var TaskRemindComponent = (function () {
+    function TaskRemindComponent() {
     }
-    ComboboxComponent = __decorate([
+    TaskRemindComponent = __decorate([
         core_1.Component({
-            selector: 'table-component',
-            templateUrl: 'app/web/vendor/views/table.html',
-            styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
+            selector: 'task-remind-component',
+            templateUrl: 'app/web/vendor/views/task-remind.html',
         }), 
         __metadata('design:paramtypes', [])
-    ], ComboboxComponent);
-    return ComboboxComponent;
+    ], TaskRemindComponent);
+    return TaskRemindComponent;
 }());
-exports.ComboboxComponent = ComboboxComponent;
-//# sourceMappingURL=combobox.component.js.map
+exports.TaskRemindComponent = TaskRemindComponent;
+//# sourceMappingURL=task-remind.component.js.map

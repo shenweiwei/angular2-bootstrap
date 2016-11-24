@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var menu_component_1 = require('../vendor/components/menu.component');
 var navbar_component_1 = require('../vendor/components/navbar.component');
+var task_remind_component_1 = require('../vendor/components/task-remind.component');
 var common_1 = require('vendor/common');
 var AppComponent = (function () {
     function AppComponent() {
@@ -59,11 +60,15 @@ var AppComponent = (function () {
         core_1.ViewChild(navbar_component_1.NavBarComponent), 
         __metadata('design:type', navbar_component_1.NavBarComponent)
     ], AppComponent.prototype, "navBarComponent", void 0);
+    __decorate([
+        core_1.ViewChild(task_remind_component_1.TaskRemindComponent), 
+        __metadata('design:type', task_remind_component_1.TaskRemindComponent)
+    ], AppComponent.prototype, "taskRemindComponent", void 0);
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
             templateUrl: 'app/web/views/app.html',
-            entryComponents: [menu_component_1.MenuComponent]
+            entryComponents: [menu_component_1.MenuComponent, navbar_component_1.NavBarComponent, task_remind_component_1.TaskRemindComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

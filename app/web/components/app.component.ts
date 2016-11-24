@@ -1,17 +1,19 @@
 import { Component, AfterViewInit, OnInit, ViewChild } from '@angular/core';
 import { MenuComponent } from '../vendor/components/menu.component';
 import { NavBarComponent } from '../vendor/components/navbar.component';
+import { TaskRemindComponent } from '../vendor/components/task-remind.component';
 import { ComponentConstants } from 'vendor/common';
 
 @Component({
     selector: 'my-app',
     templateUrl: 'app/web/views/app.html',
-    entryComponents: [MenuComponent]
+    entryComponents: [MenuComponent,NavBarComponent,TaskRemindComponent]
 })
 
 export class AppComponent implements AfterViewInit {
     @ViewChild(MenuComponent) menuComponent: MenuComponent;
     @ViewChild(NavBarComponent) navBarComponent: NavBarComponent;
+    @ViewChild(TaskRemindComponent) taskRemindComponent: TaskRemindComponent;
 
     public appOptions: any = {};
 

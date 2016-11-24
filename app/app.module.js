@@ -35,6 +35,7 @@ var search_component_1 = require('./web/components/application/search.component'
 var table_component_1 = require('./web/vendor/components/table.component');
 var menu_component_1 = require('./web/vendor/components/menu.component');
 var navbar_component_1 = require('./web/vendor/components/navbar.component');
+var task_remind_component_1 = require('./web/vendor/components/task-remind.component');
 //vendor directives
 var input_directive_1 = require('./web/vendor/directives/listener/input.directive');
 //service
@@ -66,6 +67,7 @@ var AppModule = (function () {
                 table_component_1.TableComponent,
                 menu_component_1.MenuComponent,
                 navbar_component_1.NavBarComponent,
+                task_remind_component_1.TaskRemindComponent,
                 //自定义组件
                 search_component_1.ApplicationSearchComponent
             ],

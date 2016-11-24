@@ -1,7 +1,18 @@
+@import "compass/css3";
+
+/*
+* variable
+*/
+
 $sort-font-family:'Glyphicons Halflings';
 $sort-default-content:'\e150';
 $sort-asc-content:'\e155';
 $sort-desc-content:'\e156';
+
+/*
+* table
+*/
+
 #table-header-tools {
     margin: 0;
     .form-group {
@@ -16,20 +27,20 @@ $sort-desc-content:'\e156';
         background-color: white;
         &::after {
             font-family: $sort-font-family;
-            opacity: 0.2;
+            @include opacity(0.2);
             content: $sort-default-content;
         }
     }
     .sort-default::after {
-        opacity: 0.2;
+        @include opacity(0.2);
         content: $sort-default-content;
     }
     .sort-asc::after {
-        opacity: 0.5;
+        @include opacity(0.5);
         content: $sort-asc-content;
     }
     .sort-desc::after {
-        opacity: 0.5;
+        @include opacity(0.5);
         content: $sort-desc-content;
     }
 }

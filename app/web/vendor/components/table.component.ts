@@ -5,7 +5,7 @@ import { ComponentConstants, DataSetUtil, BeanUtil, StringUtil } from 'vendor/co
 @Component({
     selector: 'table-component',
     templateUrl: 'app/web/vendor/views/table.html',
-    styleUrls: ['app/web/vendor/css/vendor.css']
+    styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
 })
 
 export class TableComponent implements AfterViewInit {

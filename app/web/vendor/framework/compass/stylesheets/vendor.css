@@ -1,0 +1,59 @@
+@charset "UTF-8";
+/* line 5, ../sass/vendor.scss */
+#table-header-tools {
+  margin: 0;
+}
+/* line 7, ../sass/vendor.scss */
+#table-header-tools .form-group {
+  display: block;
+  float: right;
+}
+
+/* line 14, ../sass/vendor.scss */
+#table-body tr > th {
+  cursor: pointer;
+  background-color: white;
+}
+/* line 17, ../sass/vendor.scss */
+#table-body tr > th::after {
+  font-family: "Glyphicons Halflings";
+  opacity: 0.2;
+  content: "";
+}
+/* line 23, ../sass/vendor.scss */
+#table-body tr > .sort-default::after {
+  opacity: 0.2;
+  content: "";
+}
+/* line 27, ../sass/vendor.scss */
+#table-body tr > .sort-asc::after {
+  opacity: 0.5;
+  content: "";
+}
+/* line 31, ../sass/vendor.scss */
+#table-body tr > .sort-desc::after {
+  opacity: 0.5;
+  content: "";
+}
+
+/* line 37, ../sass/vendor.scss */
+#table-footer-tools {
+  margin: 0;
+}
+/* line 39, ../sass/vendor.scss */
+#table-footer-tools ul {
+  margin: 0;
+}
+/* line 42, ../sass/vendor.scss */
+#table-footer-tools > section {
+  margin-top: 20px;
+}
+/* line 44, ../sass/vendor.scss */
+#table-footer-tools > section:first-child {
+  margin-top: 30px;
+}
+/* line 47, ../sass/vendor.scss */
+#table-footer-tools > section > ul {
+  display: block;
+  float: right;
+}

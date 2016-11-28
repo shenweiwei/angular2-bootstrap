@@ -13,12 +13,12 @@ var menu_component_1 = require('../vendor/components/menu.component');
 var navbar_component_1 = require('../vendor/components/navbar.component');
 var task_remind_component_1 = require('../vendor/components/task-remind.component');
 var common_1 = require('vendor/common');
+var app_options_1 = require('../vendor/app.options');
 var AppComponent = (function () {
-    function AppComponent(el, renderer) {
-        this.appOptions = {};
+    function AppComponent(el, renderer, appOptions) {
+        this.appOptions = appOptions;
     }
     AppComponent.prototype.ngOnInit = function () {
-        this.initClass();
     };
     /**
      * 页面显示完成做一些初始化的事情
@@ -36,21 +36,12 @@ var AppComponent = (function () {
      * @memberOf AppComponent
      */
     AppComponent.prototype.changeClipChevron = function () {
-        if (this.appOptions['clipChevron'] === common_1.ComponentConstants.CLIP_CHEVRON_LEFT) {
-            this.appOptions['clipChevron'] = common_1.ComponentConstants.CLIP_CHEVRON_RIGHT;
+        if (this.appOptions.clipChevron === common_1.ComponentConstants.CLIP_CHEVRON_LEFT) {
+            this.appOptions.clipChevron = common_1.ComponentConstants.CLIP_CHEVRON_RIGHT;
         }
         else {
-            this.appOptions['clipChevron'] = common_1.ComponentConstants.CLIP_CHEVRON_LEFT;
+            this.appOptions.clipChevron = common_1.ComponentConstants.CLIP_CHEVRON_LEFT;
         }
-    };
-    /**
-     *
-     * 初始化样式
-     *
-     * @memberOf AppComponent
-     */
-    AppComponent.prototype.initClass = function () {
-        this.appOptions['clipChevron'] = common_1.ComponentConstants.CLIP_CHEVRON_LEFT;
     };
     __decorate([
         core_1.ViewChild(menu_component_1.MenuComponent), 
@@ -70,7 +61,7 @@ var AppComponent = (function () {
             templateUrl: 'app/web/views/app.html',
             entryComponents: [menu_component_1.MenuComponent, navbar_component_1.NavBarComponent, task_remind_component_1.TaskRemindComponent]
         }), 
-        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer, app_options_1.AppOptions])
     ], AppComponent);
     return AppComponent;
 }());

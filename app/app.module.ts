@@ -44,6 +44,7 @@ import { ApplicationServiceImpl } from './js/com/sgm/dms/ops/services/applicatio
 import { TableOptions } from 'vendor/util';
 import { MenuOptions } from 'vendor/util';
 import { TaskRemindOptions } from 'vendor/util';
+import { AppOptions } from './web/vendor/app.options';
 
 @NgModule({
   imports: [
@@ -79,7 +80,8 @@ import { TaskRemindOptions } from 'vendor/util';
     //扩展类
     TableOptions,
     MenuOptions,
-    TaskRemindOptions
+    TaskRemindOptions,
+    AppOptions
   ],
   bootstrap: [AppComponent]
 })

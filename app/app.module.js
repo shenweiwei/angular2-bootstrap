@@ -46,6 +46,7 @@ var application_service_impl_1 = require('./js/com/sgm/dms/ops/services/applicat
 var util_1 = require('vendor/util');
 var util_2 = require('vendor/util');
 var util_3 = require('vendor/util');
+var app_options_1 = require('./web/vendor/app.options');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -82,7 +83,8 @@ var AppModule = (function () {
                 //扩展类
                 util_1.TableOptions,
                 util_2.MenuOptions,
-                util_3.TaskRemindOptions
+                util_3.TaskRemindOptions,
+                app_options_1.AppOptions
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

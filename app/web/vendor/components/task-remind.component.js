@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var util_1 = require('vendor/util');
+var app_options_1 = require('../app.options');
 var TaskRemindComponent = (function () {
-    function TaskRemindComponent(taskRemindOptions) {
+    function TaskRemindComponent(taskRemindOptions, appOptions) {
         this.taskRemindOptions = taskRemindOptions;
+        this.appOptions = appOptions;
     }
     TaskRemindComponent.prototype.ngOnInit = function () {
         this.virtualData();
@@ -50,15 +52,16 @@ var TaskRemindComponent = (function () {
         }
     };
     TaskRemindComponent.prototype.lockSystem = function () {
-        this.appOptions.isOpenLock = true;
-        this.appOptions.isLocked = false;
+        this.appOptions.isOpenLock = false;
+        this.appOptions.isLocked = true;
+        console.log(this.appOptions);
     };
     TaskRemindComponent = __decorate([
         core_1.Component({
             selector: 'task-remind-component',
             templateUrl: 'app/web/vendor/views/task-remind.html',
         }), 
-        __metadata('design:paramtypes', [util_1.TaskRemindOptions])
+        __metadata('design:paramtypes', [util_1.TaskRemindOptions, app_options_1.AppOptions])
     ], TaskRemindComponent);
     return TaskRemindComponent;
 }());

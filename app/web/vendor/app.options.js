@@ -9,9 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var annotation_1 = require('vendor/annotation');
+var common_1 = require('vendor/common');
 var AppOptions = (function () {
     function AppOptions() {
     }
+    Object.defineProperty(AppOptions.prototype, "isOpenLock", {
+        get: function () {
+            return this._isOpenLock;
+        },
+        set: function (value) {
+            this._isOpenLock = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AppOptions.prototype, "isLocked", {
+        get: function () {
+            return this._isLocked;
+        },
+        set: function (value) {
+            this._isLocked = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AppOptions.prototype, "clipChevron", {
+        get: function () {
+            return this._clipChevron;
+        },
+        set: function (value) {
+            this._clipChevron = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     __decorate([
         annotation_1.value.Default(true), 
         __metadata('design:type', Boolean)
@@ -20,6 +51,10 @@ var AppOptions = (function () {
         annotation_1.value.Default(false), 
         __metadata('design:type', Boolean)
     ], AppOptions.prototype, "_isLocked", void 0);
+    __decorate([
+        annotation_1.value.Default(common_1.ComponentConstants.CLIP_CHEVRON_LEFT), 
+        __metadata('design:type', String)
+    ], AppOptions.prototype, "_clipChevron", void 0);
     return AppOptions;
 }());
 exports.AppOptions = AppOptions;

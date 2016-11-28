@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskRemindOptions, TaskItem, ArrayList, NotificationItem, MessageItem } from 'vendor/util';
+import { AppOptions} from '../app.options';
 
 @Component({
     selector: 'task-remind-component',
@@ -11,7 +12,7 @@ export class TaskRemindComponent implements OnInit {
     public notificationItemList: ArrayList<NotificationItem>;
     public messageItemList: ArrayList<MessageItem>;
 
-    constructor(public taskRemindOptions: TaskRemindOptions) {
+    constructor(public taskRemindOptions: TaskRemindOptions,public appOptions:AppOptions) {
     }
 
     ngOnInit(): void {
@@ -54,7 +55,8 @@ export class TaskRemindComponent implements OnInit {
     }
 
     lockSystem():void{
-        this.appOptions.isOpenLock=true;
-        this.appOptions.isLocked=false;
+        this.appOptions.isOpenLock=false;
+        this.appOptions.isLocked=true;
+        console.log(this.appOptions);
     }
 }

@@ -54,6 +54,7 @@ var TaskRemindComponent = (function () {
     TaskRemindComponent.prototype.lockSystem = function () {
         this.appOptions.isOpenLock = false;
         this.appOptions.isLocked = true;
+        $('body').attr("class");
         console.log(this.appOptions);
     };
     TaskRemindComponent = __decorate([

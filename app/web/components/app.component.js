@@ -17,6 +17,7 @@ var app_options_1 = require('../vendor/app.options');
 var AppComponent = (function () {
     function AppComponent(el, renderer, appOptions) {
         this.appOptions = appOptions;
+        console.log(el.nativeElement);
     }
     AppComponent.prototype.ngOnInit = function () {
     };

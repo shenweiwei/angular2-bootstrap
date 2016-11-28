@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TaskRemindOptions, TaskItem, ArrayList, NotificationItem, MessageItem } from 'vendor/util';
 import { AppOptions} from '../app.options';
 
+declare const $: any;
+
 @Component({
     selector: 'task-remind-component',
     templateUrl: 'app/web/vendor/views/task-remind.html',
@@ -57,6 +59,8 @@ export class TaskRemindComponent implements OnInit {
     lockSystem():void{
         this.appOptions.isOpenLock=false;
         this.appOptions.isLocked=true;
+
+        $('body').attr("class",);
         console.log(this.appOptions);
     }
 }

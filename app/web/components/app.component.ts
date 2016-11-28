@@ -5,8 +5,6 @@ import { TaskRemindComponent } from '../vendor/components/task-remind.component'
 import { ComponentConstants } from 'vendor/common';
 import { AppOptions } from '../vendor/app.options';
 
-declare const $: any;
-
 @Component({
     selector: 'my-app',
     templateUrl: 'app/web/views/app.html',
@@ -19,6 +17,7 @@ export class AppComponent implements AfterViewInit {
     @ViewChild(TaskRemindComponent) taskRemindComponent: TaskRemindComponent;
 
     constructor(el: ElementRef, renderer: Renderer, public appOptions: AppOptions) {
+        console.log(el.nativeElement
     }
 
     ngOnInit(): void {

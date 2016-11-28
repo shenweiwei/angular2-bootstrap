@@ -1,5 +1,4 @@
 <!-- start: HEADER -->
-{{appOptions.isOpenLock}}
 <article *ngIf="appOptions.isOpenLock">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <!-- start: TOP NAVIGATION CONTAINER -->
@@ -279,13 +278,13 @@
         </div>
     </div>
 </article>
-<article *ngIf="appOptions.isLocked" class="lock-screen">
+<article *ngIf="appOptions.isLocked" [ngClass]="{lock-screen: appOptions.isLocked}">
     <div class="main-ls">
         <div class="logo">
             SGM<i class="clip-clip"></i>FOL
         </div>
         <div class="box-ls">
-            <img alt="" src="../assets/images/avatar-1-xl.jpg" />
+            <img alt="" src="app/web/assets/images/avatar-1-xl.jpg" />
             <div class="user-info">
                 <h1><i class="fa fa-lock"></i> Peter Clark</h1>
                 <span>peter@example.com</span>

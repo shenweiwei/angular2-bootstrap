@@ -1,13 +1,15 @@
-import { Component, AfterViewInit, OnInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { MenuComponent } from '../vendor/components/menu.component';
 import { NavBarComponent } from '../vendor/components/navbar.component';
 import { TaskRemindComponent } from '../vendor/components/task-remind.component';
 import { ComponentConstants } from 'vendor/common';
 
+declare const $: any;
+
 @Component({
     selector: 'my-app',
     templateUrl: 'app/web/views/app.html',
-    entryComponents: [MenuComponent,NavBarComponent,TaskRemindComponent]
+    entryComponents: [MenuComponent, NavBarComponent, TaskRemindComponent]
 })
 
 export class AppComponent implements AfterViewInit {
@@ -16,6 +18,9 @@ export class AppComponent implements AfterViewInit {
     @ViewChild(TaskRemindComponent) taskRemindComponent: TaskRemindComponent;
 
     public appOptions: any = {};
+
+    constructor(el: ElementRef, renderer: Renderer) {
+    }
 
     ngOnInit(): void {
         this.initClass();

@@ -5,90 +5,20 @@
         <li class="dropdown">
             <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
                 <i class="clip-list-5"></i>
-                <span class="badge"> 12 </span>
+                <span class="badge"> {{taskItemList.getSize()}} </span>
             </a>
             <ul class="dropdown-menu todo">
                 <li>
-                    <span class="dropdown-menu-title"> 你有 12 将要操作的任务</span>
+                    <span class="dropdown-menu-title"> 你有 {{taskItemList.getSize()}} 将要操作的任务</span>
                 </li>
                 <li>
                     <div class="drop-down-wrapper">
                         <ul>
-                            <li>
+                            <li *ngFor="let taskItem of taskItemList.toArray()">
                                 <a class="todo-actions" href="javascript:void(0)">
                                     <i class="fa fa-square-o"></i>
-                                    <span class="desc" style="opacity: 1; text-decoration: none;">Staff Meeting</span>
-                                    <span class="label label-danger" style="opacity: 1;"> today</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="todo-actions" href="javascript:void(0)">
-                                    <i class="fa fa-square-o"></i>
-                                    <span class="desc" style="opacity: 1; text-decoration: none;"> New frontend layout</span>
-                                    <span class="label label-danger" style="opacity: 1;"> today</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="todo-actions" href="javascript:void(0)">
-                                    <i class="fa fa-square-o"></i>
-                                    <span class="desc"> Hire developers</span>
-                                    <span class="label label-warning"> tommorow</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="todo-actions" href="javascript:void(0)">
-                                    <i class="fa fa-square-o"></i>
-                                    <span class="desc">Staff Meeting</span>
-                                    <span class="label label-warning"> tommorow</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="todo-actions" href="javascript:void(0)">
-                                    <i class="fa fa-square-o"></i>
-                                    <span class="desc"> New frontend layout</span>
-                                    <span class="label label-success"> this week</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="todo-actions" href="javascript:void(0)">
-                                    <i class="fa fa-square-o"></i>
-                                    <span class="desc"> Hire developers</span>
-                                    <span class="label label-success"> this week</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="todo-actions" href="javascript:void(0)">
-                                    <i class="fa fa-square-o"></i>
-                                    <span class="desc"> New frontend layout</span>
-                                    <span class="label label-info"> this month</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="todo-actions" href="javascript:void(0)">
-                                    <i class="fa fa-square-o"></i>
-                                    <span class="desc"> Hire developers</span>
-                                    <span class="label label-info"> this month</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="todo-actions" href="javascript:void(0)">
-                                    <i class="fa fa-square-o"></i>
-                                    <span class="desc" style="opacity: 1; text-decoration: none;">Staff Meeting</span>
-                                    <span class="label label-danger" style="opacity: 1;"> today</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="todo-actions" href="javascript:void(0)">
-                                    <i class="fa fa-square-o"></i>
-                                    <span class="desc" style="opacity: 1; text-decoration: none;"> New frontend layout</span>
-                                    <span class="label label-danger" style="opacity: 1;"> today</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="todo-actions" href="javascript:void(0)">
-                                    <i class="fa fa-square-o"></i>
-                                    <span class="desc"> Hire developers</span>
-                                    <span class="label label-warning"> tommorow</span>
+                                    <span class="desc">{{taskItem.desc}}</span>
+                                    <span class="label" [ngClass]="taskItem.pendingLevel"> {{taskItem.pendingLevelOfDay}}</span>
                                 </a>
                             </li>
                         </ul>
@@ -96,8 +26,9 @@
                 </li>
                 <li class="view-all">
                     <a href="javascript:void(0)">
-										See all tasks <i class="fa fa-arrow-circle-o-right"></i>
-									</a>
+						See all tasks 
+                        <i class="fa fa-arrow-circle-o-right"></i>
+					</a>
                 </li>
             </ul>
         </li>
@@ -106,104 +37,22 @@
         <li class="dropdown">
             <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
                 <i class="clip-notification-2"></i>
-                <span class="badge"> 11</span>
+                <span class="badge"> {{notificationItemList.getSize()}}</span>
             </a>
             <ul class="dropdown-menu notifications">
                 <li>
-                    <span class="dropdown-menu-title"> You have 11 notifications</span>
+                    <span class="dropdown-menu-title"> 你有 {{notificationItemList.getSize()}} 操作记录</span>
                 </li>
                 <li>
                     <div class="drop-down-wrapper">
                         <ul>
-                            <li>
+                            <li *ngFor="let notificationItem of notificationItemList.toArray()">
                                 <a href="javascript:void(0)">
-                                    <span class="label label-primary"><i class="fa fa-user"></i></span>
-                                    <span class="message"> New user registration</span>
-                                    <span class="time"> 1 min</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <span class="label label-success"><i class="fa fa-comment"></i></span>
-                                    <span class="message"> New comment</span>
-                                    <span class="time"> 7 min</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <span class="label label-success"><i class="fa fa-comment"></i></span>
-                                    <span class="message"> New comment</span>
-                                    <span class="time"> 8 min</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <span class="label label-success"><i class="fa fa-comment"></i></span>
-                                    <span class="message"> New comment</span>
-                                    <span class="time"> 16 min</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <span class="label label-primary"><i class="fa fa-user"></i></span>
-                                    <span class="message"> New user registration</span>
-                                    <span class="time"> 36 min</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <span class="label label-warning"><i class="fa fa-shopping-cart"></i></span>
-                                    <span class="message"> 2 items sold</span>
-                                    <span class="time"> 1 hour</span>
-                                </a>
-                            </li>
-                            <li class="warning">
-                                <a href="javascript:void(0)">
-                                    <span class="label label-danger"><i class="fa fa-user"></i></span>
-                                    <span class="message"> User deleted account</span>
-                                    <span class="time"> 2 hour</span>
-                                </a>
-                            </li>
-                            <li class="warning">
-                                <a href="javascript:void(0)">
-                                    <span class="label label-danger"><i class="fa fa-shopping-cart"></i></span>
-                                    <span class="message"> Transaction was canceled</span>
-                                    <span class="time"> 6 hour</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <span class="label label-success"><i class="fa fa-comment"></i></span>
-                                    <span class="message"> New comment</span>
-                                    <span class="time"> yesterday</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <span class="label label-primary"><i class="fa fa-user"></i></span>
-                                    <span class="message"> New user registration</span>
-                                    <span class="time"> yesterday</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <span class="label label-primary"><i class="fa fa-user"></i></span>
-                                    <span class="message"> New user registration</span>
-                                    <span class="time"> yesterday</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <span class="label label-success"><i class="fa fa-comment"></i></span>
-                                    <span class="message"> New comment</span>
-                                    <span class="time"> yesterday</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <span class="label label-success"><i class="fa fa-comment"></i></span>
-                                    <span class="message"> New comment</span>
-                                    <span class="time"> yesterday</span>
+                                    <span class="label label-primary">
+                                        <i class="fa" [ngClass]="notificationItem.icon"></i>
+                                    </span>
+                                    <span class="message">{{notificationItem.desc}}</span>
+                                    <span class="time"> {{notificationItem.operateTime}}</span>
                                 </a>
                             </li>
                         </ul>
@@ -211,8 +60,9 @@
                 </li>
                 <li class="view-all">
                     <a href="javascript:void(0)">
-										See all notifications <i class="fa fa-arrow-circle-o-right"></i>
-									</a>
+						See all notifications 
+                        <i class="fa fa-arrow-circle-o-right"></i>
+					</a>
                 </li>
             </ul>
         </li>
@@ -221,81 +71,25 @@
         <li class="dropdown">
             <a class="dropdown-toggle" data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#">
                 <i class="clip-bubble-3"></i>
-                <span class="badge"> 9</span>
+                <span class="badge"> {{messageItemList.getSize()}} </span>
             </a>
             <ul class="dropdown-menu posts">
                 <li>
-                    <span class="dropdown-menu-title"> You have 9 messages</span>
+                    <span class="dropdown-menu-title"> 你有 {{messageItemList.getSize()}} 信息</span>
                 </li>
                 <li>
                     <div class="drop-down-wrapper">
                         <ul>
-                            <li>
+                            <li *ngFor="let messageItem of messageItemList.toArray()">
                                 <a href="javascript:;">
                                     <div class="clearfix">
                                         <div class="thread-image">
-                                            <img alt="" src="app/web/assets/images/avatar-2.jpg">
+                                            <img alt="pic" src={{messageItem.userPicUrl}}>
                                         </div>
                                         <div class="thread-content">
-                                            <span class="author">Nicole Bell</span>
-                                            <span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</span>
-                                            <span class="time"> Just Now</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <div class="clearfix">
-                                        <div class="thread-image">
-                                            <img alt="" src="app/web/assets/images/avatar-1.jpg">
-                                        </div>
-                                        <div class="thread-content">
-                                            <span class="author">Peter Clark</span>
-                                            <span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</span>
-                                            <span class="time">2 mins</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <div class="clearfix">
-                                        <div class="thread-image">
-                                            <img alt="" src="app/web/assets/images/avatar-3.jpg">
-                                        </div>
-                                        <div class="thread-content">
-                                            <span class="author">Steven Thompson</span>
-                                            <span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</span>
-                                            <span class="time">8 hrs</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <div class="clearfix">
-                                        <div class="thread-image">
-                                            <img alt="" src="app/web/assets/images/avatar-1.jpg">
-                                        </div>
-                                        <div class="thread-content">
-                                            <span class="author">Peter Clark</span>
-                                            <span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</span>
-                                            <span class="time">9 hrs</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <div class="clearfix">
-                                        <div class="thread-image">
-                                            <img alt="" src="app/web/assets/images/avatar-5.jpg">
-                                        </div>
-                                        <div class="thread-content">
-                                            <span class="author">Kenneth Ross</span>
-                                            <span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</span>
-                                            <span class="time">14 hrs</span>
+                                            <span class="author">{{messageItem.userName}}</span>
+                                            <span class="preview">{{messageItem.message}}</span>
+                                            <span class="time"> {{messageItem.messageTime}}</span>
                                         </div>
                                     </div>
                                 </a>
@@ -305,8 +99,9 @@
                 </li>
                 <li class="view-all">
                     <a href="pages_messages.html">
-										See all messages <i class="fa fa-arrow-circle-o-right"></i>
-									</a>
+						See all messages 
+                        <i class="fa fa-arrow-circle-o-right"></i>
+					</a>
                 </li>
             </ul>
         </li>
@@ -334,7 +129,7 @@
                         </a>
                     </li>
                     <li class="divider"></li>
-                    <li>
+                    <li ng-click="lockSystem">
                         <a href="utility_lock_screen.html"><i class="clip-locked"></i>
 										&nbsp;Lock Screen </a>
                     </li>

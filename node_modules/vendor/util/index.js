@@ -5,5 +5,6 @@ function __export(m) {
 __export(require('./collection'));
 __export(require('./table'));
 __export(require('./menu'));
-__export(require('./navbar/navbar.item'));
+__export(require('./navbar'));
+__export(require('./task-remind'));
 //# sourceMappingURL=index.js.map

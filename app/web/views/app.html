@@ -1,278 +1,311 @@
 <!-- start: HEADER -->
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <!-- start: TOP NAVIGATION CONTAINER -->
-    <div class="container">
-        <div class="navbar-header">
-            <!-- start: RESPONSIVE MENU TOGGLER -->
-            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+<article *ngIf="appOptions.isOpenLock">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <!-- start: TOP NAVIGATION CONTAINER -->
+        <div class="container">
+            <div class="navbar-header">
+                <!-- start: RESPONSIVE MENU TOGGLER -->
+                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
 						<span class="clip-list-2"></span>
 					</button>
-            <!-- end: RESPONSIVE MENU TOGGLER -->
-            <!-- start: LOGO -->
-            <a class="navbar-brand" href="index.html">
+                <!-- end: RESPONSIVE MENU TOGGLER -->
+                <!-- start: LOGO -->
+                <a class="navbar-brand" href="index.html">
 						SGM<i class="clip-clip"></i>FOL
 					</a>
-            <!-- end: LOGO -->
-        </div>
-        <task-remind-component></task-remind-component>
-    </div>
-</div>
-<!-- end: HEADER -->
-<!-- start: MAIN CONTAINER -->
-<div class="main-container">
-    <div class="navbar-content">
-        <!-- start: SIDEBAR -->
-        <div class="main-navigation navbar-collapse collapse">
-            <!-- start: MAIN MENU TOGGLER BUTTON -->
-            <div class="navigation-toggler" (click)="changeClipChevron()">
-                <i class={{appOptions.clipChevron}}> </i>
+                <!-- end: LOGO -->
             </div>
-            <!-- end: MAIN MENU TOGGLER BUTTON -->
-            <menu-component></menu-component>
+            <task-remind-component></task-remind-component>
         </div>
-        <!-- end: SIDEBAR -->
     </div>
-    <!-- start: PAGE -->
-    <div class="main-content">
-        <!-- start: PANEL CONFIGURATION MODAL FORM -->
-        <div class="modal fade" id="panel-config" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    <!-- end: HEADER -->
+    <!-- start: MAIN CONTAINER -->
+    <div class="main-container">
+        <div class="navbar-content">
+            <!-- start: SIDEBAR -->
+            <div class="main-navigation navbar-collapse collapse">
+                <!-- start: MAIN MENU TOGGLER BUTTON -->
+                <div class="navigation-toggler" (click)="changeClipChevron()">
+                    <i class={{appOptions.clipChevron}}> </i>
+                </div>
+                <!-- end: MAIN MENU TOGGLER BUTTON -->
+                <menu-component></menu-component>
+            </div>
+            <!-- end: SIDEBAR -->
+        </div>
+        <!-- start: PAGE -->
+        <div class="main-content">
+            <!-- start: PANEL CONFIGURATION MODAL FORM -->
+            <div class="modal fade" id="panel-config" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									&times;
 								</button>
-                        <h4 class="modal-title">Panel Configuration</h4>
-                    </div>
-                    <div class="modal-body">
-                        Here will be a configuration form
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            <h4 class="modal-title">Panel Configuration</h4>
+                        </div>
+                        <div class="modal-body">
+                            Here will be a configuration form
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
 									Close
 								</button>
-                        <button type="button" class="btn btn-primary">
+                            <button type="button" class="btn btn-primary">
 									Save changes
 								</button>
+                        </div>
                     </div>
+                    <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-content -->
+                <!-- /.modal-dialog -->
             </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-        <!-- end: SPANEL CONFIGURATION MODAL FORM -->
-        <div class="container">
-            <!-- start: PAGE HEADER -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <!-- start: STYLE SELECTOR BOX -->
-                    <div id="style_selector" class="hidden-xs">
-                        <div id="style_selector_container" style="display: none;">
-                            <div class="style-main-title">
-                                Style Selector
-                            </div>
-                            <div class="box-title">
-                                Choose Your Layout Style
-                            </div>
-                            <div class="input-box">
-                                <div class="input">
-                                    <select name="layout">
+            <!-- /.modal -->
+            <!-- end: SPANEL CONFIGURATION MODAL FORM -->
+            <div class="container">
+                <!-- start: PAGE HEADER -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- start: STYLE SELECTOR BOX -->
+                        <div id="style_selector" class="hidden-xs">
+                            <div id="style_selector_container" style="display: none;">
+                                <div class="style-main-title">
+                                    Style Selector
+                                </div>
+                                <div class="box-title">
+                                    Choose Your Layout Style
+                                </div>
+                                <div class="input-box">
+                                    <div class="input">
+                                        <select name="layout">
 												<option value="default">Wide</option><option value="boxed">Boxed</option>
 											</select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="box-title">
-                                Choose Your Header Style
-                            </div>
-                            <div class="input-box">
-                                <div class="input">
-                                    <select name="header">
+                                <div class="box-title">
+                                    Choose Your Header Style
+                                </div>
+                                <div class="input-box">
+                                    <div class="input">
+                                        <select name="header">
 												<option value="fixed">Fixed</option><option value="default">Default</option>
 											</select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="box-title">
-                                Choose Your Footer Style
-                            </div>
-                            <div class="input-box">
-                                <div class="input">
-                                    <select name="footer">
+                                <div class="box-title">
+                                    Choose Your Footer Style
+                                </div>
+                                <div class="input-box">
+                                    <div class="input">
+                                        <select name="footer">
 												<option value="default">Default</option><option value="fixed">Fixed</option>
 											</select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="box-title">
-                                Backgrounds for Boxed Version
-                            </div>
-                            <div class="images boxed-patterns">
-                                <a id="bg_style_1" href="#"><img alt="" src="app/web/assets/images/bg.png"></a>
-                                <a id="bg_style_2" href="#"><img alt="" src="app/web/assets/images/bg_2.png"></a>
-                                <a id="bg_style_3" href="#"><img alt="" src="app/web/assets/images/bg_3.png"></a>
-                                <a id="bg_style_4" href="#"><img alt="" src="app/web/assets/images/bg_4.png"></a>
-                                <a id="bg_style_5" href="#"><img alt="" src="app/web/assets/images/bg_5.png"></a>
-                            </div>
-                            <div class="box-title">
-                                5 Predefined Color Schemes
-                            </div>
-                            <div class="images icons-color">
-                                <a id="light" href="javascript:void(0)"><img class="active" alt="" src="app/web/assets/images/lightgrey.png"></a>
-                                <a id="dark" href="javascript:void(0)"><img alt="" src="app/web/assets/images/darkgrey.png"></a>
-                                <a id="black_and_white" href="javascript:void(0)"><img alt="" src="app/web/assets/images/blackandwhite.png"></a>
-                                <a id="navy" href="javascript:void(0)"><img alt="" src="app/web/assets/images/navy.png"></a>
-                                <a id="green" href="javascript:void(0)"><img alt="" src="app/web/assets/images/green.png"></a>
-                            </div>
-                            <div class="box-title">
-                                Style it with LESS
-                            </div>
-                            <div class="images">
-                                <div class="form-group">
-                                    <label>
+                                <div class="box-title">
+                                    Backgrounds for Boxed Version
+                                </div>
+                                <div class="images boxed-patterns">
+                                    <a id="bg_style_1" href="#"><img alt="" src="app/web/assets/images/bg.png"></a>
+                                    <a id="bg_style_2" href="#"><img alt="" src="app/web/assets/images/bg_2.png"></a>
+                                    <a id="bg_style_3" href="#"><img alt="" src="app/web/assets/images/bg_3.png"></a>
+                                    <a id="bg_style_4" href="#"><img alt="" src="app/web/assets/images/bg_4.png"></a>
+                                    <a id="bg_style_5" href="#"><img alt="" src="app/web/assets/images/bg_5.png"></a>
+                                </div>
+                                <div class="box-title">
+                                    5 Predefined Color Schemes
+                                </div>
+                                <div class="images icons-color">
+                                    <a id="light" href="javascript:void(0)"><img class="active" alt="" src="app/web/assets/images/lightgrey.png"></a>
+                                    <a id="dark" href="javascript:void(0)"><img alt="" src="app/web/assets/images/darkgrey.png"></a>
+                                    <a id="black_and_white" href="javascript:void(0)"><img alt="" src="app/web/assets/images/blackandwhite.png"></a>
+                                    <a id="navy" href="javascript:void(0)"><img alt="" src="app/web/assets/images/navy.png"></a>
+                                    <a id="green" href="javascript:void(0)"><img alt="" src="app/web/assets/images/green.png"></a>
+                                </div>
+                                <div class="box-title">
+                                    Style it with LESS
+                                </div>
+                                <div class="images">
+                                    <div class="form-group">
+                                        <label>
 												Basic
 											</label>
-                                    <input type="text" value="#ffffff" class="color-base">
-                                    <div class="dropdown">
-                                        <a class="add-on dropdown-toggle" data-toggle="dropdown"><i style="background-color: #ffffff"></i></a>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <div class="colorpalette"></div>
-                                            </li>
-                                        </ul>
+                                        <input type="text" value="#ffffff" class="color-base">
+                                        <div class="dropdown">
+                                            <a class="add-on dropdown-toggle" data-toggle="dropdown"><i style="background-color: #ffffff"></i></a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li>
+                                                    <div class="colorpalette"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>
+                                    <div class="form-group">
+                                        <label>
 												Text
 											</label>
-                                    <input type="text" value="#555555" class="color-text">
-                                    <div class="dropdown">
-                                        <a class="add-on dropdown-toggle" data-toggle="dropdown"><i style="background-color: #555555"></i></a>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <div class="colorpalette"></div>
-                                            </li>
-                                        </ul>
+                                        <input type="text" value="#555555" class="color-text">
+                                        <div class="dropdown">
+                                            <a class="add-on dropdown-toggle" data-toggle="dropdown"><i style="background-color: #555555"></i></a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li>
+                                                    <div class="colorpalette"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>
+                                    <div class="form-group">
+                                        <label>
 												Elements
 											</label>
-                                    <input type="text" value="#007AFF" class="color-badge">
-                                    <div class="dropdown">
-                                        <a class="add-on dropdown-toggle" data-toggle="dropdown"><i style="background-color: #007AFF"></i></a>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <div class="colorpalette"></div>
-                                            </li>
-                                        </ul>
+                                        <input type="text" value="#007AFF" class="color-badge">
+                                        <div class="dropdown">
+                                            <a class="add-on dropdown-toggle" data-toggle="dropdown"><i style="background-color: #007AFF"></i></a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li>
+                                                    <div class="colorpalette"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div style="height:25px;line-height:25px; text-align: center">
-                                <a class="clear_style" href="#">
+                                <div style="height:25px;line-height:25px; text-align: center">
+                                    <a class="clear_style" href="#">
 											Clear Styles
 										</a>
-                                <a class="save_style" href="#">
+                                    <a class="save_style" href="#">
 											Save Styles
 										</a>
+                                </div>
                             </div>
+                            <div class="style-toggle close"></div>
                         </div>
-                        <div class="style-toggle close"></div>
+                        <!-- end: STYLE SELECTOR BOX -->
+                        <!-- start: PAGE TITLE & BREADCRUMB -->
+                        <navbar-component></navbar-component>
+                        <div class="page-header">
+                            <h1>Dashboard <small>overview &amp; stats </small></h1>
+                        </div>
+                        <!-- end: PAGE TITLE & BREADCRUMB -->
                     </div>
-                    <!-- end: STYLE SELECTOR BOX -->
-                    <!-- start: PAGE TITLE & BREADCRUMB -->
-                    <navbar-component></navbar-component>
-                    <div class="page-header">
-                        <h1>Dashboard <small>overview &amp; stats </small></h1>
-                    </div>
-                    <!-- end: PAGE TITLE & BREADCRUMB -->
                 </div>
+                <!-- end: PAGE HEADER -->
+                <!-- start: PAGE CONTENT -->
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="core-box">
+                            <div class="heading">
+                                <i class="clip-user-4 circle-icon circle-green"></i>
+                                <h2>Manage Users</h2>
+                            </div>
+                            <div class="content">
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                            </div>
+                            <a class="view-more" href="#">
+									View More <i class="clip-arrow-right-2"></i>
+								</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="core-box">
+                            <div class="heading">
+                                <i class="clip-clip circle-icon circle-teal"></i>
+                                <h2>Manage Orders</h2>
+                            </div>
+                            <div class="content">
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                            </div>
+                            <a class="view-more" href="#">
+									View More <i class="clip-arrow-right-2"></i>
+								</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="core-box">
+                            <div class="heading">
+                                <i class="clip-database circle-icon circle-bricky"></i>
+                                <h2>Manage Data</h2>
+                            </div>
+                            <div class="content">
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                            </div>
+                            <a class="view-more" href="#">
+									View More <i class="clip-arrow-right-2"></i>
+								</a>
+                        </div>
+                    </div>
+                </div>
+                <router-outlet></router-outlet>
+                <!-- end: PAGE CONTENT-->
             </div>
-            <!-- end: PAGE HEADER -->
-            <!-- start: PAGE CONTENT -->
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="core-box">
-                        <div class="heading">
-                            <i class="clip-user-4 circle-icon circle-green"></i>
-                            <h2>Manage Users</h2>
-                        </div>
-                        <div class="content">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                        </div>
-                        <a class="view-more" href="#">
-									View More <i class="clip-arrow-right-2"></i>
-								</a>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="core-box">
-                        <div class="heading">
-                            <i class="clip-clip circle-icon circle-teal"></i>
-                            <h2>Manage Orders</h2>
-                        </div>
-                        <div class="content">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                        </div>
-                        <a class="view-more" href="#">
-									View More <i class="clip-arrow-right-2"></i>
-								</a>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="core-box">
-                        <div class="heading">
-                            <i class="clip-database circle-icon circle-bricky"></i>
-                            <h2>Manage Data</h2>
-                        </div>
-                        <div class="content">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                        </div>
-                        <a class="view-more" href="#">
-									View More <i class="clip-arrow-right-2"></i>
-								</a>
-                    </div>
-                </div>
-            </div>
-            <router-outlet></router-outlet>
-            <!-- end: PAGE CONTENT-->
+        </div>
+        <!-- end: PAGE -->
+    </div>
+    <!-- end: MAIN CONTAINER -->
+    <!-- start: FOOTER -->
+    <div class="footer clearfix">
+        <div class="footer-inner">
+            2014 &copy; clip-one by cliptheme.
+        </div>
+        <div class="footer-items">
+            <span class="go-top"><i class="clip-chevron-up"></i></span>
         </div>
     </div>
-    <!-- end: PAGE -->
-</div>
-<!-- end: MAIN CONTAINER -->
-<!-- start: FOOTER -->
-<div class="footer clearfix">
-    <div class="footer-inner">
-        2014 &copy; clip-one by cliptheme.
-    </div>
-    <div class="footer-items">
-        <span class="go-top"><i class="clip-chevron-up"></i></span>
-    </div>
-</div>
-<!-- end: FOOTER -->
-<div id="event-management" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    <!-- end: FOOTER -->
+    <div id="event-management" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 							&times;
 						</button>
-                <h4 class="modal-title">Event Management</h4>
-            </div>
-            <div class="modal-body"></div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-light-grey">
+                    <h4 class="modal-title">Event Management</h4>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-light-grey">
 							Close
 						</button>
-                <button type="button" class="btn btn-danger remove-event no-display">
+                    <button type="button" class="btn btn-danger remove-event no-display">
 							<i class='fa fa-trash-o'></i> Delete Event
 						</button>
-                <button type='submit' class='btn btn-success save-event'>
+                    <button type='submit' class='btn btn-success save-event'>
 							<i class='fa fa-check'></i> Save
 						</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</article>
+<article *ngIf="appOptions.isLocked" class="lock-screen">
+    <div class="main-ls">
+        <div class="logo">
+            CLIP<i class="clip-clip"></i>ONE
+        </div>
+        <div class="box-ls">
+            <img alt="" src="assets/images/avatar-1-xl.jpg" />
+            <div class="user-info">
+                <h1><i class="fa fa-lock"></i> Peter Clark</h1>
+                <span>peter@example.com</span>
+                <span><em>Please enter your password to un-lock.</em></span>
+                <form action="index.html">
+                    <div class="input-group">
+                        <input type="text" placeholder="Password" class="form-control">
+                        <span class="input-group-btn">
+								<button class="btn btn-blue" type="submit">
+									<i class="fa fa-chevron-right"></i>
+								</button> </span>
+                    </div>
+                    <div class="relogin">
+                        <a href="login_example1.html">
+								Not Peter Clark?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            2014 &copy; clip-one by cliptheme.
+        </div>
+    </div>
+</article>

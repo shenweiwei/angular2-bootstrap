@@ -14,7 +14,7 @@ var navbar_component_1 = require('../vendor/components/navbar.component');
 var task_remind_component_1 = require('../vendor/components/task-remind.component');
 var common_1 = require('vendor/common');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(el, renderer) {
         this.appOptions = {};
     }
     AppComponent.prototype.ngOnInit = function () {
@@ -70,7 +70,7 @@ var AppComponent = (function () {
             templateUrl: 'app/web/views/app.html',
             entryComponents: [menu_component_1.MenuComponent, navbar_component_1.NavBarComponent, task_remind_component_1.TaskRemindComponent]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
     ], AppComponent);
     return AppComponent;
 }());

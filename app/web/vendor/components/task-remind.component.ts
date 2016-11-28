@@ -56,11 +56,13 @@ export class TaskRemindComponent implements OnInit {
         }
     }
 
+    /**
+     * 系统锁屏 
+     * 
+     * @memberOf TaskRemindComponent
+     */
     lockSystem():void{
         this.appOptions.isOpenLock=false;
         this.appOptions.isLocked=true;
-
-        $('body').attr("class",);
-        console.log(this.appOptions);
     }
 }

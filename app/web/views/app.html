@@ -1,5 +1,5 @@
 <!-- start: HEADER -->
-<article *ngIf="appOptions.isOpenLock">
+<article [hidden]="!appOptions.isOpenLock">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <!-- start: TOP NAVIGATION CONTAINER -->
         <div class="container">
@@ -278,13 +278,13 @@
         </div>
     </div>
 </article>
-<article *ngIf="appOptions.isLocked" [ngClass]="{lock-screen: appOptions.isLocked}">
+<article [hidden]="!appOptions.isLocked" [ngClass]="{'lock-screen': appOptions.isLocked}">
     <div class="main-ls">
         <div class="logo">
             SGM<i class="clip-clip"></i>FOL
         </div>
         <div class="box-ls">
-            <img alt="" src="app/web/assets/images/avatar-1-xl.jpg" />
+            <img alt="IMG" src="app/web/assets/images/avatar-1-xl.jpg" />
             <div class="user-info">
                 <h1><i class="fa fa-lock"></i> Peter Clark</h1>
                 <span>peter@example.com</span>
@@ -293,7 +293,7 @@
                     <div class="input-group">
                         <input type="text" placeholder="Password" class="form-control">
                         <span class="input-group-btn">
-								<button class="btn btn-blue" type="submit">
+								<button class="btn btn-blue" type="button" (click)="openSysLock()">
 									<i class="fa fa-chevron-right"></i>
 								</button> </span>
                     </div>
@@ -305,7 +305,7 @@
             </div>
         </div>
         <div class="copyright">
-            2016 &copy; sgm-fol by cliptheme.
+            2016 &copy; SGM-FOL by cliptheme.
         </div>
     </div>
 </article>

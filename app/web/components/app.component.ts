@@ -12,12 +12,14 @@ import { AppOptions } from '../vendor/app.options';
 })
 
 export class AppComponent implements AfterViewInit {
-    @ViewChild(MenuComponent) menuComponent: MenuComponent;
-    @ViewChild(NavBarComponent) navBarComponent: NavBarComponent;
-    @ViewChild(TaskRemindComponent) taskRemindComponent: TaskRemindComponent;
+    @ViewChild(MenuComponent) 
+    public menuComponent: MenuComponent;
+    @ViewChild(NavBarComponent) 
+    public navBarComponent: NavBarComponent;
+    @ViewChild(TaskRemindComponent) 
+    public taskRemindComponent: TaskRemindComponent;
 
     constructor(el: ElementRef, renderer: Renderer, public appOptions: AppOptions) {
-        console.log(el.nativeElement
     }
 
     ngOnInit(): void {
@@ -45,6 +47,17 @@ export class AppComponent implements AfterViewInit {
         } else {
             this.appOptions.clipChevron = ComponentConstants.CLIP_CHEVRON_LEFT
         }
+    }
+
+    /**
+     * 打开系统锁屏
+     * 
+     * @memberOf AppComponent
+     */
+    openSysLock():void{
+        this.appOptions.isOpenLock=true;
+        this.appOptions.isLocked=false;
+
     }
 
 }

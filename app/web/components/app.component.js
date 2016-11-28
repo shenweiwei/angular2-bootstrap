@@ -17,7 +17,6 @@ var app_options_1 = require('../vendor/app.options');
 var AppComponent = (function () {
     function AppComponent(el, renderer, appOptions) {
         this.appOptions = appOptions;
-        console.log(el.nativeElement);
     }
     AppComponent.prototype.ngOnInit = function () {
     };
@@ -43,6 +42,15 @@ var AppComponent = (function () {
         else {
             this.appOptions.clipChevron = common_1.ComponentConstants.CLIP_CHEVRON_LEFT;
         }
+    };
+    /**
+     * 打开系统锁屏
+     *
+     * @memberOf AppComponent
+     */
+    AppComponent.prototype.openSysLock = function () {
+        this.appOptions.isOpenLock = true;
+        this.appOptions.isLocked = false;
     };
     __decorate([
         core_1.ViewChild(menu_component_1.MenuComponent), 

@@ -51,11 +51,14 @@ var TaskRemindComponent = (function () {
             this.messageItemList.add(messageItem);
         }
     };
+    /**
+     * 系统锁屏
+     *
+     * @memberOf TaskRemindComponent
+     */
     TaskRemindComponent.prototype.lockSystem = function () {
         this.appOptions.isOpenLock = false;
         this.appOptions.isLocked = true;
-        $('body').attr("class");
-        console.log(this.appOptions);
     };
     TaskRemindComponent = __decorate([
         core_1.Component({

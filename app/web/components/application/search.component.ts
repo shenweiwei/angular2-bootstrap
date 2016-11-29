@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild,OnInit } from '@angular/core';
 import { BaseComponent } from '../base.component';
 import { TableComponent } from '../../vendor/components/table.component';
 import { ApplicationVo } from '../../../js/com/sgm/dms/ops/vo/application.vo';
@@ -11,7 +11,7 @@ import { ApplicationServiceImpl } from '../../../js/com/sgm/dms/ops/services/app
     entryComponents: [TableComponent]
 })
 
-export class ApplicationSearchComponent extends BaseComponent {
+export class ApplicationSearchComponent extends BaseComponent implements OnInit{
     public applicationVo: ApplicationVo = new ApplicationVo();
     public url: string = 'web.dmsops/application/query';
 
@@ -21,13 +21,17 @@ export class ApplicationSearchComponent extends BaseComponent {
         super();
     }
 
+    ngOnInit():void{
+        this.tableComponent.setTableHeader(this.getTableHeaders());
+    }
+
     search(): void {
         // this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
         //     let tableDataList = TableUtil.setTableDatas(response[0]);
-        //     this.tableComponent.initDataTable(this.getTableHeaders(), tableDataList, response[1].total);
+        //     this.tableComponent.initDataTable(tableDataList, response[1].total);
         // });
 
-        this.tableComponent.initDataTable(this.getTableHeaders(), this.virtualData(), 10);
+        this.tableComponent.initDataTable(this.virtualData(), 10);
     }
 
     getTableHeaders(): List<TableHeader> {

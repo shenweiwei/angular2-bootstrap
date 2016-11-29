@@ -8,6 +8,6 @@ export class BaseComponent implements OnInit{
     }
 
     ngOnInit():void{
-        // Main.init();
+        Main.init();
     }
 }

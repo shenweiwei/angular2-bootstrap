@@ -163,7 +163,7 @@ export class MenuComponent {
         for (let tempMenuItem of this.menuList.toArray()) {
             tempMenuItem['active'] = false;
         }
-        
+
         menuItem.active = true;
 
         //设置navbar
@@ -190,5 +190,22 @@ export class MenuComponent {
         }
     }
 
-
+    /**
+     * 收缩或打开的menuitem
+     * 
+     * @param {boolean} isShow
+     * 
+     * @memberOf MenuComponent
+     */
+    showSubMenuItem(isShow: boolean): void {
+        if (isShow) {
+            for (let tempMenuItem of this.menuList.toArray()) {
+                tempMenuItem['state'] = 'active';
+            }
+        }else{
+            for (let tempMenuItem of this.menuList.toArray()) {
+                tempMenuItem['state'] = 'inactive';
+            }
+        }
+    }
 }

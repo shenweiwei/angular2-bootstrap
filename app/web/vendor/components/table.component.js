@@ -12,12 +12,13 @@ var core_1 = require('@angular/core');
 var util_1 = require('vendor/util');
 var common_1 = require('vendor/common');
 var TableComponent = (function () {
-    function TableComponent(tableOptions, el) {
+    function TableComponent(el) {
         var _this = this;
-        this.tableOptions = tableOptions;
         this.el = el;
         this.viewTableDatas = new util_1.ArrayList(); //页面显示的数据集
+        this.tableOptions = new util_1.TableOptions();
         this.globalData = false; //全量数据显示
+        this.checkModel = false; //行数据是否有勾选框
         /**
          * 文本框变动的回调函数
          */
@@ -63,8 +64,10 @@ var TableComponent = (function () {
      *
      * @memberOf TableComponent
      */
-    TableComponent.prototype.initDataTable = function (headers, datas, countDataSize) {
-        this.tableHeaders = headers;
+    TableComponent.prototype.initDataTable = function (datas, countDataSize, headers) {
+        if (!common_1.BeanUtil.isEmpty(headers)) {
+            this.tableHeaders = headers;
+        }
         this.tableDatas = datas;
         //清空过滤的数据
         this.filterTableDatas = null;
@@ -295,8 +298,10 @@ var TableComponent = (function () {
             }
         }
     };
+    TableComponent.prototype.setTableHeader = function (headers) {
+        this.tableHeaders = headers;
+    };
     __decorate([
-        //排序过临时存放的数据集
         core_1.Input(), 
         __metadata('design:type', Object)
     ], TableComponent.prototype, "pageSize", void 0);
@@ -306,16 +311,22 @@ var TableComponent = (function () {
         __metadata('design:type', Function)
     ], TableComponent.prototype, "onSelectPage", void 0);
     __decorate([
+        //翻页回掉函数
         core_1.Input(), 
         __metadata('design:type', Boolean)
     ], TableComponent.prototype, "globalData", void 0);
+    __decorate([
+        //全量数据显示
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TableComponent.prototype, "checkModel", void 0);
     TableComponent = __decorate([
         core_1.Component({
             selector: 'table-component',
             templateUrl: 'app/web/vendor/views/table.html',
             styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
         }), 
-        __metadata('design:paramtypes', [util_1.TableOptions, core_1.ElementRef])
+        __metadata('design:paramtypes', [core_1.ElementRef])
     ], TableComponent);
     return TableComponent;
 }());

@@ -3,7 +3,7 @@ var BaseComponent = (function () {
     function BaseComponent() {
     }
     BaseComponent.prototype.ngOnInit = function () {
-        // Main.init();
+        Main.init();
     };
     return BaseComponent;
 }());

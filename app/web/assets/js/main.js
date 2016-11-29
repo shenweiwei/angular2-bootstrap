@@ -539,7 +539,7 @@ var Main = function() {
 
     //function to activate Less style
     var runActivateLess = function() {
-        $('		.icons-color img').removeClass('active');
+        $('.icons-color img').removeClass('active');
         if ($('#skin_color').attr("rel") == "stylesheet") {
             $('#skin_color').attr("rel", "stylesheet/less").attr("href", "app/web/assets/less/styles.less");
             less.sheets.push($('link#skin_color')[0]);
@@ -685,10 +685,37 @@ var Main = function() {
     };
     return {
         //main function to initiate template pages
+        // init: function() {
+        //     runWIndowResize();
+        //     runInit();
+        //     runStyleSelector();
+        //     runSearchInput();
+        //     runElementsPosition();
+        //     runToDoAction();
+        //     runNavigationToggler();
+        //     runNavigationMenu();
+        //     runGoTop();
+        //     runModuleTools();
+        //     runDropdownEnduring();
+        //     runTooltips();
+        //     runPopovers();
+        //     runPanelScroll();
+        //     runShowTab();
+        //     runAccordionFeatures();
+        //     runCustomCheck();
+        //     runColorPalette();
+        //     runSaveSetting();
+        //     runCustomSetting();
+        //     runClearSetting();
+        // }
         init: function() {
             runWIndowResize();
             runInit();
-            runStyleSelector();
+            setColorScheme();
+            setLayoutStyle();
+            setHeaderStyle();
+            setFooterStyle();
+            setBoxedBackgrounds();
             runSearchInput();
             runElementsPosition();
             runToDoAction();

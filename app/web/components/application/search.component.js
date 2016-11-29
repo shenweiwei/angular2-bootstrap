@@ -37,12 +37,15 @@ var ApplicationSearchComponent = (function (_super) {
             });
         };
     }
+    ApplicationSearchComponent.prototype.ngOnInit = function () {
+        this.tableComponent.setTableHeader(this.getTableHeaders());
+    };
     ApplicationSearchComponent.prototype.search = function () {
         // this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
         //     let tableDataList = TableUtil.setTableDatas(response[0]);
-        //     this.tableComponent.initDataTable(this.getTableHeaders(), tableDataList, response[1].total);
+        //     this.tableComponent.initDataTable(tableDataList, response[1].total);
         // });
-        this.tableComponent.initDataTable(this.getTableHeaders(), this.virtualData(), 10);
+        this.tableComponent.initDataTable(this.virtualData(), 10);
     };
     ApplicationSearchComponent.prototype.getTableHeaders = function () {
         var columnsEnName = ['appId', 'appChnName', 'appEngName', 'appOwner', 'updateDate', 'remark'];

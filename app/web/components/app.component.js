@@ -39,9 +39,11 @@ var AppComponent = (function () {
     AppComponent.prototype.changeClipChevron = function () {
         if (this.appOptions.clipChevron === common_1.ComponentConstants.CLIP_CHEVRON_LEFT) {
             this.appOptions.clipChevron = common_1.ComponentConstants.CLIP_CHEVRON_RIGHT;
+            this.menuComponent.showSubMenuItem(true);
         }
         else {
             this.appOptions.clipChevron = common_1.ComponentConstants.CLIP_CHEVRON_LEFT;
+            this.menuComponent.showSubMenuItem(false);
         }
     };
     /**
@@ -52,13 +54,6 @@ var AppComponent = (function () {
     AppComponent.prototype.openSysLock = function () {
         this.appOptions.isOpenLock = true;
         this.appOptions.isLocked = false;
-    };
-    /**
-     * 选择岗位
-     *
-     * @memberOf AppComponent
-     */
-    AppComponent.prototype.selectPosition = function () {
     };
     /**
      * 虚拟用户数据

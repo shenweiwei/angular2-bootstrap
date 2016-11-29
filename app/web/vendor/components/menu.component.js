@@ -166,6 +166,27 @@ var MenuComponent = (function () {
             this.menuOptions.currentActiveSubItem = subMenuItem;
         }
     };
+    /**
+     * 收缩或打开的menuitem
+     *
+     * @param {boolean} isShow
+     *
+     * @memberOf MenuComponent
+     */
+    MenuComponent.prototype.showSubMenuItem = function (isShow) {
+        if (isShow) {
+            for (var _i = 0, _a = this.menuList.toArray(); _i < _a.length; _i++) {
+                var tempMenuItem = _a[_i];
+                tempMenuItem['state'] = 'active';
+            }
+        }
+        else {
+            for (var _b = 0, _c = this.menuList.toArray(); _b < _c.length; _b++) {
+                var tempMenuItem = _c[_b];
+                tempMenuItem['state'] = 'inactive';
+            }
+        }
+    };
     MenuComponent = __decorate([
         core_1.Component({
             selector: 'menu-component',

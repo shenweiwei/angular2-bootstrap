@@ -43,8 +43,10 @@ export class AppComponent implements AfterViewInit {
     changeClipChevron(): void {
         if (this.appOptions.clipChevron === ComponentConstants.CLIP_CHEVRON_LEFT) {
             this.appOptions.clipChevron = ComponentConstants.CLIP_CHEVRON_RIGHT;
+            this.menuComponent.showSubMenuItem(true);
         } else {
-            this.appOptions.clipChevron = ComponentConstants.CLIP_CHEVRON_LEFT
+            this.appOptions.clipChevron = ComponentConstants.CLIP_CHEVRON_LEFT;
+            this.menuComponent.showSubMenuItem(false);
         }
     }
 
@@ -57,14 +59,6 @@ export class AppComponent implements AfterViewInit {
         this.appOptions.isOpenLock = true;
         this.appOptions.isLocked = false;
 
-    }
-
-    /**
-     * 选择岗位
-     * 
-     * @memberOf AppComponent
-     */
-    selectPosition(): void {
     }
 
     /**

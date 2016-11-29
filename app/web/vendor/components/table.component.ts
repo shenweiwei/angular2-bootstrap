@@ -15,11 +15,13 @@ export class TableComponent implements AfterViewInit {
     public value: string;//搜索框值
     public filterTableDatas: List<TableData>;//过滤过临时存放的数据集
     public sortTableDatas: List<TableData>;//排序过临时存放的数据集
+    public tableOptions: TableOptions = new TableOptions();
     @Input() pageSize: any;//页数
-    @Input() onSelectPage: Function;
+    @Input() onSelectPage: Function;//翻页回掉函数
     @Input() globalData: boolean = false;//全量数据显示
+    @Input() checkModel: boolean = false;//行数据是否有勾选框
 
-    constructor(public tableOptions: TableOptions, public el: ElementRef) { }
+    constructor(public el: ElementRef) { }
 
     ngAfterViewInit(): void {
         this.tableOptions.currentPageSize = this.pageSize;
@@ -33,8 +35,11 @@ export class TableComponent implements AfterViewInit {
      * 
      * @memberOf TableComponent
      */
-    initDataTable(headers: List<TableHeader>, datas: List<TableData>, countDataSize: number): void {
-        this.tableHeaders = headers;
+    initDataTable(datas: List<TableData>, countDataSize: number, headers?: List<TableHeader>): void {
+        if (!BeanUtil.isEmpty(headers)) {
+            this.tableHeaders = headers;
+        }
+
         this.tableDatas = datas;
 
         //清空过滤的数据
@@ -324,5 +329,9 @@ export class TableComponent implements AfterViewInit {
 
             }
         }
+    }
+
+    setTableHeader(headers: List<TableHeader>): void {
+        this.tableHeaders = headers;
     }
 }

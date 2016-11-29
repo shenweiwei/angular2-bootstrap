@@ -12,6 +12,12 @@ var BeanUtil = (function () {
         }
         return newTarget;
     };
+    BeanUtil.isEmpty = function (target) {
+        if (!(target === undefined || target === null)) {
+            return false;
+        }
+        return true;
+    };
     return BeanUtil;
 }());
 exports.BeanUtil = BeanUtil;

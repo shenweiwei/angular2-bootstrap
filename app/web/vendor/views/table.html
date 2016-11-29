@@ -14,7 +14,7 @@
     </section>
     <section class="panel-body">
         <article id="table-header-tools" class="form-horizontal col-sm-12">
-            <section class="dropdown col-sm-9">
+            <section class="dropdown col-sm-6">
                 PageSize
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                     {{tableOptions.currentPageSize}}
@@ -25,6 +25,12 @@
                         <a role="menuitem" tabindex="-1" (click)="selectPageSize(pageSizeItem)">{{pageSizeItem}}</a>
                     </li>
                 </ul>
+            </section>
+            <section class="form-group col-sm-3">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default">Delete</button>
+                    <button type="button" class="btn btn-default">Export</button>
+                </div>
             </section>
             <section class="form-group col-sm-3">
                 <label class="col-sm-3 control-label" for="table-search">Search</label>
@@ -43,6 +49,9 @@
                         <th *ngFor="let tableheader of tableHeaders.toArray()" id={{tableheader.key}} (click)="setTableSort(tableheader)" [ngClass]="tableheader.sort">
                             {{tableheader.desc}}
                         </th>
+                        <td *ngIf="updateModel">
+                            更新操作
+                        </td>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,11 +60,19 @@
                             <input type="checkbox" name="checkbox" />
                         </td>
                         <td *ngFor="let tableheader of tableHeaders.toArray()" headers={{tableheader.key}}>{{tableData[tableheader.key]}}</td>
+                        <td *ngIf="updateModel" align="center">
+                            <button type="button" class="btn btn-purple btn-squared">
+                                Update
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </button>
+                        </td>
                     </tr>
                     <tr *ngIf="viewTableDatas.getSize()<=0" align="center">
-                        <td [attr.colspan]="tableHeaders.getSize()+1">NO DATA</td>
+                        <td *ngIf="checkModel&&updateModel" [attr.colspan]="tableHeaders.getSize()+2">NO DATA</td>
+                        <td *ngIf="checkModel&&!updateModel" [attr.colspan]="tableHeaders.getSize()+1">NO DATA</td>
+                        <td *ngIf="!checkModel&&updateModel" [attr.colspan]="tableHeaders.getSize()+1">NO DATA</td>
+                        <td *ngIf="!checkModel&&!updateModel" [attr.colspan]="tableHeaders.getSize()">NO DATA</td>
                     </tr>
-
                 </tbody>
             </table>
         </article>

@@ -19,6 +19,7 @@ var TableComponent = (function () {
         this.tableOptions = new util_1.TableOptions();
         this.globalData = false; //全量数据显示
         this.checkModel = false; //行数据是否有勾选框
+        this.updateModel = false; //是否有更新按钮
         /**
          * 文本框变动的回调函数
          */
@@ -320,6 +321,11 @@ var TableComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Boolean)
     ], TableComponent.prototype, "checkModel", void 0);
+    __decorate([
+        //行数据是否有勾选框
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TableComponent.prototype, "updateModel", void 0);
     TableComponent = __decorate([
         core_1.Component({
             selector: 'table-component',

@@ -20,6 +20,7 @@ export class TableComponent implements AfterViewInit {
     @Input() onSelectPage: Function;//翻页回掉函数
     @Input() globalData: boolean = false;//全量数据显示
     @Input() checkModel: boolean = false;//行数据是否有勾选框
+    @Input() updateModel: boolean = false;//是否有更新按钮
 
     constructor(public el: ElementRef) { }
 

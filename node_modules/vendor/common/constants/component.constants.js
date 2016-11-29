@@ -22,6 +22,9 @@ var ComponentConstants = (function () {
     //显示模式
     ComponentConstants.DISPLAY_BLOCK = 'block';
     ComponentConstants.DISPLAY_NONE = 'none';
+    //打开状态
+    ComponentConstants.STATE_OPEN = 'open';
+    ComponentConstants.STATE_CLOSE = 'close';
     return ComponentConstants;
 }());
 exports.ComponentConstants = ComponentConstants;

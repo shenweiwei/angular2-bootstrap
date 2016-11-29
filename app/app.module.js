@@ -36,6 +36,7 @@ var table_component_1 = require('./web/vendor/components/table.component');
 var menu_component_1 = require('./web/vendor/components/menu.component');
 var navbar_component_1 = require('./web/vendor/components/navbar.component');
 var task_remind_component_1 = require('./web/vendor/components/task-remind.component');
+var advance_style_component_1 = require('./web/vendor/components/advance-style.component');
 //vendor directives
 var input_directive_1 = require('./web/vendor/directives/listener/input.directive');
 //service
@@ -47,6 +48,7 @@ var util_1 = require('vendor/util');
 var util_2 = require('vendor/util');
 var util_3 = require('vendor/util');
 var app_options_1 = require('./web/vendor/app.options');
+var common_2 = require('vendor/common');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -70,6 +72,7 @@ var AppModule = (function () {
                 menu_component_1.MenuComponent,
                 navbar_component_1.NavBarComponent,
                 task_remind_component_1.TaskRemindComponent,
+                advance_style_component_1.AdvanceStyleComponent,
                 //自定义组件
                 search_component_1.ApplicationSearchComponent
             ],
@@ -84,7 +87,8 @@ var AppModule = (function () {
                 util_1.TableOptions,
                 util_2.MenuOptions,
                 util_3.TaskRemindOptions,
-                app_options_1.AppOptions
+                app_options_1.AppOptions,
+                common_2.UserPojo
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

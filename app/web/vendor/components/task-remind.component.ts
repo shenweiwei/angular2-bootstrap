@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskRemindOptions, TaskItem, ArrayList, NotificationItem, MessageItem } from 'vendor/util';
-import { AppOptions} from '../app.options';
+import { AppOptions } from '../app.options';
+import { UserPojo, PositionPojo } from 'vendor/common';
 
 declare const $: any;
 
 @Component({
     selector: 'task-remind-component',
     templateUrl: 'app/web/vendor/views/task-remind.html',
+    styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
 })
 
 export class TaskRemindComponent implements OnInit {
@@ -14,7 +16,7 @@ export class TaskRemindComponent implements OnInit {
     public notificationItemList: ArrayList<NotificationItem>;
     public messageItemList: ArrayList<MessageItem>;
 
-    constructor(public taskRemindOptions: TaskRemindOptions,public appOptions:AppOptions) {
+    constructor(public taskRemindOptions: TaskRemindOptions, public appOptions: AppOptions, public userPojo: UserPojo) {
     }
 
     ngOnInit(): void {
@@ -48,10 +50,10 @@ export class TaskRemindComponent implements OnInit {
         this.messageItemList = new ArrayList<MessageItem>();
         for (let i = 0; i < 12; i++) {
             let messageItem = new MessageItem();
-            messageItem.message='this is my message';
-            messageItem.messageTime="10 mins";
-            messageItem.userName="peter";
-            messageItem.userPicUrl="app/web/assets/images/avatar-2.jpg";
+            messageItem.message = 'this is my message';
+            messageItem.messageTime = "10 mins";
+            messageItem.userName = "peter";
+            messageItem.userPicUrl = "app/web/assets/images/avatar-2.jpg";
             this.messageItemList.add(messageItem);
         }
     }
@@ -61,8 +63,17 @@ export class TaskRemindComponent implements OnInit {
      * 
      * @memberOf TaskRemindComponent
      */
-    lockSystem():void{
-        this.appOptions.isOpenLock=false;
-        this.appOptions.isLocked=true;
+    lockSystem(): void {
+        this.appOptions.isOpenLock = false;
+        this.appOptions.isLocked = true;
+    }
+
+    /**
+     * 选择岗位
+     * 
+     * @memberOf TaskRemindComponent
+     */
+    selectPosition(positionItem: PositionPojo): void {
+        this.userPojo.currentPosition=positionItem;
     }
 }

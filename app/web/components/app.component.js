@@ -14,12 +14,14 @@ var navbar_component_1 = require('../vendor/components/navbar.component');
 var task_remind_component_1 = require('../vendor/components/task-remind.component');
 var common_1 = require('vendor/common');
 var app_options_1 = require('../vendor/app.options');
+var common_2 = require('vendor/common');
+var util_1 = require('vendor/util');
 var AppComponent = (function () {
-    function AppComponent(el, renderer, appOptions) {
+    function AppComponent(el, renderer, appOptions, userPojo) {
         this.appOptions = appOptions;
+        this.userPojo = userPojo;
+        this.virtualUserData();
     }
-    AppComponent.prototype.ngOnInit = function () {
-    };
     /**
      * 页面显示完成做一些初始化的事情
      *
@@ -28,7 +30,6 @@ var AppComponent = (function () {
      */
     AppComponent.prototype.ngAfterViewInit = function () {
         this.menuComponent.initMenu(this.navBarComponent);
-        // this.navBarComponent
     };
     /**
      * 变更显示/隐藏 menuItem
@@ -52,6 +53,31 @@ var AppComponent = (function () {
         this.appOptions.isOpenLock = true;
         this.appOptions.isLocked = false;
     };
+    /**
+     * 选择岗位
+     *
+     * @memberOf AppComponent
+     */
+    AppComponent.prototype.selectPosition = function () {
+    };
+    /**
+     * 虚拟用户数据
+     *
+     * @memberOf AppComponent
+     */
+    AppComponent.prototype.virtualUserData = function () {
+        this.userPojo.name = '虚拟用户';
+        this.userPojo.type = common_1.CommonConstants.SGM;
+        this.userPojo.ssoAccount = 'apptest05';
+        var position_one = new common_2.PositionPojo();
+        position_one.name = '财务部-应收专员';
+        position_one.type = common_1.CommonConstants.SGM;
+        var position_two = new common_2.PositionPojo();
+        position_two.name = "系统管理员";
+        position_two.type = common_1.CommonConstants.SGM;
+        this.userPojo.positionList = new util_1.ArrayList().add(position_one).add(position_two);
+        this.userPojo.currentPosition = position_one;
+    };
     __decorate([
         core_1.ViewChild(menu_component_1.MenuComponent), 
         __metadata('design:type', menu_component_1.MenuComponent)
@@ -70,7 +96,7 @@ var AppComponent = (function () {
             templateUrl: 'app/web/views/app.html',
             entryComponents: [menu_component_1.MenuComponent, navbar_component_1.NavBarComponent, task_remind_component_1.TaskRemindComponent]
         }), 
-        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer, app_options_1.AppOptions])
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer, app_options_1.AppOptions, common_2.UserPojo])
     ], AppComponent);
     return AppComponent;
 }());

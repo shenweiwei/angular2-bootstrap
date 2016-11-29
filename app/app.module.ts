@@ -31,6 +31,7 @@ import { TableComponent } from './web/vendor/components/table.component';
 import { MenuComponent } from './web/vendor/components/menu.component';
 import { NavBarComponent } from './web/vendor/components/navbar.component';
 import { TaskRemindComponent } from './web/vendor/components/task-remind.component';
+import { AdvanceStyleComponent } from './web/vendor/components/advance-style.component';
 
 //vendor directives
 import { InputListenerDirective } from './web/vendor/directives/listener/input.directive'
@@ -45,6 +46,7 @@ import { TableOptions } from 'vendor/util';
 import { MenuOptions } from 'vendor/util';
 import { TaskRemindOptions } from 'vendor/util';
 import { AppOptions } from './web/vendor/app.options';
+import { UserPojo } from 'vendor/common';
 
 @NgModule({
   imports: [
@@ -67,6 +69,8 @@ import { AppOptions } from './web/vendor/app.options';
     MenuComponent,
     NavBarComponent,
     TaskRemindComponent,
+    AdvanceStyleComponent,
+    
     //自定义组件
     ApplicationSearchComponent
   ],
@@ -81,7 +85,8 @@ import { AppOptions } from './web/vendor/app.options';
     TableOptions,
     MenuOptions,
     TaskRemindOptions,
-    AppOptions
+    AppOptions,
+    UserPojo
   ],
   bootstrap: [AppComponent]
 })

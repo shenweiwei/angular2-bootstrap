@@ -1,9 +1,11 @@
-import { Component, AfterViewInit, OnInit, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { MenuComponent } from '../vendor/components/menu.component';
 import { NavBarComponent } from '../vendor/components/navbar.component';
 import { TaskRemindComponent } from '../vendor/components/task-remind.component';
-import { ComponentConstants } from 'vendor/common';
+import { ComponentConstants, CommonConstants } from 'vendor/common';
 import { AppOptions } from '../vendor/app.options';
+import { UserPojo, PositionPojo } from 'vendor/common';
+import { ArrayList } from 'vendor/util';
 
 @Component({
     selector: 'my-app',
@@ -12,17 +14,15 @@ import { AppOptions } from '../vendor/app.options';
 })
 
 export class AppComponent implements AfterViewInit {
-    @ViewChild(MenuComponent) 
+    @ViewChild(MenuComponent)
     public menuComponent: MenuComponent;
-    @ViewChild(NavBarComponent) 
+    @ViewChild(NavBarComponent)
     public navBarComponent: NavBarComponent;
-    @ViewChild(TaskRemindComponent) 
+    @ViewChild(TaskRemindComponent)
     public taskRemindComponent: TaskRemindComponent;
 
-    constructor(el: ElementRef, renderer: Renderer, public appOptions: AppOptions) {
-    }
-
-    ngOnInit(): void {
+    constructor(el: ElementRef, renderer: Renderer, public appOptions: AppOptions,public userPojo: UserPojo) {
+        this.virtualUserData();
     }
 
     /**
@@ -33,7 +33,6 @@ export class AppComponent implements AfterViewInit {
      */
     ngAfterViewInit(): void {
         this.menuComponent.initMenu(this.navBarComponent);
-        // this.navBarComponent
     }
 
     /**
@@ -54,10 +53,39 @@ export class AppComponent implements AfterViewInit {
      * 
      * @memberOf AppComponent
      */
-    openSysLock():void{
-        this.appOptions.isOpenLock=true;
-        this.appOptions.isLocked=false;
+    openSysLock(): void {
+        this.appOptions.isOpenLock = true;
+        this.appOptions.isLocked = false;
 
     }
 
+    /**
+     * 选择岗位
+     * 
+     * @memberOf AppComponent
+     */
+    selectPosition(): void {
+    }
+
+    /**
+     * 虚拟用户数据 
+     * 
+     * @memberOf AppComponent
+     */
+    virtualUserData(): void {
+        this.userPojo.name = '虚拟用户';
+        this.userPojo.type = CommonConstants.SGM;
+        this.userPojo.ssoAccount = 'apptest05';
+
+        let position_one = new PositionPojo();
+        position_one.name = '财务部-应收专员';
+        position_one.type = CommonConstants.SGM;
+
+        let position_two = new PositionPojo();
+        position_two.name = "系统管理员";
+        position_two.type = CommonConstants.SGM;
+
+        this.userPojo.positionList= new ArrayList().add(position_one).add(position_two);
+        this.userPojo.currentPosition = position_one;
+    }
 }

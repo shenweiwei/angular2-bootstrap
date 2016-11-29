@@ -1,6 +1,25 @@
 <div class="navbar-tools">
     <!-- start: TOP NAVIGATION MENU -->
     <ul class="nav navbar-right">
+
+        <!-- start position DROPDOWN-->
+        <li class="dropdown advance-userinfo-font-size clear-userinfo-left">
+            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
+                <label>当前岗位：</label>
+                <span>{{userPojo.currentPosition.name}}</span>
+                <i class="clip-chevron-down"></i>
+            </a>
+
+            <ul class="dropdown-menu" *ngIf="userPojo.positionList">
+                <li *ngFor="let positionItem of userPojo.positionList.toArray()" (click)="selectPosition(positionItem)">
+                    <a href="javascript:void(0)">
+                        <i class="clip-user-3"></i> &nbsp;{{positionItem.name}}
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- end position DROPDOWN-->
+
         <!-- start: TO-DO DROPDOWN -->
         <li class="dropdown">
             <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
@@ -106,41 +125,43 @@
             </ul>
         </li>
         <!-- end: MESSAGE DROPDOWN -->
+
         <!-- start: USER DROPDOWN -->
-        <li class="dropdown current-user">
+        <li class="dropdown current-user advance-userinfo-font-size">
             <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
                 <img src="app/web/assets/images/avatar-1-small.jpg" class="circle-img" alt="">
-                <span class="username">Peter Clark</span>
+                <span class="username">{{userPojo.name}}</span>
                 <i class="clip-chevron-down"></i>
             </a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="pages_user_profile.html">
-                        <i class="clip-user-2"></i> &nbsp;My Profile
+                    <a href="javascript:void(0)">
+                        <i class="clip-user-3"></i> &nbsp;My Profile
                     </a>
                 </li>
                 <li>
-                    <a href="pages_calendar.html">
+                    <a href="javascript:void(0)">
                         <i class="clip-calendar"></i> &nbsp;My Calendar
                     </a>
-                    <li>
-                        <a href="pages_messages.html">
-                            <i class="clip-bubble-4"></i> &nbsp;My Messages (3)
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li (click)="lockSystem()">
-                        <a href="javascript:void(0)"><i class="clip-locked"></i>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="clip-bubble-4"></i> &nbsp;My Messages (3)
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li (click)="lockSystem()">
+                    <a href="javascript:void(0)"><i class="clip-locked"></i>
 										&nbsp;Lock Screen </a>
-                    </li>
-                    <li>
-                        <a href="login_example1.html">
-                            <i class="clip-exit"></i> &nbsp;Log Out
-                        </a>
-                    </li>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="clip-exit"></i> &nbsp;Log Out
+                    </a>
+                </li>
             </ul>
-            </li>
-            <!-- end: USER DROPDOWN -->
+        </li>
+        <!-- end: USER DROPDOWN -->
     </ul>
     <!-- end: TOP NAVIGATION MENU -->
 </div>

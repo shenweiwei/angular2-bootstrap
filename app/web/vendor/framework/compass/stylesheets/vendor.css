@@ -5,65 +5,83 @@
 /*
 * table
 */
-/* line 16, ../sass/vendor.scss */
+/* line 17, ../sass/vendor.scss */
 #table-header-tools {
   margin: 0;
 }
-/* line 18, ../sass/vendor.scss */
+/* line 19, ../sass/vendor.scss */
 #table-header-tools .form-group {
   display: block;
   float: right;
 }
 
-/* line 25, ../sass/vendor.scss */
+/* line 26, ../sass/vendor.scss */
 #table-body tr > th {
   cursor: pointer;
   background-color: white;
 }
-/* line 28, ../sass/vendor.scss */
+/* line 29, ../sass/vendor.scss */
 #table-body tr > th::after {
   font-family: "Glyphicons Halflings";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
   opacity: 0.2;
   content: "";
 }
-/* line 34, ../sass/vendor.scss */
+/* line 35, ../sass/vendor.scss */
 #table-body tr > .sort-default::after {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
   opacity: 0.2;
   content: "";
 }
-/* line 38, ../sass/vendor.scss */
+/* line 39, ../sass/vendor.scss */
 #table-body tr > .sort-asc::after {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
   content: "";
 }
-/* line 42, ../sass/vendor.scss */
+/* line 43, ../sass/vendor.scss */
 #table-body tr > .sort-desc::after {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
   content: "";
 }
 
-/* line 48, ../sass/vendor.scss */
+/* line 49, ../sass/vendor.scss */
 #table-footer-tools {
   margin: 0;
 }
-/* line 50, ../sass/vendor.scss */
+/* line 51, ../sass/vendor.scss */
 #table-footer-tools ul {
   margin: 0;
 }
-/* line 53, ../sass/vendor.scss */
+/* line 54, ../sass/vendor.scss */
 #table-footer-tools > section {
   margin-top: 20px;
 }
-/* line 55, ../sass/vendor.scss */
+/* line 56, ../sass/vendor.scss */
 #table-footer-tools > section:first-child {
   margin-top: 30px;
 }
-/* line 58, ../sass/vendor.scss */
+/* line 59, ../sass/vendor.scss */
 #table-footer-tools > section > ul {
   display: block;
   float: right;
+}
+
+/*
+* user && position
+*/
+/* line 72, ../sass/vendor.scss */
+*.advance-userinfo-font-size .dropdown-toggle label {
+  font-size: 14px;
+}
+/* line 75, ../sass/vendor.scss */
+*.advance-userinfo-font-size .dropdown-toggle span {
+  font-size: 14px;
+}
+
+/* line 80, ../sass/vendor.scss */
+*.clear-userinfo-left ul {
+  left: 0;
+  text-align: center;
 }

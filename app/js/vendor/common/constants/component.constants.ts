@@ -23,4 +23,8 @@ export class ComponentConstants {
     //显示模式
     public static DISPLAY_BLOCK: string = 'block';
     public static DISPLAY_NONE: string = 'none';
+
+    //打开状态
+    public static STATE_OPEN: string = 'open';
+    public static STATE_CLOSE: string = 'close';
 }

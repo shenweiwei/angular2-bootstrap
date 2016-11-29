@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var util_1 = require('vendor/util');
 var app_options_1 = require('../app.options');
+var common_1 = require('vendor/common');
 var TaskRemindComponent = (function () {
-    function TaskRemindComponent(taskRemindOptions, appOptions) {
+    function TaskRemindComponent(taskRemindOptions, appOptions, userPojo) {
         this.taskRemindOptions = taskRemindOptions;
         this.appOptions = appOptions;
+        this.userPojo = userPojo;
     }
     TaskRemindComponent.prototype.ngOnInit = function () {
         this.virtualData();
@@ -60,12 +62,21 @@ var TaskRemindComponent = (function () {
         this.appOptions.isOpenLock = false;
         this.appOptions.isLocked = true;
     };
+    /**
+     * 选择岗位
+     *
+     * @memberOf TaskRemindComponent
+     */
+    TaskRemindComponent.prototype.selectPosition = function (positionItem) {
+        this.userPojo.currentPosition = positionItem;
+    };
     TaskRemindComponent = __decorate([
         core_1.Component({
             selector: 'task-remind-component',
             templateUrl: 'app/web/vendor/views/task-remind.html',
+            styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
         }), 
-        __metadata('design:paramtypes', [util_1.TaskRemindOptions, app_options_1.AppOptions])
+        __metadata('design:paramtypes', [util_1.TaskRemindOptions, app_options_1.AppOptions, common_1.UserPojo])
     ], TaskRemindComponent);
     return TaskRemindComponent;
 }());

@@ -2,12 +2,18 @@ import { value } from 'vendor/annotation';
 import { ComponentConstants } from 'vendor/common';
 
 export class AppOptions {
-    @value.Default(true)
-    private _isOpenLock: boolean;
-    @value.Default(false)
-    private _isLocked: boolean;
-    @value.Default(ComponentConstants.CLIP_CHEVRON_LEFT)
-    private _clipChevron:string;
+	@value.Default(true)
+	private _isOpenLock: boolean;
+	@value.Default(false)
+	private _isLocked: boolean;
+	@value.Default(ComponentConstants.CLIP_CHEVRON_LEFT)
+	private _clipChevron: string;
+	@value.Default(false)
+	private _openSelectPosition: boolean;
+	@value.Default(ComponentConstants.STATE_CLOSE)
+	private _advanceStyleState: string;
+	@value.Default(ComponentConstants.DISPLAY_NONE)
+	private _advanceStyleDisplay: string;
 
 	public get isOpenLock(): boolean {
 		return this._isOpenLock;
@@ -24,7 +30,7 @@ export class AppOptions {
 	public set isLocked(value: boolean) {
 		this._isLocked = value;
 	}
-    
+
 	public get clipChevron(): string {
 		return this._clipChevron;
 	}
@@ -32,5 +38,29 @@ export class AppOptions {
 	public set clipChevron(value: string) {
 		this._clipChevron = value;
 	}
-    
+
+	public get openSelectPosition(): boolean {
+		return this._openSelectPosition;
+	}
+
+	public set openSelectPosition(value: boolean) {
+		this._openSelectPosition = value;
+	}
+
+	public get advanceStyleState(): string {
+		return this._advanceStyleState;
+	}
+
+	public set advanceStyleState(value: string) {
+		this._advanceStyleState = value;
+	}
+
+	public get advanceStyleDisplay(): string {
+		return this._advanceStyleDisplay;
+	}
+
+	public set advanceStyleDisplay(value: string) {
+		this._advanceStyleDisplay = value;
+	}
+
 }

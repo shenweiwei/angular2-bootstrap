@@ -43,6 +43,36 @@ var AppOptions = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(AppOptions.prototype, "openSelectPosition", {
+        get: function () {
+            return this._openSelectPosition;
+        },
+        set: function (value) {
+            this._openSelectPosition = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AppOptions.prototype, "advanceStyleState", {
+        get: function () {
+            return this._advanceStyleState;
+        },
+        set: function (value) {
+            this._advanceStyleState = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AppOptions.prototype, "advanceStyleDisplay", {
+        get: function () {
+            return this._advanceStyleDisplay;
+        },
+        set: function (value) {
+            this._advanceStyleDisplay = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     __decorate([
         annotation_1.value.Default(true), 
         __metadata('design:type', Boolean)
@@ -55,6 +85,18 @@ var AppOptions = (function () {
         annotation_1.value.Default(common_1.ComponentConstants.CLIP_CHEVRON_LEFT), 
         __metadata('design:type', String)
     ], AppOptions.prototype, "_clipChevron", void 0);
+    __decorate([
+        annotation_1.value.Default(false), 
+        __metadata('design:type', Boolean)
+    ], AppOptions.prototype, "_openSelectPosition", void 0);
+    __decorate([
+        annotation_1.value.Default(common_1.ComponentConstants.STATE_CLOSE), 
+        __metadata('design:type', String)
+    ], AppOptions.prototype, "_advanceStyleState", void 0);
+    __decorate([
+        annotation_1.value.Default(common_1.ComponentConstants.DISPLAY_NONE), 
+        __metadata('design:type', String)
+    ], AppOptions.prototype, "_advanceStyleDisplay", void 0);
     return AppOptions;
 }());
 exports.AppOptions = AppOptions;

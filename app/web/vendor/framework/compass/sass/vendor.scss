@@ -8,6 +8,7 @@ $sort-font-family:'Glyphicons Halflings';
 $sort-default-content:'\e150';
 $sort-asc-content:'\e155';
 $sort-desc-content:'\e156';
+$current-position-font-size:14px;
 
 /*
 * table
@@ -60,4 +61,23 @@ $sort-desc-content:'\e156';
             float: right;
         }
     }
+}
+
+
+/*
+* user && position
+*/
+
+*.advance-userinfo-font-size .dropdown-toggle {
+    label {
+        font-size: $current-position-font-size;
+    }
+    span {
+        font-size: $current-position-font-size;
+    }
+}
+
+*.clear-userinfo-left ul {
+    left: 0;
+    text-align: center;
 }

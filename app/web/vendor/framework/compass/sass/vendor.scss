@@ -11,15 +11,26 @@ $sort-desc-content:'\e156';
 $current-position-font-size:14px;
 
 /*
+* common
+*/
+
+*.common-style {
+    *.float-right {
+        float: right;
+    }
+    *.float-left {
+        float: left;
+    }
+}
+
+
+/*
 * table
 */
 
 #table-header-tools {
     margin: 0;
-    .form-group {
-        display: block;
-        float: right;
-    }
+    margin-bottom: 20px;
 }
 
 #table-body tr> {

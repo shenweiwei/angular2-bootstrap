@@ -13,7 +13,7 @@
         </div>
     </section>
     <section class="panel-body">
-        <article id="table-header-tools" class="form-horizontal col-sm-12">
+        <article id="table-header-tools" class="col-sm-12 form-horizontal common-style ">
             <section class="dropdown col-sm-6">
                 PageSize
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
@@ -26,17 +26,36 @@
                     </li>
                 </ul>
             </section>
-            <section class="form-group col-sm-3">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default">Delete</button>
-                    <button type="button" class="btn btn-default">Export</button>
-                </div>
-            </section>
-            <section class="form-group col-sm-3">
-                <label class="col-sm-3 control-label" for="table-search">Search</label>
-                <section class="col-sm-9">
+            <section class="float-right col-sm-5 col-sm-push-1">
+                <div class="col-sm-5">
                     <input input-listener type="text" id="table-search" name="table-search" class="form-control" placeholder="search" [value]="value" [(ngModel)]="value" [changeCallback]="changeCallback" />
-                </section>
+                </div>
+
+                <div class="btn-group col-sm-7">
+                    <button type="button" class="btn btn-default" (click)="refershData(tableDatas)">
+                        <i class="clip-spinner-6"></i>
+                    </button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" (click)="openFilterHeadersPanel()">
+                        <i class="clip-grid-3"></i>
+                        <span class="caret"></span>
+                    </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">222</a></li>
+                            <li><a href="#">333</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-save"></i>
+                        <span class="caret"></span>
+                    </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Word</a></li>
+                            <li><a href="#">Excel</a></li>
+                        </ul>
+                    </div>
+                </div>
             </section>
         </article>
         <article id="table-body" class="col-sm-12">
@@ -46,32 +65,43 @@
                         <th *ngIf="checkModel" class="th-center">
                             <input type="checkbox" name="checkbox" />
                         </th>
-                        <th *ngFor="let tableheader of tableHeaders.toArray()" id={{tableheader.key}} (click)="setTableSort(tableheader)" [ngClass]="tableheader.sort">
+                        <th *ngFor="let tableheader of tableHeaders.toArray()" id={{tableheader.key}} (click)="setTableSort(tableheader)" [ngClass]="tableheader.sort" class="th-center">
                             {{tableheader.desc}}
                         </th>
-                        <td *ngIf="updateModel">
+                        <th *ngIf="updateModel" class="th-center">
                             更新操作
-                        </td>
+                        </th>
+                        <th *ngIf="deleteModel" class="th-center">
+                            删除操作
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let tableData of viewTableDatas.toArray()">
-                        <td *ngIf="checkModel" class="th-center">
+                        <td *ngIf="checkModel" align="center">
                             <input type="checkbox" name="checkbox" />
                         </td>
                         <td *ngFor="let tableheader of tableHeaders.toArray()" headers={{tableheader.key}}>{{tableData[tableheader.key]}}</td>
                         <td *ngIf="updateModel" align="center">
-                            <button type="button" class="btn btn-purple btn-squared">
+                            <button type="button" class="btn btn-purple btn-sm btn-squared">
                                 Update
-                                <i class="fa fa-arrow-circle-right"></i>
+                                <!--<i class="fa fa-arrow-circle-right"></i>-->
+                                <i class="clip-pencil-3"></i>
+                            </button>
+                        </td>
+                        <td *ngIf="deleteModel" align="center">
+                            <button type="button" class="btn btn-bricky btn-sm btn-squared">
+                                Delete
+                                <!--<i class="fa fa-arrow-circle-right"></i>-->
+                                <i class="clip-remove"></i>
                             </button>
                         </td>
                     </tr>
                     <tr *ngIf="viewTableDatas.getSize()<=0" align="center">
-                        <td *ngIf="checkModel&&updateModel" [attr.colspan]="tableHeaders.getSize()+2">NO DATA</td>
-                        <td *ngIf="checkModel&&!updateModel" [attr.colspan]="tableHeaders.getSize()+1">NO DATA</td>
-                        <td *ngIf="!checkModel&&updateModel" [attr.colspan]="tableHeaders.getSize()+1">NO DATA</td>
-                        <td *ngIf="!checkModel&&!updateModel" [attr.colspan]="tableHeaders.getSize()">NO DATA</td>
+                        <td *ngIf="checkModel&&updateModel&&deleteModel" [attr.colspan]="tableHeaders.getSize()+3">NO DATA</td>
+                        <td *ngIf="(checkModel&&updateModel&&!deleteModel)||(checkModel&&!updateModel&&deleteModel)||(!checkModel&&updateModel&&deleteModel)" [attr.colspan]="tableHeaders.getSize()+2">NO DATA</td>
+                        <td *ngIf="(!checkModel&&!updateModel&&deleteModel)||(checkModel&&!updateModel&&!deleteModel)||(!checkModel&&updateModel&&!deleteModel)" [attr.colspan]="tableHeaders.getSize()+1">NO DATA</td>
+                        <td *ngIf="!checkModel&&!updateModel&&!deleteModel" [attr.colspan]="tableHeaders.getSize()">NO DATA</td>
                     </tr>
                 </tbody>
             </table>

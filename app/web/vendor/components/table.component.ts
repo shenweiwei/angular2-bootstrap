@@ -21,6 +21,7 @@ export class TableComponent implements AfterViewInit {
     @Input() globalData: boolean = false;//全量数据显示
     @Input() checkModel: boolean = false;//行数据是否有勾选框
     @Input() updateModel: boolean = false;//是否有更新按钮
+    @Input() deleteModel: boolean = false;//是否有删除按钮
 
     constructor(public el: ElementRef) { }
 
@@ -332,7 +333,25 @@ export class TableComponent implements AfterViewInit {
         }
     }
 
+    /**
+     * 设置表头
+     * 
+     * @param {List<TableHeader>} headers
+     * 
+     * @memberOf TableComponent
+     */
     setTableHeader(headers: List<TableHeader>): void {
         this.tableHeaders = headers;
+    }
+
+
+    /**
+     * 打开表头列表的面板
+     * 
+     * 
+     * @memberOf TableComponent
+     */
+    openFilterHeadersPanel():void{
+        
     }
 }

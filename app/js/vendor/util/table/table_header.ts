@@ -41,6 +41,16 @@ export class TableHeader implements ClientObject {
     @value.Default(ComponentConstants.SORT_DEFAULT)
     private _sort: string;
 
+    /**
+     * 列显示
+     * 
+     * @private
+     * @type {string}
+     * @memberOf TableHeader
+     */
+    @value.Default(ComponentConstants.DISPLAY_BLOCK)
+    private _display: string;
+
     public get index(): number {
         return this._index;
     }
@@ -72,5 +82,13 @@ export class TableHeader implements ClientObject {
     public set sort(value: string) {
         this._sort = value;
     }
+
+	public get display(): string {
+		return this._display;
+	}
+
+	public set display(value: string) {
+		this._display = value;
+	}
 
 }

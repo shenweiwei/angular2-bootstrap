@@ -28,13 +28,35 @@ var ApplicationSearchComponent = (function (_super) {
         this.applicationServiceImpl = applicationServiceImpl;
         this.applicationVo = new application_vo_1.ApplicationVo();
         this.url = 'web.dmsops/application/query';
+        /**
+         *
+         * 翻页的回调函数
+         *
+         * @memberOf ApplicationSearchComponent
+         */
         this.onSelectPage = function (tableOptions) {
             _this.applicationVo.beginNo = tableOptions.beginPageIndex;
             _this.applicationVo.endNo = tableOptions.endPageIndex;
-            _this.applicationServiceImpl.searchApplication(_this.url, _this.applicationVo, function (response) {
-                var tableDataList = common_1.TableUtil.setTableDatas(response[0]);
-                _this.tableComponent.refreshData(tableDataList, response[1].total);
-            });
+            // this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
+            //     let tableDataList = TableUtil.setTableDatas(response[0]);
+            //     this.tableComponent.refreshData(tableDataList, response[1].total);
+            // });
+        };
+        /**
+         * 更新的回调函数
+         *
+         * @memberOf ApplicationSearchComponent
+         */
+        this.updateCallBack = function (tableData) {
+            console.log(tableData);
+        };
+        /**
+         * 删除的回调函数
+         *
+         * @memberOf ApplicationSearchComponent
+         */
+        this.deleteCallBack = function (tableData) {
+            console.log(tableData);
         };
     }
     ApplicationSearchComponent.prototype.ngOnInit = function () {

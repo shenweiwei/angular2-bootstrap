@@ -30,26 +30,32 @@
                 <div class="col-sm-5">
                     <input input-listener type="text" id="table-search" name="table-search" class="form-control" placeholder="search" [value]="value" [(ngModel)]="value" [changeCallback]="changeCallback" />
                 </div>
-
                 <div class="btn-group col-sm-7">
                     <button type="button" class="btn btn-default" (click)="refershData(tableDatas)">
                         <i class="clip-spinner-6"></i>
                     </button>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" (click)="openFilterHeadersPanel()">
-                        <i class="clip-grid-3"></i>
-                        <span class="caret"></span>
-                    </button>
+                    <div class="btn-group" id="filter-headers-panel">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <i class="clip-grid-3"></i>
+                            <span class="caret"></span>
+                        </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">222</a></li>
-                            <li><a href="#">333</a></li>
+                            <li *ngFor="let header of tableHeaders.toArray()" (click)="selectHeaderItem(header)">
+                                <div class="checkbox text-center">
+                                    <label>
+										<input *ngIf="header.display==='block'" type="checkbox" class="grey" checked/>
+                                        <input *ngIf="header.display==='none'" type="checkbox" class="grey" />
+										{{header.desc}}
+									</label>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <i class="glyphicon glyphicon-save"></i>
-                        <span class="caret"></span>
-                    </button>
+                            <i class="glyphicon glyphicon-save"></i>
+                            <span class="caret"></span>
+                        </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Word</a></li>
                             <li><a href="#">Excel</a></li>
@@ -63,9 +69,11 @@
                 <thead>
                     <tr *ngIf="tableHeaders">
                         <th *ngIf="checkModel" class="th-center">
-                            <input type="checkbox" name="checkbox" />
+                            <div class="checkbox-table">
+                                <label><input type="checkbox" class="flat-grey"/></label>
+                            </div>
                         </th>
-                        <th *ngFor="let tableheader of tableHeaders.toArray()" id={{tableheader.key}} (click)="setTableSort(tableheader)" [ngClass]="tableheader.sort" class="th-center">
+                        <th *ngFor="let tableheader of tableHeaders.toArray()" id={{tableheader.key}} (click)="setTableSort(tableheader)" [ngClass]="tableheader.sort" [hidden]="tableheader.display==='none'" class="th-center">
                             {{tableheader.desc}}
                         </th>
                         <th *ngIf="updateModel" class="th-center">
@@ -79,18 +87,20 @@
                 <tbody>
                     <tr *ngFor="let tableData of viewTableDatas.toArray()">
                         <td *ngIf="checkModel" align="center">
-                            <input type="checkbox" name="checkbox" />
+                            <div class="checkbox-table">
+                                <label><input type="checkbox" class="flat-grey"/></label>
+                            </div>
                         </td>
-                        <td *ngFor="let tableheader of tableHeaders.toArray()" headers={{tableheader.key}}>{{tableData[tableheader.key]}}</td>
+                        <td *ngFor="let tableheader of tableHeaders.toArray()" headers={{tableheader.key}} [hidden]="tableheader.display==='none'">{{tableData[tableheader.key]}}</td>
                         <td *ngIf="updateModel" align="center">
-                            <button type="button" class="btn btn-purple btn-sm btn-squared">
+                            <button type="button" class="btn btn-purple btn-sm btn-squared" (click)="updateCallBack(tableData)">
                                 Update
                                 <!--<i class="fa fa-arrow-circle-right"></i>-->
                                 <i class="clip-pencil-3"></i>
                             </button>
                         </td>
                         <td *ngIf="deleteModel" align="center">
-                            <button type="button" class="btn btn-bricky btn-sm btn-squared">
+                            <button type="button" class="btn btn-bricky btn-sm btn-squared" (click)="deleteCallBack(tableData)">
                                 Delete
                                 <!--<i class="fa fa-arrow-circle-right"></i>-->
                                 <i class="clip-remove"></i>

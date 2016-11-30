@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild,OnInit } from '@angular/core';
+import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { BaseComponent } from '../base.component';
 import { TableComponent } from '../../vendor/components/table.component';
 import { ApplicationVo } from '../../../js/com/sgm/dms/ops/vo/application.vo';
@@ -11,7 +11,7 @@ import { ApplicationServiceImpl } from '../../../js/com/sgm/dms/ops/services/app
     entryComponents: [TableComponent]
 })
 
-export class ApplicationSearchComponent extends BaseComponent implements OnInit{
+export class ApplicationSearchComponent extends BaseComponent implements OnInit {
     public applicationVo: ApplicationVo = new ApplicationVo();
     public url: string = 'web.dmsops/application/query';
 
@@ -21,7 +21,7 @@ export class ApplicationSearchComponent extends BaseComponent implements OnInit{
         super();
     }
 
-    ngOnInit():void{
+    ngOnInit(): void {
         this.tableComponent.setTableHeader(this.getTableHeaders());
     }
 
@@ -41,18 +41,24 @@ export class ApplicationSearchComponent extends BaseComponent implements OnInit{
         return TableUtil.setTableHeaders(columnsEnName, columnsCnName);
     }
 
+    /**
+     * 
+     * 翻页的回调函数
+     * 
+     * @memberOf ApplicationSearchComponent
+     */
     onSelectPage = (tableOptions: TableOptions) => {
         this.applicationVo.beginNo = tableOptions.beginPageIndex;
         this.applicationVo.endNo = tableOptions.endPageIndex;
 
-        this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
-            let tableDataList = TableUtil.setTableDatas(response[0]);
-            this.tableComponent.refreshData(tableDataList, response[1].total);
-        });
+        // this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
+        //     let tableDataList = TableUtil.setTableDatas(response[0]);
+        //     this.tableComponent.refreshData(tableDataList, response[1].total);
+        // });
     }
 
     virtualData(): List<TableData> {
-        let tableDataList=new ArrayList<TableData>();
+        let tableDataList = new ArrayList<TableData>();
         for (let i = 0; i < 10; i++) {
             let tableData = new TableData();
             tableData.index = i + 1;
@@ -61,5 +67,23 @@ export class ApplicationSearchComponent extends BaseComponent implements OnInit{
         }
 
         return tableDataList;
+    }
+
+    /**
+     * 更新的回调函数
+     * 
+     * @memberOf ApplicationSearchComponent
+     */
+    updateCallBack = (tableData: TableData) => {
+        console.log(tableData);
+    }
+
+    /**
+     * 删除的回调函数
+     * 
+     * @memberOf ApplicationSearchComponent
+     */
+    deleteCallBack = (tableData: TableData) => {
+        console.log(tableData);
     }
 }

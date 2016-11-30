@@ -53,10 +53,24 @@ var TableHeader = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(TableHeader.prototype, "display", {
+        get: function () {
+            return this._display;
+        },
+        set: function (value) {
+            this._display = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     __decorate([
         index_1.value.Default(constants_1.ComponentConstants.SORT_DEFAULT), 
         __metadata('design:type', String)
     ], TableHeader.prototype, "_sort", void 0);
+    __decorate([
+        index_1.value.Default(constants_1.ComponentConstants.DISPLAY_BLOCK), 
+        __metadata('design:type', String)
+    ], TableHeader.prototype, "_display", void 0);
     return TableHeader;
 }());
 exports.TableHeader = TableHeader;

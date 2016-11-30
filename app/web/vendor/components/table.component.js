@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var util_1 = require('vendor/util');
 var common_1 = require('vendor/common');
+var openHeadersPanel = false;
 var TableComponent = (function () {
     function TableComponent(el) {
         var _this = this;
@@ -311,12 +312,32 @@ var TableComponent = (function () {
         this.tableHeaders = headers;
     };
     /**
-     * 打开表头列表的面板
+     * 选择需要显示的列
      *
+     * @param {TableHeader} header
      *
      * @memberOf TableComponent
      */
-    TableComponent.prototype.openFilterHeadersPanel = function () {
+    TableComponent.prototype.selectHeaderItem = function (header) {
+        openHeadersPanel = true;
+        for (var _i = 0, _a = this.tableHeaders.toArray(); _i < _a.length; _i++) {
+            var headerItem = _a[_i];
+            if (header.key === headerItem['key'] && headerItem['display'] === common_1.ComponentConstants.DISPLAY_BLOCK) {
+                headerItem['display'] = common_1.ComponentConstants.DISPLAY_NONE;
+                break;
+            }
+            else if (header.key === headerItem['key'] && headerItem['display'] === common_1.ComponentConstants.DISPLAY_NONE) {
+                headerItem['display'] = common_1.ComponentConstants.DISPLAY_BLOCK;
+                break;
+            }
+        }
+        $('#filter-headers-panel').on('hide.bs.dropdown', function (event) {
+            // 在隐藏的时候做一些处理代码，终止隐藏
+            if (openHeadersPanel) {
+                event.preventDefault();
+            }
+            openHeadersPanel = false;
+        });
     };
     __decorate([
         core_1.Input(), 
@@ -345,8 +366,18 @@ var TableComponent = (function () {
     __decorate([
         //是否有更新按钮
         core_1.Input(), 
+        __metadata('design:type', Function)
+    ], TableComponent.prototype, "updateCallBack", void 0);
+    __decorate([
+        //更新的回调函数
+        core_1.Input(), 
         __metadata('design:type', Boolean)
     ], TableComponent.prototype, "deleteModel", void 0);
+    __decorate([
+        //是否有删除按钮
+        core_1.Input(), 
+        __metadata('design:type', Function)
+    ], TableComponent.prototype, "deleteCallBack", void 0);
     TableComponent = __decorate([
         core_1.Component({
             selector: 'table-component',

@@ -2,6 +2,9 @@ import { Component, Directive, AfterViewInit, Input, ElementRef } from '@angular
 import { TableOptions, TableData, TableHeader, ArrayList, List } from 'vendor/util';
 import { ComponentConstants, DataSetUtil, BeanUtil, StringUtil } from 'vendor/common';
 
+declare const $: any;
+let openHeadersPanel: boolean = false;
+
 @Component({
     selector: 'table-component',
     templateUrl: 'app/web/vendor/views/table.html',
@@ -21,7 +24,9 @@ export class TableComponent implements AfterViewInit {
     @Input() globalData: boolean = false;//全量数据显示
     @Input() checkModel: boolean = false;//行数据是否有勾选框
     @Input() updateModel: boolean = false;//是否有更新按钮
+    @Input() updateCallBack:Function;//更新的回调函数
     @Input() deleteModel: boolean = false;//是否有删除按钮
+    @Input() deleteCallBack:Function;//删除的回调函数
 
     constructor(public el: ElementRef) { }
 
@@ -346,12 +351,33 @@ export class TableComponent implements AfterViewInit {
 
 
     /**
-     * 打开表头列表的面板
+     * 选择需要显示的列
      * 
+     * @param {TableHeader} header
      * 
      * @memberOf TableComponent
      */
-    openFilterHeadersPanel():void{
-        
+    selectHeaderItem(header: TableHeader): void {
+        openHeadersPanel = true;
+
+        for (let headerItem of this.tableHeaders.toArray()) {
+            if (header.key === headerItem['key']&&headerItem['display']===ComponentConstants.DISPLAY_BLOCK) {
+                headerItem['display']=ComponentConstants.DISPLAY_NONE;
+                break;
+            }else if(header.key === headerItem['key']&&headerItem['display']===ComponentConstants.DISPLAY_NONE){
+                headerItem['display']=ComponentConstants.DISPLAY_BLOCK;
+                break;
+            }
+        }
+
+        $('#filter-headers-panel').on('hide.bs.dropdown', function(event) {
+            // 在隐藏的时候做一些处理代码，终止隐藏
+            if (openHeadersPanel) {
+                event.preventDefault();
+            }
+            openHeadersPanel = false
+        })
     }
+
+    
 }

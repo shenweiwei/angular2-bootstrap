@@ -14,7 +14,7 @@
     </section>
     <section class="panel-body">
         <article id="table-header-tools" class="col-sm-12 form-horizontal common-style ">
-            <section class="dropdown col-sm-6">
+            <section class="dropdown col-sm-3">
                 PageSize
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                     {{tableOptions.currentPageSize}}
@@ -26,7 +26,7 @@
                     </li>
                 </ul>
             </section>
-            <section class="float-right col-sm-5 col-sm-push-1">
+            <section id="search-toolbar" class="float-right col-sm-7">
                 <div class="col-sm-5">
                     <input input-listener type="text" id="table-search" name="table-search" class="form-control" placeholder="search" [value]="value" [(ngModel)]="value" [changeCallback]="changeCallback" />
                 </div>

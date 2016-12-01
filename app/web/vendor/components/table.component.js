@@ -437,7 +437,8 @@ var TableComponent = (function () {
         core_1.Component({
             selector: 'table-component',
             templateUrl: 'app/web/vendor/views/table.html',
-            styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
+            styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css',
+                'app/web/vendor/framework/compass/stylesheets/vendor-pad.css']
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef])
     ], TableComponent);

@@ -1,0 +1,6 @@
+@media screen and (max-width: 1024px) {
+  /* line 3, ../sass/vendor-pad.scss */
+  #table-header-tools #search-toolbar {
+    left: 8.33333%;
+  }
+}

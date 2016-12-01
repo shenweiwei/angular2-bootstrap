@@ -1,0 +1,12 @@
+<section class="dropdown col-sm-6">
+    PageSize
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    {{tableOptions.currentPageSize}}
+                    <span class="caret"></span>
+                </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li *ngFor="let pageSizeItem of tableOptions.pageSizeList.toArray(); let i = index; trackBy: trackByFn" role="presentation">
+            <a role="menuitem" tabindex="-1" (click)="selectPageSize(pageSizeItem)">{{pageSizeItem}}</a>
+        </li>
+    </ul>
+</section>

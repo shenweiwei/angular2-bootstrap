@@ -8,7 +8,8 @@ let openHeadersPanel: boolean = false;
 @Component({
     selector: 'table-component',
     templateUrl: 'app/web/vendor/views/table.html',
-    styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
+    styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css'
+    ,'app/web/vendor/framework/compass/stylesheets/vendor-pad.css']
 })
 
 export class TableComponent implements AfterViewInit {

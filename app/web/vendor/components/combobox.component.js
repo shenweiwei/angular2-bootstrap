@@ -9,18 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var ComboboxComponent = (function () {
-    function ComboboxComponent() {
+var ComboBoxComponent = (function () {
+    function ComboBoxComponent() {
     }
-    ComboboxComponent = __decorate([
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], ComboBoxComponent.prototype, "label", void 0);
+    ComboBoxComponent = __decorate([
         core_1.Component({
-            selector: 'table-component',
-            templateUrl: 'app/web/vendor/views/table.html',
+            selector: 'combobox-component',
+            templateUrl: 'app/web/vendor/views/combobox.html',
             styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], ComboboxComponent);
-    return ComboboxComponent;
+    ], ComboBoxComponent);
+    return ComboBoxComponent;
 }());
-exports.ComboboxComponent = ComboboxComponent;
+exports.ComboBoxComponent = ComboBoxComponent;
 //# sourceMappingURL=combobox.component.js.map

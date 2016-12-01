@@ -322,12 +322,12 @@ var TableComponent = (function () {
         openHeadersPanel = true;
         for (var _i = 0, _a = this.tableHeaders.toArray(); _i < _a.length; _i++) {
             var headerItem = _a[_i];
-            if (header.key === headerItem['key'] && headerItem['display'] === common_1.ComponentConstants.DISPLAY_BLOCK) {
-                headerItem['display'] = common_1.ComponentConstants.DISPLAY_NONE;
+            if (header.key === headerItem.key && headerItem.display === common_1.ComponentConstants.DISPLAY_BLOCK) {
+                headerItem.display = common_1.ComponentConstants.DISPLAY_NONE;
                 break;
             }
-            else if (header.key === headerItem['key'] && headerItem['display'] === common_1.ComponentConstants.DISPLAY_NONE) {
-                headerItem['display'] = common_1.ComponentConstants.DISPLAY_BLOCK;
+            else if (header.key === headerItem.key && headerItem.display === common_1.ComponentConstants.DISPLAY_NONE) {
+                headerItem.display = common_1.ComponentConstants.DISPLAY_BLOCK;
                 break;
             }
         }
@@ -338,6 +338,42 @@ var TableComponent = (function () {
             }
             openHeadersPanel = false;
         });
+    };
+    /**
+     * 获取已选中的数据
+     *
+     * @template T
+     * @returns {List<T>}
+     *
+     * @memberOf TableComponent
+     */
+    TableComponent.prototype.getChecked = function () {
+        if (!this.checkModel) {
+            return;
+        }
+        var tableDataItemChecked = new util_1.ArrayList();
+        for (var _i = 0, _a = this.viewTableDatas.toArray(); _i < _a.length; _i++) {
+            var tableDataItem = _a[_i];
+            if (tableDataItem.checked) {
+                tableDataItemChecked.add(tableDataItem);
+            }
+        }
+        return tableDataItemChecked;
+    };
+    /**
+     * 设置勾选状态
+     *
+     * @param {number} index
+     * @param {boolean} checked
+     *
+     * @memberOf TableComponent
+     */
+    TableComponent.prototype.setChecked = function (index, checked) {
+        if (!this.checkModel) {
+            return;
+        }
+        var tableDataItem = this.viewTableDatas.get(index);
+        tableDataItem.checked = checked;
     };
     __decorate([
         core_1.Input(), 

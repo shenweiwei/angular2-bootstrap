@@ -24,9 +24,9 @@ export class TableComponent implements AfterViewInit {
     @Input() globalData: boolean = false;//全量数据显示
     @Input() checkModel: boolean = false;//行数据是否有勾选框
     @Input() updateModel: boolean = false;//是否有更新按钮
-    @Input() updateCallBack:Function;//更新的回调函数
+    @Input() updateCallBack: Function;//更新的回调函数
     @Input() deleteModel: boolean = false;//是否有删除按钮
-    @Input() deleteCallBack:Function;//删除的回调函数
+    @Input() deleteCallBack: Function;//删除的回调函数
 
     constructor(public el: ElementRef) { }
 
@@ -360,17 +360,17 @@ export class TableComponent implements AfterViewInit {
     selectHeaderItem(header: TableHeader): void {
         openHeadersPanel = true;
 
-        for (let headerItem of this.tableHeaders.toArray()) {
-            if (header.key === headerItem['key']&&headerItem['display']===ComponentConstants.DISPLAY_BLOCK) {
-                headerItem['display']=ComponentConstants.DISPLAY_NONE;
+        for (let headerItem of this.tableHeaders.toArray() as TableHeader[]) {
+            if (header.key === headerItem.key && headerItem.display === ComponentConstants.DISPLAY_BLOCK) {
+                headerItem.display = ComponentConstants.DISPLAY_NONE;
                 break;
-            }else if(header.key === headerItem['key']&&headerItem['display']===ComponentConstants.DISPLAY_NONE){
-                headerItem['display']=ComponentConstants.DISPLAY_BLOCK;
+            } else if (header.key === headerItem.key && headerItem.display === ComponentConstants.DISPLAY_NONE) {
+                headerItem.display = ComponentConstants.DISPLAY_BLOCK;
                 break;
             }
         }
 
-        $('#filter-headers-panel').on('hide.bs.dropdown', function(event) {
+        $('#filter-headers-panel').on('hide.bs.dropdown', function (event) {
             // 在隐藏的时候做一些处理代码，终止隐藏
             if (openHeadersPanel) {
                 event.preventDefault();
@@ -379,5 +379,44 @@ export class TableComponent implements AfterViewInit {
         })
     }
 
-    
+    /**
+     * 获取已选中的数据
+     * 
+     * @template T
+     * @returns {List<T>}
+     * 
+     * @memberOf TableComponent
+     */
+    getChecked<T>(): List<T> {
+        if (!this.checkModel) {
+            return;
+        }
+
+        let tableDataItemChecked = new ArrayList<T>();
+        for (let tableDataItem of this.viewTableDatas.toArray() as TableData[]) {
+
+            if (tableDataItem.checked) {
+                tableDataItemChecked.add(tableDataItem);
+            }
+        }
+        
+        return tableDataItemChecked;
+    }
+
+    /**
+     * 设置勾选状态
+     * 
+     * @param {number} index
+     * @param {boolean} checked
+     * 
+     * @memberOf TableComponent
+     */
+    setChecked(index: number, checked: boolean): void {
+        if (!this.checkModel) {
+            return;
+        }
+
+        let tableDataItem = this.viewTableDatas.get(index) as TableData;
+        tableDataItem.checked = checked;
+    }
 }

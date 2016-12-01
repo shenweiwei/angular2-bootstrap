@@ -62,6 +62,12 @@ var ApplicationSearchComponent = (function (_super) {
     ApplicationSearchComponent.prototype.ngOnInit = function () {
         this.tableComponent.setTableHeader(this.getTableHeaders());
     };
+    /**
+     * 查询数据
+     *
+     *
+     * @memberOf ApplicationSearchComponent
+     */
     ApplicationSearchComponent.prototype.search = function () {
         // this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
         //     let tableDataList = TableUtil.setTableDatas(response[0]);
@@ -69,17 +75,34 @@ var ApplicationSearchComponent = (function (_super) {
         // });
         this.tableComponent.initDataTable(this.virtualData(), 10);
     };
+    ApplicationSearchComponent.prototype.reset = function () {
+        this.tableComponent.getChecked();
+    };
+    /**
+     * 获取表头
+     *
+     * @returns {List<TableHeader>}
+     *
+     * @memberOf ApplicationSearchComponent
+     */
     ApplicationSearchComponent.prototype.getTableHeaders = function () {
         var columnsEnName = ['appId', 'appChnName', 'appEngName', 'appOwner', 'updateDate', 'remark'];
         var columnsCnName = ['应用编号', '应用中文名', '应用英文名', '应用负责人', '更新时间', '备注'];
         return common_1.TableUtil.setTableHeaders(columnsEnName, columnsCnName);
     };
+    /**
+     * 虚拟数据
+     *
+     * @returns {List<TableData>}
+     *
+     * @memberOf ApplicationSearchComponent
+     */
     ApplicationSearchComponent.prototype.virtualData = function () {
         var tableDataList = new util_1.ArrayList();
         for (var i = 0; i < 10; i++) {
             var tableData = new util_1.TableData();
             tableData.index = i + 1;
-            tableData['appId'] = 'appid' + i;
+            tableData['appId'] = 'appid' + (i + 1);
             tableDataList.add(tableData);
         }
         return tableDataList;

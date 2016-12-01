@@ -72,7 +72,9 @@
                     <tr *ngIf="tableHeaders">
                         <th *ngIf="checkModel" class="th-center">
                             <div class="checkbox-table">
-                                <label><input type="checkbox" class="flat-grey"/></label>
+                                <label>
+                                    <input type="checkbox" class="flat-grey"/>
+                                </label>
                             </div>
                         </th>
                         <th *ngFor="let tableheader of tableHeaders.toArray()" id={{tableheader.key}} (click)="setTableSort(tableheader)" [ngClass]="tableheader.sort" [hidden]="tableheader.display==='none'" class="th-center">
@@ -90,7 +92,9 @@
                     <tr *ngFor="let tableData of viewTableDatas.toArray()">
                         <td *ngIf="checkModel" align="center">
                             <div class="checkbox-table">
-                                <label><input type="checkbox" class="flat-grey"/></label>
+                                <label>
+                                    <input type="checkbox" class="flat-grey" [(ngModel)]="tableData.checked" />
+                                </label>
                             </div>
                         </td>
                         <td *ngFor="let tableheader of tableHeaders.toArray()" headers={{tableheader.key}} [hidden]="tableheader.display==='none'">{{tableData[tableheader.key]}}</td>

@@ -104,9 +104,9 @@ export class MenuComponent {
         }
 
         //收缩所有打开的menuitem
-        for (let tempMenuItem of this.menuList.toArray()) {
-            tempMenuItem['open'] = false;
-            tempMenuItem['active'] = false;
+        for (let tempMenuItem of this.menuList.toArray() as MenuItem[]) {
+            tempMenuItem.open = false;
+            tempMenuItem.active = false;
         }
 
         //展开子菜单
@@ -132,7 +132,7 @@ export class MenuComponent {
         }
 
         //动画切换效果
-        if (menuItem['state'] === 'inactive') {
+        if (menuItem.state === 'inactive') {
             menuItem.state = "active";
         } else {
             menuItem.state = "inactive";
@@ -160,8 +160,8 @@ export class MenuComponent {
      * @memberOf AppComponent
      */
     selectSubMenuItem(menuItem: MenuItem, subMenuItem: SubMenuItem, target: any): void {
-        for (let tempMenuItem of this.menuList.toArray()) {
-            tempMenuItem['active'] = false;
+        for (let tempMenuItem of this.menuList.toArray() as MenuItem[]) {
+            tempMenuItem.active = false;
         }
 
         menuItem.active = true;
@@ -199,12 +199,12 @@ export class MenuComponent {
      */
     showSubMenuItem(isShow: boolean): void {
         if (isShow) {
-            for (let tempMenuItem of this.menuList.toArray()) {
-                tempMenuItem['state'] = 'active';
+            for (let tempMenuItem of this.menuList.toArray() as MenuItem[]) {
+                tempMenuItem.state = 'active';
             }
         }else{
-            for (let tempMenuItem of this.menuList.toArray()) {
-                tempMenuItem['state'] = 'inactive';
+            for (let tempMenuItem of this.menuList.toArray() as MenuItem[]) {
+                tempMenuItem.state = 'inactive';
             }
         }
     }

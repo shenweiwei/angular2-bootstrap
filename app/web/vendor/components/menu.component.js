@@ -90,8 +90,8 @@ var MenuComponent = (function () {
         //收缩所有打开的menuitem
         for (var _i = 0, _a = this.menuList.toArray(); _i < _a.length; _i++) {
             var tempMenuItem = _a[_i];
-            tempMenuItem['open'] = false;
-            tempMenuItem['active'] = false;
+            tempMenuItem.open = false;
+            tempMenuItem.active = false;
         }
         //展开子菜单
         menuItem.active = true; //只有激活了收缩动画才有效果
@@ -114,7 +114,7 @@ var MenuComponent = (function () {
             }
         }
         //动画切换效果
-        if (menuItem['state'] === 'inactive') {
+        if (menuItem.state === 'inactive') {
             menuItem.state = "active";
         }
         else {
@@ -141,7 +141,7 @@ var MenuComponent = (function () {
     MenuComponent.prototype.selectSubMenuItem = function (menuItem, subMenuItem, target) {
         for (var _i = 0, _a = this.menuList.toArray(); _i < _a.length; _i++) {
             var tempMenuItem = _a[_i];
-            tempMenuItem['active'] = false;
+            tempMenuItem.active = false;
         }
         menuItem.active = true;
         //设置navbar
@@ -177,13 +177,13 @@ var MenuComponent = (function () {
         if (isShow) {
             for (var _i = 0, _a = this.menuList.toArray(); _i < _a.length; _i++) {
                 var tempMenuItem = _a[_i];
-                tempMenuItem['state'] = 'active';
+                tempMenuItem.state = 'active';
             }
         }
         else {
             for (var _b = 0, _c = this.menuList.toArray(); _b < _c.length; _b++) {
                 var tempMenuItem = _c[_b];
-                tempMenuItem['state'] = 'inactive';
+                tempMenuItem.state = 'inactive';
             }
         }
     };

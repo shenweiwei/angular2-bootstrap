@@ -25,6 +25,12 @@ export class ApplicationSearchComponent extends BaseComponent implements OnInit 
         this.tableComponent.setTableHeader(this.getTableHeaders());
     }
 
+    /**
+     * 查询数据
+     * 
+     * 
+     * @memberOf ApplicationSearchComponent
+     */
     search(): void {
         // this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
         //     let tableDataList = TableUtil.setTableDatas(response[0]);
@@ -34,11 +40,41 @@ export class ApplicationSearchComponent extends BaseComponent implements OnInit 
         this.tableComponent.initDataTable(this.virtualData(), 10);
     }
 
+    reset(): void {
+        this.tableComponent.getChecked();
+    }
+
+    /**
+     * 获取表头
+     * 
+     * @returns {List<TableHeader>}
+     * 
+     * @memberOf ApplicationSearchComponent
+     */
     getTableHeaders(): List<TableHeader> {
         const columnsEnName = ['appId', 'appChnName', 'appEngName', 'appOwner', 'updateDate', 'remark'];
         const columnsCnName = ['应用编号', '应用中文名', '应用英文名', '应用负责人', '更新时间', '备注'];
 
         return TableUtil.setTableHeaders(columnsEnName, columnsCnName);
+    }
+
+    /**
+     * 虚拟数据
+     * 
+     * @returns {List<TableData>}
+     * 
+     * @memberOf ApplicationSearchComponent
+     */
+    virtualData(): List<TableData> {
+        let tableDataList = new ArrayList<TableData>();
+        for (let i = 0; i < 10; i++) {
+            let tableData = new TableData();
+            tableData.index = i + 1;
+            tableData['appId'] = 'appid' + (i + 1);
+            tableDataList.add(tableData);
+        }
+
+        return tableDataList;
     }
 
     /**
@@ -55,18 +91,6 @@ export class ApplicationSearchComponent extends BaseComponent implements OnInit 
         //     let tableDataList = TableUtil.setTableDatas(response[0]);
         //     this.tableComponent.refreshData(tableDataList, response[1].total);
         // });
-    }
-
-    virtualData(): List<TableData> {
-        let tableDataList = new ArrayList<TableData>();
-        for (let i = 0; i < 10; i++) {
-            let tableData = new TableData();
-            tableData.index = i + 1;
-            tableData['appId'] = 'appid' + i;
-            tableDataList.add(tableData);
-        }
-
-        return tableDataList;
     }
 
     /**

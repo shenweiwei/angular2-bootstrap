@@ -46,10 +46,11 @@
             <article class="form-group col-sm-12">
                 <section class="text-center">
                     <button type="button " class="btn btn-primary btn-squared " (click)="search()">查询</button>
+                    <button type="button " class="btn btn-default btn-squared " (click)="reset()">重置</button>
                 </section>
             </article>
         </form>
     </section>
 </article>
-<table-component [pageSize]="10" [onSelectPage]="onSelectPage" [checkModel]="true" [updateModel]="true" [updateCallBack]="updateCallBack" [deleteModel]="true" [deleteCallBack]="deleteCallBack" ></table-component>
+<table-component [pageSize]="10" [onSelectPage]="onSelectPage" [checkModel]="true" [updateModel]="true" [updateCallBack]="updateCallBack" [deleteModel]="true" [deleteCallBack]="deleteCallBack"></table-component>
 <!-- end: TEXT FIELDS PANEL -->

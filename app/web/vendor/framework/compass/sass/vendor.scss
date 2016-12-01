@@ -31,6 +31,7 @@ $current-position-font-size:14px;
 #table-header-tools {
     margin: 0;
     margin-bottom: 20px;
+    overflow-x: hidden;
     #filter-headers-panel {
         ul {
             li {
@@ -40,7 +41,7 @@ $current-position-font-size:14px;
             }
         }
     }
-    #search-toolbar {
+    section[title="search-advance-tools"] {
         left: 16.666666666666664%
     }
 }

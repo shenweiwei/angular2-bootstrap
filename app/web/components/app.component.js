@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,6 +14,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var view_component_1 = require('./view.component');
 var menu_component_1 = require('../vendor/components/menu.component');
 var navbar_component_1 = require('../vendor/components/navbar.component');
 var task_remind_component_1 = require('../vendor/components/task-remind.component');
@@ -16,12 +22,17 @@ var common_1 = require('vendor/common');
 var app_options_1 = require('../vendor/app.options');
 var common_2 = require('vendor/common');
 var util_1 = require('vendor/util');
-var AppComponent = (function () {
+var AppComponent = (function (_super) {
+    __extends(AppComponent, _super);
     function AppComponent(el, renderer, appOptions, userPojo) {
+        _super.call(this);
         this.appOptions = appOptions;
         this.userPojo = userPojo;
         this.virtualUserData();
     }
+    AppComponent.prototype.ngOnInit = function () {
+        _super.prototype.ngOnInit.call(this);
+    };
     /**
      * 页面显示完成做一些初始化的事情
      *
@@ -94,6 +105,6 @@ var AppComponent = (function () {
         __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer, app_options_1.AppOptions, common_2.UserPojo])
     ], AppComponent);
     return AppComponent;
-}());
+}(view_component_1.ViewComponent));
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

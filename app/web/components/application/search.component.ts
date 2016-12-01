@@ -1,5 +1,4 @@
 import { Component, Input, ViewChild, OnInit } from '@angular/core';
-import { BaseComponent } from '../base.component';
 import { TableComponent } from '../../vendor/components/table.component';
 import { ApplicationVo } from '../../../js/com/sgm/dms/ops/vo/application.vo';
 import { TableData, TableHeader, ArrayList, TableOptions, List } from 'vendor/util';
@@ -11,14 +10,13 @@ import { ApplicationServiceImpl } from '../../../js/com/sgm/dms/ops/services/app
     entryComponents: [TableComponent]
 })
 
-export class ApplicationSearchComponent extends BaseComponent implements OnInit {
+export class ApplicationSearchComponent implements OnInit {
     public applicationVo: ApplicationVo = new ApplicationVo();
     public url: string = 'web.dmsops/application/query';
 
     @ViewChild(TableComponent) tableComponent: TableComponent;
 
     constructor(private applicationServiceImpl: ApplicationServiceImpl) {
-        super();
     }
 
     ngOnInit(): void {

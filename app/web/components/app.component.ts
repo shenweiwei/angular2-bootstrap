@@ -1,4 +1,5 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { Component,  AfterViewInit, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { ViewComponent } from './view.component';
 import { MenuComponent } from '../vendor/components/menu.component';
 import { NavBarComponent } from '../vendor/components/navbar.component';
 import { TaskRemindComponent } from '../vendor/components/task-remind.component';
@@ -13,7 +14,7 @@ import { ArrayList } from 'vendor/util';
     entryComponents: [MenuComponent, NavBarComponent, TaskRemindComponent]
 })
 
-export class AppComponent implements AfterViewInit {
+export class AppComponent extends ViewComponent implements AfterViewInit {
     @ViewChild(MenuComponent)
     public menuComponent: MenuComponent;
     @ViewChild(NavBarComponent)
@@ -21,10 +22,14 @@ export class AppComponent implements AfterViewInit {
     @ViewChild(TaskRemindComponent)
     public taskRemindComponent: TaskRemindComponent;
 
-    constructor(el: ElementRef, renderer: Renderer, public appOptions: AppOptions,public userPojo: UserPojo) {
+    constructor(el: ElementRef, renderer: Renderer, public appOptions: AppOptions, public userPojo: UserPojo) {
+        super();
         this.virtualUserData();
     }
 
+    ngOnInit(): void {
+        super.ngOnInit();
+    }
     /**
      * 页面显示完成做一些初始化的事情
      * 
@@ -79,7 +84,7 @@ export class AppComponent implements AfterViewInit {
         position_two.name = "系统管理员";
         position_two.type = CommonConstants.SGM;
 
-        this.userPojo.positionList= new ArrayList().add(position_one).add(position_two);
+        this.userPojo.positionList = new ArrayList().add(position_one).add(position_two);
         this.userPojo.currentPosition = position_one;
     }
 }

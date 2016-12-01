@@ -1,7 +1,5 @@
-#table-header-tools {
-    @media screen and (max-width: 1024px) {
-        #search-toolbar {
-            left: 8.333333333333332%
-        }
+@media screen and (max-width: 1024px) {
+    #table-header-tools>section[title="search-advance-tools"] {
+        left: 8.333333333333332%
     }
 }

@@ -1,11 +1,7 @@
 import { OnInit } from '@angular/core';
 declare var Main: any;
 
-export class BaseComponent implements OnInit{
-
-    constructor(){
-        
-    }
+export class ViewComponent implements OnInit{
 
     ngOnInit():void{
         Main.init();

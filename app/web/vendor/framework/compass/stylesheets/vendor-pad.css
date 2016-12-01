@@ -1,6 +1,6 @@
 @media screen and (max-width: 1024px) {
-  /* line 3, ../sass/vendor-pad.scss */
-  #table-header-tools #search-toolbar {
+  /* line 2, ../sass/vendor-pad.scss */
+  #table-header-tools > section[title="search-advance-tools"] {
     left: 8.33333%;
   }
 }

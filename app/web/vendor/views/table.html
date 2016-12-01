@@ -31,9 +31,11 @@
                     <input input-listener type="text" id="table-search" name="table-search" class="form-control" placeholder="search" [value]="value" [(ngModel)]="value" [changeCallback]="changeCallback" />
                 </div>
                 <div class="btn-group col-sm-7">
-                    <button type="button" class="btn btn-default" (click)="refershData(tableDatas)">
+
+                    <button type="button" class="btn btn-default" (click)="refreshData(tableDatas)" [ngClass]="{'disabled': !tableDatas||tableDatas.getSize()<=0}">
                         <i class="clip-spinner-6"></i>
                     </button>
+
                     <div class="btn-group" id="filter-headers-panel">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <i class="clip-grid-3"></i>

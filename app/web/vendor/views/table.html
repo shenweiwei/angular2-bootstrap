@@ -73,7 +73,7 @@
                         <th *ngIf="checkModel" class="th-center">
                             <div class="checkbox-table">
                                 <label>
-                                    <input type="checkbox" class="flat-grey"/>
+                                    <input type="checkbox" class="flat-grey" (click)="checkedAll($event.target)" />
                                 </label>
                             </div>
                         </th>

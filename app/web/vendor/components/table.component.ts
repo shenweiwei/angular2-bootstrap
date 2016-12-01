@@ -399,7 +399,7 @@ export class TableComponent implements AfterViewInit {
                 tableDataItemChecked.add(tableDataItem);
             }
         }
-        
+
         return tableDataItemChecked;
     }
 
@@ -418,5 +418,24 @@ export class TableComponent implements AfterViewInit {
 
         let tableDataItem = this.viewTableDatas.get(index) as TableData;
         tableDataItem.checked = checked;
+    }
+
+    /**
+     * 选中全部复选框
+     * 
+     * @memberOf TableComponent
+     */
+    checkedAll(target: any): void {
+        if (!this.checkModel) {
+            return;
+        }
+
+        for (let tableDataItem of this.viewTableDatas.toArray() as TableData[]) {
+            if (target.checked) {
+                tableDataItem.checked = true;
+            } else {
+                tableDataItem.checked = false;
+            }
+        }
     }
 }

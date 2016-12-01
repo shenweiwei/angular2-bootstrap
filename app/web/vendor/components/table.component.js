@@ -375,6 +375,25 @@ var TableComponent = (function () {
         var tableDataItem = this.viewTableDatas.get(index);
         tableDataItem.checked = checked;
     };
+    /**
+     * 选中全部复选框
+     *
+     * @memberOf TableComponent
+     */
+    TableComponent.prototype.checkedAll = function (target) {
+        if (!this.checkModel) {
+            return;
+        }
+        for (var _i = 0, _a = this.viewTableDatas.toArray(); _i < _a.length; _i++) {
+            var tableDataItem = _a[_i];
+            if (target.checked) {
+                tableDataItem.checked = true;
+            }
+            else {
+                tableDataItem.checked = false;
+            }
+        }
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)

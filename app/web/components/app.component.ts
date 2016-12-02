@@ -47,11 +47,11 @@ export class AppComponent extends ViewComponent implements AfterViewInit {
      */
     changeClipChevron(): void {
         if (this.appOptions.clipChevron === ComponentConstants.CLIP_CHEVRON_LEFT) {
-            this.appOptions.clipChevron = ComponentConstants.CLIP_CHEVRON_RIGHT;
             this.menuComponent.showSubMenuItem(true);
+            this.appOptions.clipChevron = ComponentConstants.CLIP_CHEVRON_RIGHT;
         } else {
-            this.appOptions.clipChevron = ComponentConstants.CLIP_CHEVRON_LEFT;
             this.menuComponent.showSubMenuItem(false);
+            this.appOptions.clipChevron = ComponentConstants.CLIP_CHEVRON_LEFT;
         }
     }
 

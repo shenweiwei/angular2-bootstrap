@@ -4,6 +4,7 @@ var ViewComponent = (function () {
     }
     ViewComponent.prototype.ngOnInit = function () {
         Main.init();
+        UIModals.init();
     };
     return ViewComponent;
 }());

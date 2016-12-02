@@ -14,13 +14,16 @@ $current-position-font-size:14px;
 * common
 */
 
-*.common-style {
-    *.float-right {
-        float: right;
-    }
-    *.float-left {
-        float: left;
-    }
+*.float-right {
+    float: right;
+}
+
+*.float-left {
+    float: left;
+}
+
+*.overflow-hidden {
+    overflow: hidden;
 }
 
 
@@ -31,7 +34,6 @@ $current-position-font-size:14px;
 #table-header-tools {
     margin: 0;
     margin-bottom: 20px;
-    overflow-x: hidden;
     #filter-headers-panel {
         ul {
             li {

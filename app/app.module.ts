@@ -27,6 +27,7 @@ import { DashBoardComponent } from './web/components/dashboard.component';
 import { ApplicationSearchComponent } from './web/components/application/search.component';
 
 //vendor component
+import { BaseComponent } from './web/vendor/components/base.component';
 import { TableComponent } from './web/vendor/components/table.component';
 import { MenuComponent } from './web/vendor/components/menu.component';
 import { NavBarComponent } from './web/vendor/components/navbar.component';
@@ -82,6 +83,7 @@ import { UserPojo } from 'vendor/common';
     //自定义service实现类
     ApplicationServiceImpl,
     //扩展类
+    BaseComponent,
     TableOptions,
     MenuOptions,
     TaskRemindOptions,

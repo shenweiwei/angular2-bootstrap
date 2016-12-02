@@ -32,6 +32,7 @@ var dashboard_component_1 = require('./web/components/dashboard.component');
 //advance component
 var search_component_1 = require('./web/components/application/search.component');
 //vendor component
+var base_component_1 = require('./web/vendor/components/base.component');
 var table_component_1 = require('./web/vendor/components/table.component');
 var menu_component_1 = require('./web/vendor/components/menu.component');
 var navbar_component_1 = require('./web/vendor/components/navbar.component');
@@ -84,6 +85,7 @@ var AppModule = (function () {
                 //自定义service实现类
                 application_service_impl_1.ApplicationServiceImpl,
                 //扩展类
+                base_component_1.BaseComponent,
                 util_1.TableOptions,
                 util_2.MenuOptions,
                 util_3.TaskRemindOptions,

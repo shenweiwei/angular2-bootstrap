@@ -1,22 +1,24 @@
 import { Component, Input, ViewChild, OnInit } from '@angular/core';
+import { BaseComponent } from '../../vendor/components/base.component';
 import { TableComponent } from '../../vendor/components/table.component';
 import { ApplicationVo } from '../../../js/com/sgm/dms/ops/vo/application.vo';
 import { TableData, TableHeader, ArrayList, TableOptions, List } from 'vendor/util';
 import { TableUtil } from 'vendor/common';
 import { ApplicationServiceImpl } from '../../../js/com/sgm/dms/ops/services/application.service.impl';
-
+declare const $: any;
 @Component({
     templateUrl: 'app/web/views/application/search.html',
     entryComponents: [TableComponent]
 })
 
-export class ApplicationSearchComponent implements OnInit {
+export class ApplicationSearchComponent extends BaseComponent implements OnInit {
     public applicationVo: ApplicationVo = new ApplicationVo();
     public url: string = 'web.dmsops/application/query';
 
     @ViewChild(TableComponent) tableComponent: TableComponent;
 
     constructor(private applicationServiceImpl: ApplicationServiceImpl) {
+        super();
     }
 
     ngOnInit(): void {
@@ -39,7 +41,8 @@ export class ApplicationSearchComponent implements OnInit {
     }
 
     reset(): void {
-        this.tableComponent.getChecked();
+        super.openProgress();
+        // super.closeProgress();
     }
 
     /**

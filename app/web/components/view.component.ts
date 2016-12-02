@@ -1,9 +1,10 @@
 import { OnInit } from '@angular/core';
 declare var Main: any;
+declare var UIModals: any;
+export class ViewComponent implements OnInit {
 
-export class ViewComponent implements OnInit{
-
-    ngOnInit():void{
+    ngOnInit(): void {
         Main.init();
+        UIModals.init();
     }
 }

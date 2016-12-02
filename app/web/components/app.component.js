@@ -49,12 +49,12 @@ var AppComponent = (function (_super) {
      */
     AppComponent.prototype.changeClipChevron = function () {
         if (this.appOptions.clipChevron === common_1.ComponentConstants.CLIP_CHEVRON_LEFT) {
-            this.appOptions.clipChevron = common_1.ComponentConstants.CLIP_CHEVRON_RIGHT;
             this.menuComponent.showSubMenuItem(true);
+            this.appOptions.clipChevron = common_1.ComponentConstants.CLIP_CHEVRON_RIGHT;
         }
         else {
-            this.appOptions.clipChevron = common_1.ComponentConstants.CLIP_CHEVRON_LEFT;
             this.menuComponent.showSubMenuItem(false);
+            this.appOptions.clipChevron = common_1.ComponentConstants.CLIP_CHEVRON_LEFT;
         }
     };
     /**

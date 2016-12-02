@@ -5,89 +5,94 @@
 /*
 * common
 */
-/* line 18, ../sass/vendor.scss */
-*.common-style *.float-right {
+/* line 17, ../sass/vendor.scss */
+*.float-right {
   float: right;
 }
+
 /* line 21, ../sass/vendor.scss */
-*.common-style *.float-left {
+*.float-left {
   float: left;
+}
+
+/* line 25, ../sass/vendor.scss */
+*.overflow-hidden {
+  overflow: hidden;
 }
 
 /*
 * table
 */
-/* line 31, ../sass/vendor.scss */
+/* line 34, ../sass/vendor.scss */
 #table-header-tools {
   margin: 0;
   margin-bottom: 20px;
-  overflow-x: hidden;
 }
-/* line 37, ../sass/vendor.scss */
+/* line 39, ../sass/vendor.scss */
 #table-header-tools #filter-headers-panel ul li {
   padding: 0;
   padding-left: 20px;
   padding-right: 20px;
 }
-/* line 44, ../sass/vendor.scss */
+/* line 46, ../sass/vendor.scss */
 #table-header-tools section[title="search-advance-tools"] {
   left: 16.66667%;
 }
 
-/* line 50, ../sass/vendor.scss */
+/* line 52, ../sass/vendor.scss */
 #table-body tr > th {
   cursor: pointer;
   background-color: white;
 }
-/* line 53, ../sass/vendor.scss */
+/* line 55, ../sass/vendor.scss */
 #table-body tr > th::after {
   font-family: "Glyphicons Halflings";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
   opacity: 0.2;
   content: "";
 }
-/* line 59, ../sass/vendor.scss */
+/* line 61, ../sass/vendor.scss */
 #table-body tr > .sort-default::after {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
   opacity: 0.2;
   content: "";
 }
-/* line 63, ../sass/vendor.scss */
+/* line 65, ../sass/vendor.scss */
 #table-body tr > .sort-asc::after {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
   content: "";
 }
-/* line 67, ../sass/vendor.scss */
+/* line 69, ../sass/vendor.scss */
 #table-body tr > .sort-desc::after {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
   content: "";
 }
 
-/* line 73, ../sass/vendor.scss */
+/* line 75, ../sass/vendor.scss */
 #table-footer-tools {
   margin: 0;
 }
-/* line 75, ../sass/vendor.scss */
+/* line 77, ../sass/vendor.scss */
 #table-footer-tools ul {
   margin: 0;
 }
-/* line 78, ../sass/vendor.scss */
+/* line 80, ../sass/vendor.scss */
 #table-footer-tools > section {
   margin-top: 20px;
 }
-/* line 80, ../sass/vendor.scss */
+/* line 82, ../sass/vendor.scss */
 #table-footer-tools > section:first-child {
   margin-top: 30px;
 }
-/* line 83, ../sass/vendor.scss */
+/* line 85, ../sass/vendor.scss */
 #table-footer-tools > section > ul {
   display: block;
   float: right;
 }
 
-/* line 90, ../sass/vendor.scss */
+/* line 92, ../sass/vendor.scss */
 *.th-center {
   text-align: center;
   left: 0;
@@ -97,16 +102,16 @@
 /*
 * user && position
 */
-/* line 102, ../sass/vendor.scss */
+/* line 104, ../sass/vendor.scss */
 *.advance-userinfo-font-size .dropdown-toggle label {
   font-size: 14px;
 }
-/* line 105, ../sass/vendor.scss */
+/* line 107, ../sass/vendor.scss */
 *.advance-userinfo-font-size .dropdown-toggle span {
   font-size: 14px;
 }
 
-/* line 110, ../sass/vendor.scss */
+/* line 112, ../sass/vendor.scss */
 *.clear-userinfo-left ul {
   left: 0;
   text-align: center;

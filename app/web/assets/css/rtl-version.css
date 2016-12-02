@@ -642,7 +642,7 @@ body.rtl #style_selector .style-toggle {
 }
 
 body.rtl #style_selector>.open:before {
-    content: "\e163";
+    /*content: "\e163";*/
 }
 
 body.rtl #style_selector>.open {
@@ -651,7 +651,7 @@ body.rtl #style_selector>.open {
 }
 
 body.rtl #style_selector>.close:before {
-    content: "\e162";
+    /*content: "\e162";*/
 }
 
 body.rtl #style_selector>.close {

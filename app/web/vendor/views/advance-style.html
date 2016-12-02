@@ -53,10 +53,10 @@
             <a id="navy" href="javascript:void(0)"><img alt="" src="app/web/assets/images/navy.png"></a>
             <a id="green" href="javascript:void(0)"><img alt="" src="app/web/assets/images/green.png"></a>
         </div>
-        <div class="box-title">
+        <!--<div class="box-title">
             Style it with LESS
-        </div>
-        <div class="images">
+        </div>-->
+        <!--<div class="images">
             <div class="form-group">
                 <label>
 												Basic
@@ -99,7 +99,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div style="height:25px;line-height:25px; text-align: center">
             <a class="clear_style" href="#">
 											Clear Styles
@@ -109,5 +109,7 @@
 										</a>
         </div>
     </div>
-    <div class="style-toggle" [ngClass]="appOptions.advanceStyleState" (click)="openAdvanceStylePanel()"></div>
+    <div class="style-toggle" [ngClass]="appOptions.advanceStyleState" (click)="openAdvanceStylePanel()">
+        <i class="fa fa-cog fa-spin"></i>
+    </div>
 </div>

@@ -5364,7 +5364,8 @@ body.header-default .daterangepicker {
     font-size: 14px;
 }
 #style_selector>.open:before {
-    content: "\e162";
+    /*content: "\e162";*/
+    
     font-family: 'clip-font';
     line-height: 1;
 }
@@ -5377,7 +5378,8 @@ body.header-default .daterangepicker {
     opacity: 1;
 }
 #style_selector>.close:before {
-    content: "\e163";
+    /*content: "\e163";*/
+    
     font-family: 'clip-font';
     line-height: 1;
 }

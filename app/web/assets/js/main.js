@@ -165,7 +165,7 @@ var Main = function() {
     };
     //function to activate the panel tools
     var runModuleTools = function() {
-        $('.panel-tools .panel-expand').bind('click', function(e) {
+        $('body').on('click', '.panel-tools .panel-expand', function(e) {
             $('.panel-tools a').not(this).hide();
             $('body').append('<div class="full-white-backdrop"></div>');
             $('.main-container').removeAttr('style');
@@ -196,11 +196,11 @@ var Main = function() {
                 });
             }
         });
-        $('.panel-tools .panel-close').on('click', function(e) {
+        $('body').on('click', '.panel-tools .panel-close', function(e) {
             $(this).parents(".panel").remove();
             e.preventDefault();
         });
-        $('.panel-tools .panel-refresh').on('click', function(e) {
+        $('body').on('click', '.panel-tools .panel-refresh', function(e) {
             var el = $(this).parents(".panel");
             el.block({
                 overlayCSS: {
@@ -218,7 +218,7 @@ var Main = function() {
             }, 1000);
             e.preventDefault();
         });
-        $('.panel-tools .panel-collapse').on('click', function(e) {
+        $('body').on('click', '.panel-tools .panel-collapse', function(e) {
             e.preventDefault();
             var el = jQuery(this).parent().closest(".panel").children(".panel-body");
             if ($(this).hasClass("collapses")) {

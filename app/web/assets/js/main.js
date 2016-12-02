@@ -561,7 +561,8 @@ var Main = function() {
     };
     //function to save user settings
     var runSaveSetting = function() {
-        $('.save_style').bind('click', function() {
+        $('#style_selector').on('click', '.save_style', function(event) {
+            event.preventDefault();
             var clipSetting = new Object;
             if ($('body').hasClass('rtl')) {
                 clipSetting.rtl = true;
@@ -604,21 +605,21 @@ var Main = function() {
 
             $.cookie("clip-setting", JSON.stringify(clipSetting));
 
-            // var el = $('#style_selector_container');
-            // el.block({
-            //     overlayCSS: {
-            //         backgroundColor: '#fff'
-            //     },
-            //     message: '<img src="app/web/assets/images/loading.gif" /> Just a moment...',
-            //     css: {
-            //         border: 'none',
-            //         color: '#333',
-            //         background: 'none'
-            //     }
-            // });
-            // window.setTimeout(function() {
-            //     el.unblock();
-            // }, 1000);
+            var el = $('#style_selector_container');
+            el.block({
+                overlayCSS: {
+                    backgroundColor: '#fff'
+                },
+                message: '<img src="app/web/assets/images/loading.gif" /> Just a moment...',
+                css: {
+                    border: 'none',
+                    color: '#333',
+                    background: 'none'
+                }
+            });
+            window.setTimeout(function() {
+                el.unblock();
+            }, 1000);
         });
     };
     //function to load user settings
@@ -659,7 +660,8 @@ var Main = function() {
     };
     //function to clear user settings
     var runClearSetting = function() {
-        $('.clear_style').bind('click', function() {
+        $('#style_selector').on('click', '.clear_style', function(event) {
+            event.preventDefault();
             $.removeCookie("clip-setting");
             $('body').removeClass("layout-boxed header-default footer-fixed");
             $('body')[0].className = $('body')[0].className.replace(/\bbg_style_.*?\b/g, '');

@@ -7,10 +7,12 @@ declare const $: any;
 })
 
 export class BaseComponent {
+    public modalManager: any;
+    public openModals: any;
 
     constructor() {
     }
-    
+
     /**
      * 打开进度条
      * 
@@ -26,8 +28,8 @@ export class BaseComponent {
      * @memberOf BaseComponent
      */
     closeProgress(): void {
-        let modalManager = $("body").data("modalmanager");
-        let openModals = modalManager.getOpenModals();
-        modalManager.removeLoading();
+        this.modalManager = this.modalManager || $("body").data("modalmanager");
+        this.openModals = this.openModals||this.openModals.getOpenModals();
+        this.modalManager.removeLoading();
     }
 }

@@ -26,9 +26,9 @@ var BaseComponent = (function () {
      * @memberOf BaseComponent
      */
     BaseComponent.prototype.closeProgress = function () {
-        var modalManager = $("body").data("modalmanager");
-        var openModals = modalManager.getOpenModals();
-        modalManager.removeLoading();
+        this.modalManager = this.modalManager || $("body").data("modalmanager");
+        this.openModals = this.openModals || this.openModals.getOpenModals();
+        this.modalManager.removeLoading();
     };
     BaseComponent = __decorate([
         core_1.Component({

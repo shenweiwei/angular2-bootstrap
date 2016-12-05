@@ -5,13 +5,14 @@ import { value } from '../../annotation/value';
 import { ComponentConstants } from '../../common/constants/component.constants';
 
 export class MenuItem {
-    private _subItem: List<SubMenuItem> = new ArrayList<SubMenuItem>();
-    private _active: boolean = false;
     private _index: number;
     private _name: string;
+    private _active: boolean = false;
     private _open: boolean = false;
     private _displayModal: string = ComponentConstants.DISPLAY_NONE;
     private _state: string = "inactive";
+    private _icon: string;
+    private _subItem: List<SubMenuItem> = new ArrayList<SubMenuItem>();
 
     public get subItem(): List<SubMenuItem> {
         return this._subItem;
@@ -67,6 +68,14 @@ export class MenuItem {
 
     public set state(value: string) {
         this._state = value;
+    }
+
+    public get icon(): string {
+        return this._icon;
+    }
+
+    public set icon(value: string) {
+        this._icon = value;
     }
 
 }

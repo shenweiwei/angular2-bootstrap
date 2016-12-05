@@ -9,6 +9,7 @@ declare const $: any;
 @Component({
     selector: 'menu-component',
     templateUrl: 'app/web/vendor/views/menu.html',
+    styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css'],
     entryComponents: [NavBarComponent],
     animations: [
         trigger('menuState', [
@@ -47,6 +48,7 @@ export class MenuComponent {
         menuitem_one.active = true;
         menuitem_one.name = 'Dashboard';
         menuitem_one.open = true;
+        menuitem_one.icon = 'clip-home-3';
         this.menuList.add(menuitem_one);
 
         let menuitem_two = new MenuItem();
@@ -54,6 +56,7 @@ export class MenuComponent {
         menuitem_two.active = false;
         menuitem_two.name = '应用管理';
         menuitem_two.open = false;
+        menuitem_two.icon = 'clip-screen';
 
         let subMenuItem_one = new SubMenuItem();
         subMenuItem_one.index = 1;
@@ -75,6 +78,7 @@ export class MenuComponent {
         menuitem_three.active = false;
         menuitem_three.name = '应用管理';
         menuitem_three.open = false;
+        menuitem_three.icon = 'clip-screen';
 
         let subMenuItem_three = new SubMenuItem();
         subMenuItem_three.index = 1;
@@ -169,9 +173,14 @@ export class MenuComponent {
     selectSubMenuItem(menuItem: MenuItem, subMenuItem: SubMenuItem, target: any): void {
         for (let tempMenuItem of this.menuList.toArray() as MenuItem[]) {
             tempMenuItem.active = false;
+            for (let tempSubMenuItem of tempMenuItem.subItem.toArray() as SubMenuItem[]) {
+                tempSubMenuItem.selected = false;
+            }
         }
 
         menuItem.active = true;
+
+        subMenuItem.selected = true;
 
         //设置navbar
         if (this.menuOptions.currentActiveSubItem === this.menuOptions.preActiveSubItem && this.menuOptions.currentActiveSubItem !== undefined) {

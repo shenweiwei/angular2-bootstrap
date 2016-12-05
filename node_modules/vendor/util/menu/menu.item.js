@@ -3,11 +3,11 @@ var arraylist_1 = require('../../util/collection/arraylist');
 var component_constants_1 = require('../../common/constants/component.constants');
 var MenuItem = (function () {
     function MenuItem() {
-        this._subItem = new arraylist_1.ArrayList();
         this._active = false;
         this._open = false;
         this._displayModal = component_constants_1.ComponentConstants.DISPLAY_NONE;
         this._state = "inactive";
+        this._subItem = new arraylist_1.ArrayList();
     }
     Object.defineProperty(MenuItem.prototype, "subItem", {
         get: function () {
@@ -75,6 +75,16 @@ var MenuItem = (function () {
         },
         set: function (value) {
             this._state = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MenuItem.prototype, "icon", {
+        get: function () {
+            return this._icon;
+        },
+        set: function (value) {
+            this._icon = value;
         },
         enumerable: true,
         configurable: true

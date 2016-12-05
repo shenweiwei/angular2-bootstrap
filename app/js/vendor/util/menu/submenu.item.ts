@@ -3,6 +3,7 @@ export class SubMenuItem {
 	private _index: number;
 	private _isNew: boolean;
 	private _routerLink: string;
+	private _selected: boolean=false;
 
 	public get name(): string {
 		return this._name;
@@ -35,6 +36,13 @@ export class SubMenuItem {
 	public set routerLink(value: string) {
 		this._routerLink = value;
 	}
-	
+
+	public get selected(): boolean {
+		return this._selected;
+	}
+
+	public set selected(value: boolean) {
+		this._selected = value;
+	}
 
 }

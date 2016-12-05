@@ -1,6 +1,7 @@
 "use strict";
 var SubMenuItem = (function () {
     function SubMenuItem() {
+        this._selected = false;
     }
     Object.defineProperty(SubMenuItem.prototype, "name", {
         get: function () {
@@ -38,6 +39,16 @@ var SubMenuItem = (function () {
         },
         set: function (value) {
             this._routerLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SubMenuItem.prototype, "selected", {
+        get: function () {
+            return this._selected;
+        },
+        set: function (value) {
+            this._selected = value;
         },
         enumerable: true,
         configurable: true

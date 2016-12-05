@@ -39,12 +39,14 @@ var MenuComponent = (function () {
         menuitem_one.active = true;
         menuitem_one.name = 'Dashboard';
         menuitem_one.open = true;
+        menuitem_one.icon = 'clip-home-3';
         this.menuList.add(menuitem_one);
         var menuitem_two = new util_1.MenuItem();
         menuitem_two.index = 2;
         menuitem_two.active = false;
         menuitem_two.name = '应用管理';
         menuitem_two.open = false;
+        menuitem_two.icon = 'clip-screen';
         var subMenuItem_one = new util_1.SubMenuItem();
         subMenuItem_one.index = 1;
         subMenuItem_one.name = '应用查询';
@@ -63,6 +65,7 @@ var MenuComponent = (function () {
         menuitem_three.active = false;
         menuitem_three.name = '应用管理';
         menuitem_three.open = false;
+        menuitem_three.icon = 'clip-screen';
         var subMenuItem_three = new util_1.SubMenuItem();
         subMenuItem_three.index = 1;
         subMenuItem_three.name = '应用查询';
@@ -148,8 +151,13 @@ var MenuComponent = (function () {
         for (var _i = 0, _a = this.menuList.toArray(); _i < _a.length; _i++) {
             var tempMenuItem = _a[_i];
             tempMenuItem.active = false;
+            for (var _b = 0, _c = tempMenuItem.subItem.toArray(); _b < _c.length; _b++) {
+                var tempSubMenuItem = _c[_b];
+                tempSubMenuItem.selected = false;
+            }
         }
         menuItem.active = true;
+        subMenuItem.selected = true;
         //设置navbar
         if (this.menuOptions.currentActiveSubItem === this.menuOptions.preActiveSubItem && this.menuOptions.currentActiveSubItem !== undefined) {
             return;
@@ -203,6 +211,7 @@ var MenuComponent = (function () {
         core_1.Component({
             selector: 'menu-component',
             templateUrl: 'app/web/vendor/views/menu.html',
+            styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css'],
             entryComponents: [navbar_component_1.NavBarComponent],
             animations: [
                 core_1.trigger('menuState', [

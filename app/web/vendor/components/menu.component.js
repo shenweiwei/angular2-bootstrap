@@ -12,9 +12,11 @@ var core_1 = require('@angular/core');
 var util_1 = require('vendor/util');
 var common_1 = require('vendor/common');
 var navbar_component_1 = require('./navbar.component');
+var app_options_1 = require('../app.options');
 var MenuComponent = (function () {
-    function MenuComponent(menuOptions) {
+    function MenuComponent(menuOptions, appOptions) {
         this.menuOptions = menuOptions;
+        this.appOptions = appOptions;
         this.menuList = new util_1.ArrayList();
     }
     /**
@@ -93,38 +95,42 @@ var MenuComponent = (function () {
             tempMenuItem.open = false;
             tempMenuItem.active = false;
         }
-        //展开子菜单
         menuItem.active = true; //只有激活了收缩动画才有效果
-        menuItem.open = true;
         //设置第一次激活的MenuItem
         if (!this.menuOptions.preActiveItem) {
             this.menuOptions.preActiveItem = menuItem;
         }
         else if (this.menuOptions.preActiveItem && !this.menuOptions.currentActiveItem) {
             this.menuOptions.currentActiveItem = menuItem;
-            if (this.menuOptions.preActiveItem !== this.menuOptions.currentActiveItem) {
+            //收缩情况下无动画收缩展开效果
+            if (this.menuOptions.preActiveItem !== this.menuOptions.currentActiveItem && this.appOptions.clipChevron === common_1.ComponentConstants.CLIP_CHEVRON_LEFT) {
                 this.menuOptions.preActiveItem.state = "inactive";
             }
         }
         else {
             this.menuOptions.preActiveItem = this.menuOptions.currentActiveItem;
             this.menuOptions.currentActiveItem = menuItem;
-            if (this.menuOptions.preActiveItem !== this.menuOptions.currentActiveItem) {
+            //收缩情况下无动画收缩展开效果
+            if (this.menuOptions.preActiveItem !== this.menuOptions.currentActiveItem && this.appOptions.clipChevron === common_1.ComponentConstants.CLIP_CHEVRON_LEFT) {
                 this.menuOptions.preActiveItem.state = "inactive";
             }
         }
         //动画切换效果
-        if (menuItem.state === 'inactive') {
+        if (menuItem.state === 'inactive' && this.appOptions.clipChevron === common_1.ComponentConstants.CLIP_CHEVRON_LEFT) {
+            //展开子菜单
             menuItem.state = "active";
+            menuItem.open = true;
         }
-        else {
+        else if (menuItem.state === 'active' && this.appOptions.clipChevron === common_1.ComponentConstants.CLIP_CHEVRON_LEFT) {
+            //收缩子菜单
             menuItem.state = "inactive";
+            menuItem.open = false;
         }
         //创建一个管理层级的navBar实体
         var navBarItem = new util_1.NavBarItem();
         navBarItem.name = menuItem.name;
         navBarItem.active = true;
-        //清楚设置
+        //清除设置
         this.navBarComponent.clean();
         this.menuOptions.currentActiveSubItem = undefined;
         this.menuOptions.preActiveSubItem = undefined;
@@ -183,6 +189,12 @@ var MenuComponent = (function () {
         else {
             for (var _b = 0, _c = this.menuList.toArray(); _b < _c.length; _b++) {
                 var tempMenuItem = _c[_b];
+                if (this.menuOptions.preActiveItem && !this.menuOptions.currentActiveItem && this.menuOptions.preActiveItem === tempMenuItem) {
+                    continue;
+                }
+                else if (this.menuOptions.preActiveItem && this.menuOptions.currentActiveItem && this.menuOptions.currentActiveItem === tempMenuItem) {
+                    continue;
+                }
                 tempMenuItem.state = 'inactive';
             }
         }
@@ -196,12 +208,12 @@ var MenuComponent = (function () {
                 core_1.trigger('menuState', [
                     core_1.state('inactive', core_1.style({ height: 0 })),
                     core_1.state('active', core_1.style({ height: '*' })),
-                    core_1.transition('inactive => active', core_1.animate('0.3s ease-in')),
-                    core_1.transition('active => inactive', core_1.animate('0.3s ease-out'))
+                    core_1.transition('inactive => active', core_1.animate('0.2s ease-in')),
+                    core_1.transition('active => inactive', core_1.animate('0.2s ease-out'))
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [util_1.MenuOptions])
+        __metadata('design:paramtypes', [util_1.MenuOptions, app_options_1.AppOptions])
     ], MenuComponent);
     return MenuComponent;
 }());

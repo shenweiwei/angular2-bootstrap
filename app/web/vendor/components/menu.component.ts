@@ -2,6 +2,9 @@ import { Component, trigger, state, style, transition, animate, ViewChild, Refle
 import { List, ArrayList, MenuItem, SubMenuItem, MenuOptions, NavBarItem } from 'vendor/util';
 import { ComponentConstants, DataSetUtil, BeanUtil } from 'vendor/common';
 import { NavBarComponent } from './navbar.component';
+import { AppOptions } from '../app.options';
+
+declare const $: any;
 
 @Component({
     selector: 'menu-component',
@@ -11,8 +14,8 @@ import { NavBarComponent } from './navbar.component';
         trigger('menuState', [
             state('inactive', style({ height: 0 })),
             state('active', style({ height: '*' })),
-            transition('inactive => active', animate('0.3s ease-in')),
-            transition('active => inactive', animate('0.3s ease-out'))
+            transition('inactive => active', animate('0.2s ease-in')),
+            transition('active => inactive', animate('0.2s ease-out'))
         ])
     ]
 })
@@ -21,7 +24,7 @@ export class MenuComponent {
     public menuList: List<MenuItem> = new ArrayList<MenuItem>();
     private navBarComponent: NavBarComponent;
 
-    constructor(private menuOptions: MenuOptions) {
+    constructor(private menuOptions: MenuOptions, private appOptions: AppOptions) {
     }
     /**
      * 查询menu
@@ -109,9 +112,7 @@ export class MenuComponent {
             tempMenuItem.active = false;
         }
 
-        //展开子菜单
         menuItem.active = true;//只有激活了收缩动画才有效果
-        menuItem.open = true;
 
         //设置第一次激活的MenuItem
         if (!this.menuOptions.preActiveItem) {
@@ -119,23 +120,29 @@ export class MenuComponent {
         } else if (this.menuOptions.preActiveItem && !this.menuOptions.currentActiveItem) {
             this.menuOptions.currentActiveItem = menuItem;
 
-            if (this.menuOptions.preActiveItem !== this.menuOptions.currentActiveItem) {
+            //收缩情况下无动画收缩展开效果
+            if (this.menuOptions.preActiveItem !== this.menuOptions.currentActiveItem && this.appOptions.clipChevron === ComponentConstants.CLIP_CHEVRON_LEFT) {
                 this.menuOptions.preActiveItem.state = "inactive"
             }
         } else {
             this.menuOptions.preActiveItem = this.menuOptions.currentActiveItem;
             this.menuOptions.currentActiveItem = menuItem;
 
-            if (this.menuOptions.preActiveItem !== this.menuOptions.currentActiveItem) {
+            //收缩情况下无动画收缩展开效果
+            if (this.menuOptions.preActiveItem !== this.menuOptions.currentActiveItem && this.appOptions.clipChevron === ComponentConstants.CLIP_CHEVRON_LEFT) {
                 this.menuOptions.preActiveItem.state = "inactive"
             }
         }
 
         //动画切换效果
-        if (menuItem.state === 'inactive') {
+        if (menuItem.state === 'inactive' && this.appOptions.clipChevron === ComponentConstants.CLIP_CHEVRON_LEFT) {
+            //展开子菜单
             menuItem.state = "active";
-        } else {
+            menuItem.open = true;
+        } else if (menuItem.state === 'active' && this.appOptions.clipChevron === ComponentConstants.CLIP_CHEVRON_LEFT) {
+            //收缩子菜单
             menuItem.state = "inactive";
+            menuItem.open = false;
         }
 
         //创建一个管理层级的navBar实体
@@ -143,7 +150,7 @@ export class MenuComponent {
         navBarItem.name = menuItem.name;
         navBarItem.active = true;
 
-        //清楚设置
+        //清除设置
         this.navBarComponent.clean();
         this.menuOptions.currentActiveSubItem = undefined;
         this.menuOptions.preActiveSubItem = undefined;
@@ -202,8 +209,14 @@ export class MenuComponent {
             for (let tempMenuItem of this.menuList.toArray() as MenuItem[]) {
                 tempMenuItem.state = 'active';
             }
-        }else{
+        } else {
             for (let tempMenuItem of this.menuList.toArray() as MenuItem[]) {
+                if (this.menuOptions.preActiveItem && !this.menuOptions.currentActiveItem && this.menuOptions.preActiveItem === tempMenuItem) {
+                    continue;
+                } else if (this.menuOptions.preActiveItem && this.menuOptions.currentActiveItem && this.menuOptions.currentActiveItem === tempMenuItem) {
+                    continue;
+                }
+
                 tempMenuItem.state = 'inactive';
             }
         }

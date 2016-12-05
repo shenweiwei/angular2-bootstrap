@@ -233,7 +233,7 @@ var Main = function() {
     //function to activate the 3rd and 4th level menus
     var runNavigationMenu = function() {
         $('.main-navigation-menu li.active').addClass('open');
-        $('.main-navigation-menu > li a').bind('click', function() {
+        $('.main-navigation-menu').on('click', 'li a', function() {
             if ($(this).parent().children('ul').hasClass('sub-menu') && ((!$('body').hasClass('navigation-small') || $windowWidth < 767) || !$(this).parent().parent().hasClass('main-navigation-menu'))) {
                 if (!$(this).parent().hasClass('open')) {
                     $(this).parent().addClass('open');
@@ -722,7 +722,7 @@ var Main = function() {
             runElementsPosition();
             runToDoAction();
             runNavigationToggler();
-            runNavigationMenu();
+            // runNavigationMenu();
             runGoTop();
             runModuleTools();
             runDropdownEnduring();

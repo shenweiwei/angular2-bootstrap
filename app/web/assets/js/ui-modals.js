@@ -3,10 +3,13 @@ var UIModals = function() {
     var initModals = function() {
         $.fn.modalmanager.defaults.resize = true;
         $.fn.modal.defaults.spinner = $.fn.modalmanager.defaults.spinner =
+            // '<div class="loading-spinner" style="margin:0">' +
+            // '   <i class="fa clip-spinner fa-spin"></i>' +
+            // '</div>'
             '<div class="loading-spinner" style="width: 200px; margin-left: -100px;">' +
-            '<div class="progress progress-striped active">' +
-            '<div class="progress-bar" style="width: 100%;"></div>' +
-            '</div>' +
+            '   <div class="progress progress-striped active">' +
+            '       <div class="progress-bar" style="width: 100%;"></div>' +
+            '   </div>' +
             '</div>';
         // var $modal = $('#ajax-modal');
         // $('.ajax .demo').on('click', function() {

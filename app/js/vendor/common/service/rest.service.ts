@@ -91,19 +91,19 @@ export class RestService {
     /**
      * 上傳文件
      */
-    upload(url: string, data: any, http_header?: HttpHeader) {
-        return null;
+    upload(url: string, data: any, http_header?: HttpHeader):void {
+        // return null;
     }
 
     /**
      * 采用订阅者模式查询，返回一个观察者
      */
-    doObservable(url: string, data?: any, http_header?: HttpHeader) {
+    doObservable(url: string, data?: any, http_header?: HttpHeader):void {
         if (StringUtil.isEmpty(data)) {
             data = new Object();
         }
 
-        return null;
+        // return null;
     }
 
     set http_restful(http_restful: HttpRestful) {

@@ -7,9 +7,14 @@ let openHeadersPanel: boolean = false;
 
 @Component({
     selector: 'table-component',
-    templateUrl: 'app/web/vendor/views/table.html',
-    styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css'
-    ,'app/web/vendor/framework/compass/stylesheets/vendor-pad.css']
+    /* SystemJS */
+    // templateUrl: 'app/web/vendor/views/table.html',
+    // styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css'
+    // ,'app/web/vendor/framework/compass/stylesheets/vendor-pad.css']
+    /* WebPack */
+    templateUrl: '../views/table.html',
+    styleUrls:['../framework/compass/stylesheets/vendor.css',
+    '../framework/compass/stylesheets/vendor-pad.css']
 })
 
 export class TableComponent implements AfterViewInit {
@@ -282,9 +287,9 @@ export class TableComponent implements AfterViewInit {
         } else if (current === '' && !this.globalData) {
             this.filterTableDatas = null;
         } else {
-            for (let tabledata of this.tableDatas.toArray()) {
+            for (let tabledata of this.tableDatas.toArray() as TableData[]) {
                 for (let key in tabledata) {
-                    if ((tabledata[key] + '').includes(current)) {
+                    if (tabledata[key].includes(current)) {
                         this.filterTableDatas.add(tabledata);
                         break;
                     }
@@ -371,13 +376,13 @@ export class TableComponent implements AfterViewInit {
             }
         }
 
-        $('#filter-headers-panel').on('hide.bs.dropdown', function (event) {
+        $('#filter-headers-panel').on('hide.bs.dropdown', function (event:any) {
             // 在隐藏的时候做一些处理代码，终止隐藏
             if (openHeadersPanel) {
                 event.preventDefault();
             }
             openHeadersPanel = false
-        })
+        });
     }
 
     /**

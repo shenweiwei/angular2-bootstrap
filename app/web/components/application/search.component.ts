@@ -7,7 +7,10 @@ import { TableUtil } from 'vendor/common';
 import { ApplicationServiceImpl } from '../../../js/com/sgm/dms/ops/services/application.service.impl';
 declare const $: any;
 @Component({
-    templateUrl: 'app/web/views/application/search.html',
+    /* SystemJS */
+    // templateUrl: 'app/web/views/application/search.html',
+    /* WebPack */
+    templateUrl:'../../views/application/search.html',
     entryComponents: [TableComponent]
 })
 

@@ -54,9 +54,9 @@ export class HttpRestful implements HttpRestfulRequest {
             data = new Object();
         }
 
-        this._http.post(url, JSON.stringify(data), { headers: this._http_header.headers })
-            .map((response: Response) => { typeof callback === 'function' && callback(response.json()) })
-            .catch(this.handleError);
+        // this._http.post(url, JSON.stringify(data), { headers: this._http_header.headers })
+        //     .switchMap((response: Response) => { typeof callback === 'function' && callback(response.json()) })
+        //     .catch(this.handleError);
     }
 
     private handleError(error: any): Promise<any> {

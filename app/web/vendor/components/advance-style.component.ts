@@ -4,7 +4,10 @@ import { ComponentConstants } from 'vendor/common';
 
 @Component({
     selector: 'advance-style-component',
-    templateUrl: 'app/web/vendor/views/advance-style.html'
+    /* SystemJS */
+    // templateUrl: 'app/web/vendor/views/advance-style.html'
+    /* WebPack */
+    templateUrl:'../views/advance-style.html'
 })
 
 export class AdvanceStyleComponent {

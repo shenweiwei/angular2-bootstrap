@@ -3,7 +3,10 @@ import { NavBarItem, List, ArrayList } from 'vendor/util';
 
 @Component({
     selector: 'navbar-component',
-    templateUrl: 'app/web/vendor/views/navbar.html'
+    /* SystemJS */
+    // templateUrl: 'app/web/vendor/views/navbar.html'
+    /* WebPack */
+    templateUrl:'../views/navbar.html'
 })
 
 export class NavBarComponent implements AfterViewInit {

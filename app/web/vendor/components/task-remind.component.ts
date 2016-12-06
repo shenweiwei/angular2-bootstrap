@@ -7,8 +7,12 @@ declare const $: any;
 
 @Component({
     selector: 'task-remind-component',
-    templateUrl: 'app/web/vendor/views/task-remind.html',
-    styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
+    /* SystemJS */
+    // templateUrl: 'app/web/vendor/views/task-remind.html',
+    // styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
+    /* WebPack */
+    templateUrl:'../views/task-remind.html',
+    styleUrls:['../framework/compass/stylesheets/vendor.css']
 })
 
 export class TaskRemindComponent implements OnInit {

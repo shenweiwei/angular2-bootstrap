@@ -9,7 +9,7 @@ export module Log {
 
     export function paramtypes(target: any, key: string) {
         const types = Reflect.getMetadata("design:paramtypes", target, key);
-        var s = types.map(a => a.name).join();
+        var s = types.map((a: any) => a.name).join();
         console.log(`${key} param types: ${s}`);
     }
 

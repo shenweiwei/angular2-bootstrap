@@ -10,7 +10,10 @@ import { ArrayList } from 'vendor/util';
 
 @Component({
     selector: 'my-app',
-    templateUrl: 'app/web/views/app.html',
+    /* SystemJS */
+    // templateUrl: 'app/web/views/app.html',
+    /* WebPack */
+    templateUrl:'../views/app.html',
     entryComponents: [MenuComponent, NavBarComponent, TaskRemindComponent]
 })
 

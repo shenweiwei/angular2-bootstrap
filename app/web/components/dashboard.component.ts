@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    templateUrl: 'app/web/views/dashboard.html'
+    /* SystemJS */
+    // templateUrl: 'app/web/views/dashboard.html'
+    /* WebPack */
+    templateUrl: '../views/dashboard.html'
 })
 
 export class DashBoardComponent implements OnInit {

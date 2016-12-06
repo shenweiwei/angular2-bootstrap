@@ -1,5 +1,5 @@
 {
-    "name": "angularjs2-demo",
+    "name": "angular2-bootstraps-systemjs",
     "version": "1.0.0",
     "scripts": {
         "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",

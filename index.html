@@ -21,6 +21,7 @@
     <meta content="shenweiwei" name="author" />
     <!-- end: META -->
 
+    <!-- start systemjs-->
     <!-- 1. Load libraries -->
     <!-- Polyfill(s) for older browsers -->
     <!--<script src="node_modules/core-js/client/shim.min.js"></script>
@@ -29,6 +30,13 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>-->
     <!-- 2. Configure SystemJS -->
     <!--<script src="systemjs.config.js"></script>-->
+    <!-- 3. Display the application -->
+    <!--<script>
+        System.import('app').catch(function(err) {
+            console.error(err);
+        });
+    </script>-->
+    <!-- end systemjs-->
 
     <!-- start: MAIN CSS -->
     <link rel="stylesheet" type="text/css" href="app/web/assets/plugins/bootstrap/css/bootstrap.min.css">
@@ -51,12 +59,7 @@
     <link rel="stylesheet" type="text/css" href="app/web/assets/plugins/bootstrap-modal/css/bootstrap-modal.css" />
     <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
     <link rel="shortcut icon" href="favicon.ico" />
-    <!-- 3. Display the application -->
-    <script>
-        System.import('app').catch(function(err) {
-            console.error(err);
-        });
-    </script>
+
 </head>
 
 <body>

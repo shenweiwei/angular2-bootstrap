@@ -14,7 +14,7 @@
 
 //     case 'production':
 
-//         module.exports = require('./config/webpack.prod')({ env: 'production' });
+//         module.exports = require('./config/webpack.prod.config.js')({ env: 'production' });
 
 //         break;
 
@@ -22,7 +22,7 @@
 
 //     case 'testing':
 
-//         module.exports = require('./config/webpack.test')({ env: 'test' });
+//         module.exports = require('./config/webpack.test.config')({ env: 'test' });
 
 //         break;
 
@@ -32,8 +32,6 @@
 
 //     default:
 
-//         module.exports = require('./config/webpack.dev')({ env: 'development' });
+module.exports = require('./config/webpack.dev.config.js')({ env: 'development' });
 
 // }
-
-module.exports = require('./config/webpack.dev.config');

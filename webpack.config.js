@@ -8,30 +8,27 @@
 
 // Look in ./config folder for webpack.dev.js
 
-// switch (process.env.NODE_ENV) {
+switch (process.env.NODE_ENV) {
 
-//     case 'prod':
+    case 'prod':
 
-//     case 'production':
+    case 'production':
+        module.exports = require('./config/webpack.prod.config')
 
-//         module.exports = require('./config/webpack.prod.config.js')({ env: 'production' });
+        break;
 
-//         break;
+    case 'test':
 
-//     case 'test':
+    case 'testing':
+        module.exports = require('./config/webpack.test.config')
 
-//     case 'testing':
+        break;
 
-//         module.exports = require('./config/webpack.test.config')({ env: 'test' });
+    case 'dev':
 
-//         break;
+    case 'development':
 
-//     case 'dev':
+    default:
+        module.exports = require('./config/webpack.dev.config')
 
-//     case 'development':
-
-//     default:
-
-module.exports = require('./config/webpack.dev.config.js')({ env: 'development' });
-
-// }
+}

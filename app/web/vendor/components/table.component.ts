@@ -458,8 +458,7 @@ export class TableComponent extends BaseComponent implements AfterViewInit {
         if (this.tableDatas && this.tableHeaders) {
             this.excelFile.exportTable('test', this.tableDatas.toArray(), this.tableHeaders.toArray());
         } else {
-            // super.alert('test','test');
-            super.confirm('test', 'test', () => { console.log('123') });
+            super.alert('提示','请先查询再进行导出操作');
         }
 
     }

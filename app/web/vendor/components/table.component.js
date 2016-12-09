@@ -413,8 +413,7 @@ var TableComponent = (function (_super) {
             this.excelFile.exportTable('test', this.tableDatas.toArray(), this.tableHeaders.toArray());
         }
         else {
-            // super.alert('test','test');
-            _super.prototype.confirm.call(this, 'test', 'test', function () { console.log('123'); });
+            _super.prototype.alert.call(this, '提示', '请先查询再进行导出操作');
         }
     };
     __decorate([

@@ -33,15 +33,15 @@ var BaseComponent = (function () {
     /**
      * 弹出提示
      *
-     * @param {string} message
      * @param {string} title
+     * @param {string} message
      *
      * @memberOf BaseComponent
      */
-    BaseComponent.prototype.alert = function (message, title) {
-        this.message = message;
+    BaseComponent.prototype.alert = function (title, message) {
         this.title = title;
-        this.alertTemplate(message, title);
+        this.message = message;
+        this.alertTemplate(title, message);
         $("body").append("<a id='alertPanel' href='#alert' data-toggle='modal' role='button' style='visibility:hidden'></a>");
         $('#alertPanel').click();
         $('#alertPanel').remove();
@@ -49,32 +49,32 @@ var BaseComponent = (function () {
     /**
      * 弹出confirm
      *
-     * @param {string} message
      * @param {string} title
+     * @param {string} message
      *
      * @memberOf BaseComponent
      */
-    BaseComponent.prototype.confirm = function (message, title, callback) {
-        this.message = message;
+    BaseComponent.prototype.confirm = function (title, message, callback) {
         this.title = title;
-        this.confirmTemplate(message, title, callback);
+        this.message = message;
+        this.confirmTemplate(title, message, callback);
         $("body").append("<a id='confirmPanel' href='#confirm' data-toggle='modal' role='button' style='visibility:hidden'></a>");
         $('#confirmPanel').click();
         $('#confirmPanel').remove();
     };
-    BaseComponent.prototype.alertTemplate = function (message, title) {
+    BaseComponent.prototype.alertTemplate = function (title, message) {
         var template = '<article class="modal fade" id="alert" tabindex="-1" role="alert" aria-hidden="true">';
         template = template.concat('<div class="modal-content">');
         template = template.concat('<div class="modal-header">');
         template = template.concat('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>');
-        template = template.concat('<h4 class="modal-title"> ');
+        template = template.concat('<h3 class="modal-title"> ');
         template = template.concat(title);
-        template = template.concat('</h4>');
+        template = template.concat('</h3>');
         template = template.concat('</div>');
         template = template.concat('<div class="modal-body">');
-        template = template.concat('<p>');
+        template = template.concat('<p><strong>');
         template = template.concat(message);
-        template = template.concat('</p>');
+        template = template.concat('</strong></p>');
         template = template.concat('</div>');
         template = template.concat('<div class="modal-footer">');
         template = template.concat('<button class="btn btn-default" data-dismiss="modal"> 确定 </button>');
@@ -83,7 +83,7 @@ var BaseComponent = (function () {
         template = template.concat('</article>');
         $('body').append(template);
     };
-    BaseComponent.prototype.confirmTemplate = function (message, title, callback) {
+    BaseComponent.prototype.confirmTemplate = function (title, message, callback) {
         var template = '<article class="modal fade" id="confirm" tabindex="-1" role="confirm" aria-hidden="true">';
         template = template.concat('<div class="modal-content">');
         template = template.concat('<div class="modal-header">');
@@ -93,9 +93,9 @@ var BaseComponent = (function () {
         template = template.concat('</h4>');
         template = template.concat('</div>');
         template = template.concat('<div class="modal-body">');
-        template = template.concat('<p>');
+        template = template.concat('<p><strong>');
         template = template.concat(message);
-        template = template.concat('</p>');
+        template = template.concat('</strong></p>');
         template = template.concat('</div>');
         template = template.concat('<div class="modal-footer">');
         template = template.concat('<button aria-hidden="true" data-dismiss="modal" class="btn btn-default">取消</button>');

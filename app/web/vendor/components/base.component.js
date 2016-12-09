@@ -110,8 +110,7 @@ var BaseComponent = (function () {
     };
     BaseComponent = __decorate([
         core_1.Component({
-            moduleId: module.id,
-            templateUrl: '../views/base.html'
+            moduleId: module.id
         }), 
         __metadata('design:paramtypes', [])
     ], BaseComponent);

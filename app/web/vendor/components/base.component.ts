@@ -4,8 +4,7 @@ import { AppOptions } from '../app.options';
 declare const $: any;
 
 @Component({
-    moduleId: module.id,
-    templateUrl: '../views/base.html'
+    moduleId: module.id
 })
 
 export class BaseComponent {

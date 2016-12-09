@@ -19,6 +19,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { routing } from './app.routes';
 
+// Imports for loading & configuring the in-memory web api
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from 'vendor/common';
+
 //base component
 import { AppComponent } from './web/components/app.component';
 import { DashBoardComponent } from './web/components/dashboard.component';
@@ -29,6 +33,7 @@ import { ApplicationSearchComponent } from './web/components/application/search.
 //vendor component
 import { BaseComponent } from './web/vendor/components/base.component';
 import { TableComponent } from './web/vendor/components/table.component';
+import { ButtonComponent } from './web/vendor/components/button.component';
 import { MenuComponent } from './web/vendor/components/menu.component';
 import { NavBarComponent } from './web/vendor/components/navbar.component';
 import { TaskRemindComponent } from './web/vendor/components/task-remind.component';
@@ -48,13 +53,15 @@ import { MenuOptions } from 'vendor/util';
 import { TaskRemindOptions } from 'vendor/util';
 import { AppOptions } from './web/vendor/app.options';
 import { UserPojo } from 'vendor/common';
+import { ExcelFile } from 'vendor/util';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
   //指令及组件的使用
   declarations: [
@@ -64,14 +71,15 @@ import { UserPojo } from 'vendor/common';
     //根组件
     AppComponent,
     DashBoardComponent,
-    
+
     //公共组件
+    ButtonComponent,
     TableComponent,
     MenuComponent,
     NavBarComponent,
     TaskRemindComponent,
     AdvanceStyleComponent,
-    
+
     //自定义组件
     ApplicationSearchComponent
   ],
@@ -88,7 +96,9 @@ import { UserPojo } from 'vendor/common';
     MenuOptions,
     TaskRemindOptions,
     AppOptions,
-    UserPojo
+    UserPojo,
+    ExcelFile
+
   ],
   bootstrap: [AppComponent]
 })

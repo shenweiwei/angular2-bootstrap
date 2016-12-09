@@ -73,6 +73,26 @@ var AppOptions = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(AppOptions.prototype, "isAlert", {
+        get: function () {
+            return this._isAlert;
+        },
+        set: function (value) {
+            this._isAlert = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AppOptions.prototype, "isConfirm", {
+        get: function () {
+            return this._isConfirm;
+        },
+        set: function (value) {
+            this._isConfirm = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     __decorate([
         annotation_1.value.Default(true), 
         __metadata('design:type', Boolean)
@@ -97,6 +117,14 @@ var AppOptions = (function () {
         annotation_1.value.Default(common_1.ComponentConstants.DISPLAY_NONE), 
         __metadata('design:type', String)
     ], AppOptions.prototype, "_advanceStyleDisplay", void 0);
+    __decorate([
+        annotation_1.value.Default(false), 
+        __metadata('design:type', Boolean)
+    ], AppOptions.prototype, "_isAlert", void 0);
+    __decorate([
+        annotation_1.value.Default(false), 
+        __metadata('design:type', Boolean)
+    ], AppOptions.prototype, "_isConfirm", void 0);
     return AppOptions;
 }());
 exports.AppOptions = AppOptions;

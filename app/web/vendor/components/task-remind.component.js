@@ -73,8 +73,12 @@ var TaskRemindComponent = (function () {
     TaskRemindComponent = __decorate([
         core_1.Component({
             selector: 'task-remind-component',
-            templateUrl: 'app/web/vendor/views/task-remind.html',
-            styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
+            /* SystemJS */
+            // templateUrl: 'app/web/vendor/views/task-remind.html',
+            // styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
+            /* WebPack */
+            templateUrl: '../views/task-remind.html',
+            styleUrls: ['../framework/compass/stylesheets/vendor.css']
         }), 
         __metadata('design:paramtypes', [util_1.TaskRemindOptions, app_options_1.AppOptions, common_1.UserPojo])
     ], TaskRemindComponent);

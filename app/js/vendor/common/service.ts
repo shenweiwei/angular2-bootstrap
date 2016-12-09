@@ -1,1 +1,0 @@
-export {RestService} from './service/rest.service';

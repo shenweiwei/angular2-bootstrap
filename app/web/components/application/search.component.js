@@ -16,6 +16,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var base_component_1 = require('../../vendor/components/base.component');
 var table_component_1 = require('../../vendor/components/table.component');
+var button_component_1 = require('../../vendor/components/button.component');
 var application_vo_1 = require('../../../js/com/sgm/dms/ops/vo/application.vo');
 var util_1 = require('vendor/util');
 var common_1 = require('vendor/common');
@@ -112,9 +113,16 @@ var ApplicationSearchComponent = (function (_super) {
         core_1.ViewChild(table_component_1.TableComponent), 
         __metadata('design:type', table_component_1.TableComponent)
     ], ApplicationSearchComponent.prototype, "tableComponent", void 0);
+    __decorate([
+        core_1.ViewChild(button_component_1.ButtonComponent), 
+        __metadata('design:type', button_component_1.ButtonComponent)
+    ], ApplicationSearchComponent.prototype, "buttonComponent", void 0);
     ApplicationSearchComponent = __decorate([
         core_1.Component({
-            templateUrl: 'app/web/views/application/search.html',
+            /* SystemJS */
+            // templateUrl: 'app/web/views/application/search.html',
+            /* WebPack */
+            templateUrl: '../../views/application/search.html',
             entryComponents: [table_component_1.TableComponent]
         }), 
         __metadata('design:paramtypes', [application_service_impl_1.ApplicationServiceImpl])

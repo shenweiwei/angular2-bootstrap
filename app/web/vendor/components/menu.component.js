@@ -210,8 +210,12 @@ var MenuComponent = (function () {
     MenuComponent = __decorate([
         core_1.Component({
             selector: 'menu-component',
-            templateUrl: 'app/web/vendor/views/menu.html',
-            styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css'],
+            /* SystemJS */
+            // templateUrl: 'app/web/vendor/views/menu.html',
+            // styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css'],
+            /* WebPack */
+            templateUrl: '../views/menu.html',
+            styleUrls: ['../framework/compass/stylesheets/vendor.css'],
             entryComponents: [navbar_component_1.NavBarComponent],
             animations: [
                 core_1.trigger('menuState', [

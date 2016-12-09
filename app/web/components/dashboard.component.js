@@ -16,7 +16,10 @@ var DashBoardComponent = (function () {
     };
     DashBoardComponent = __decorate([
         core_1.Component({
-            templateUrl: 'app/web/views/dashboard.html'
+            /* SystemJS */
+            // templateUrl: 'app/web/views/dashboard.html'
+            /* WebPack */
+            templateUrl: '../views/dashboard.html'
         }), 
         __metadata('design:paramtypes', [])
     ], DashBoardComponent);

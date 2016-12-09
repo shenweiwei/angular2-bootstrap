@@ -14,6 +14,10 @@ export class AppOptions {
 	private _advanceStyleState: string;
 	@value.Default(ComponentConstants.DISPLAY_NONE)
 	private _advanceStyleDisplay: string;
+	@value.Default(false)
+	private _isAlert: boolean;
+	@value.Default(false)
+	private _isConfirm: boolean;
 
 	public get isOpenLock(): boolean {
 		return this._isOpenLock;
@@ -61,6 +65,22 @@ export class AppOptions {
 
 	public set advanceStyleDisplay(value: string) {
 		this._advanceStyleDisplay = value;
+	}
+
+	public get isAlert(): boolean {
+		return this._isAlert;
+	}
+
+	public set isAlert(value: boolean) {
+		this._isAlert = value;
+	}
+
+	public get isConfirm(): boolean {
+		return this._isConfirm;
+	}
+
+	public set isConfirm(value: boolean) {
+		this._isConfirm = value;
 	}
 
 }

@@ -28,7 +28,10 @@ var AdvanceStyleComponent = (function () {
     AdvanceStyleComponent = __decorate([
         core_1.Component({
             selector: 'advance-style-component',
-            templateUrl: 'app/web/vendor/views/advance-style.html'
+            /* SystemJS */
+            // templateUrl: 'app/web/vendor/views/advance-style.html'
+            /* WebPack */
+            templateUrl: '../views/advance-style.html'
         }), 
         __metadata('design:paramtypes', [app_options_1.AppOptions])
     ], AdvanceStyleComponent);

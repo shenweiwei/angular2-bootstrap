@@ -19,8 +19,12 @@ var ComboBoxComponent = (function () {
     ComboBoxComponent = __decorate([
         core_1.Component({
             selector: 'combobox-component',
-            templateUrl: 'app/web/vendor/views/combobox.html',
-            styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
+            /* SystemJS */
+            // templateUrl: 'app/web/vendor/views/combobox.html',
+            // styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css']
+            /* WebPack */
+            templateUrl: '../views/combobox.html',
+            styleUrls: ['../framework/compass/stylesheets/vendor.css']
         }), 
         __metadata('design:paramtypes', [])
     ], ComboBoxComponent);

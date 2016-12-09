@@ -1,4 +1,4 @@
-import { Component,  AfterViewInit, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { ViewComponent } from './view.component';
 import { MenuComponent } from '../vendor/components/menu.component';
 import { NavBarComponent } from '../vendor/components/navbar.component';
@@ -13,7 +13,7 @@ import { ArrayList } from 'vendor/util';
     /* SystemJS */
     // templateUrl: 'app/web/views/app.html',
     /* WebPack */
-    templateUrl:'../views/app.html',
+    templateUrl: '../views/app.html',
     entryComponents: [MenuComponent, NavBarComponent, TaskRemindComponent]
 })
 

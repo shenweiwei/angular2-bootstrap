@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11,11 +16,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var util_1 = require('vendor/util');
 var common_1 = require('vendor/common');
+var base_component_1 = require('../components/base.component');
 var openHeadersPanel = false;
-var TableComponent = (function () {
-    function TableComponent(el) {
+var TableComponent = (function (_super) {
+    __extends(TableComponent, _super);
+    function TableComponent(excelFile) {
         var _this = this;
-        this.el = el;
+        _super.call(this);
+        this.excelFile = excelFile;
         this.viewTableDatas = new util_1.ArrayList(); //页面显示的数据集
         this.tableOptions = new util_1.TableOptions();
         this.globalData = false; //全量数据显示
@@ -40,7 +48,7 @@ var TableComponent = (function () {
                 for (var _i = 0, _a = _this.tableDatas.toArray(); _i < _a.length; _i++) {
                     var tabledata = _a[_i];
                     for (var key in tabledata) {
-                        if ((tabledata[key] + '').includes(current)) {
+                        if (tabledata[key].includes(current)) {
                             _this.filterTableDatas.add(tabledata);
                             break;
                         }
@@ -394,6 +402,21 @@ var TableComponent = (function () {
             }
         }
     };
+    /**
+     *
+     * 导出EXCEL
+     *
+     * @memberOf TableComponent
+     */
+    TableComponent.prototype.exportExcelFile = function () {
+        if (this.tableDatas && this.tableHeaders) {
+            this.excelFile.exportTable('test', this.tableDatas.toArray(), this.tableHeaders.toArray());
+        }
+        else {
+            // super.alert('test','test');
+            _super.prototype.confirm.call(this, 'test', 'test', function () { console.log('123'); });
+        }
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
@@ -436,13 +459,18 @@ var TableComponent = (function () {
     TableComponent = __decorate([
         core_1.Component({
             selector: 'table-component',
-            templateUrl: 'app/web/vendor/views/table.html',
-            styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css',
-                'app/web/vendor/framework/compass/stylesheets/vendor-pad.css']
+            /* SystemJS */
+            // templateUrl: 'app/web/vendor/views/table.html',
+            // styleUrls: ['app/web/vendor/framework/compass/stylesheets/vendor.css'
+            // ,'app/web/vendor/framework/compass/stylesheets/vendor-pad.css']
+            /* WebPack */
+            templateUrl: '../views/table.html',
+            styleUrls: ['../framework/compass/stylesheets/vendor.css',
+                '../framework/compass/stylesheets/vendor-pad.css']
         }), 
-        __metadata('design:paramtypes', [core_1.ElementRef])
+        __metadata('design:paramtypes', [util_1.ExcelFile])
     ], TableComponent);
     return TableComponent;
-}());
+}(base_component_1.BaseComponent));
 exports.TableComponent = TableComponent;
 //# sourceMappingURL=table.component.js.map

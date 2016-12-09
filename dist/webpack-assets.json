@@ -1,0 +1,11 @@
+{
+  "app": {
+    "js": "http://localhost:8080/app.chunk.bundle.js"
+  },
+  "polyfills": {
+    "js": "http://localhost:8080/polyfills.chunk.bundle.js"
+  },
+  "vendor": {
+    "js": "http://localhost:8080/vendor.chunk.bundle.js"
+  }
+}

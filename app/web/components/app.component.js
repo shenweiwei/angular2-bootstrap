@@ -99,7 +99,10 @@ var AppComponent = (function (_super) {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            templateUrl: 'app/web/views/app.html',
+            /* SystemJS */
+            // templateUrl: 'app/web/views/app.html',
+            /* WebPack */
+            templateUrl: '../views/app.html',
             entryComponents: [menu_component_1.MenuComponent, navbar_component_1.NavBarComponent, task_remind_component_1.TaskRemindComponent]
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer, app_options_1.AppOptions, common_2.UserPojo])

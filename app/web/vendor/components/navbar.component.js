@@ -28,7 +28,10 @@ var NavBarComponent = (function () {
     NavBarComponent = __decorate([
         core_1.Component({
             selector: 'navbar-component',
-            templateUrl: 'app/web/vendor/views/navbar.html'
+            /* SystemJS */
+            // templateUrl: 'app/web/vendor/views/navbar.html'
+            /* WebPack */
+            templateUrl: '../views/navbar.html'
         }), 
         __metadata('design:paramtypes', [])
     ], NavBarComponent);

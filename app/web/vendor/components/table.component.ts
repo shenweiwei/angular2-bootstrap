@@ -1,6 +1,7 @@
 import { Component, Directive, AfterViewInit, Input, ElementRef } from '@angular/core';
-import { TableOptions, TableData, TableHeader, ArrayList, List } from 'vendor/util';
+import { TableOptions, TableData, TableHeader, ArrayList, List, ExcelFile } from 'vendor/util';
 import { ComponentConstants, DataSetUtil, BeanUtil, StringUtil } from 'vendor/common';
+import { BaseComponent } from '../components/base.component';
 
 declare const $: any;
 let openHeadersPanel: boolean = false;
@@ -13,11 +14,11 @@ let openHeadersPanel: boolean = false;
     // ,'app/web/vendor/framework/compass/stylesheets/vendor-pad.css']
     /* WebPack */
     templateUrl: '../views/table.html',
-    styleUrls:['../framework/compass/stylesheets/vendor.css',
-    '../framework/compass/stylesheets/vendor-pad.css']
+    styleUrls: ['../framework/compass/stylesheets/vendor.css',
+        '../framework/compass/stylesheets/vendor-pad.css']
 })
 
-export class TableComponent implements AfterViewInit {
+export class TableComponent extends BaseComponent implements AfterViewInit {
     public tableDatas: List<TableData>;//数据体
     public tableHeaders: List<TableHeader>;//表头
     public viewTableDatas: List<TableData> = new ArrayList();//页面显示的数据集
@@ -34,7 +35,9 @@ export class TableComponent implements AfterViewInit {
     @Input() deleteModel: boolean = false;//是否有删除按钮
     @Input() deleteCallBack: Function;//删除的回调函数
 
-    constructor(public el: ElementRef) { }
+    constructor(private excelFile: ExcelFile) {
+        super();
+    }
 
     ngAfterViewInit(): void {
         this.tableOptions.currentPageSize = this.pageSize;
@@ -376,7 +379,7 @@ export class TableComponent implements AfterViewInit {
             }
         }
 
-        $('#filter-headers-panel').on('hide.bs.dropdown', function (event:any) {
+        $('#filter-headers-panel').on('hide.bs.dropdown', function (event: any) {
             // 在隐藏的时候做一些处理代码，终止隐藏
             if (openHeadersPanel) {
                 event.preventDefault();
@@ -443,5 +446,21 @@ export class TableComponent implements AfterViewInit {
                 tableDataItem.checked = false;
             }
         }
+    }
+
+    /**
+     * 
+     * 导出EXCEL
+     * 
+     * @memberOf TableComponent
+     */
+    exportExcelFile(): void {
+        if (this.tableDatas && this.tableHeaders) {
+            this.excelFile.exportTable('test', this.tableDatas.toArray(), this.tableHeaders.toArray());
+        } else {
+            // super.alert('test','test');
+            super.confirm('test', 'test', () => { console.log('123') });
+        }
+
     }
 }

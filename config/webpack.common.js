@@ -7,7 +7,7 @@ const AssetsPlugin = require('assets-webpack-plugin');
 module.exports = {
     entry: {
         'polyfills': './app/polyfills.ts',
-        'vendor': './app/js/vendor/vendor.ts',
+        'vendor': './node_modules/vendor/vendor.ts',
         'app': './app/main.ts'
     },
     resolve: {
@@ -35,11 +35,11 @@ module.exports = {
     },
 
     plugins: [
-        // new AssetsPlugin({
-        //     path: helpers.root('dist'),
-        //     filename: 'webpack-assets.json',
-        //     prettyPrint: true
-        // }),
+        new AssetsPlugin({
+            path: helpers.root('dist'),
+            filename: 'webpack-assets.json',
+            prettyPrint: true
+        }),
 
         new webpack.optimize.CommonsChunkPlugin({
             name: ['app', 'vendor', 'polyfills']

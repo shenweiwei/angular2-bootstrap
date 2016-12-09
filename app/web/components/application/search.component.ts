@@ -1,11 +1,12 @@
 import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { BaseComponent } from '../../vendor/components/base.component';
 import { TableComponent } from '../../vendor/components/table.component';
+import { ButtonComponent } from '../../vendor/components/button.component';
 import { ApplicationVo } from '../../../js/com/sgm/dms/ops/vo/application.vo';
 import { TableData, TableHeader, ArrayList, TableOptions, List } from 'vendor/util';
 import { TableUtil } from 'vendor/common';
 import { ApplicationServiceImpl } from '../../../js/com/sgm/dms/ops/services/application.service.impl';
-declare const $: any;
+
 @Component({
     /* SystemJS */
     // templateUrl: 'app/web/views/application/search.html',
@@ -19,6 +20,7 @@ export class ApplicationSearchComponent extends BaseComponent implements OnInit 
     public url: string = 'web.dmsops/application/query';
 
     @ViewChild(TableComponent) tableComponent: TableComponent;
+    @ViewChild(ButtonComponent) buttonComponent: ButtonComponent;
 
     constructor(private applicationServiceImpl: ApplicationServiceImpl) {
         super();

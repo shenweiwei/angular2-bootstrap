@@ -30,9 +30,88 @@ var BaseComponent = (function () {
         this.openModals = this.openModals || this.openModals.getOpenModals();
         this.modalManager.removeLoading();
     };
+    /**
+     * 弹出提示
+     *
+     * @param {string} message
+     * @param {string} title
+     *
+     * @memberOf BaseComponent
+     */
+    BaseComponent.prototype.alert = function (message, title) {
+        this.message = message;
+        this.title = title;
+        this.alertTemplate(message, title);
+        $("body").append("<a id='alertPanel' href='#alert' data-toggle='modal' role='button' style='visibility:hidden'></a>");
+        $('#alertPanel').click();
+        $('#alertPanel').remove();
+    };
+    /**
+     * 弹出confirm
+     *
+     * @param {string} message
+     * @param {string} title
+     *
+     * @memberOf BaseComponent
+     */
+    BaseComponent.prototype.confirm = function (message, title, callback) {
+        this.message = message;
+        this.title = title;
+        this.confirmTemplate(message, title, callback);
+        $("body").append("<a id='confirmPanel' href='#confirm' data-toggle='modal' role='button' style='visibility:hidden'></a>");
+        $('#confirmPanel').click();
+        $('#confirmPanel').remove();
+    };
+    BaseComponent.prototype.alertTemplate = function (message, title) {
+        var template = '<article class="modal fade" id="alert" tabindex="-1" role="alert" aria-hidden="true">';
+        template = template.concat('<div class="modal-content">');
+        template = template.concat('<div class="modal-header">');
+        template = template.concat('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>');
+        template = template.concat('<h4 class="modal-title"> ');
+        template = template.concat(title);
+        template = template.concat('</h4>');
+        template = template.concat('</div>');
+        template = template.concat('<div class="modal-body">');
+        template = template.concat('<p>');
+        template = template.concat(message);
+        template = template.concat('</p>');
+        template = template.concat('</div>');
+        template = template.concat('<div class="modal-footer">');
+        template = template.concat('<button class="btn btn-default" data-dismiss="modal"> 确定 </button>');
+        template = template.concat('</div>');
+        template = template.concat('</div>');
+        template = template.concat('</article>');
+        $('body').append(template);
+    };
+    BaseComponent.prototype.confirmTemplate = function (message, title, callback) {
+        var template = '<article class="modal fade" id="confirm" tabindex="-1" role="confirm" aria-hidden="true">';
+        template = template.concat('<div class="modal-content">');
+        template = template.concat('<div class="modal-header">');
+        template = template.concat('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>');
+        template = template.concat('<h4 class="modal-title">');
+        template = template.concat(title);
+        template = template.concat('</h4>');
+        template = template.concat('</div>');
+        template = template.concat('<div class="modal-body">');
+        template = template.concat('<p>');
+        template = template.concat(message);
+        template = template.concat('</p>');
+        template = template.concat('</div>');
+        template = template.concat('<div class="modal-footer">');
+        template = template.concat('<button aria-hidden="true" data-dismiss="modal" class="btn btn-default">取消</button>');
+        template = template.concat('<button id="confirmSuccess" class="btn btn-default" click="">确定</button>');
+        template = template.concat('</div>');
+        template = template.concat('</div>');
+        template = template.concat('</article>');
+        $('body').append(template);
+        $('body').on('click', '#confirmSuccess', function () {
+            callback();
+        });
+    };
     BaseComponent = __decorate([
         core_1.Component({
-            moduleId: module.id
+            moduleId: module.id,
+            templateUrl: '../views/base.html'
         }), 
         __metadata('design:paramtypes', [])
     ], BaseComponent);

@@ -12,7 +12,7 @@ export class ExcelFile {
         let row = "<thead><tr>";
 
         for (let header of headers) {
-            row += "<th>" + header.desc + '</th>';
+            row += '<th style="border:1px solid #000000;>' + header.desc + '</th>';
         }
 
         //换行  

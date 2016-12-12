@@ -28,6 +28,8 @@ export class AppComponent extends ViewComponent implements AfterViewInit {
     constructor(el: ElementRef, renderer: Renderer, public appOptions: AppOptions, public userPojo: UserPojo) {
         super();
         this.virtualUserData();
+        this.initVirtualAuthority();
+
     }
 
     ngOnInit(): void {
@@ -91,8 +93,7 @@ export class AppComponent extends ViewComponent implements AfterViewInit {
         this.userPojo.currentPosition = position_one;
     }
 
-    initAuthority():void{
-        sessionStorage.setItem('authority','application/query,application/create,application/edit');
-        
+    initVirtualAuthority():void{
+        sessionStorage.setItem('authorityUrls','application/query,application/create,application/edit');        
     }
 }

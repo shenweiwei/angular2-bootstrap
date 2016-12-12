@@ -27,7 +27,7 @@ var ButtonComponent = (function () {
     };
     ButtonComponent.prototype.setButtonDisabled = function () {
         var authorityUrls = sessionStorage.getItem('authorityUrls');
-        if (common_1.StringUtil.isEmpty(authorityUrls)) {
+        if (common_1.StringUtil.isEmpty(authorityUrls) || this.buttonItem.type === 'reset') {
             return;
         }
         if (authorityUrls.indexOf(this.buttonItem.url) < 0) {

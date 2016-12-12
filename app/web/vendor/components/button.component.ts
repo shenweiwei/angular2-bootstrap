@@ -30,10 +30,10 @@ export class ButtonComponent implements AfterViewInit {
     setButtonDisabled(): void {
         const authorityUrls = sessionStorage.getItem('authorityUrls');
 
-        if (StringUtil.isEmpty(authorityUrls)) {
+        if (StringUtil.isEmpty(authorityUrls)||this.buttonItem.type==='reset') {
             return;
         }
-
+    
         if (authorityUrls.indexOf(this.buttonItem.url) < 0) {
             this.renderer.setElementClass(this.el.nativeElement, ComponentConstants.DISABLED, true);
         }

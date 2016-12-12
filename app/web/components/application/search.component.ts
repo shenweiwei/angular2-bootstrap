@@ -37,7 +37,7 @@ export class ApplicationSearchComponent extends BaseComponent implements OnInit 
      * @memberOf ApplicationSearchComponent
      */
     search(): void {
-        this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
+        this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response:any) => {
             let tableDataList = TableUtil.setTableDatas(response[0]);
             this.tableComponent.initDataTable(tableDataList, response[1].total);
         });
@@ -93,7 +93,7 @@ export class ApplicationSearchComponent extends BaseComponent implements OnInit 
         this.applicationVo.beginNo = tableOptions.beginPageIndex;
         this.applicationVo.endNo = tableOptions.endPageIndex;
 
-        this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response) => {
+        this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response:any) => {
             let tableDataList = TableUtil.setTableDatas(response[0]);
             this.tableComponent.refreshData(tableDataList, response[1].total);
         });

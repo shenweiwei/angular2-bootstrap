@@ -90,4 +90,8 @@ export class AppComponent extends ViewComponent implements AfterViewInit {
         this.userPojo.positionList = new ArrayList().add(position_one).add(position_two);
         this.userPojo.currentPosition = position_one;
     }
+
+    initAuthority():void{
+        sessionStorage.setItem('authority','application/query,application/create,application/edit');
+    }
 }

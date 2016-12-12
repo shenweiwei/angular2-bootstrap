@@ -19,10 +19,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { routing } from './app.routes';
 
-// Imports for loading & configuring the in-memory web api
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from 'vendor/common';
-
 //base component
 import { AppComponent } from './web/components/app.component';
 import { DashBoardComponent } from './web/components/dashboard.component';
@@ -60,8 +56,7 @@ import { ExcelFile } from 'vendor/util';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    routing
   ],
   //指令及组件的使用
   declarations: [

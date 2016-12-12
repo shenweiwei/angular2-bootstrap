@@ -63,46 +63,46 @@ var BaseComponent = (function () {
         $('#confirmPanel').remove();
     };
     BaseComponent.prototype.alertTemplate = function (title, message) {
-        var template = '<article class="modal fade" id="alert" tabindex="-1" role="alert" aria-hidden="true">';
-        template = template.concat('<div class="modal-content">');
-        template = template.concat('<div class="modal-header">');
-        template = template.concat('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>');
-        template = template.concat('<h3 class="modal-title"> ');
-        template = template.concat(title);
-        template = template.concat('</h3>');
-        template = template.concat('</div>');
-        template = template.concat('<div class="modal-body">');
-        template = template.concat('<p><strong>');
-        template = template.concat(message);
-        template = template.concat('</strong></p>');
-        template = template.concat('</div>');
-        template = template.concat('<div class="modal-footer">');
-        template = template.concat('<button class="btn btn-default" data-dismiss="modal"> 确定 </button>');
-        template = template.concat('</div>');
-        template = template.concat('</div>');
-        template = template.concat('</article>');
+        var template = '<article class="modal fade" id="alert" tabindex="-1" role="alert" aria-hidden="true">'
+            .concat('<div class="modal-content">')
+            .concat('<div class="modal-header">')
+            .concat('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>')
+            .concat('<h3 class="modal-title"> ')
+            .concat(title)
+            .concat('</h3>')
+            .concat('</div>')
+            .concat('<div class="modal-body">')
+            .concat('<p><strong>')
+            .concat(message)
+            .concat('</strong></p>')
+            .concat('</div>')
+            .concat('<div class="modal-footer">')
+            .concat('<button class="btn btn-default" data-dismiss="modal"> 确定 </button>')
+            .concat('</div>')
+            .concat('</div>')
+            .concat('</article>');
         $('body').append(template);
     };
     BaseComponent.prototype.confirmTemplate = function (title, message, callback) {
-        var template = '<article class="modal fade" id="confirm" tabindex="-1" role="confirm" aria-hidden="true">';
-        template = template.concat('<div class="modal-content">');
-        template = template.concat('<div class="modal-header">');
-        template = template.concat('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>');
-        template = template.concat('<h4 class="modal-title">');
-        template = template.concat(title);
-        template = template.concat('</h4>');
-        template = template.concat('</div>');
-        template = template.concat('<div class="modal-body">');
-        template = template.concat('<p><strong>');
-        template = template.concat(message);
-        template = template.concat('</strong></p>');
-        template = template.concat('</div>');
-        template = template.concat('<div class="modal-footer">');
-        template = template.concat('<button aria-hidden="true" data-dismiss="modal" class="btn btn-default">取消</button>');
-        template = template.concat('<button id="confirmSuccess" class="btn btn-default" click="">确定</button>');
-        template = template.concat('</div>');
-        template = template.concat('</div>');
-        template = template.concat('</article>');
+        var template = '<article class="modal fade" id="confirm" tabindex="-1" role="confirm" aria-hidden="true">'
+            .concat('<div class="modal-content">')
+            .concat('<div class="modal-header">')
+            .concat('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>')
+            .concat('<h4 class="modal-title">')
+            .concat(title)
+            .concat('</h4>')
+            .concat('</div>')
+            .concat('<div class="modal-body">')
+            .concat('<p><strong>')
+            .concat(message)
+            .concat('</strong></p>')
+            .concat('</div>')
+            .concat('<div class="modal-footer">')
+            .concat('<button aria-hidden="true" data-dismiss="modal" class="btn btn-default">取消</button>')
+            .concat('<button id="confirmSuccess" class="btn btn-default" click="">确定</button>')
+            .concat('</div>')
+            .concat('</div>')
+            .concat('</article>');
         $('body').append(template);
         $('body').on('click', '#confirmSuccess', function () {
             callback();

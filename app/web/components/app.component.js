@@ -84,6 +84,9 @@ var AppComponent = (function (_super) {
         this.userPojo.positionList = new util_1.ArrayList().add(position_one).add(position_two);
         this.userPojo.currentPosition = position_one;
     };
+    AppComponent.prototype.initAuthority = function () {
+        sessionStorage.setItem('authority', 'application/query,application/create,application/edit');
+    };
     __decorate([
         core_1.ViewChild(menu_component_1.MenuComponent), 
         __metadata('design:type', menu_component_1.MenuComponent)

@@ -1,6 +1,6 @@
 import { Component, Input, AfterViewInit, ElementRef, Renderer } from '@angular/core';
 import { ButtonItem } from 'vendor/util';
-import { ComponentConstants } from 'vendor/common';
+import { ComponentConstants, StringUtil } from 'vendor/common';
 
 @Component({
     selector: 'button-component',
@@ -28,6 +28,15 @@ export class ButtonComponent implements AfterViewInit {
     }
 
     setButtonDisabled(): void {
-        // this.renderer.setElementClass(this.el.nativeElement, ComponentConstants.DISABLED, true);
+        const authorityUrls = sessionStorage.getItem('authorityUrls');
+
+        if (StringUtil.isEmpty(authorityUrls)) {
+            return;
+        }
+
+        if (authorityUrls.indexOf(this.buttonItem.url) < 0) {
+            this.renderer.setElementClass(this.el.nativeElement, ComponentConstants.DISABLED, true);
+        }
+
     }
 }

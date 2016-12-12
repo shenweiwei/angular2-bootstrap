@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var util_1 = require('vendor/util');
+var common_1 = require('vendor/common');
 var ButtonComponent = (function () {
     function ButtonComponent(el, renderer) {
         this.el = el;
@@ -25,7 +26,13 @@ var ButtonComponent = (function () {
         this.setButtonDisabled();
     };
     ButtonComponent.prototype.setButtonDisabled = function () {
-        // this.renderer.setElementClass(this.el.nativeElement, ComponentConstants.DISABLED, true);
+        var authorityUrls = sessionStorage.getItem('authorityUrls');
+        if (common_1.StringUtil.isEmpty(authorityUrls)) {
+            return;
+        }
+        if (authorityUrls.indexOf(this.buttonItem.url) < 0) {
+            this.renderer.setElementClass(this.el.nativeElement, common_1.ComponentConstants.DISABLED, true);
+        }
     };
     __decorate([
         core_1.Input(), 

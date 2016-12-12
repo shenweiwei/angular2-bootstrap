@@ -11,7 +11,7 @@
     "author": "WeiWei Shen",
     "homepage": "https://github.com/shenweiwei/angular2-bootstrap",
     "scripts": {
-        "start": "webpack-dev-server --inline --progress --port 8080",
+        "start": "webpack-dev-server --inline --progress --port 3000",
         "test": "karma start",
         "build:dev": "rimraf dist &&webpack --config config/webpack.dev.config.js --progress --profile --bail",
         "build:prod": "rimraf dist &&webpack --config config/webpack.prod.config.js  --progress --profile --bail",

@@ -11,7 +11,7 @@ var ExcelFile = (function () {
         var row = "<thead><tr>";
         for (var _i = 0, headers_1 = headers; _i < headers_1.length; _i++) {
             var header = headers_1[_i];
-            row += "<th>" + header.desc + '</th>';
+            row += '<th style="border:1px solid #000000;">' + header.desc + '</th>';
         }
         //换行  
         excel_table += row + "</tr></thead>";

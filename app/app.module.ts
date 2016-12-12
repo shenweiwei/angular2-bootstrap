@@ -26,7 +26,7 @@ import { DashBoardComponent } from './web/components/dashboard.component';
 //advance component
 import { ApplicationSearchComponent } from './web/components/application/search.component';
 
-//vendor component
+// //vendor component
 import { BaseComponent } from './web/vendor/components/base.component';
 import { TableComponent } from './web/vendor/components/table.component';
 import { ButtonComponent } from './web/vendor/components/button.component';
@@ -35,7 +35,7 @@ import { NavBarComponent } from './web/vendor/components/navbar.component';
 import { TaskRemindComponent } from './web/vendor/components/task-remind.component';
 import { AdvanceStyleComponent } from './web/vendor/components/advance-style.component';
 
-//vendor directives
+// //vendor directives
 import { InputListenerDirective } from './web/vendor/directives/listener/input.directive'
 
 //service
@@ -66,7 +66,6 @@ import { ExcelFile } from 'vendor/util';
     //根组件
     AppComponent,
     DashBoardComponent,
-
     //公共组件
     ButtonComponent,
     TableComponent,
@@ -75,12 +74,12 @@ import { ExcelFile } from 'vendor/util';
     TaskRemindComponent,
     AdvanceStyleComponent,
 
-    //自定义组件
+    // //自定义组件
     ApplicationSearchComponent
   ],
   //提供商的注入池
   providers: [
-    //公共服务
+    // 公共服务
     HttpRestful,
     RestService,
     //自定义service实现类

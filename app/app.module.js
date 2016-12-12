@@ -26,15 +26,12 @@ var http_1 = require('@angular/http');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var app_routes_1 = require('./app.routes');
-// Imports for loading & configuring the in-memory web api
-var angular_in_memory_web_api_1 = require('angular-in-memory-web-api');
-var common_1 = require('vendor/common');
 //base component
 var app_component_1 = require('./web/components/app.component');
 var dashboard_component_1 = require('./web/components/dashboard.component');
 //advance component
 var search_component_1 = require('./web/components/application/search.component');
-//vendor component
+// //vendor component
 var base_component_1 = require('./web/vendor/components/base.component');
 var table_component_1 = require('./web/vendor/components/table.component');
 var button_component_1 = require('./web/vendor/components/button.component');
@@ -42,18 +39,18 @@ var menu_component_1 = require('./web/vendor/components/menu.component');
 var navbar_component_1 = require('./web/vendor/components/navbar.component');
 var task_remind_component_1 = require('./web/vendor/components/task-remind.component');
 var advance_style_component_1 = require('./web/vendor/components/advance-style.component');
-//vendor directives
+// //vendor directives
 var input_directive_1 = require('./web/vendor/directives/listener/input.directive');
 //service
 var http_2 = require('vendor/http');
-var common_2 = require('vendor/common');
+var common_1 = require('vendor/common');
 var application_service_impl_1 = require('./js/com/sgm/dms/ops/services/application.service.impl');
 //扩展类
 var util_1 = require('vendor/util');
 var util_2 = require('vendor/util');
 var util_3 = require('vendor/util');
 var app_options_1 = require('./web/vendor/app.options');
-var common_3 = require('vendor/common');
+var common_2 = require('vendor/common');
 var util_4 = require('vendor/util');
 var AppModule = (function () {
     function AppModule() {
@@ -64,8 +61,7 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
-                app_routes_1.routing,
-                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(common_1.InMemoryDataService),
+                app_routes_1.routing
             ],
             //指令及组件的使用
             declarations: [
@@ -81,14 +77,14 @@ var AppModule = (function () {
                 navbar_component_1.NavBarComponent,
                 task_remind_component_1.TaskRemindComponent,
                 advance_style_component_1.AdvanceStyleComponent,
-                //自定义组件
+                // //自定义组件
                 search_component_1.ApplicationSearchComponent
             ],
             //提供商的注入池
             providers: [
-                //公共服务
+                // 公共服务
                 http_2.HttpRestful,
-                common_2.RestService,
+                common_1.RestService,
                 //自定义service实现类
                 application_service_impl_1.ApplicationServiceImpl,
                 //扩展类
@@ -97,7 +93,7 @@ var AppModule = (function () {
                 util_2.MenuOptions,
                 util_3.TaskRemindOptions,
                 app_options_1.AppOptions,
-                common_3.UserPojo,
+                common_2.UserPojo,
                 util_4.ExcelFile
             ],
             bootstrap: [app_component_1.AppComponent]

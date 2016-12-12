@@ -1,6 +1,6 @@
 import {PageVo} from 'vendor/lang';
 
-export class ApplicationVo extends PageVo{
+export class ApplicationVo extends PageVo {
     private _appId:number;
     private _appChnName:string;
     private _appEngName:string;

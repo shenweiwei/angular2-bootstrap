@@ -93,5 +93,6 @@ export class AppComponent extends ViewComponent implements AfterViewInit {
 
     initAuthority():void{
         sessionStorage.setItem('authority','application/query,application/create,application/edit');
+        
     }
 }

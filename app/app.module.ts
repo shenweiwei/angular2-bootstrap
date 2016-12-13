@@ -44,13 +44,9 @@ import { RestService } from 'vendor/common';
 import { ApplicationServiceImpl } from './js/com/sgm/dms/ops/services/application.service.impl';
 
 //扩展类
-import { TableOptions } from 'vendor/util';
-import { MenuOptions } from 'vendor/util';
-import { TaskRemindOptions } from 'vendor/util';
 import { AppOptions } from './web/vendor/app.options';
 import { UserPojo } from 'vendor/common';
-import { ExcelFile } from 'vendor/util';
-import { WordFile } from 'vendor/util';
+import { TableOptions,MenuOptions,TaskRemindOptions,ExcelFile,WordFile,CSVFile } from 'vendor/util';
 
 @NgModule({
   imports: [
@@ -93,8 +89,8 @@ import { WordFile } from 'vendor/util';
     AppOptions,
     UserPojo,
     ExcelFile,
-    WordFile
-
+    WordFile,
+    CSVFile
   ],
   bootstrap: [AppComponent]
 })

@@ -20,11 +20,12 @@ var base_component_1 = require('../components/base.component');
 var openHeadersPanel = false;
 var TableComponent = (function (_super) {
     __extends(TableComponent, _super);
-    function TableComponent(excelFile, wordFile) {
+    function TableComponent(excelFile, wordFile, csvFile) {
         var _this = this;
         _super.call(this);
         this.excelFile = excelFile;
         this.wordFile = wordFile;
+        this.csvFile = csvFile;
         this.viewTableDatas = new util_1.ArrayList(); //页面显示的数据集
         this.tableOptions = new util_1.TableOptions();
         this.globalData = false; //全量数据显示
@@ -431,6 +432,20 @@ var TableComponent = (function (_super) {
             _super.prototype.alert.call(this, '提示', '请先查询再进行导出操作');
         }
     };
+    /**
+     *
+     * 导出csv
+     *
+     * @memberOf TableComponent
+     */
+    TableComponent.prototype.exportCSVFile = function () {
+        if (this.tableDatas && this.tableHeaders) {
+            this.csvFile.exportTable('test', this.tableDatas.toArray(), this.tableHeaders.toArray());
+        }
+        else {
+            _super.prototype.alert.call(this, '提示', '请先查询再进行导出操作');
+        }
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
@@ -482,7 +497,7 @@ var TableComponent = (function (_super) {
             styleUrls: ['../framework/compass/stylesheets/vendor.css',
                 '../framework/compass/stylesheets/vendor-pad.css']
         }), 
-        __metadata('design:paramtypes', [util_1.ExcelFile, util_1.WordFile])
+        __metadata('design:paramtypes', [util_1.ExcelFile, util_1.WordFile, util_1.CSVFile])
     ], TableComponent);
     return TableComponent;
 }(base_component_1.BaseComponent));

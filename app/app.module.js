@@ -46,13 +46,9 @@ var http_2 = require('vendor/http');
 var common_1 = require('vendor/common');
 var application_service_impl_1 = require('./js/com/sgm/dms/ops/services/application.service.impl');
 //扩展类
-var util_1 = require('vendor/util');
-var util_2 = require('vendor/util');
-var util_3 = require('vendor/util');
 var app_options_1 = require('./web/vendor/app.options');
 var common_2 = require('vendor/common');
-var util_4 = require('vendor/util');
-var util_5 = require('vendor/util');
+var util_1 = require('vendor/util');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -91,12 +87,13 @@ var AppModule = (function () {
                 //扩展类
                 base_component_1.BaseComponent,
                 util_1.TableOptions,
-                util_2.MenuOptions,
-                util_3.TaskRemindOptions,
+                util_1.MenuOptions,
+                util_1.TaskRemindOptions,
                 app_options_1.AppOptions,
                 common_2.UserPojo,
-                util_4.ExcelFile,
-                util_5.WordFile
+                util_1.ExcelFile,
+                util_1.WordFile,
+                util_1.CSVFile
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

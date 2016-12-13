@@ -1,5 +1,5 @@
 import { Component, Directive, AfterViewInit, Input, ElementRef } from '@angular/core';
-import { TableOptions, TableData, TableHeader, ArrayList, List, ExcelFile, WordFile } from 'vendor/util';
+import { TableOptions, TableData, TableHeader, ArrayList, List, ExcelFile, WordFile,CSVFile } from 'vendor/util';
 import { ComponentConstants, DataSetUtil, BeanUtil, StringUtil } from 'vendor/common';
 import { BaseComponent } from '../components/base.component';
 
@@ -35,7 +35,7 @@ export class TableComponent extends BaseComponent implements AfterViewInit {
     @Input() deleteModel: boolean = false;//是否有删除按钮
     @Input() deleteCallBack: Function;//删除的回调函数
 
-    constructor(private excelFile: ExcelFile, private wordFile: WordFile) {
+    constructor(private excelFile: ExcelFile, private wordFile: WordFile, private csvFile: CSVFile) {
         super();
     }
 
@@ -471,6 +471,20 @@ export class TableComponent extends BaseComponent implements AfterViewInit {
     exportWordFile(): void {
         if (this.tableDatas && this.tableHeaders) {
             this.wordFile.exportTable('test','标题', this.tableDatas.toArray(), this.tableHeaders.toArray());
+        } else {
+            super.alert('提示', '请先查询再进行导出操作');
+        }
+    }
+
+    /**
+     * 
+     * 导出csv
+     * 
+     * @memberOf TableComponent
+     */
+    exportCSVFile(): void {
+        if (this.tableDatas && this.tableHeaders) {
+            this.csvFile.exportTable('test', this.tableDatas.toArray(), this.tableHeaders.toArray());
         } else {
             super.alert('提示', '请先查询再进行导出操作');
         }

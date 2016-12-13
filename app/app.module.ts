@@ -50,6 +50,7 @@ import { TaskRemindOptions } from 'vendor/util';
 import { AppOptions } from './web/vendor/app.options';
 import { UserPojo } from 'vendor/common';
 import { ExcelFile } from 'vendor/util';
+import { WordFile } from 'vendor/util';
 
 @NgModule({
   imports: [
@@ -91,7 +92,8 @@ import { ExcelFile } from 'vendor/util';
     TaskRemindOptions,
     AppOptions,
     UserPojo,
-    ExcelFile
+    ExcelFile,
+    WordFile
 
   ],
   bootstrap: [AppComponent]

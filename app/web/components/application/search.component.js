@@ -38,10 +38,10 @@ var ApplicationSearchComponent = (function (_super) {
         this.onSelectPage = function (tableOptions) {
             _this.applicationVo.beginNo = tableOptions.beginPageIndex;
             _this.applicationVo.endNo = tableOptions.endPageIndex;
-            _this.applicationServiceImpl.searchApplication(_this.url, _this.applicationVo, function (response) {
-                var tableDataList = common_1.TableUtil.setTableDatas(response[0]);
-                _this.tableComponent.refreshData(tableDataList, response[1].total);
-            });
+            // this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response:any) => {
+            //     let tableDataList = TableUtil.setTableDatas(response[0]);
+            //     this.tableComponent.refreshData(tableDataList, response[1].total);
+            // });
         };
         /**
          * 更新的回调函数
@@ -70,12 +70,11 @@ var ApplicationSearchComponent = (function (_super) {
      * @memberOf ApplicationSearchComponent
      */
     ApplicationSearchComponent.prototype.search = function () {
-        var _this = this;
-        this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, function (response) {
-            var tableDataList = common_1.TableUtil.setTableDatas(response[0]);
-            _this.tableComponent.initDataTable(tableDataList, response[1].total);
-        });
-        // this.tableComponent.initDataTable(this.virtualData(), 10);
+        // this.applicationServiceImpl.searchApplication(this.url, this.applicationVo, (response:any) => {
+        //     let tableDataList = TableUtil.setTableDatas(response[0]);
+        //     this.tableComponent.initDataTable(tableDataList, response[1].total);
+        // });
+        this.tableComponent.initDataTable(this.virtualData(), 10);
     };
     ApplicationSearchComponent.prototype.reset = function () {
         _super.prototype.openProgress.call(this);

@@ -1,8 +1,55 @@
 "use strict";
+var common_1 = require('vendor/common');
 var WordFile = (function () {
     function WordFile() {
     }
-    WordFile.prototype.template = function (data, headers) {
+    WordFile.prototype.exportTable = function (fileName, title, datas, headers) {
+        //先转化json  
+        var arrData = typeof datas != 'object' ? JSON.parse(datas) : datas;
+        //设置表头  
+        var head = '<tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes">';
+        for (var _i = 0, headers_1 = headers; _i < headers_1.length; _i++) {
+            var header = headers_1[_i];
+            head = head.concat(' <th valign=top style="border:solid windowtext 1.0pt;')
+                .concat(' mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">')
+                .concat(' <p class=MsoNormal><span class=SpellE><span lang=EN-US>')
+                .concat(header.desc)
+                .concat('</span></span></p>')
+                .concat(' </th>');
+        }
+        head = head.concat('</tr>');
+        //设置数据  
+        var data = '';
+        for (var i = 0; i < arrData.length; i++) {
+            var tr = '<tr style="mso-yfti-irow:1;mso-yfti-lastrow:yes">';
+            for (var _a = 0, headers_2 = headers; _a < headers_2.length; _a++) {
+                var header = headers_2[_a];
+                var td = ' <td width=207 valign=top style="width:103.7pt;border:solid windowtext 1.0pt;'
+                    .concat(' border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;')
+                    .concat(' padding:0cm 5.4pt 0cm 5.4pt">')
+                    .concat(' <p class=MsoNormal><span lang=EN-US>?</span></p>')
+                    .concat(' </td>');
+                if (common_1.StringUtil.isEmpty(arrData[i][header.key])) {
+                    tr = tr.concat(td.replace('?', ''));
+                }
+                else {
+                    tr = tr.concat(td.replace('?', arrData[i][header.key]));
+                }
+            }
+            data = data.concat(tr.concat('</tr>'));
+        }
+        console.log(data);
+        var excelFile = this.tableTemplate().replace("$title", title).replace("$header", head).replace("$data", data);
+        var uri = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(excelFile);
+        var link = document.createElement("a");
+        link.href = uri;
+        $(link).attr('style', 'visibility:hidden');
+        link.download = fileName + ".doc";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+    WordFile.prototype.tableTemplate = function () {
         var wordFile = '<html xmlns:v="urn:schemas-microsoft-com:vml"'
             .concat(' xmlns:o="urn:schemas-microsoft-com:office:office"')
             .concat(' xmlns:w="urn:schemas-microsoft-com:office:word"')
@@ -33,14 +80,14 @@ var WordFile = (function () {
             .concat('  <o:AllowPNG/>')
             .concat(' </o:OfficeDocumentSettings>')
             .concat('</xml><![endif]-->')
-            .concat('!--[if gte mso 9]><xml>')
+            .concat('<!--[if gte mso 9]><xml>')
             .concat(' <w:WordDocument>')
             .concat('  <w:SpellingState>Clean</w:SpellingState>')
             .concat('  <w:GrammarState>Clean</w:GrammarState>')
             .concat('  <w:TrackMoves>false</w:TrackMoves>')
             .concat('  <w:TrackFormatting/>')
             .concat('  <w:PunctuationKerning/>')
-            .concat('  <w:DrawingGridVerticalSpacing>7.8 ��</w:DrawingGridVerticalSpacing>')
+            .concat('  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>')
             .concat('  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>')
             .concat('  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>')
             .concat('  <w:ValidateAgainstSchemas/>')
@@ -82,7 +129,7 @@ var WordFile = (function () {
             .concat('   <m:intLim m:val="subSup"/>')
             .concat('   <m:naryLim m:val="undOvr"/>')
             .concat('  </m:mathPr></w:WordDocument>')
-            .concat('/xml><![endif]--><!--[if gte mso 9]><xml>')
+            .concat('</xml><![endif]--><!--[if gte mso 9]><xml>')
             .concat(' <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"')
             .concat('  DefSemiHidden="false" DefQFormat="false" DefPriority="99"')
             .concat('  LatentStyleCount="371">')
@@ -657,7 +704,7 @@ var WordFile = (function () {
             .concat('<!--')
             .concat('/* Font Definitions */')
             .concat('@font-face')
-            .concat('	{font-family:����;')
+            .concat('	{font-family:宋体;')
             .concat('	panose-1:2 1 6 0 3 1 1 1 1 1;')
             .concat('	mso-font-alt:SimSun;')
             .concat('	mso-font-charset:134;')
@@ -680,7 +727,7 @@ var WordFile = (function () {
             .concat('	mso-font-pitch:variable;')
             .concat('	mso-font-signature:-536859905 -1073732485 9 0 511 0;}')
             .concat('@font-face')
-            .concat('	{font-family:"\@����";')
+            .concat('	{font-family:"\@宋体";')
             .concat('	panose-1:2 1 6 0 3 1 1 1 1 1;')
             .concat('	mso-font-charset:134;')
             .concat('	mso-generic-font-family:auto;')
@@ -701,7 +748,7 @@ var WordFile = (function () {
             .concat('	font-family:"Calibri",sans-serif;')
             .concat('	mso-ascii-font-family:Calibri;')
             .concat('	mso-ascii-theme-font:minor-latin;')
-            .concat('	mso-fareast-font-family:����;')
+            .concat('	mso-fareast-font-family:宋体;')
             .concat('	mso-fareast-theme-font:minor-fareast;')
             .concat('	mso-hansi-font-family:Calibri;')
             .concat('	mso-hansi-theme-font:minor-latin;')
@@ -712,8 +759,8 @@ var WordFile = (function () {
             .concat('	{mso-style-priority:9;')
             .concat('	mso-style-unhide:no;')
             .concat('	mso-style-qformat:yes;')
-            .concat('	mso-style-link:"���� 1 Char";')
-            .concat('	mso-style-next:����;')
+            .concat('	mso-style-link:"标题 1 Char";')
+            .concat('	mso-style-next:正文;')
             .concat('	margin-top:17.0pt;')
             .concat('	margin-right:0cm;')
             .concat('	margin-bottom:16.5pt;')
@@ -734,11 +781,11 @@ var WordFile = (function () {
             .concat('	mso-bidi-theme-font:minor-bidi;')
             .concat('	mso-font-kerning:22.0pt;}')
             .concat('span.1Char')
-            .concat('	{mso-style-name:"���� 1 Char";')
+            .concat('	{mso-style-name:"标题 1 Char";')
             .concat('	mso-style-priority:9;')
             .concat('	mso-style-unhide:no;')
             .concat('	mso-style-locked:yes;')
-            .concat('	mso-style-link:"���� 1";')
+            .concat('	mso-style-link:"标题 1";')
             .concat('	mso-ansi-font-size:22.0pt;')
             .concat('	mso-bidi-font-size:22.0pt;')
             .concat('	mso-font-kerning:22.0pt;')
@@ -771,7 +818,7 @@ var WordFile = (function () {
             .concat('<style>')
             .concat('/* Style Definitions */')
             .concat('table.MsoNormalTable')
-            .concat('	{mso-style-name:��ͨ����;')
+            .concat('	{mso-style-name:普通表格;')
             .concat('	mso-tstyle-rowband-size:0;')
             .concat('	mso-tstyle-colband-size:0;')
             .concat('	mso-style-noshow:yes;')
@@ -792,7 +839,7 @@ var WordFile = (function () {
             .concat('	mso-bidi-theme-font:minor-bidi;')
             .concat('	mso-font-kerning:1.0pt;}')
             .concat('table.MsoTableGrid')
-            .concat('	{mso-style-name:������;')
+            .concat('	{mso-style-name:网格型;')
             .concat('	mso-tstyle-rowband-size:0;')
             .concat('	mso-tstyle-colband-size:0;')
             .concat('	mso-style-priority:39;')
@@ -829,65 +876,22 @@ var WordFile = (function () {
             .concat('<div class=WordSection1 style="layout-grid:15.6pt">')
             .concat('')
             .concat('<p class=MsoNormal align=center style="text-align:center"><em><span')
-            .concat('style="font-size:26.0pt;mso-bidi-font-size:11.0pt;font-family:����;mso-ascii-font-family:')
-            .concat('Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:����;mso-fareast-theme-font:')
+            .concat('style="font-size:26.0pt;mso-bidi-font-size:11.0pt;font-family:宋体;mso-ascii-font-family:')
+            .concat('Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:宋体;mso-fareast-theme-font:')
             .concat('minor-fareast;mso-hansi-font-family:Calibri;mso-hansi-theme-font:minor-latin;')
-            .concat('mso-bidi-font-family:"Times New Roman";mso-bidi-theme-font:minor-bidi">����</span></em><em><span')
-            .concat('lang=EN-US style="font-size:26.0pt;mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;')
-            .concat('mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:')
-            .concat('"Times New Roman";mso-bidi-theme-font:minor-bidi">1<o:p></o:p></span></em></p>')
+            .concat('mso-bidi-font-family:"Times New Roman";mso-bidi-theme-font:minor-bidi">$title</span></em></p>')
             .concat('')
             .concat('<div align=center>')
             .concat('')
             .concat('<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0')
             .concat('style="border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;')
             .concat('mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt">')
-            .concat('<tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes">')
-            .concat(' <td width=207 valign=top style="width:103.7pt;border:solid windowtext 1.0pt;')
-            .concat(' mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">')
-            .concat(' <p class=MsoNormal><span class=SpellE><span lang=EN-US>aaa</span></span></p>')
-            .concat(' </td>')
-            .concat(' <td width=207 valign=top style="width:103.7pt;border:solid windowtext 1.0pt;')
-            .concat(' border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:')
-            .concat(' solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">')
-            .concat(' <p class=MsoNormal><span class=SpellE><span lang=EN-US>bbb</span></span></p>')
-            .concat(' </td>')
-            .concat(' <td width=207 valign=top style="width:103.7pt;border:solid windowtext 1.0pt;')
-            .concat(' border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:')
-            .concat(' solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">')
-            .concat(' <p class=MsoNormal><span lang=EN-US>ccc</span></p>')
-            .concat(' </td>')
-            .concat(' <td width=207 valign=top style="width:103.7pt;border:solid windowtext 1.0pt;')
-            .concat(' border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:')
-            .concat(' solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">')
-            .concat(' <p class=MsoNormal><span class=SpellE><span lang=EN-US>ddd</span></span></p>')
-            .concat(' </td>')
-            .concat('</tr>')
-            .concat('<tr style="mso-yfti-irow:1;mso-yfti-lastrow:yes">')
-            .concat(' <td width=207 valign=top style="width:103.7pt;border:solid windowtext 1.0pt;')
-            .concat(' border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;')
-            .concat(' padding:0cm 5.4pt 0cm 5.4pt">')
-            .concat(' <p class=MsoNormal><span lang=EN-US>1</span></p>')
-            .concat(' </td>')
-            .concat(' <td width=207 valign=top style="width:103.7pt;border-top:none;border-left:')
-            .concat(' none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;')
-            .concat(' mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;')
-            .concat(' mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">')
-            .concat(' <p class=MsoNormal><span lang=EN-US>2</span></p>')
-            .concat(' </td>')
-            .concat(' <td width=207 valign=top style="width:103.7pt;border-top:none;border-left:')
-            .concat(' none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;')
-            .concat(' mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;')
-            .concat(' mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">')
-            .concat(' <p class=MsoNormal><span lang=EN-US>3</span></p>')
-            .concat(' </td>')
-            .concat(' <td width=207 valign=top style="width:103.7pt;border-top:none;border-left:')
-            .concat(' none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;')
-            .concat(' mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;')
-            .concat(' mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">')
-            .concat(' <p class=MsoNormal><span lang=EN-US>4</span></p>')
-            .concat(' </td>')
-            .concat('</tr>')
+            .concat('<thead>')
+            .concat('$header')
+            .concat('</thead>')
+            .concat('<tbody>')
+            .concat('$data')
+            .concat('</tbody>')
             .concat('</table>')
             .concat('')
             .concat('</div>')

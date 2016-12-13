@@ -52,6 +52,7 @@ var util_3 = require('vendor/util');
 var app_options_1 = require('./web/vendor/app.options');
 var common_2 = require('vendor/common');
 var util_4 = require('vendor/util');
+var util_5 = require('vendor/util');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -94,7 +95,8 @@ var AppModule = (function () {
                 util_3.TaskRemindOptions,
                 app_options_1.AppOptions,
                 common_2.UserPojo,
-                util_4.ExcelFile
+                util_4.ExcelFile,
+                util_5.WordFile
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

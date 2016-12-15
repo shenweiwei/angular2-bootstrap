@@ -38,9 +38,11 @@ var ExcelFile = (function () {
         link.href = uri;
         $(link).attr('style', 'visibility:hidden');
         link.download = fileName + ".xls";
+        // console.log(link.download);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+        // window.open(link.download)
     };
     ExcelFile.prototype.tableTemplate = function () {
         var excelFileTemplate = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>"
@@ -70,6 +72,25 @@ var ExcelFile = (function () {
             .concat("</body>")
             .concat("</html>");
         return excelFileTemplate;
+    };
+    ExcelFile.prototype.loadBrowser = function () {
+        var explorer = window.navigator.userAgent;
+        //ie  
+        if (explorer.indexOf("MSIE") >= 0) {
+            return common_1.CommonConstants.IE_BROWSER;
+        }
+        else if (explorer.indexOf("Firefox") >= 0) {
+            return common_1.CommonConstants.FIREFOX_BROWSER;
+        }
+        else if (explorer.indexOf("Chrome") >= 0) {
+            return common_1.CommonConstants.CHROME_BROWSER;
+        }
+        else if (explorer.indexOf("Opera") >= 0) {
+            return common_1.CommonConstants.OPEAR_BROWSER;
+        }
+        else if (explorer.indexOf("Safari") >= 0) {
+            return common_1.CommonConstants.SAFIRI_BROWSER;
+        }
     };
     return ExcelFile;
 }());

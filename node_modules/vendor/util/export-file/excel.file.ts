@@ -1,5 +1,5 @@
 import { TableHeader } from 'vendor/util';
-import { StringUtil } from 'vendor/common';
+import { StringUtil,CommonConstants } from 'vendor/common';
 declare const $: any;
 export class ExcelFile {
     exportTable(fileName: string, datas: any[], headers: any[]): void {
@@ -47,9 +47,12 @@ export class ExcelFile {
         $(link).attr('style', 'visibility:hidden')
         link.download = fileName + ".xls";
 
+        // console.log(link.download);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+
+        // window.open(link.download)
     }
 
     tableTemplate(): String {
@@ -81,5 +84,29 @@ export class ExcelFile {
             .concat("</html>");
 
         return excelFileTemplate;
+    }
+
+    loadBrowser(): string {
+        const explorer = window.navigator.userAgent;
+        //ie  
+        if (explorer.indexOf("MSIE") >= 0) {
+            return CommonConstants.IE_BROWSER;
+        }
+        //firefox  
+        else if (explorer.indexOf("Firefox") >= 0) {
+            return CommonConstants.FIREFOX_BROWSER;
+        }
+        //Chrome  
+        else if (explorer.indexOf("Chrome") >= 0) {
+            return CommonConstants.CHROME_BROWSER;
+        }
+        //Opera  
+        else if (explorer.indexOf("Opera") >= 0) {
+            return CommonConstants.OPEAR_BROWSER;
+        }
+        //Safari  
+        else if (explorer.indexOf("Safari") >= 0) {
+            return CommonConstants.SAFIRI_BROWSER;
+        }
     }
 }

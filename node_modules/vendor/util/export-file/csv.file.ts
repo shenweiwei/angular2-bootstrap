@@ -1,5 +1,5 @@
 import { TableHeader } from 'vendor/util';
-import { StringUtil } from 'vendor/common';
+import { StringUtil,CommonConstants } from 'vendor/common';
 declare const $: any;
 
 export class CSVFile {
@@ -52,4 +52,27 @@ export class CSVFile {
         document.body.removeChild(link);
     }
 
+    loadBrowser(): string {
+        const explorer = window.navigator.userAgent;
+        //ie  
+        if (explorer.indexOf("MSIE") >= 0) {
+            return CommonConstants.IE_BROWSER;
+        }
+        //firefox  
+        else if (explorer.indexOf("Firefox") >= 0) {
+            return CommonConstants.FIREFOX_BROWSER;
+        }
+        //Chrome  
+        else if (explorer.indexOf("Chrome") >= 0) {
+            return CommonConstants.CHROME_BROWSER;
+        }
+        //Opera  
+        else if (explorer.indexOf("Opera") >= 0) {
+            return CommonConstants.OPEAR_BROWSER;
+        }
+        //Safari  
+        else if (explorer.indexOf("Safari") >= 0) {
+            return CommonConstants.SAFIRI_BROWSER;
+        }
+    }
 }

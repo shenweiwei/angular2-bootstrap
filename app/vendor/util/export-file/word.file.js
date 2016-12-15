@@ -908,6 +908,25 @@ var WordFile = (function () {
             .concat('</html>');
         return wordFile;
     };
+    WordFile.prototype.loadBrowser = function () {
+        var explorer = window.navigator.userAgent;
+        //ie  
+        if (explorer.indexOf("MSIE") >= 0) {
+            return common_1.CommonConstants.IE_BROWSER;
+        }
+        else if (explorer.indexOf("Firefox") >= 0) {
+            return common_1.CommonConstants.FIREFOX_BROWSER;
+        }
+        else if (explorer.indexOf("Chrome") >= 0) {
+            return common_1.CommonConstants.CHROME_BROWSER;
+        }
+        else if (explorer.indexOf("Opera") >= 0) {
+            return common_1.CommonConstants.OPEAR_BROWSER;
+        }
+        else if (explorer.indexOf("Safari") >= 0) {
+            return common_1.CommonConstants.SAFIRI_BROWSER;
+        }
+    };
     return WordFile;
 }());
 exports.WordFile = WordFile;
